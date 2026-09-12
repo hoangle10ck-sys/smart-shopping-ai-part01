@@ -10,6 +10,11 @@ import {
   useRouter,
 } from "next/navigation";
 
+import { RequirementSummary } from "@/components/requirement-summary";
+import { PipelineProgress } from "@/components/pipeline-progress";
+import { ResultFilters } from "@/components/result-filters";
+import { EMPTY_FILTERS, filterAndSort, dataModeLabel, type ResultFilters as Filters } from "@/lib/results-utils";
+
 import {
   ProductCard,
 } from "@/components/product-card";
@@ -29,17 +34,14 @@ import type {
 
 
 export default function ResultsPage() {
-  const params =
-    useParams<{
-      sessionId: string;
-    }>();
+  const { sessionId } = useParams<{ sessionId: string }>();
+  return <SessionResults key={sessionId} sessionId={sessionId} />;
+}
 
-  const router =
-    useRouter();
-
-  const sessionId =
-    params.sessionId;
-
+function SessionResults({ sessionId }: { sessionId: string }) {
+  const router = useRouter();
+  const [filters, setFilters] = useState<Filters>({ ...EMPTY_FILTERS });
+  const [reload, setReload] = useState(0);
 
   const [
     data,
@@ -127,7 +129,7 @@ export default function ResultsPage() {
     return () => {
       active = false;
     };
-  }, [sessionId]);
+  }, [sessionId, reload]);
 
 
   function toggleCompare(
@@ -224,6 +226,8 @@ export default function ResultsPage() {
   }
 
 
+  const visibleProducts = filterAndSort(data?.recommendations ?? [], filters);
+
   return (
     <main className="min-h-screen bg-slate-50">
       <SiteHeader />
@@ -253,16 +257,7 @@ export default function ResultsPage() {
 
       <section className="mx-auto max-w-7xl px-5 py-10 lg:px-8">
         {/* LOADING */}
-        {loading && (
-          <div className="flex min-h-80 flex-col items-center justify-center">
-            <div className="h-12 w-12 animate-spin rounded-full border-4 border-slate-200 border-t-blue-600" />
-
-            <p className="mt-5 font-bold text-slate-600">
-              Đang tải kết quả AI...
-            </p>
-          </div>
-        )}
-
+        {loading && <PipelineProgress phase="read" />}
 
         {/* ERROR */}
         {error && (
@@ -279,8 +274,18 @@ export default function ResultsPage() {
 
 
         {/* DATA */}
-        {data && (
+        {data && !loading && !error && (
           <>
+            <div className="mb-5 rounded-2xl border border-slate-200 bg-white p-5">
+              <p className="font-extrabold">{dataModeLabel(data.data_mode)}</p>
+              <p className="mt-2 text-sm text-slate-500">{data.data_semantics === "snapshot" ? "Kết quả snapshot đã lưu; giá có thể khác giá hiện tại." : data.data_semantics === "legacy_recomputed" ? "Phiên cũ chưa có snapshot: backend tính lại đồng bộ từ dữ liệu hiện có." : "Chưa có kết quả được tạo."}</p>
+              {!data.data_mode && <p className="mt-1 text-xs text-slate-500">Cấu hình Demo/Live hiện tại không đủ để xác định nguồn dữ liệu lịch sử.</p>}
+            </div>
+            {data.status && <PipelineProgress phase={data.status} />}
+            {(data.status === "PROCESSING" || data.status === "PENDING" || data.status === "FAILED") && <button type="button" onClick={() => setReload((value) => value + 1)} className="mb-5 font-bold text-blue-700">Tải lại trạng thái đã lưu</button>}
+            {!!data.warnings?.length && <ul role="alert" className="mb-6 list-disc space-y-2 rounded-2xl border border-amber-200 bg-amber-50 p-5 pl-9 text-sm text-amber-900">{data.warnings.map((warning, index) => <li key={index}>{warning}</li>)}</ul>}
+            <RequirementSummary requirement={data.requirement} />
+            <ResultFilters products={data.recommendations} value={filters} onChange={setFilters} visibleCount={visibleProducts.length} />
             <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
               <div>
                 <span className="text-2xl font-black text-slate-950">
@@ -320,10 +325,10 @@ export default function ResultsPage() {
 
 
             {/* PRODUCT GRID */}
-            {data.recommendations.length >
+            {visibleProducts.length >
             0 ? (
               <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-                {data.recommendations.map(
+                {visibleProducts.map(
                   (product) => (
                     <ProductCard
                       key={
@@ -361,13 +366,11 @@ export default function ResultsPage() {
                 </div>
 
                 <h2 className="mt-5 text-xl font-black">
-                  Chưa tìm thấy sản phẩm
-                  phù hợp
+                  {data.recommendations.length ? "Không có sản phẩm khớp bộ lọc" : "Phiên chưa có đề xuất sản phẩm"}
                 </h2>
 
                 <p className="mt-2 text-slate-500">
-                  Hãy thử thay đổi ngân
-                  sách hoặc yêu cầu.
+                  {data.recommendations.length ? "Đặt lại bộ lọc để xem đầy đủ kết quả đã lưu." : "Xem trạng thái và cảnh báo phía trên để biết kết quả của phiên."}
                 </p>
               </div>
             )}

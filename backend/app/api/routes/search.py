@@ -297,6 +297,7 @@ async def execute_search(
                 recommendation_result.recommendations
             ),
             data_semantics=recommendation_result.data_semantics,
+            data_mode=recommendation_result.data_mode,
             total_found=(
                 recommendation_result.total_found
             ),
@@ -426,6 +427,7 @@ def get_search_result(
             recommendation_result.recommendations
         ),
         data_semantics=recommendation_result.data_semantics,
+        data_mode=recommendation_result.data_mode,
         total_found=(
             recommendation_result.total_found
         ),

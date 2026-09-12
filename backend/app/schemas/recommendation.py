@@ -1,6 +1,7 @@
 """API schemas for deterministic recommendations."""
 
 from typing import Literal
+from datetime import datetime
 
 from pydantic import BaseModel, Field
 
@@ -22,6 +23,7 @@ from app.schemas.search import (
 
 
 RecommendationDataSemantics = Literal["snapshot", "legacy_recomputed", "not_generated"]
+RecommendationDataMode = Literal["demo", "live"]
 
 
 class RecommendationItem(BaseModel):
@@ -52,6 +54,8 @@ class RecommendationItem(BaseModel):
     product_url: str | None = None
 
     availability: str | None = None
+
+    last_checked_at: datetime | None = None
 
     rating: float | None = None
 
@@ -104,6 +108,9 @@ class SearchPipelineResponse(
 
     # Snapshot = latest successful run; legacy = consistently recomputed read-only view.
     data_semantics: RecommendationDataSemantics = "snapshot"
+
+    # Historical provenance, unlike SearchExecutionResponse.demo_mode (runtime config).
+    data_mode: RecommendationDataMode | None = None
 
     total_found: int = 0
 

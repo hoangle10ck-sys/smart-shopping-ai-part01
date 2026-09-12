@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { RecommendationDetails } from "@/components/recommendation-details";
+import { displayScore, safeHttpUrl } from "@/lib/results-utils";
 import {
   useState,
 } from "react";
@@ -97,6 +99,8 @@ export function ProductCard({
     product.confidence,
   );
 
+  const shopUrl = safeHttpUrl(product.product_url);
+
   const hasImage = Boolean(
     product.image_url
     && !imageFailed
@@ -175,7 +179,7 @@ export function ProductCard({
         <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wide text-blue-600">
           <span>
             {product.brand
-              || "Smart Shopping"}
+              || "Chưa rõ thương hiệu"}
           </span>
 
           {product.category && (
@@ -248,7 +252,7 @@ export function ProductCard({
             </p>
 
             <p className="mt-1 text-xl font-black text-blue-600">
-              {aiMatch}%
+              {displayScore(product.score?.final_score)}
             </p>
 
             <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-blue-100">
@@ -265,11 +269,11 @@ export function ProductCard({
 
           <div className="rounded-2xl bg-emerald-50 p-3">
             <p className="text-xs font-bold text-slate-500">
-              Độ tin cậy
+              Độ tin cậy dữ liệu
             </p>
 
             <p className="mt-1 text-xl font-black text-emerald-600">
-              {confidence}%
+              {displayScore(product.confidence)}
             </p>
 
             <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-emerald-100">
@@ -284,6 +288,8 @@ export function ProductCard({
           </div>
         </div>
 
+
+        <RecommendationDetails product={product} />
 
         {/* ACTION */}
         <div className="mt-5 grid grid-cols-2 gap-3">
@@ -330,10 +336,10 @@ export function ProductCard({
 
 
         {/* DIRECT SHOP LINK */}
-        {product.product_url && (
+        {shopUrl && (
           <a
             href={
-              product.product_url
+              shopUrl
             }
             target="_blank"
             rel="noopener noreferrer"

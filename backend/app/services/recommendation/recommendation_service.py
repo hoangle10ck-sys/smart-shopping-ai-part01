@@ -32,6 +32,7 @@ from app.schemas.ranking import (
 from app.schemas.recommendation import (
     RecommendationItem,
     RecommendationDataSemantics,
+    RecommendationDataMode,
 )
 from app.schemas.requirement import (
     RequirementData,
@@ -78,6 +79,7 @@ class RecommendationRunResult:
     total_filtered: int
 
     data_semantics: RecommendationDataSemantics = "snapshot"
+    data_mode: RecommendationDataMode | None = None
 
 
 def requirement_to_schema(
@@ -341,6 +343,7 @@ class RecommendationService:
                 accepted
             ),
             data_semantics="snapshot" if persist else "legacy_recomputed",
+            data_mode=("demo" if self.settings.demo_mode else "live") if persist else None,
         )
         if persist:
             snapshot = db.get(RecommendationSnapshot, session_id)
@@ -418,6 +421,11 @@ class RecommendationService:
             model=candidate.model,
             image_url=context.product.image_url,
             price=candidate.price,
+            last_checked_at=(
+                offer.last_checked_at.replace(tzinfo=timezone.utc)
+                if offer is not None and offer.last_checked_at is not None and offer.last_checked_at.tzinfo is None
+                else offer.last_checked_at if offer is not None else None
+            ),
             currency=(
                 candidate.currency
             ),

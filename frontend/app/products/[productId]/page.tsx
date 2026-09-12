@@ -643,7 +643,7 @@ export default function ProductPage() {
 
                 {bestOffer && (
                   <div className="absolute bottom-5 left-5 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-xs font-extrabold text-emerald-700">
-                    ✓ Dữ liệu từ nguồn thực tế
+                    Thông tin offer đã lưu
                   </div>
                 )}
               </div>

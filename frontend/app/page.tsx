@@ -8,6 +8,8 @@ import type {
   FormEvent,
 } from "react";
 
+import { PipelineProgress } from "@/components/pipeline-progress";
+
 import {
   SiteHeader,
 } from "@/components/site-header";
@@ -27,6 +29,7 @@ const examples = [
 
 
 export default function Home() {
+  const [pipelinePhase, setPipelinePhase] = useState<"analyze" | "search">("analyze");
   const [
     query,
     setQuery,
@@ -129,6 +132,7 @@ export default function Home() {
 
     setError(null);
     setLoading(true);
+    setPipelinePhase("analyze");
 
 
     try {
@@ -243,6 +247,7 @@ export default function Home() {
 
     setError(null);
     setLoading(true);
+    setPipelinePhase("analyze");
 
 
     try {
@@ -367,6 +372,7 @@ export default function Home() {
     );
 
 
+    setPipelinePhase("search");
     const searchResult =
       await executeSearch(
         sessionId,
@@ -532,13 +538,15 @@ export default function Home() {
                   className="inline-flex min-w-40 items-center justify-center rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3.5 text-sm font-extrabold text-white shadow-lg shadow-blue-500/25 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {loading
-                    ? "AI đang phân tích..."
+                    ? "Đang chờ backend..."
                     : "✨ Tìm bằng AI"}
                 </button>
               </div>
             </div>
           </form>
 
+
+          {loading && <div className="mx-auto mt-5 max-w-3xl"><PipelineProgress phase={pipelinePhase} /></div>}
 
           {/* ERROR */}
           {error && (

@@ -27,6 +27,7 @@ export interface RecommendationItem {
   merchant?: string | null;
   product_url?: string | null;
   availability?: string | null;
+  last_checked_at?: string | null;
 
   rating?: number | null;
   review_count?: number | null;
@@ -42,6 +43,8 @@ export interface RecommendationItem {
 
   evidence?: unknown;
   explanation?: unknown;
+  pros?: string[];
+  cons?: string[];
 }
 
 
@@ -93,6 +96,12 @@ export interface AnalyzeResponse {
 
 export interface SearchPipelineResponse {
   session_id: string;
+  requirement?: ParsedRequirement | null;
+  status?: "PENDING" | "PROCESSING" | "COMPLETED" | "FAILED" | null;
+  data_mode?: "demo" | "live" | null;
+  demo_mode?: boolean;
+  data_semantics?: "snapshot" | "legacy_recomputed" | "not_generated";
+  warnings?: string[];
 
   recommendations: RecommendationItem[];
 
