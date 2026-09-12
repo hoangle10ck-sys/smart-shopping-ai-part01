@@ -1,0 +1,39 @@
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+backend/smart_shopping.db
+
+# Node / Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env.local
+npm-debug.log*
+
+# Editor / OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local database/runtime files
+backend/smart_shopping.db
+backend/smart_shopping.db-shm
+backend/smart_shopping.db-wal
+backend/.venv/
+backend/.pytest_cache/
+__pycache__/
+*.pyc
+frontend/node_modules/
+frontend/.next/
+.env
+backend/.env

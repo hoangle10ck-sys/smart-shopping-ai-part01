@@ -1,0 +1,1 @@
+"""Small database migration scripts for MVP development."""
