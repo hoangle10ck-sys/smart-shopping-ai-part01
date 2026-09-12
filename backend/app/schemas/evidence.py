@@ -80,6 +80,7 @@ class RecommendationExplanation(BaseModel):
 
     generation_mode: Literal[
         "demo",
+        "openai",
         "gemini",
         "fallback",
     ] = "demo"

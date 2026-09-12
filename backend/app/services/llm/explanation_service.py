@@ -56,13 +56,8 @@ class ExplanationService:
             get_settings()
         )
 
-        if use_llm is None:
-            self.use_llm = (
-                not self.settings.demo_mode
-            )
-
-        else:
-            self.use_llm = use_llm
+        # Demo is an unconditional network boundary, even with an explicit hint.
+        self.use_llm = not self.settings.demo_mode and use_llm is not False
 
 
     # =========================================================
@@ -89,9 +84,7 @@ class ExplanationService:
                 )
             )
 
-            result.generation_mode = (
-                "demo"
-            )
+            result.generation_mode = "demo" if self.settings.demo_mode else "fallback"
 
             return result
 
@@ -1029,6 +1022,11 @@ class ExplanationService:
         client = (
             genai.Client(
                 api_key=api_key,
+                http_options=types.HttpOptions(
+                    timeout=max(1, self.settings.llm_timeout_seconds * 1000),
+                    # The surrounding loop owns retry count for both providers.
+                    retry_options=types.HttpRetryOptions(attempts=1),
+                ),
             )
         )
 
@@ -1049,107 +1047,110 @@ class ExplanationService:
         ) = None
 
 
-        for attempt in range(
-            attempts
-        ):
-            try:
-                response = (
-                    client
-                    .models
-                    .generate_content(
-                        model=model,
+        try:
+            for attempt in range(
+                attempts
+            ):
+                try:
+                    response = (
+                        client
+                        .models
+                        .generate_content(
+                            model=model,
 
-                        contents=prompt,
+                            contents=prompt,
 
-                        config=(
-                            types
-                            .GenerateContentConfig(
-                                response_mime_type=(
-                                    "application/json"
-                                ),
+                            config=(
+                                types
+                                .GenerateContentConfig(
+                                    response_mime_type=(
+                                        "application/json"
+                                    ),
 
-                                response_schema=(
-                                    RecommendationExplanation
-                                ),
+                                    response_schema=(
+                                        RecommendationExplanation
+                                    ),
 
-                                temperature=(
-                                    0.1
-                                ),
-                            )
-                        ),
-                    )
-                )
-
-
-                if (
-                    response.parsed
-                    is not None
-                ):
-                    if isinstance(
-                        response.parsed,
-                        RecommendationExplanation,
-                    ):
-                        result = (
-                            response.parsed
+                                    temperature=(
+                                        0.1
+                                    ),
+                                )
+                            ),
                         )
+                    )
 
-                    else:
-                        result = (
-                            RecommendationExplanation
-                            .model_validate(
+
+                    if (
+                        response.parsed
+                        is not None
+                    ):
+                        if isinstance(
+                            response.parsed,
+                            RecommendationExplanation,
+                        ):
+                            result = (
                                 response.parsed
                             )
-                        )
+
+                        else:
+                            result = (
+                                RecommendationExplanation
+                                .model_validate(
+                                    response.parsed
+                                )
+                            )
 
 
-                else:
-                    if not response.text:
-                        raise RuntimeError(
-                            (
-                                "Gemini returned "
-                                "an empty response."
+                    else:
+                        if not response.text:
+                            raise RuntimeError(
+                                (
+                                    "Gemini returned "
+                                    "an empty response."
+                                )
+                            )
+
+
+                        result = (
+                            RecommendationExplanation
+                            .model_validate_json(
+                                response.text
                             )
                         )
 
 
-                    result = (
-                        RecommendationExplanation
-                        .model_validate_json(
-                            response.text
+                    result.generation_mode = (
+                        "gemini"
+                    )
+
+                    return result
+
+
+                except Exception as exc:
+                    last_error = exc
+
+
+                    if (
+                        attempt
+                        >= attempts - 1
+                    ):
+                        break
+
+
+                    time.sleep(
+                        0.5
+                        * (
+                            2
+                            ** attempt
                         )
                     )
 
 
-                result.generation_mode = (
-                    "gemini"
+            raise RuntimeError(
+                (
+                    "Gemini recommendation "
+                    "explanation failed."
                 )
-
-                return result
-
-
-            except Exception as exc:
-                last_error = exc
-
-
-                if (
-                    attempt
-                    >= attempts - 1
-                ):
-                    break
-
-
-                time.sleep(
-                    0.5
-                    * (
-                        2
-                        ** attempt
-                    )
-                )
-
-
-        raise RuntimeError(
-            (
-                "Gemini recommendation "
-                "explanation failed."
-            )
-        ) from last_error
+            ) from last_error
+        finally:
+            client.close()

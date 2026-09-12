@@ -74,6 +74,7 @@ def get_session_recommendations(
 
     return RecommendationSessionResponse(
         session_id=session_id,
+        data_semantics=result.data_semantics,
         total=len(
             result.recommendations
         ),
@@ -157,6 +158,7 @@ def get_recommendation(
         product_id=(
             recommendation.product_id
         ),
-        rank=recommendation.rank,
+        rank=item.rank,
+        data_semantics=result.data_semantics,
         item=item,
     )

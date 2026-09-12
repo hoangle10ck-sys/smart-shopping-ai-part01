@@ -1,5 +1,7 @@
 """API schemas for deterministic recommendations."""
 
+from typing import Literal
+
 from pydantic import BaseModel, Field
 
 from app.schemas.evidence import (
@@ -17,6 +19,9 @@ from app.schemas.requirement import (
 from app.schemas.search import (
     SearchExecutionResponse,
 )
+
+
+RecommendationDataSemantics = Literal["snapshot", "legacy_recomputed", "not_generated"]
 
 
 class RecommendationItem(BaseModel):
@@ -96,6 +101,9 @@ class SearchPipelineResponse(
     ] = Field(
         default_factory=list,
     )
+
+    # Snapshot = latest successful run; legacy = consistently recomputed read-only view.
+    data_semantics: RecommendationDataSemantics = "snapshot"
 
     total_found: int = 0
 

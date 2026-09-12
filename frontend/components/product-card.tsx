@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import {
-  useEffect,
   useState,
 } from "react";
 
@@ -81,9 +80,13 @@ export function ProductCard({
     setImageFailed,
   ] = useState(false);
 
-  useEffect(() => {
+  const [imageUrl, setImageUrl] = useState(product.image_url);
+
+  // Reset only image state when the source changes, preserving feedback drafts.
+  if (imageUrl !== product.image_url) {
+    setImageUrl(product.image_url);
     setImageFailed(false);
-  }, [product.image_url]);
+  }
 
 
   const aiMatch = percent(

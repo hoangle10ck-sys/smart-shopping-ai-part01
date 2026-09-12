@@ -1,6 +1,9 @@
 """Deterministic recommendation orchestration."""
 
 from dataclasses import dataclass
+from datetime import datetime, timezone
+
+from pydantic import TypeAdapter
 
 from sqlalchemy import (
     delete,
@@ -12,6 +15,8 @@ from app.core.config import get_settings
 from app.models.recommendation import (
     Recommendation,
 )
+from app.models.recommendation_snapshot import RecommendationSnapshot
+from app.models.search_session import SearchSession, SearchSessionStatus
 from app.models.requirement import (
     Requirement,
 )
@@ -26,6 +31,7 @@ from app.schemas.ranking import (
 )
 from app.schemas.recommendation import (
     RecommendationItem,
+    RecommendationDataSemantics,
 )
 from app.schemas.requirement import (
     RequirementData,
@@ -70,6 +76,8 @@ class RecommendationRunResult:
     total_found: int
 
     total_filtered: int
+
+    data_semantics: RecommendationDataSemantics = "snapshot"
 
 
 def requirement_to_schema(
@@ -140,17 +148,18 @@ class RecommendationService:
             EvidenceValidator()
         )
 
-        self.explanation_service = (
-    ExplanationService(
-        use_llm=False
-    )
-)
+        self.explanation_service = ExplanationService()
 
-    def run(
+    def run(self, *, db: Session, session_id: str) -> RecommendationRunResult:
+        """Persist a complete snapshot in the same transaction as recommendations."""
+        return self._evaluate(db=db, session_id=session_id, persist=True)
+
+    def _evaluate(
         self,
         *,
         db: Session,
         session_id: str,
+        persist: bool,
     ) -> RecommendationRunResult:
         """Generate recommendations for a search session."""
 
@@ -209,14 +218,15 @@ class RecommendationService:
             in contexts
         }
 
-        db.execute(
-            delete(
-                Recommendation
-            ).where(
-                Recommendation.session_id
-                == session_id
+        if persist:
+            db.execute(
+                delete(
+                    Recommendation
+                ).where(
+                    Recommendation.session_id
+                    == session_id
+                )
             )
-        )
 
         items: list[
             RecommendationItem
@@ -242,13 +252,17 @@ class RecommendationService:
             )
 
             explanation = (
-                self.explanation_service.explain(
+                (self.explanation_service.explain if persist
+                 else self.explanation_service.build_deterministic)(
                     candidate=candidate,
                     requirement=requirement,
                     score=score,
                     evidence=evidence,
                 )
             )
+
+            if not persist:
+                explanation.generation_mode = "fallback"
 
             stored_explanation = {
                 "evidence": (
@@ -263,42 +277,43 @@ class RecommendationService:
                 ),
             }
 
-            db.add(
-                Recommendation(
-                    session_id=session_id,
-                    product_id=(
-                        candidate.product_id
-                    ),
-                    final_score=(
-                        score.final_score
-                    ),
-                    budget_score=(
-                        score.budget_score
-                    ),
-                    requirement_score=(
-                        score.requirement_score
-                    ),
-                    purpose_score=(
-                        score.purpose_score
-                    ),
-                    rating_score=(
-                        score.rating_score
-                    ),
-                    review_score=(
-                        score.review_score
-                    ),
-                    source_score=(
-                        score.source_score
-                    ),
-                    confidence=(
-                        evidence.confidence
-                    ),
-                    rank=ranked_item.rank,
-                    explanation=(
-                        stored_explanation
-                    ),
+            if persist:
+                db.add(
+                    Recommendation(
+                        session_id=session_id,
+                        product_id=(
+                            candidate.product_id
+                        ),
+                        final_score=(
+                            score.final_score
+                        ),
+                        budget_score=(
+                            score.budget_score
+                        ),
+                        requirement_score=(
+                            score.requirement_score
+                        ),
+                        purpose_score=(
+                            score.purpose_score
+                        ),
+                        rating_score=(
+                            score.rating_score
+                        ),
+                        review_score=(
+                            score.review_score
+                        ),
+                        source_score=(
+                            score.source_score
+                        ),
+                        confidence=(
+                            evidence.confidence
+                        ),
+                        rank=ranked_item.rank,
+                        explanation=(
+                            stored_explanation
+                        ),
+                    )
                 )
-            )
 
             items.append(
                 self._build_item(
@@ -314,9 +329,7 @@ class RecommendationService:
                 )
             )
 
-        db.flush()
-
-        return RecommendationRunResult(
+        result = RecommendationRunResult(
             requirement=requirement,
             candidates=candidates,
             filter_decisions=decisions,
@@ -327,205 +340,50 @@ class RecommendationService:
             total_filtered=len(
                 accepted
             ),
+            data_semantics="snapshot" if persist else "legacy_recomputed",
         )
+        if persist:
+            snapshot = db.get(RecommendationSnapshot, session_id)
+            if snapshot is None:
+                snapshot = RecommendationSnapshot(session_id=session_id)
+                db.add(snapshot)
+            snapshot.payload = {
+                "version": 1,
+                "result": TypeAdapter(RecommendationRunResult).dump_python(result, mode="json"),
+            }
+            snapshot.created_at = datetime.now(timezone.utc)
+            db.flush()
+        return result
 
-    def load(
-        self,
-        *,
-        db: Session,
-        session_id: str,
-    ) -> RecommendationRunResult:
-        """Load persisted recommendations."""
+    def load(self, *, db: Session, session_id: str) -> RecommendationRunResult:
+        """Read the last successful snapshot without joining mutable Product/Offer data.
 
-        requirement_model = db.scalar(
-            select(Requirement).where(
-                Requirement.session_id
-                == session_id
-            )
+        Pre-snapshot sessions cannot recover every historical value. Recompute their
+        complete view from current evidence, explicitly labelled, without writing
+        rows or calling an external LLM. Never mix old scores with current prices.
+        """
+        snapshot = db.get(RecommendationSnapshot, session_id)
+        if snapshot is not None:
+            if snapshot.payload.get("version") != 1:
+                raise ValueError("Unsupported recommendation snapshot version.")
+            return TypeAdapter(RecommendationRunResult).validate_python(snapshot.payload["result"])
+
+        has_recommendations = db.scalar(select(Recommendation.id).where(
+            Recommendation.session_id == session_id,
+        ).limit(1)) is not None
+        session = db.get(SearchSession, session_id)
+        previously_completed = session is not None and (
+            session.status == SearchSessionStatus.COMPLETED or session.completed_at is not None
         )
+        if has_recommendations or previously_completed:
+            return self._evaluate(db=db, session_id=session_id, persist=False)
 
-        if requirement_model is None:
-            raise ValueError(
-                "Search session has no requirement."
-            )
-
-        requirement = (
-            requirement_to_schema(
-                requirement_model
-            )
-        )
-
-        contexts = (
-            self.candidate_builder.build(
-                db=db,
-                session_id=session_id,
-                requirement=requirement,
-            )
-        )
-
-        candidates = [
-            context.candidate
-            for context in contexts
-        ]
-
-        accepted, decisions = (
-            self.hard_filter.filter(
-                candidates,
-                requirement,
-            )
-        )
-
-        context_by_product = {
-            context.candidate.product_id:
-            context
-            for context
-            in contexts
-        }
-
-        rows = list(
-            db.scalars(
-                select(Recommendation)
-                .where(
-                    Recommendation.session_id
-                    == session_id
-                )
-                .order_by(
-                    Recommendation.rank
-                )
-            )
-        )
-
-        items: list[
-            RecommendationItem
-        ] = []
-
-        for row in rows:
-            context = (
-                context_by_product.get(
-                    row.product_id
-                )
-            )
-
-            if context is None:
-                continue
-
-            score = ScoreBreakdown(
-                budget_score=(
-                    row.budget_score
-                ),
-                requirement_score=(
-                    row.requirement_score
-                ),
-                purpose_score=(
-                    row.purpose_score
-                ),
-                rating_score=(
-                    row.rating_score
-                ),
-                review_score=(
-                    row.review_score
-                ),
-                source_score=(
-                    row.source_score
-                ),
-                final_score=(
-                    row.final_score
-                ),
-            )
-
-            evidence: (
-                EvidenceReport
-                | None
-            ) = None
-
-            explanation: (
-                RecommendationExplanation
-                | None
-            ) = None
-
-            stored = (
-                row.explanation
-                if isinstance(
-                    row.explanation,
-                    dict,
-                )
-                else {}
-            )
-
-            raw_evidence = (
-                stored.get("evidence")
-            )
-
-            raw_explanation = (
-                stored.get("explanation")
-            )
-
-            if raw_evidence:
-                evidence = (
-                    EvidenceReport
-                    .model_validate(
-                        raw_evidence
-                    )
-                )
-
-            if raw_explanation:
-                explanation = (
-                    RecommendationExplanation
-                    .model_validate(
-                        raw_explanation
-                    )
-                )
-
-            if evidence is None:
-                evidence = (
-                    self.evidence_validator
-                    .validate(
-                        context
-                    )
-                )
-
-            if explanation is None:
-                explanation = (
-                    self.explanation_service
-                    .build_deterministic(
-                        candidate=(
-                            context.candidate
-                        ),
-                        requirement=(
-                            requirement
-                        ),
-                        score=score,
-                        evidence=evidence,
-                    )
-                )
-
-                explanation.generation_mode = (
-                    "fallback"
-                )
-
-            items.append(
-                self._build_item(
-                    context=context,
-                    rank=row.rank,
-                    score=score,
-                    evidence=evidence,
-                    explanation=(
-                        explanation
-                    ),
-                )
-            )
-
+        model = db.scalar(select(Requirement).where(Requirement.session_id == session_id))
+        if model is None:
+            raise ValueError("Search session has no requirement.")
         return RecommendationRunResult(
-            requirement=requirement,
-            candidates=candidates,
-            filter_decisions=decisions,
-            recommendations=items,
-            total_found=len(
-                candidates
-            ),
-            total_filtered=len(
-                accepted
-            ),
+            requirement=requirement_to_schema(model), candidates=[], filter_decisions=[],
+            recommendations=[], total_found=0, total_filtered=0, data_semantics="not_generated",
         )
 
     def _build_item(
@@ -557,11 +415,9 @@ class RecommendationService:
                 candidate.category
             ),
             brand=candidate.brand,
-model=candidate.model,
-image_url=(
-    context.product.image_url
-),
-price=candidate.price,
+            model=candidate.model,
+            image_url=context.product.image_url,
+            price=candidate.price,
             currency=(
                 candidate.currency
             ),

@@ -34,12 +34,12 @@ export function SiteHeader() {
             Trang chủ
           </Link>
 
-          <a
+          <Link
             href="/#how-it-works"
             className="hidden rounded-xl px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-950 sm:block"
           >
             Cách hoạt động
-          </a>
+          </Link>
 
           <div className="ml-2 hidden rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-bold text-emerald-700 md:block">
             ● AI Online

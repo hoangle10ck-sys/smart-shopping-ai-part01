@@ -14,6 +14,7 @@ from app.models.source import Source
 from app.models.product import Product
 from app.models.product_offer import ProductOffer
 from app.models.recommendation import Recommendation
+from app.models.recommendation_snapshot import RecommendationSnapshot
 from app.models.comparison import ComparisonSession
 from app.models.feedback import Feedback
 from app.models.raw_product_candidate import RawProductCandidate
@@ -30,6 +31,7 @@ __all__ = [
     "Product",
     "ProductOffer",
     "Recommendation",
+    "RecommendationSnapshot",
     "ComparisonSession",
     "Feedback",
     "RawProductCandidate",

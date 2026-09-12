@@ -1,8 +1,12 @@
 """Unit tests for grounded explanation generation."""
 
+import pytest
+
+from app.core.config import get_settings
 from app.schemas.evidence import (
     EvidenceBreakdown,
     EvidenceReport,
+    RecommendationExplanation,
 )
 from app.schemas.ranking import (
     ScoreBreakdown,
@@ -134,3 +138,53 @@ def test_low_confidence_creates_tradeoff() -> None:
         for item
         in explanation.tradeoffs
     )
+
+
+@pytest.mark.parametrize("mode", ["demo", "openai", "gemini", "fallback"])
+def test_generation_modes_roundtrip(mode):
+    explanation = RecommendationExplanation(summary="Grounded explanation", generation_mode=mode)
+    assert RecommendationExplanation.model_validate_json(explanation.model_dump_json()).generation_mode == mode
+
+
+@pytest.mark.parametrize("use_llm", [None, True])
+def test_demo_never_calls_provider_even_with_explicit_hint(monkeypatch, use_llm):
+    calls = []
+    monkeypatch.setattr(ExplanationService, "_generate_with_provider", lambda *a, **kw: calls.append(kw))
+    result = ExplanationService(use_llm=use_llm).explain(
+        candidate=make_candidate(), requirement=make_requirement(), score=make_score(), evidence=make_evidence(),
+    )
+    assert result.generation_mode == "demo"
+    assert calls == []
+
+
+def test_live_uses_configured_secondary_provider(monkeypatch):
+    settings = get_settings()
+    monkeypatch.setattr(settings, "demo_mode", False)
+    monkeypatch.setattr(settings, "llm_provider", "openai")
+    monkeypatch.setattr(settings, "llm_fallback_provider", "gemini")
+    calls = []
+
+    def generate(self, *, provider, **kwargs):
+        calls.append(provider)
+        if provider == "openai":
+            raise RuntimeError("Mock provider failure")
+        return RecommendationExplanation(summary="Secondary provider explanation")
+
+    monkeypatch.setattr(ExplanationService, "_generate_with_provider", generate)
+    result = ExplanationService().explain(
+        candidate=make_candidate(), requirement=make_requirement(), score=make_score(), evidence=make_evidence(),
+    )
+    assert calls == ["openai", "gemini"]
+    assert result.generation_mode == "gemini"
+
+
+def test_missing_live_keys_falls_back_without_network(monkeypatch):
+    settings = get_settings()
+    monkeypatch.setattr(settings, "demo_mode", False)
+    monkeypatch.setattr(settings, "openai_api_key", "")
+    monkeypatch.setattr(settings, "gemini_api_key", "")
+    result = ExplanationService().explain(
+        candidate=make_candidate(), requirement=make_requirement(), score=make_score(), evidence=make_evidence(),
+    )
+    assert result.generation_mode == "fallback"
+    assert "449000" in str(result.why_fit)
