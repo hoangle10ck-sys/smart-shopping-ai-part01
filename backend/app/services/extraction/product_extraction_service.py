@@ -12,6 +12,7 @@ from app.schemas.search import (
 from app.services.search.source_filter import (
     looks_like_rental_source,
 )
+from app.services.normalization.product_normalizer import infer_product_category
 
 
 # =============================================================
@@ -23,6 +24,7 @@ LABELED_FIELD_PATTERN = re.compile(
     r"""
     (?P<key>
         PRODUCT|
+        CATEGORY|
         BRAND|
         MODEL|
         PRICE|
@@ -37,6 +39,7 @@ LABELED_FIELD_PATTERN = re.compile(
         \s*\|\s*
         (?:
             PRODUCT|
+            CATEGORY|
             BRAND|
             MODEL|
             PRICE|
@@ -2084,6 +2087,10 @@ class ProductExtractionService:
         return (
             RawProductCandidateData(
                 name=name,
+                category=infer_product_category(
+                    fields.get("PRODUCT") or title,
+                    fields.get("CATEGORY") or ("xe máy" if motorcycle_context else None),
+                ),
 
                 brand=brand,
 

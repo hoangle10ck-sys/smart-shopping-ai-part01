@@ -156,7 +156,6 @@ class CandidateBuilder:
                 ),
                 category=(
                     product.category
-                    or requirement.category
                 ),
                 brand=product.brand,
                 model=product.model,

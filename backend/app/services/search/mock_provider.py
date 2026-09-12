@@ -33,6 +33,7 @@ PHONE_RESULTS = [
             "dien-thoai/demophone-x5"
         ),
         content=(
+            "CATEGORY: điện thoại | "
             "PRODUCT: DemoPhone X5 5G | "
             "BRAND: DemoPhone | "
             "MODEL: X5 | "
@@ -53,6 +54,7 @@ PHONE_RESULTS = [
             "products/nova-a20"
         ),
         content=(
+            "CATEGORY: điện thoại | "
             "PRODUCT: Nova Mobile A20 | "
             "BRAND: Nova | "
             "MODEL: A20 | "
@@ -73,6 +75,7 @@ PHONE_RESULTS = [
             "phone/pixeldemo-g8"
         ),
         content=(
+            "CATEGORY: điện thoại | "
             "PRODUCT: PixelDemo G8 | "
             "BRAND: PixelDemo | "
             "MODEL: G8 | "
@@ -97,6 +100,7 @@ HEADPHONE_RESULTS = [
             "headphones/sounddemo-h20"
         ),
         content=(
+            "CATEGORY: tai nghe | "
             "PRODUCT: SoundDemo H20 Wireless | "
             "BRAND: SoundDemo | "
             "MODEL: H20 | "
@@ -116,6 +120,7 @@ HEADPHONE_RESULTS = [
             "tai-nghe/studybeat-m5"
         ),
         content=(
+            "CATEGORY: tai nghe | "
             "PRODUCT: StudyBeat M5 | "
             "BRAND: StudyBeat | "
             "MODEL: M5 | "
@@ -135,6 +140,7 @@ HEADPHONE_RESULTS = [
             "learnsound-pro"
         ),
         content=(
+            "CATEGORY: tai nghe | "
             "PRODUCT: LearnSound Pro | "
             "BRAND: LearnSound | "
             "MODEL: Pro | "
@@ -158,6 +164,7 @@ LAPTOP_RESULTS = [
             "codebook-15"
         ),
         content=(
+            "CATEGORY: laptop | "
             "PRODUCT: CodeBook 15 | "
             "BRAND: CodeBook | "
             "MODEL: CB15 | "
@@ -178,6 +185,7 @@ LAPTOP_RESULTS = [
             "devnote-14"
         ),
         content=(
+            "CATEGORY: laptop | "
             "PRODUCT: DevNote 14 | "
             "BRAND: DevNote | "
             "MODEL: DN14 | "
@@ -198,6 +206,7 @@ LAPTOP_RESULTS = [
             "studypro-l15"
         ),
         content=(
+            "CATEGORY: laptop | "
             "PRODUCT: StudyPro L15 | "
             "BRAND: StudyPro | "
             "MODEL: L15 | "

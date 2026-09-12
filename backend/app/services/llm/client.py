@@ -65,73 +65,48 @@ def normalize_text(
 # =============================================================
 
 
-def parse_budget(
-    text: str,
-) -> int | None:
-    """Parse common Vietnamese budget expressions."""
+BUDGET_NUMBER = r"(?:\d{1,3}(?:[.,]\d{3})+|\d+(?:[.,]\d+)?)"
+BUDGET_UNIT = r"(?:trieu|nghin|ngan|ty|tr|k|vnd|dong|d)"
+BUDGET_MULTIPLIERS = {
+    "ty": 1_000_000_000, "trieu": 1_000_000, "tr": 1_000_000,
+    "nghin": 1_000, "ngan": 1_000, "k": 1_000,
+    "vnd": 1, "dong": 1, "d": 1,
+}
 
-    normalized = normalize_text(
-        text
+
+def _budget_amount(number: str, unit: str) -> int:
+    """Distinguish grouped integer VND from decimal compact amounts."""
+    from decimal import Decimal
+    if re.fullmatch(r"\d{1,3}(?:[.,]\d{3})+", number):
+        number = re.sub(r"[.,]", "", number)
+    return int(Decimal(number.replace(",", ".")) * BUDGET_MULTIPLIERS[unit])
+
+
+def parse_budget_range(text: str) -> tuple[int | None, int | None]:
+    """Read an explicit range (including shared units) or a single upper budget."""
+    value = normalize_text(text).replace("₫", " vnd")
+    range_match = re.search(
+        rf"\btu\s+({BUDGET_NUMBER})\s*({BUDGET_UNIT})?\s*"
+        rf"(?:den|toi|-)\s*({BUDGET_NUMBER})\s*({BUDGET_UNIT})\b",
+        value,
     )
+    if range_match:
+        low, low_unit, high, high_unit = range_match.groups()
+        minimum = _budget_amount(low, low_unit or high_unit)
+        maximum = _budget_amount(high, high_unit)
+        return (minimum, maximum) if minimum <= maximum else (None, None)
+    match = re.search(rf"(?<![\w.,])({BUDGET_NUMBER})\s*({BUDGET_UNIT})\b", value)
+    if match:
+        return None, _budget_amount(*match.groups())
+    prefix_match = re.search(rf"\bvnd\s*({BUDGET_NUMBER})(?![\d.,])", value)
+    if prefix_match:
+        return None, _budget_amount(prefix_match.group(1), "vnd")
+    return None, None
 
-    patterns = [
-        (
-            r"(\d+(?:[.,]\d+)?)\s*ty\b",
-            1_000_000_000,
-        ),
-        (
-            r"(\d+(?:[.,]\d+)?)\s*trieu",
-            1_000_000,
-        ),
-        (
-            r"(\d+(?:[.,]\d+)?)\s*tr\b",
-            1_000_000,
-        ),
-        (
-            r"(\d+(?:[.,]\d+)?)\s*nghin",
-            1_000,
-        ),
-        (
-            r"(\d+(?:[.,]\d+)?)\s*ngan",
-            1_000,
-        ),
-        (
-            r"(\d+(?:[.,]\d+)?)\s*k\b",
-            1_000,
-        ),
-    ]
 
-    for pattern, multiplier in patterns:
-        match = re.search(
-            pattern,
-            normalized,
-        )
-
-        if not match:
-            continue
-
-        raw_number = (
-            match.group(1)
-            .replace(
-                ",",
-                ".",
-            )
-        )
-
-        try:
-            number = float(
-                raw_number
-            )
-
-            return int(
-                number
-                * multiplier
-            )
-
-        except ValueError:
-            continue
-
-    return None
+def parse_budget(text: str) -> int | None:
+    """Keep the existing single-budget helper compatible."""
+    return parse_budget_range(text)[1]
 
 
 # =============================================================
@@ -161,8 +136,10 @@ def detect_category(
         "tai nghe": [
             "tai nghe",
             "headphone",
+            "headphones",
             "headset",
             "earphone",
+            "earphones",
             "earbuds",
         ],
 
@@ -307,7 +284,7 @@ def detect_category(
         category_keywords.items()
     ):
         if any(
-            keyword in normalized
+            re.search(rf"(?<!\w){re.escape(keyword)}(?!\w)", normalized)
             for keyword in keywords
         ):
             return category
@@ -827,7 +804,7 @@ class MockLLMClient(
             normalized
         )
 
-        budget = parse_budget(
+        budget_min, budget_max = parse_budget_range(
             raw_query
         )
 
@@ -851,7 +828,7 @@ class MockLLMClient(
         if category is not None:
             completeness += 0.35
 
-        if budget is not None:
+        if budget_min is not None or budget_max is not None:
             completeness += 0.30
 
         if purposes:
@@ -876,8 +853,8 @@ class MockLLMClient(
 
         return RequirementData(
             category=category,
-            budget_min=None,
-            budget_max=budget,
+            budget_min=budget_min,
+            budget_max=budget_max,
             currency="VND",
             purpose=purposes,
             brands=brands,

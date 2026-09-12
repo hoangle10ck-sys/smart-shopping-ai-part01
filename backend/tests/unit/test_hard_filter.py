@@ -1,5 +1,8 @@
 """Unit tests for deterministic hard filters."""
 
+import pytest
+from app.services.filter.hard_filter import parse_weight_grams
+
 from app.schemas.ranking import (
     ScoringCandidate,
 )
@@ -199,3 +202,23 @@ def test_out_of_stock_is_rejected() -> None:
         decision.rejection_stage
         == "availability"
     )
+
+
+@pytest.mark.parametrize("weight, grams, accepted", [
+    ("1.45kg", 1450, True), ("1,45 kg", 1450, True), ("950g", 950, True),
+    ("2.2 kg", 2200, True), ("2,21 kg", 2210, False), ("2450 g", 2450, False),
+    ("unknown", None, True),
+])
+def test_decimal_weight_and_exclusion(weight, grams, accepted):
+    candidate = make_candidate(category="laptop", specifications={"weight": weight})
+    requirement = make_requirement(category="laptop", excluded_requirements=["máy quá nặng"])
+    assert parse_weight_grams(candidate) == grams
+    decision = HardFilterService().evaluate(candidate, requirement)
+    assert decision.accepted is accepted
+    if not accepted:
+        assert decision.rejection_stage == "exclusion"
+
+def test_unknown_category_cannot_pass_required_category():
+    decision = HardFilterService().evaluate(make_candidate(category=None), make_requirement(category="laptop"))
+    assert decision.accepted is False
+    assert decision.rejection_stage == "category"

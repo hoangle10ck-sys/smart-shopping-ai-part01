@@ -77,7 +77,6 @@ class NormalizationService:
         normalized = (
             self.normalizer.normalize(
                 candidate,
-                category=category,
             )
         )
 

@@ -53,6 +53,9 @@ class RawProductCandidateData(
 
     name: str | None = None
 
+    # Supplied by product evidence, never by the user's requested category.
+    category: str | None = None
+
     brand: str | None = None
 
     model: str | None = None

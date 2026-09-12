@@ -22,9 +22,6 @@ from app.models.raw_product_candidate import (
     RawProductCandidate,
 )
 
-from app.models.requirement import (
-    Requirement,
-)
 
 from app.models.source import (
     Source,
@@ -168,29 +165,6 @@ class SearchService:
         warnings: list[
             str
         ] = []
-
-
-        # =====================================================
-        # LOAD REQUIREMENT
-        # =====================================================
-
-        requirement_model = (
-            db.scalar(
-                select(
-                    Requirement
-                ).where(
-                    Requirement.session_id
-                    == session_id
-                )
-            )
-        )
-
-        category = (
-            requirement_model.category
-            if requirement_model
-            is not None
-            else None
-        )
 
 
         # We do not want to hold a SQLite transaction while
@@ -607,10 +581,6 @@ class SearchService:
 
                 source_id=(
                     source_model.id
-                ),
-
-                category=(
-                    category
                 ),
 
                 image_url=(

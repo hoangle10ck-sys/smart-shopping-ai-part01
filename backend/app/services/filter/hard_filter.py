@@ -158,12 +158,11 @@ def parse_weight_grams(
         ):
             continue
 
-        value_normalized = normalized(
-            str(value)
-        )
+        # Text matching strips punctuation; quantities must retain decimals.
+        value_normalized = str(value).strip().lower().replace(",", ".")
 
         kg_match = re.search(
-            r"(\d+(?:[.,]\d+)?)\s*kg",
+            r"(?<![\d.\-])(\d+(?:\.\d+)?)\s*kg\b",
             value_normalized,
         )
 
@@ -176,7 +175,7 @@ def parse_weight_grams(
             return number * 1000
 
         gram_match = re.search(
-            r"(\d+(?:[.,]\d+)?)\s*g\b",
+            r"(?<![\d.\-])(\d+(?:\.\d+)?)\s*g\b",
             value_normalized,
         )
 

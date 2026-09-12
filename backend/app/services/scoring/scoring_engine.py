@@ -1,5 +1,7 @@
 """Deterministic 0-100 product scoring engine."""
 
+import re
+
 from app.schemas.ranking import (
     ScoreBreakdown,
     ScoringCandidate,
@@ -20,46 +22,13 @@ REVIEW_WEIGHT = 0.05
 SOURCE_WEIGHT = 0.10
 
 
-REQUIREMENT_ALIASES: dict[
-    str,
-    set[str],
-] = {
-    "microphone": {
-        "microphone",
-        "mic",
-        "dual mic",
-        "enc",
-        "noise reduction",
-    },
-    "battery": {
-        "battery",
-        "pin",
-        "mah",
-        "hours",
-        "hour",
-        "gio",
-    },
-    "camera": {
-        "camera",
-        "mp",
-        "ois",
-    },
-    "weight": {
-        "weight",
-        "trong luong",
-        "nhe",
-        "g",
-        "kg",
-    },
-    "ram": {
-        "ram",
-        "memory",
-    },
-    "storage": {
-        "storage",
-        "ssd",
-        "bo nho",
-    },
+REQUIREMENT_ALIASES: dict[str, set[str]] = {
+    "microphone": {"mic", "micro"},
+    "battery": {"pin"},
+    "camera": {"may anh"},
+    "weight": {"trong luong"},
+    "ram": {"memory", "bo nho ram"},
+    "storage": {"ssd", "bo nho", "dung luong"},
 }
 
 
@@ -181,6 +150,73 @@ def candidate_text(
     return normalized(
         " ".join(parts)
     )
+
+
+def _property_key(name: str) -> str:
+    key = normalized(name)
+    for canonical, aliases in REQUIREMENT_ALIASES.items():
+        if key == canonical or key in aliases:
+            return canonical
+    return key
+
+
+def _capacity_gb(value: str) -> float | None:
+    # First capacity is installed capacity; a later upgrade limit is not RAM.
+    match = re.search(r"(?<![\d.\-])(\d+(?:[.,]\d+)?)\s*(mb|gb|tb)\b", value.lower())
+    if match is None:
+        return None
+    number, unit = match.groups()
+    return float(number.replace(",", ".")) * {"mb": 1 / 1024, "gb": 1, "tb": 1024}[unit]
+
+
+def _value_satisfies(key: str, actual: str, required: str, category: str | None) -> bool:
+    """Compare a property's own value; unknown/absent evidence earns no credit."""
+    actual_text, required_text = normalized(actual), normalized(required)
+    if actual_text in {
+        "", "unknown", "none", "null", "n a", "not available", "not specified",
+        "chua ro", "khong ro", "khong co thong tin", "chua co thong tin",
+        "khong", "khong co", "false", "no",
+    }:
+        return False
+    if re.search(r"\b(?:khong co|khong tot|not good|without|no)\b", actual_text):
+        return False
+
+    if key in {"ram", "storage"}:
+        wanted, available = _capacity_gb(required), _capacity_gb(actual)
+        if wanted is not None:
+            if available is None:
+                return False
+            # Do not ignore an explicitly requested RAM generation.
+            generation = re.search(r"\bddr[345]\b", required_text)
+            if generation and generation.group() not in actual_text:
+                return False
+            if any(marker in required_text for marker in ("toi da", "khong qua", "at most")) or "<=" in required:
+                return available <= wanted
+            if any(marker in required_text for marker in ("chinh xac", "exactly")):
+                return available == wanted
+            return available >= wanted
+
+    # Explicit, conservative rubrics for the existing qualitative preferences.
+    # These are deterministic suitability heuristics, not claims of measured quality.
+    if key == "microphone" and required_text in {"tot", "mic tot", "microphone tot", "good"}:
+        return bool(re.search(r"\b(?:tot|good|enc|dual mic|noise reduction)\b", actual_text))
+    if key == "camera" and required_text in {"tot", "camera tot", "good"}:
+        return bool(re.search(r"\b(?:tot|good|ois)\b", actual_text))
+    if key == "battery" and required_text in {"pin lau", "lau", "long battery life"}:
+        if actual_text in {"pin lau", "lau", "long battery life"}:
+            return True
+        hours = re.search(r"(\d+(?:[.,]\d+)?)\s*(?:hours?|hrs?|h|gio)\b", actual.lower())
+        minimum_hours = {"tai nghe": 24, "laptop": 8}.get(normalized(category))
+        if hours and minimum_hours is not None:
+            return float(hours.group(1).replace(",", ".")) >= minimum_hours
+        mah = re.search(r"(\d+(?:[.,]\d+)?)\s*mah\b", actual.lower())
+        return bool(mah and normalized(category) == "dien thoai"
+                    and float(mah.group(1).replace(",", ".")) >= 4000)
+
+    # Preserve the complete requested value; matching one token is insufficient.
+    return bool(required_text and re.search(
+        rf"(?<!\w){re.escape(required_text)}(?!\w)", actual_text
+    ))
 
 
 class ScoringEngine:
@@ -352,75 +388,21 @@ class ScoringEngine:
 
         return 100.0
 
-    def requirement_score(
-        self,
-        candidate: ScoringCandidate,
-        requirement: RequirementData,
-    ) -> float:
-        """Score prioritized requirement satisfaction."""
-
+    def requirement_score(self, candidate: ScoringCandidate, requirement: RequirementData) -> float:
+        """Score verified property values using the user's unchanged priorities."""
         if not requirement.requirements:
             return 100.0
-
-        text = candidate_text(
-            candidate
-        )
-
-        total_weight = 0
-
+        values: dict[str, list[str]] = {}
+        for name, value in candidate.specifications.items():
+            values.setdefault(_property_key(name), []).append(value)
+        total_weight = sum(item.priority for item in requirement.requirements)
         matched_weight = 0
-
-        for item in (
-            requirement.requirements
-        ):
-            weight = item.priority
-
-            total_weight += weight
-
-            key = normalized(
-                item.name
-            )
-
-            value = normalized(
-                item.value
-            )
-
-            aliases = set(
-                REQUIREMENT_ALIASES.get(
-                    key,
-                    set(),
-                )
-            )
-
-            if key:
-                aliases.add(key)
-
-            if value:
-                aliases.add(value)
-
-                aliases.update(
-                    token
-                    for token
-                    in value.split()
-                    if len(token) >= 3
-                )
-
-            if any(
-                alias
-                and alias in text
-                for alias in aliases
-            ):
-                matched_weight += (
-                    weight
-                )
-
-        if total_weight <= 0:
-            return 100.0
-
-        return (
-            matched_weight
-            / total_weight
-        ) * 100.0
+        for item in requirement.requirements:
+            key = _property_key(item.name)
+            if any(_value_satisfies(key, value, item.value, candidate.category)
+                   for value in values.get(key, [])):
+                matched_weight += item.priority
+        return matched_weight / total_weight * 100.0 if total_weight else 100.0
 
     def purpose_score(
         self,

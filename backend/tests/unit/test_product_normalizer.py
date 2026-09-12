@@ -1,5 +1,7 @@
 """Unit tests for deterministic product normalization."""
 
+import pytest
+
 from app.schemas.search import (
     RawProductCandidateData,
 )
@@ -82,3 +84,15 @@ def test_normalize_raw_product_candidate() -> None:
         ]
         == "40 hours"
     )
+
+
+@pytest.mark.parametrize("name, expected", [
+    ("Sony headphones with microphone", "tai nghe"),
+    ("Laptop ASUS Vivobook 15", "laptop"),
+    ("Unknown device X1", None),
+])
+def test_category_comes_from_product_not_request(name, expected):
+    candidate = RawProductCandidateData(name=name, price_text="449000 VND")
+    normalized = ProductNormalizer().normalize(candidate, category="laptop")
+    assert normalized is not None
+    assert normalized.category == expected
