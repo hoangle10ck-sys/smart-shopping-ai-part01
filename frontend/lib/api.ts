@@ -1,3 +1,5 @@
+import type { HistoryListResponse } from "@/types/history";
+
 import type {
   AnalyzeResponse,
   ComparisonResponse,
@@ -199,4 +201,8 @@ export function createFeedback(
         ),
     },
   );
+}
+
+export function getHistory(signal?: AbortSignal): Promise<HistoryListResponse> {
+  return request<HistoryListResponse>("/api/history?limit=50", { signal });
 }

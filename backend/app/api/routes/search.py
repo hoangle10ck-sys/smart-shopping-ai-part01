@@ -40,9 +40,9 @@ from app.services.recommendation.recommendation_service import (
 )
 from app.services.search.search_service import (
     AllSearchQueriesFailed,
-    SearchService,
 )
 from app.services.search.base import SearchProviderError
+from app.services.search.cached_search_service import CachedSearchService
 
 
 router = APIRouter(
@@ -240,23 +240,8 @@ async def execute_search(
     db.commit()
 
     try:
-        raw_result = (
-            await SearchService().execute(
-                db=db,
-                session_id=(
-                    payload.session_id
-                ),
-                queries=queries,
-            )
-        )
-
-        recommendation_result = (
-            RecommendationService().run(
-                db=db,
-                session_id=(
-                    payload.session_id
-                ),
-            )
+        raw_result, recommendation_result = await CachedSearchService().execute(
+            db=db, session_id=payload.session_id, queries=queries,
         )
 
         duration_ms = (

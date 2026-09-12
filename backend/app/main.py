@@ -28,6 +28,7 @@ from app.api.routes.recommendations import (
 from app.api.routes.search import (
     router as search_router,
 )
+from app.api.routes.history import router as history_router
 from app.core.database import init_db
 
 
@@ -95,6 +96,8 @@ app.include_router(
 app.include_router(
     feedback_router,
 )
+
+app.include_router(history_router)
 
 
 @app.get("/")

@@ -19,6 +19,7 @@ from app.models.comparison import ComparisonSession
 from app.models.feedback import Feedback
 from app.models.raw_product_candidate import RawProductCandidate
 from app.models.search_execution_state import SearchExecutionState
+from app.models.search_cache import SearchCacheEntry
 
 
 __all__ = [
@@ -36,4 +37,5 @@ __all__ = [
     "Feedback",
     "RawProductCandidate",
     "SearchExecutionState",
+    "SearchCacheEntry",
 ]
