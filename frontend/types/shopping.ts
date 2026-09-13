@@ -9,6 +9,31 @@ export interface ScoreBreakdown {
 }
 
 
+export interface RequirementMatch {
+  name: string;
+  requested_value: string;
+  product_value: string | null;
+  status: "matched" | "unmet" | "unknown";
+  reason: string;
+}
+
+export interface FieldEvidence {
+  field: string;
+  value: string | number;
+  source?: string | null;
+  domain?: string | null;
+  merchant?: string | null;
+  url?: string | null;
+  retrieved_at?: string | null;
+  reliability?: number | null;
+}
+
+export interface RecommendationEvidence {
+  fields?: FieldEvidence[];
+  supporting_evidence?: string[];
+  warnings?: string[];
+}
+
 export interface RecommendationItem {
   product_id: number;
   rank: number;
@@ -41,7 +66,8 @@ export interface RecommendationItem {
 
   confidence?: number | null;
 
-  evidence?: unknown;
+  evidence?: RecommendationEvidence | null;
+  requirement_matches?: RequirementMatch[];
   explanation?: unknown;
   pros?: string[];
   cons?: string[];

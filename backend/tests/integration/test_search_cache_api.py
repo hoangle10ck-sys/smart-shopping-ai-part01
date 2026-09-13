@@ -81,6 +81,8 @@ def test_cache_miss_then_hit_preserves_snapshot_and_ttl(live):
         hit = execute(client, b)
         assert hit.status_code == 200
         body = hit.json()
+        assert body["recommendations"][0]["requirement_matches"]
+        assert body["recommendations"][0]["evidence"]["fields"]
         assert body["session_id"] == b
         assert body["recommendations"] == first.json()["recommendations"]
         assert body["data_semantics"] == "snapshot"

@@ -7,6 +7,7 @@ from pydantic import BaseModel, Field
 
 from app.schemas.evidence import (
     EvidenceReport,
+    RequirementMatch,
     RecommendationExplanation,
 )
 from app.schemas.ranking import (
@@ -74,6 +75,8 @@ class RecommendationItem(BaseModel):
     )
 
     evidence: EvidenceReport | None = None
+
+    requirement_matches: list[RequirementMatch] = Field(default_factory=list)
 
     explanation: (
         RecommendationExplanation

@@ -1,8 +1,32 @@
 """Schemas for evidence validation and recommendation explanation."""
 
 from typing import Literal
+from datetime import datetime
 
 from pydantic import BaseModel, Field
+
+
+class RequirementMatch(BaseModel):
+    """Deterministic assessment of one requested property, never LLM output."""
+
+    name: str
+    requested_value: str
+    product_value: str | None = None
+    status: Literal["matched", "unmet", "unknown"]
+    reason: str
+
+
+class FieldEvidence(BaseModel):
+    """A source observation whose normalized value agrees with the snapshot."""
+
+    field: str
+    value: str | int | float
+    source: str | None = None
+    domain: str | None = None
+    merchant: str | None = None
+    url: str | None = None
+    retrieved_at: datetime | None = None
+    reliability: float | None = Field(default=None, ge=0, le=100)
 
 
 class EvidenceBreakdown(BaseModel):
@@ -36,6 +60,8 @@ class EvidenceBreakdown(BaseModel):
 
 class EvidenceReport(BaseModel):
     """Deterministic evidence-validation result."""
+
+    fields: list[FieldEvidence] = Field(default_factory=list)
 
     confidence: float = Field(
         ge=0,

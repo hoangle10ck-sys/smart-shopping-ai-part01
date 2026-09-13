@@ -12,6 +12,8 @@ from sqlalchemy import (
 from sqlalchemy.orm import Session
 
 from app.core.config import get_settings
+from app.services.scoring.scoring_engine import ScoringEngine
+from app.services.validation.structured_evidence import build_field_evidence
 from app.models.recommendation import (
     Recommendation,
 )
@@ -253,6 +255,8 @@ class RecommendationService:
                 )
             )
 
+            evidence.fields = build_field_evidence(db, session_id, context)
+
             explanation = (
                 (self.explanation_service.explain if persist
                  else self.explanation_service.build_deterministic)(
@@ -330,6 +334,8 @@ class RecommendationService:
                     ),
                 )
             )
+
+            items[-1].requirement_matches = ScoringEngine().requirement_matches(candidate, requirement)
 
         result = RecommendationRunResult(
             requirement=requirement,

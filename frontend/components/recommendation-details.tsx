@@ -1,4 +1,5 @@
 import type { RecommendationItem } from "@/types/shopping";
+import { RequirementMatches } from "@/components/requirement-matches";
 import { displayScore, record, safeHttpUrl, scoreRows, textList } from "@/lib/results-utils";
 
 function Notes({ title, items }: { title: string; items: string[] }) {
@@ -14,6 +15,10 @@ export function RecommendationDetails({ product }: { product: RecommendationItem
   const whyFit = textList(explanation.why_fit);
   return (
     <div className="mt-5 space-y-3 text-sm text-slate-700">
+      <section aria-label="Mức đáp ứng yêu cầu" className="rounded-2xl border border-slate-200 p-4">
+        <h3 className="font-bold text-slate-950">Mức đáp ứng yêu cầu</h3>
+        <RequirementMatches items={product.requirement_matches} />
+      </section>
       <details className="rounded-2xl border border-slate-200 p-4">
         <summary className="cursor-pointer font-bold text-slate-950">Điểm thành phần</summary>
         <p className="mt-3">Final AI Match: <strong>{displayScore(product.score?.final_score)}</strong></p>
@@ -31,13 +36,23 @@ export function RecommendationDetails({ product }: { product: RecommendationItem
         <Notes title="Lý do phù hợp" items={whyFit} />
         <Notes title="Ưu điểm" items={[...textList(product.pros), ...textList(explanation.pros)]} />
         <Notes title="Hạn chế / đánh đổi" items={[...textList(product.cons), ...textList(explanation.cons), ...textList(explanation.tradeoffs)]} />
-        <Notes title="Yêu cầu đã đáp ứng" items={textList(explanation.matched_requirements)} />
-        <Notes title="Yêu cầu chưa đáp ứng" items={textList(explanation.unmet_requirements)} />
-        {!textList(explanation.matched_requirements).length && !textList(explanation.unmet_requirements).length && <p className="mt-3 text-xs text-slate-500">Backend chưa cung cấp đối chiếu đáp ứng/chưa đáp ứng cho từng yêu cầu.</p>}
         <Notes title="Lưu ý từ backend" items={[...textList(explanation.cautions), ...textList(explanation.evidence_notes)]} />
       </details>
       <details className="rounded-2xl border border-slate-200 p-4">
         <summary className="cursor-pointer font-bold text-slate-950">Nguồn và bằng chứng</summary>
+        {product.evidence?.fields?.length ? <ul aria-label="Bằng chứng theo trường" className="mt-3 space-y-3 break-words">
+          {product.evidence.fields.map((field, index) => {
+            const fieldUrl = safeHttpUrl(field.url);
+            return <li key={index} className="rounded-xl bg-slate-50 p-3">
+              <p className="font-bold">{field.field}: {field.value}</p>
+              <p>Nguồn: {field.source || "Chưa cung cấp"}</p>
+              <p>Domain: {field.domain || "Chưa cung cấp"} · Merchant: {field.merchant || "Chưa cung cấp"}</p>
+              <p>Thời điểm thu thập: {field.retrieved_at || "Chưa cung cấp"}</p>
+              {field.reliability != null && <p>Độ tin cậy nguồn: {field.reliability}/100</p>}
+              {fieldUrl && <a href={fieldUrl} target="_blank" rel="noopener noreferrer" className="text-blue-700 underline">{fieldUrl}</a>}
+            </li>;
+          })}
+        </ul> : <p className="mt-3 text-slate-500">Chưa có evidence có cấu trúc cho kết quả này.</p>}
         <dl className="mt-3 space-y-2 break-words">
           <div><dt className="text-slate-500">Merchant / cửa hàng</dt><dd>{product.merchant || "Chưa được cung cấp"}</dd></div>
           <div><dt className="text-slate-500">Domain của URL sản phẩm</dt><dd>{url ? new URL(url).hostname : "Chưa có URL hợp lệ"}</dd></div>

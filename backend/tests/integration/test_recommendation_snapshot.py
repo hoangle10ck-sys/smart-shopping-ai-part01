@@ -54,6 +54,9 @@ def test_session_a_preserves_price_score_evidence_after_session_b(provider):
     with TestClient(app) as client:
         session_a, original = search_session(client)
         assert original["recommendations"][0]["price"] == 15000000
+        assert original["recommendations"][0]["requirement_matches"][0]["status"] == "matched"
+        assert next(field["value"] for field in original["recommendations"][0]["evidence"]["fields"]
+                    if field["field"] == "price") == 15000000
         with SessionLocal() as db:
             recommendation_id = db.scalar(select(Recommendation.id).where(Recommendation.session_id == session_a))
 

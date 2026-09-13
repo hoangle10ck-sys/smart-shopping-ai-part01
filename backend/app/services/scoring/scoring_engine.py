@@ -2,6 +2,8 @@
 
 import re
 
+from app.schemas.evidence import RequirementMatch
+
 from app.schemas.ranking import (
     ScoreBreakdown,
     ScoringCandidate,
@@ -219,6 +221,36 @@ def _value_satisfies(key: str, actual: str, required: str, category: str | None)
     ))
 
 
+def _is_known_mismatch(key: str, actual: str, required: str, category: str | None) -> bool:
+    """Separate insufficient evidence from an observed failure of the rubric."""
+    text, wanted = normalized(actual), normalized(required)
+    if text in {"", "unknown", "none", "null", "n a", "not available", "not specified",
+                "chua ro", "khong ro", "khong co thong tin", "chua co thong tin"}:
+        return False
+    if text in {"khong", "khong co", "false", "no"} or re.search(
+        r"\b(?:khong co|khong tot|not good|without|no|bad|kem)\b", text
+    ):
+        return True
+    if key in {"ram", "storage"} and _capacity_gb(required) is not None:
+        if _capacity_gb(actual) is None:
+            return False
+        # Enough capacity but unspecified requested DDR generation is unknown.
+        generation = re.search(r"\bddr[345]\b", wanted)
+        if generation and not re.search(r"\bddr[345]\b", text):
+            return not _value_satisfies(key, actual, re.sub(r"\bDDR[345]\b", "", required, flags=re.I), category)
+        return True
+    if key in {"microphone", "camera"} and wanted in {
+        "tot", "mic tot", "microphone tot", "camera tot", "good",
+    }:
+        return False  # Presence or an unspecified quality is not measured quality.
+    if key == "battery" and wanted in {"pin lau", "lau", "long battery life"}:
+        unit = r"(?:hours?|hrs?|h|gio)" if normalized(category) in {"tai nghe", "laptop"} else (
+            "mah" if normalized(category) == "dien thoai" else None
+        )
+        return bool(unit and re.search(rf"\d+(?:[.,]\d+)?\s*{unit}\b", actual.lower()))
+    return True
+
+
 class ScoringEngine:
     """Calculate deterministic weighted product scores."""
 
@@ -392,17 +424,33 @@ class ScoringEngine:
         """Score verified property values using the user's unchanged priorities."""
         if not requirement.requirements:
             return 100.0
+        total_weight = sum(item.priority for item in requirement.requirements)
+        matched_weight = sum(item.priority for item, match in zip(
+            requirement.requirements, self.requirement_matches(candidate, requirement)
+        ) if match.status == "matched")
+        return matched_weight / total_weight * 100.0 if total_weight else 100.0
+
+    def requirement_matches(self, candidate: ScoringCandidate, requirement: RequirementData) -> list[RequirementMatch]:
+        """Use exactly the scoring comparator; missing evidence remains unknown."""
         values: dict[str, list[str]] = {}
         for name, value in candidate.specifications.items():
             values.setdefault(_property_key(name), []).append(value)
-        total_weight = sum(item.priority for item in requirement.requirements)
-        matched_weight = 0
+        matches = []
         for item in requirement.requirements:
             key = _property_key(item.name)
-            if any(_value_satisfies(key, value, item.value, candidate.category)
-                   for value in values.get(key, [])):
-                matched_weight += item.priority
-        return matched_weight / total_weight * 100.0 if total_weight else 100.0
+            actuals = values.get(key, [])
+            matched = next((value for value in actuals if _value_satisfies(
+                key, value, item.value, candidate.category
+            )), None)
+            if matched is not None:
+                status, reason, actual = "matched", "Giá trị đáp ứng quy tắc so sánh deterministic.", matched
+            elif actuals and all(_is_known_mismatch(key, value, item.value, candidate.category) for value in actuals):
+                status, reason, actual = "unmet", "Giá trị đã biết không đáp ứng yêu cầu.", "; ".join(actuals)
+            else:
+                status, reason, actual = "unknown", "Chưa đủ dữ liệu để đối chiếu giá trị yêu cầu.", "; ".join(actuals) or None
+            matches.append(RequirementMatch(name=item.name, requested_value=item.value,
+                                            product_value=actual, status=status, reason=reason))
+        return matches
 
     def purpose_score(
         self,
