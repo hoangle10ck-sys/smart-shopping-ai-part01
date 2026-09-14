@@ -12,6 +12,8 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.core.database import get_db
+from app.schemas.recommendation import RecommendationItem
+from app.services.recommendation.recommendation_service import RecommendationService
 from app.models.comparison import (
     ComparisonSession,
 )
@@ -34,130 +36,31 @@ router = APIRouter(
 )
 
 
-def _to_float(
-    value: object,
-) -> float | None:
-    """Safely convert numeric value to float."""
-
-    if value is None:
-        return None
-
-    try:
-        return float(value)
-    except (
-        TypeError,
-        ValueError,
-    ):
-        return None
-
-
-def _best_offer(
-    product: Product,
-) -> dict[str, Any] | None:
-    """Return the cheapest valid offer of a product."""
-
-    valid_offers: list[
-        tuple[float, object]
-    ] = []
-
-    for offer in product.offers:
-        price = _to_float(
-            getattr(
-                offer,
-                "price",
-                None,
-            )
-        )
-
-        if price is None:
-            continue
-
-        if price < 0:
-            continue
-
-        valid_offers.append(
-            (
-                price,
-                offer,
-            )
-        )
-
-    if not valid_offers:
-        return None
-
-    price, offer = min(
-        valid_offers,
-        key=lambda item: item[0],
-    )
-
+def _serialize_product(item: RecommendationItem) -> dict[str, Any]:
+    """Project a consistent recommendation view into the existing API shape."""
+    explanation = item.explanation
     return {
-        "merchant": getattr(
-            offer,
-            "merchant",
-            None,
-        ),
-        "price": price,
-        "currency": (
-            getattr(
-                offer,
-                "currency",
-                None,
-            )
-            or "VND"
-        ),
-        "availability": getattr(
-            offer,
-            "availability",
-            None,
-        ),
-        "product_url": getattr(
-            offer,
-            "product_url",
-            None,
-        ),
-    }
-
-
-def _serialize_product(
-    *,
-    product: Product,
-    recommendation: Recommendation,
-) -> dict[str, Any]:
-    """Convert product and recommendation into comparison data."""
-
-    return {
-        "product_id": product.id,
-        "name": product.name,
-        "category": product.category,
-        "brand": product.brand,
-        "model": product.model,
-        "image_url": product.image_url,
-        "rating": product.rating,
-        "review_count": product.review_count,
-        "specifications": (
-            product.specifications
-            or {}
-        ),
-        "pros": (
-            product.pros
-            or []
-        ),
-        "cons": (
-            product.cons
-            or []
-        ),
-        "ai_score": _to_float(
-            recommendation.final_score
-        ),
-        "confidence": _to_float(
-            recommendation.confidence
-        ),
-        "recommendation_rank": (
-            recommendation.rank
-        ),
-        "best_offer": (
-            _best_offer(product)
-        ),
+        "product_id": item.product_id,
+        "name": item.name,
+        "category": item.category,
+        "brand": item.brand,
+        "model": item.model,
+        "image_url": item.image_url,
+        "rating": item.rating,
+        "review_count": item.review_count,
+        "specifications": dict(item.specifications),
+        "pros": list(explanation.why_fit) if explanation else [],
+        "cons": list(explanation.tradeoffs) if explanation else [],
+        "ai_score": item.score.final_score,
+        "confidence": item.confidence,
+        "recommendation_rank": item.rank,
+        "best_offer": {
+            "merchant": item.merchant,
+            "price": item.price,
+            "currency": item.currency,
+            "availability": item.availability,
+            "product_url": item.product_url,
+        } if item.price is not None else None,
     }
 
 
@@ -353,25 +256,20 @@ def create_comparison(
             },
         )
 
-    comparison_products: list[
-        dict[str, Any]
-    ] = []
-
-    for product_id in payload.product_ids:
-        comparison_products.append(
-            _serialize_product(
-                product=(
-                    products_by_id[
-                        product_id
-                    ]
-                ),
-                recommendation=(
-                    recommendations_by_product[
-                        product_id
-                    ]
-                ),
-            )
-        )
+    # Snapshot-backed sessions never join historical scores to mutable offers.
+    # Legacy sessions use the existing complete, read-only recomputation path.
+    try:
+        view = RecommendationService().load(db=db, session_id=payload.session_id)
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    items_by_id = {item.product_id: item for item in view.recommendations}
+    unavailable = [product_id for product_id in payload.product_ids if product_id not in items_by_id]
+    if unavailable:
+        raise HTTPException(status_code=409, detail={
+            "message": "Selected products are not available in the consistent session view.",
+            "product_ids": unavailable,
+        })
+    comparison_products = [_serialize_product(items_by_id[product_id]) for product_id in payload.product_ids]
 
     result = _build_result(
         products=comparison_products,
@@ -383,6 +281,7 @@ def create_comparison(
         result=result,
     )
 
+    result["data_semantics"] = view.data_semantics
     db.add(comparison)
     db.commit()
     db.refresh(comparison)

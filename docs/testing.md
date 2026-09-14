@@ -17,6 +17,44 @@ Phase 6 adds three-state requirement matching, source/field attribution, missing
 observations, immutable snapshot metadata, old snapshot compatibility, and cache
 copy assertions. Existing Phase 1–5 tests remain in the full suite.
 
+Phase 7 retains that suite and adds two comparison consistency regressions and
+three parameterized Demo scenarios. Run separately from `backend/`:
+
+```powershell
+.\.venv\Scripts\python.exe -B -X utf8 -m pytest tests/integration/test_comparison_api.py -v
+.\.venv\Scripts\python.exe -B -X utf8 -m pytest tests/integration/test_demo_scenarios.py -v -s
+```
+
+Comparison tests verify that later catalog/offer changes cannot change the saved
+session's compared price, rating, specifications or score. Legacy sessions without
+snapshots use consistent read-only recomputation without backfill. Demo tests cover
+headphones, laptop and phone analysis/search, counts, matching, evidence, comparison,
+detail, feedback and History. `-s` prints actual scores and match values for demo.md.
+
+## Regression map
+
+| Phase | Main retained coverage |
+|---|---|
+| 1 | `test_search_api.py`: all-query failure preserves recommendations/warnings/status; `conftest.py`: isolated DB/schema |
+| 2 | Category pipeline and analyzer/scoring/hard-filter unit tests: category evidence, requirement values, kg/g, Vietnamese budget parsing |
+| 3 | `test_recommendation_snapshot.py`, `test_live_explanation.py`: price/score consistency, counts, mocked modes/timeout/fallback |
+| 4 | History/cache integration and cache unit tests: read-only History, hit/miss/expiry/failure conditions |
+| 5 | Result metadata integration and frontend result utilities: persisted mode, filter/sort, score display |
+| 6 | Matching/evidence backend and frontend render tests; three browser scenarios |
+| 7 | Comparison regressions, three Demo scenarios, static Docker/env checks, documentation audit |
+
+Exact final collected/passed/failed/warnings are recorded in [FINAL_AUDIT](FINAL_AUDIT.md).
+Passing mocked tests does not verify paid keys, external model availability or
+arbitrary Live website extraction.
+
+## Docker verification
+
+This machine has no Docker CLI/runtime. Dockerfiles, Compose wiring, environment
+names, build contexts, secret exclusions, loopback ports, SQLite volume and health
+check are reviewed statically. **NOT RUNTIME VERIFIED**: neither `docker compose
+build` nor `up` has passed here. Commands for a Docker-equipped machine are in
+README; do not replace this limitation with a runtime success claim.
+
 ## Frontend
 
 From `frontend/`:

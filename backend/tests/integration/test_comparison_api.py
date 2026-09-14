@@ -10,6 +10,8 @@ from app.main import app
 from app.models.comparison import ComparisonSession
 from app.models.product import Product
 from app.models.recommendation import Recommendation
+from app.models.product_offer import ProductOffer
+from app.models.recommendation_snapshot import RecommendationSnapshot
 
 
 client = TestClient(app)
@@ -192,6 +194,57 @@ def test_compare_three_products() -> None:
         data["result"]["winner_product_id"]
         in selected_ids
     )
+
+
+def test_comparison_preserves_session_snapshot_after_catalog_update():
+    session_id, product_ids = _create_recommended_session()
+    original = client.get(f"/api/search/{session_id}").json()
+    by_id = {item["product_id"]: item for item in original["recommendations"]}
+    selected_ids = product_ids[:2]
+    with SessionLocal() as db:
+        for product_id in selected_ids:
+            product = db.get(Product, product_id)
+            product.rating = 1.0
+            product.specifications = {"microphone": "no"}
+            for offer in db.scalars(select(ProductOffer).where(ProductOffer.product_id == product_id)):
+                offer.price = 20000000
+        db.commit()
+    response = client.post("/api/comparisons", json={"session_id": session_id, "product_ids": selected_ids})
+    assert response.status_code == 201
+    data = response.json()
+    for item in data["result"]["products"]:
+        saved = by_id[item["product_id"]]
+        assert item["best_offer"]["price"] == saved["price"]
+        assert item["rating"] == saved["rating"]
+        assert item["specifications"] == saved["specifications"]
+        assert item["ai_score"] == saved["score"]["final_score"]
+    assert client.get(f"/api/comparisons/{data['id']}").json() == data
+    assert client.get(f"/api/search/{session_id}").json()["recommendations"] == original["recommendations"]
+
+
+def test_legacy_comparison_recomputes_consistently_without_backfill():
+    session_id, product_ids = _create_recommended_session()
+    selected = product_ids[:2]
+    with SessionLocal() as db:
+        db.delete(db.get(RecommendationSnapshot, session_id))
+        for offer in db.scalars(select(ProductOffer).where(ProductOffer.product_id.in_(selected))):
+            offer.price = 400000
+        db.commit()
+        stored_scores = dict(db.execute(select(Recommendation.product_id, Recommendation.final_score).where(
+            Recommendation.session_id == session_id)).all())
+    view = client.get(f"/api/search/{session_id}").json()
+    expected = {item["product_id"]: item for item in view["recommendations"]}
+    response = client.post("/api/comparisons", json={"session_id": session_id, "product_ids": selected})
+    assert response.status_code == 201
+    result = response.json()["result"]
+    assert result["data_semantics"] == "legacy_recomputed"
+    for item in result["products"]:
+        assert item["best_offer"]["price"] == 400000
+        assert item["ai_score"] == expected[item["product_id"]]["score"]["final_score"]
+    with SessionLocal() as db:
+        assert db.get(RecommendationSnapshot, session_id) is None
+        assert dict(db.execute(select(Recommendation.product_id, Recommendation.final_score).where(
+            Recommendation.session_id == session_id)).all()) == stored_scores
 
 
 def test_comparison_requires_at_least_two_products() -> None:

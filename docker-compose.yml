@@ -1,1 +1,43 @@
-services: {}
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      APP_ENV: "${APP_ENV:-development}"
+      DATABASE_URL: "sqlite:////data/smart_shopping.db"
+      DEMO_MODE: "${DEMO_MODE:-true}"
+      SECRET_KEY: "${SECRET_KEY:-change-this-before-production}"
+      LLM_PROVIDER: "${LLM_PROVIDER:-openai}"
+      LLM_FALLBACK_PROVIDER: "${LLM_FALLBACK_PROVIDER:-gemini}"
+      OPENAI_API_KEY: "${OPENAI_API_KEY:-}"
+      OPENAI_MODEL: "${OPENAI_MODEL:-gpt-4o-mini}"
+      GEMINI_API_KEY: "${GEMINI_API_KEY:-}"
+      GEMINI_MODEL: "${GEMINI_MODEL:-gemini-3.6-flash}"
+      TAVILY_API_KEY: "${TAVILY_API_KEY:-}"
+      LLM_TIMEOUT_SECONDS: "${LLM_TIMEOUT_SECONDS:-30}"
+      SEARCH_TIMEOUT_SECONDS: "${SEARCH_TIMEOUT_SECONDS:-15}"
+      LLM_RETRY_COUNT: "${LLM_RETRY_COUNT:-2}"
+      SEARCH_RETRY_COUNT: "${SEARCH_RETRY_COUNT:-1}"
+      MAX_SEARCH_QUERIES: "${MAX_SEARCH_QUERIES:-4}"
+      MAX_RESULTS_PER_QUERY: "${MAX_RESULTS_PER_QUERY:-5}"
+      TOP_K: "${TOP_K:-5}"
+      CACHE_TTL_SECONDS: "${CACHE_TTL_SECONDS:-1800}"
+    volumes:
+      - shopping-data:/data
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: "${NEXT_PUBLIC_API_URL:-http://127.0.0.1:8000}"
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  shopping-data:
