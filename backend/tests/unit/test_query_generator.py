@@ -9,6 +9,15 @@ from app.services.llm.query_generator import (
 )
 
 
+def test_short_commercial_query_for_arbitrary_category_with_two_query_limit():
+    requirement = RequirementData(category='máy đóng đai thùng carton', budget_max=20000000,
+                                  purpose=['đóng gói hàng hóa'])
+    queries = QueryGenerator(max_queries=2).generate(requirement)
+    assert len(queries) == 2
+    assert queries[1] == 'máy đóng đai thùng carton giá dưới 20000000 VND đóng gói hàng hóa mua chính hãng'
+    assert '20000000' in queries[0]
+
+
 def test_generate_queries() -> None:
     requirement = RequirementData(
         category="tai nghe",

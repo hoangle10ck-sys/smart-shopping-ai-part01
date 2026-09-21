@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { RecommendationDetails } from "@/components/recommendation-details";
-import { displayScore, safeHttpUrl } from "@/lib/results-utils";
+import { displayScore, safeHttpUrl, safeSalesUrl, safeProductImageUrl } from "@/lib/results-utils";
 import {
   useState,
 } from "react";
@@ -99,10 +99,12 @@ export function ProductCard({
     product.confidence,
   );
 
-  const shopUrl = safeHttpUrl(product.product_url);
+  const shopUrl = safeSalesUrl(product.product_url, product.product_page_valid);
+  const sourceUrl = safeHttpUrl(product.evidence_url || product.product_url);
+  const safeImage = safeProductImageUrl(product.image_url);
 
   const hasImage = Boolean(
-    product.image_url
+    safeImage
     && !imageFailed
   );
 
@@ -128,7 +130,7 @@ export function ProductCard({
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={
-              product.image_url!
+              safeImage!
             }
             alt={
               product.name
@@ -295,7 +297,7 @@ export function ProductCard({
         <div className="mt-5 grid grid-cols-2 gap-3">
           <Link
             href={
-              `/products/${product.product_id}`
+              `/products/${product.product_id}?sessionId=${encodeURIComponent(sessionId)}`
             }
             className="flex items-center justify-center rounded-2xl bg-slate-950 px-4 py-3 text-sm font-bold text-white transition hover:bg-blue-600"
           >
@@ -345,11 +347,12 @@ export function ProductCard({
             rel="noopener noreferrer"
             className="mt-3 flex w-full items-center justify-center rounded-2xl border border-blue-100 bg-blue-50 px-4 py-3 text-sm font-bold text-blue-700 transition hover:bg-blue-100"
           >
-            Xem tại {product.merchant || "cửa hàng"} ↗
+            Xem sản phẩm ↗
           </a>
         )}
 
 
+        {!shopUrl && sourceUrl && <a href={sourceUrl} target="_blank" rel="noopener noreferrer" className="mt-3 block text-sm text-blue-700">Xem nguồn ↗</a>}
         <FeedbackPanel
           sessionId={sessionId}
           productId={

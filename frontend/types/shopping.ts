@@ -35,6 +35,9 @@ export interface RecommendationEvidence {
 }
 
 export interface RecommendationItem {
+  product_page_valid?: boolean | null;
+  image_source?: string | null;
+  evidence_url?: string | null;
   product_id: number;
   rank: number;
 
@@ -82,6 +85,10 @@ export interface RequirementItem {
 
 
 export interface ParsedRequirement {
+  budget_mode?: "HARD_MAX" | "FLEXIBLE_TARGET" | "RANGE";
+  budget_target?: number | null;
+  preferred_min?: number | null;
+  preferred_max?: number | null;
   category?: string | null;
 
   budget_min?: number | null;
@@ -144,6 +151,10 @@ export interface SearchPipelineResponse {
 
 
 export interface ProductOffer {
+  product_page_valid?: boolean | null;
+  image_url?: string | null;
+  image_source?: string | null;
+  evidence_url?: string | null;
   id: number;
 
   merchant?: string | null;
@@ -171,6 +182,8 @@ export interface ProductOffer {
 
 
 export interface ProductDetail {
+  recommendation?: RecommendationItem | null;
+  recommendation_session_id?: string | null;
   id: number;
 
   name?: string | null;

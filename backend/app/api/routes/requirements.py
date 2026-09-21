@@ -1,6 +1,8 @@
 """Requirement-analysis API endpoints."""
 
 import logging
+from app.models.requirement import RequirementBudget
+from app.services.budget import BUDGET_FIELDS
 
 from fastapi import (
     APIRouter,
@@ -52,6 +54,7 @@ def requirement_to_model_values(
 
     return {
         "category": requirement.category,
+        "budget_metadata": RequirementBudget(values={key: getattr(requirement, key) for key in BUDGET_FIELDS}),
         "budget_min": requirement.budget_min,
         "budget_max": requirement.budget_max,
         "currency": requirement.currency,

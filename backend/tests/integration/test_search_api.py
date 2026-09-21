@@ -118,7 +118,7 @@ def _analyze_session() -> str:
 
 
 async def _provider_failure(self, query: str, max_results: int):
-    raise SearchProviderError("provider unavailable")
+    raise SearchProviderError("provider unavailable", kind="timeout")
 
 
 def _stored_results(session_id: str) -> dict:
@@ -158,6 +158,7 @@ def test_failed_search_rerun_preserves_results_and_warnings(monkeypatch) -> None
         body = loaded.json()
         assert body["status"] == "FAILED"
         assert body["warnings"]
+        assert any('[timeout]' in warning for warning in body['warnings'])
         assert failed.json()["detail"] in body["warnings"]
         assert body["recommendations"] == before["recommendations"]
         assert body["raw_products"] == before["raw_products"]

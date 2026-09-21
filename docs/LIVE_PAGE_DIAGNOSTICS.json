@@ -1,0 +1,95 @@
+[
+  {
+    "url": "https://hondath.vn/xe-may/xe-so/honda-wave-alpha-110",
+    "fetch_ok": true,
+    "h1": "\nWave Alpha 110",
+    "page_proof": {
+      "product_page_valid": false,
+      "evidence_url": "https://hondath.vn/xe-may/xe-so/honda-wave-alpha-110",
+      "image_url": null,
+      "image_source": null,
+      "verification_level": "UNVERIFIED",
+      "product_page_confidence": 0,
+      "fetch_blocked": false,
+      "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+      "result_type": "UNKNOWN"
+    },
+    "products": [
+      {
+        "name": "Honda Wave Alpha 110 - Xe số quốc dân, giá hấp dẫn, ưu đãi lớn!",
+        "h1_matches": true,
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": "17859273",
+          "highPrice": "18742909",
+          "offerCount": "4",
+          "priceCurrency": "VND",
+          "availability": "http://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "@id": "https://hondath.vn/",
+            "name": "HEAD T&amp;H",
+            "url": "https://hondath.vn",
+            "logo": "https://hondath.vn/wp-content/uploads/2024/07/HondaTH-logo.webp"
+          },
+          "url": "https://hondath.vn/xe-may/xe-so/honda-wave-alpha-110"
+        }
+      }
+    ]
+  },
+  {
+    "url": "https://hondath.vn/xe-may/xe-con-tay/honda-winner-x",
+    "fetch_ok": true,
+    "h1": "\nWinner X",
+    "page_proof": {
+      "product_page_valid": false,
+      "evidence_url": "https://hondath.vn/xe-may/xe-con-tay/honda-winner-x",
+      "image_url": null,
+      "image_source": null,
+      "verification_level": "UNVERIFIED",
+      "product_page_confidence": 0,
+      "fetch_blocked": false,
+      "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+      "result_type": "UNKNOWN"
+    },
+    "products": [
+      {
+        "name": "Honda Winner X – Xe côn tay thể thao, mạnh mẽ, giá ưu đãi sốc!",
+        "h1_matches": true,
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": "46160000",
+          "highPrice": "50560000",
+          "offerCount": "7",
+          "priceCurrency": "VND",
+          "availability": "http://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "@id": "https://hondath.vn/",
+            "name": "HEAD T&amp;H",
+            "url": "https://hondath.vn",
+            "logo": "https://hondath.vn/wp-content/uploads/2024/07/HondaTH-logo.webp"
+          },
+          "url": "https://hondath.vn/xe-may/xe-con-tay/honda-winner-x"
+        }
+      }
+    ]
+  },
+  {
+    "url": "https://phattien.com/san-pham/honda-sh-160i.html",
+    "fetch_ok": true,
+    "h1": "Honda SH160i",
+    "page_proof": {
+      "product_page_valid": false,
+      "evidence_url": "https://phattien.com/san-pham/honda-sh-160i.html/",
+      "image_url": null,
+      "image_source": null,
+      "verification_level": "UNVERIFIED",
+      "product_page_confidence": 0,
+      "fetch_blocked": false,
+      "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+      "result_type": "UNKNOWN"
+    },
+    "products": []
+  }
+]

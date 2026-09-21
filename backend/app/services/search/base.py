@@ -22,6 +22,11 @@ class SearchResult:
 class SearchProviderError(RuntimeError):
     """Raised when an external search provider fails."""
 
+    def __init__(self, message: str, *, kind: str = "provider_error", status_code: int | None = None):
+        super().__init__(message)
+        self.kind = kind
+        self.status_code = status_code
+
 
 class SearchProvider(ABC):
     """Common interface for web search providers."""

@@ -88,6 +88,9 @@ class Settings(BaseSettings):
     max_search_queries: int = 4
 
     max_results_per_query: int = 5
+    live_search_budget_seconds: float = 120.0
+    live_search_max_queries: int = 12
+    live_search_target_products: int = 1
 
     top_k: int = 5
 

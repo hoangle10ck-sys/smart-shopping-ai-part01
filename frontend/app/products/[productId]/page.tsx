@@ -1,4 +1,6 @@
 "use client";
+import { RecommendationDetails } from "@/components/recommendation-details";
+import { displayScore, safeSalesUrl, safeProductImageUrl, safeHttpUrl } from "@/lib/results-utils";
 
 import {
   useEffect,
@@ -355,7 +357,8 @@ export default function ProductPage() {
 
         const result =
           await getProduct(
-            productId
+            productId,
+            new URLSearchParams(window.location.search).get("sessionId"),
           );
 
         if (
@@ -491,9 +494,11 @@ export default function ProductPage() {
     );
 
 
+  const safeImage = safeProductImageUrl(bestOffer?.product_page_valid ? bestOffer.image_url : product?.image_url);
+  const shopUrl = safeSalesUrl(bestOffer?.product_url, bestOffer?.product_page_valid);
   const hasImage =
     Boolean(
-      product?.image_url
+      safeImage
       && !imageFailed
     );
 
@@ -610,7 +615,7 @@ export default function ProductPage() {
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={
-                      product.image_url!
+                      safeImage!
                     }
                     alt={
                       product.name
@@ -762,16 +767,16 @@ export default function ProductPage() {
               )}
 
 
-              {bestOffer?.product_url ? (
+              {shopUrl ? (
                 <a
                   href={
-                    bestOffer.product_url
+                    shopUrl
                   }
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-6 flex w-full items-center justify-center rounded-2xl bg-blue-600 px-6 py-4 text-sm font-black text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-700"
                 >
-                  Xem sản phẩm tại cửa hàng ↗
+                  Xem sản phẩm tại {merchantName(bestOffer)} ↗
                 </a>
               ) : (
                 <button
@@ -804,6 +809,15 @@ export default function ProductPage() {
 
 
           {/* QUICK INFO */}
+          {product.recommendation && (
+            <section aria-label="Đề xuất của phiên tìm kiếm" className="rounded-3xl border bg-white p-6">
+              <h2 className="text-xl font-bold">Đề xuất của phiên tìm kiếm</h2>
+              <p>Giá khi đề xuất: {formatPrice(product.recommendation.price, product.recommendation.currency)} tại {product.recommendation.merchant || "chưa rõ cửa hàng"}</p>
+              <p>AI Match: {displayScore(product.recommendation.score.final_score)}</p>
+              <p className="text-sm text-slate-500">Điểm và bằng chứng dưới đây thuộc phiên đã lưu. Giá ở phần nơi bán là dữ liệu catalog hiện có.</p>
+              <RecommendationDetails product={product.recommendation} />
+            </section>
+          )}
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 
             <InfoCard
@@ -1147,10 +1161,10 @@ export default function ProductPage() {
                           )}
                         </p>
 
-                        {offer.product_url ? (
+                        {safeSalesUrl(offer.product_url, offer.product_page_valid) ? (
                           <a
                             href={
-                              offer.product_url
+                              safeSalesUrl(offer.product_url, offer.product_page_valid)!
                             }
                             target="_blank"
                             rel="noopener noreferrer"
@@ -1159,9 +1173,8 @@ export default function ProductPage() {
                             Xem sản phẩm ↗
                           </a>
                         ) : (
-                          <span className="mt-3 inline-flex rounded-xl bg-slate-100 px-5 py-2.5 text-xs font-bold text-slate-400">
-                            Chưa có link
-                          </span>
+                          safeHttpUrl(offer.evidence_url || offer.product_url) ? <a href={safeHttpUrl(offer.evidence_url || offer.product_url)!} target="_blank" rel="noopener noreferrer">Xem nguồn ↗</a> :
+                          <span className="mt-3 inline-flex rounded-xl bg-slate-100 px-5 py-2.5 text-xs font-bold text-slate-400">Chưa có link</span>
                         )}
                       </div>
                     </div>

@@ -24,6 +24,10 @@ class Requirement(Base):
 
     __tablename__ = "requirements"
 
+    budget_metadata: Mapped["RequirementBudget | None"] = relationship(
+        "RequirementBudget", uselist=False, cascade="all, delete-orphan",
+    )
+
     id: Mapped[int] = mapped_column(
         Integer,
         primary_key=True,
@@ -108,3 +112,12 @@ class Requirement(Base):
         "SearchSession",
         back_populates="requirement",
     )
+
+
+class RequirementBudget(Base):
+    """No row means legacy min/max. Additive table; no backfill needed."""
+    __tablename__ = 'requirement_budgets'
+    requirement_id: Mapped[int] = mapped_column(
+        ForeignKey('requirements.id', ondelete='CASCADE'), primary_key=True,
+    )
+    values: Mapped[dict] = mapped_column(JSON, nullable=False)

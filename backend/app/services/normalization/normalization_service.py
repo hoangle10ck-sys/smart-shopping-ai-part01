@@ -133,6 +133,10 @@ class NormalizationService:
         # OFFER
         # =====================================================
 
+        if candidate.page_validation is not None and not candidate.page_validation.get("product_page_valid"):
+            db.flush()
+            return PersistenceResult(product.id, None, created_product, False)
+
         (
             offer,
             created_offer,
@@ -155,6 +159,8 @@ class NormalizationService:
         )
 
 
+        if offer is not None and candidate.merchant:
+            offer.merchant = candidate.merchant
         db.flush()
 
 

@@ -6,6 +6,10 @@ import asyncio
 import logging
 import re
 import unicodedata
+import json
+from copy import deepcopy
+from pydantic import create_model
+from app.services.budget import BUDGET_FIELDS
 
 from abc import ABC, abstractmethod
 
@@ -22,6 +26,19 @@ from app.services.llm.prompts import (
 
 
 logger = logging.getLogger(__name__)
+
+# LLMs extract facts only. Budget mode/window are computed by Python afterward.
+RequirementExtraction = create_model('RequirementExtraction', **{
+    name: (field.annotation, deepcopy(field)) for name, field in RequirementData.model_fields.items()
+    if name not in BUDGET_FIELDS
+})
+
+
+def parsed_requirement(value) -> RequirementData:
+    if isinstance(value, str): value = json.loads(value)
+    if hasattr(value, 'model_dump'): value = value.model_dump()
+    extraction = RequirementExtraction.model_validate(value)
+    return RequirementData.model_validate(extraction.model_dump())
 
 
 # =============================================================
@@ -86,7 +103,7 @@ def parse_budget_range(text: str) -> tuple[int | None, int | None]:
     """Read an explicit range (including shared units) or a single upper budget."""
     value = normalize_text(text).replace("₫", " vnd")
     range_match = re.search(
-        rf"\btu\s+({BUDGET_NUMBER})\s*({BUDGET_UNIT})?\s*"
+        rf"(?<![\w.,])(?:tu\s+)?({BUDGET_NUMBER})\s*({BUDGET_UNIT})?\s*"
         rf"(?:den|toi|-)\s*({BUDGET_NUMBER})\s*({BUDGET_UNIT})\b",
         value,
     )
@@ -303,6 +320,7 @@ def detect_purposes(
     """Detect common shopping purposes."""
 
     purpose_keywords = {
+        "xem phim": ["xem phim", "watch movies", "watching movies"],
         "học online": [
             "hoc online",
             "hoc truc tuyen",
@@ -961,7 +979,7 @@ class GeminiLLMClient(
                             "application/json"
                         ),
                         response_schema=(
-                            RequirementData
+                            RequirementExtraction
                         ),
                         temperature=0.1,
                     )
@@ -977,11 +995,10 @@ class GeminiLLMClient(
                 response.parsed,
                 RequirementData,
             ):
-                return response.parsed
+                return parsed_requirement(response.parsed)
 
             return (
-                RequirementData
-                .model_validate(
+                parsed_requirement(
                     response.parsed
                 )
             )
@@ -992,8 +1009,7 @@ class GeminiLLMClient(
             )
 
         return (
-            RequirementData
-            .model_validate_json(
+            parsed_requirement(
                 response.text
             )
         )
@@ -1225,7 +1241,7 @@ class OpenAILLMClient(
         )
 
         schema = (
-            RequirementData
+            RequirementExtraction
             .model_json_schema()
         )
 
@@ -1344,8 +1360,7 @@ class OpenAILLMClient(
 
         try:
             return (
-                RequirementData
-                .model_validate_json(
+                parsed_requirement(
                     text
                 )
             )

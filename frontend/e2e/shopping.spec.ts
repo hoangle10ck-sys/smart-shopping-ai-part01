@@ -69,7 +69,8 @@ test("Demo journey: home, analysis, search, results, filters, detail, compare, f
   await expect(cards).toHaveCount(3);
 
   await cards.first().getByRole("link", { name: "Xem chi tiết", exact: true }).click();
-  await expect(page).toHaveURL(new RegExp(`/products/${first.product_id}$`));
+  await expect(page).toHaveURL(new RegExp(`/products/${first.product_id}\\?sessionId=${data.session_id}$`));
+  await expect(page.getByRole("region", { name: "Đề xuất của phiên tìm kiếm" })).toContainText("AI Match");
   await expect(page.getByRole("heading", { name: first.name, exact: true })).toBeVisible();
   await page.goto(resultPath);
   await expect(cards).toHaveCount(3);
@@ -139,4 +140,28 @@ test("old snapshot renders empty metadata and preserves failure warning with rec
   await expect(card).toContainText("Backend chưa cung cấp đối chiếu từng yêu cầu");
   await card.getByText("Nguồn và bằng chứng", { exact: true }).click();
   await expect(card).toContainText("Chưa có evidence có cấu trúc");
+});
+
+test("sales links require page proof and broken remote images use the local placeholder", async ({ page }) => {
+  const data = await demoResult(page);
+  const item = data.recommendations[0];
+  item.product_page_valid = true;
+  item.product_url = "https://retailer.example/products/sounddemo-h20";
+  item.evidence_url = "https://review.example/blog/sounddemo-h20";
+  item.image_url = "http://127.0.0.1:13000/broken-product.jpg";
+  await page.route("**/broken-product.jpg", (route) => route.fulfill({ status: 404, body: "missing" }));
+  await page.route(`${API}/api/search/${data.session_id}`, (route) => route.fulfill({ json: data }));
+  await page.goto(`/results/${data.session_id}`);
+  const card = page.getByRole("article").first();
+  const link = card.getByRole("link", { name: "Xem sản phẩm ↗", exact: true });
+  await expect(link).toHaveAttribute("href", item.product_url);
+  await expect(link).toHaveAttribute("target", "_blank");
+  await expect(link).toHaveAttribute("rel", "noopener noreferrer");
+  await expect(card.getByText("Chưa có ảnh sản phẩm", { exact: true })).toBeVisible();
+  for (const url of ["https://retailer.example/", "https://retailer.example/xe-may/", "https://retailer.example/search?q=x", "https://retailer.example/blog/model"]) {
+    item.product_url = url;
+    await page.reload();
+    await expect(card.getByRole("link", { name: "Xem sản phẩm ↗", exact: true })).toHaveCount(0);
+    await expect(card.getByRole("link", { name: "Xem nguồn ↗", exact: true })).toHaveAttribute("href", item.evidence_url);
+  }
 });

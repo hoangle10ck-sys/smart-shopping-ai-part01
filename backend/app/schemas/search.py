@@ -30,6 +30,8 @@ class SearchSourceItem(
 
     domain: str | None = None
 
+    result_type: Literal["DIRECT_PRODUCT", "CATEGORY", "HOMEPAGE", "SEARCH_PAGE", "ARTICLE", "NEWS", "REVIEW", "UNKNOWN"] = "UNKNOWN"
+    page_validation: dict | None = None
     content: str = ""
 
     image_url: str | None = None
@@ -51,6 +53,9 @@ class RawProductCandidateData(
 ):
     """Product information before normalization."""
 
+    page_validation: dict | None = None
+    evidence_url: str | None = None
+    merchant: str | None = None
     name: str | None = None
 
     # Supplied by product evidence, never by the user's requested category.
@@ -108,6 +113,8 @@ class SearchExecutionResponse(
     BaseModel
 ):
     """Response after search and extraction."""
+
+    retrieval_diagnostics: list[dict] = Field(default_factory=list)
 
     session_id: str
 

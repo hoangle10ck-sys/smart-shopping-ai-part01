@@ -453,7 +453,7 @@ class TavilyProvider(
 
         if not api_key:
             raise SearchProviderError(
-                "TAVILY_API_KEY is not configured."
+                "TAVILY_API_KEY is not configured.", kind="configuration"
             )
 
         self.api_key = (
@@ -503,15 +503,13 @@ class TavilyProvider(
             "include_raw_content":
                 False,
 
-            # IMPORTANT:
-            # Ask Tavily for images.
+            # Images are verified from each direct product page. Query-wide
+            # image search adds provider work without establishing identity.
             "include_images":
-                True,
+                False,
 
-            # Descriptions help us associate
-            # query-level images with products.
             "include_image_descriptions":
-                True,
+                False,
         }
 
 
@@ -558,14 +556,13 @@ class TavilyProvider(
                     dict,
                 ):
                     raise SearchProviderError(
-                        "Tavily returned invalid JSON object."
+                        "Tavily returned invalid JSON object.", kind="malformed_response"
                     )
 
 
                 raw_items = (
                     data.get(
                         "results",
-                        [],
                     )
                 )
 
@@ -573,7 +570,10 @@ class TavilyProvider(
                     raw_items,
                     list,
                 ):
-                    return []
+                    raise SearchProviderError("Tavily results must be a list.", kind="malformed_response")
+
+                if any(not isinstance(item, dict) or not isinstance(item.get('url'), str) for item in raw_items):
+                    raise SearchProviderError("Tavily result item is malformed.", kind="malformed_response")
 
 
                 # -------------------------------------------------
@@ -755,6 +755,15 @@ class TavilyProvider(
                 )
 
 
-        raise SearchProviderError(
-            "Tavily search failed."
-        ) from last_error
+        # Keep actionable diagnostics without exposing payload/API key or response body.
+        if isinstance(last_error, SearchProviderError):
+            raise last_error
+        if isinstance(last_error, httpx.TimeoutException):
+            raise SearchProviderError(f"Tavily timeout after {self.timeout:g}s per attempt.", kind="timeout") from last_error
+        if isinstance(last_error, httpx.HTTPStatusError):
+            code = last_error.response.status_code
+            kind = "rate_limit" if code == 429 else "http_error"
+            raise SearchProviderError(f"Tavily {kind}: HTTP {code}.", kind=kind, status_code=code) from last_error
+        if isinstance(last_error, ValueError):
+            raise SearchProviderError("Tavily returned malformed JSON.", kind="malformed_response") from last_error
+        raise SearchProviderError("Tavily network/transport failure.", kind="network_error") from last_error

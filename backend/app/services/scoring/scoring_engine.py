@@ -343,6 +343,13 @@ class ScoringEngine:
     ) -> float:
         """Score budget fit after hard filtering."""
 
+        if requirement.budget_mode == 'FLEXIBLE_TARGET':
+            if candidate.price is None:
+                return 0.0
+            target = requirement.budget_target
+            radius = max(target - requirement.preferred_min, requirement.preferred_max - target, 1)
+            return clamp(100 - 25 * abs(candidate.price - target) / radius)
+
         if (
             requirement.budget_min
             is None

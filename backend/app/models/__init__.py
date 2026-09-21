@@ -8,7 +8,7 @@ from app.models.search_session import (
     SearchSession,
     SearchSessionStatus,
 )
-from app.models.requirement import Requirement
+from app.models.requirement import Requirement, RequirementBudget
 from app.models.search_query import SearchQuery
 from app.models.source import Source
 from app.models.product import Product
@@ -27,6 +27,7 @@ __all__ = [
     "SearchSession",
     "SearchSessionStatus",
     "Requirement",
+    "RequirementBudget",
     "SearchQuery",
     "Source",
     "Product",
