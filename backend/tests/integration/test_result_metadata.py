@@ -59,14 +59,21 @@ def test_live_snapshot_and_cache_hit_keep_mode_when_server_switches_to_demo(monk
     from app.services.search.mock_provider import MockSearchProvider
     from app.services.extraction.product_image_resolver import ProductImageResolver
 
-    async def no_network(*args, **kwargs):
-        return None
+    from tests.fixtures.sales_pages import sales_page
+    from app.services.extraction.product_extraction_service import ProductExtractionService
+    from app.schemas.search import SearchSourceItem
+    from app.services.normalization.price_parser import parse_price
+    async def no_network(self, url):
+        rows = await MockSearchProvider().search("tai nghe", 5)
+        row = next(r for r in rows if r.url == url)
+        raw = ProductExtractionService().extract(SearchSourceItem(title=row.title, content=row.content, url=row.url))
+        return url, sales_page(name=raw.name, price=parse_price(raw.price_text))
 
     settings = get_settings()
     monkeypatch.setattr(settings, "openai_api_key", "")
     monkeypatch.setattr(settings, "gemini_api_key", "")
     monkeypatch.setattr(search_service, "get_search_provider", MockSearchProvider)
-    monkeypatch.setattr(ProductImageResolver, "enrich_sources", no_network)
+    monkeypatch.setattr(ProductImageResolver, "_fetch_html", no_network)
     with TestClient(app) as client:
         ids = [client.post("/api/requirements/analyze", json={"raw_query": "Tai nghe 500 nghìn học online mic tốt"}).json()["session_id"] for _ in range(2)]
         monkeypatch.setattr(settings, "demo_mode", False)

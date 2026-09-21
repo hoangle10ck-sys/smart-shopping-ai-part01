@@ -151,9 +151,10 @@ export function getSearchResult(
 
 export function getProduct(
   productId: number,
+  sessionId?: string | null,
 ): Promise<ProductDetail> {
   return request<ProductDetail>(
-    `/api/products/${productId}`,
+    `/api/products/${productId}${sessionId ? `?session_id=${encodeURIComponent(sessionId)}` : ""}`,
   );
 }
 

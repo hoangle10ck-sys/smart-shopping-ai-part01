@@ -1,6 +1,7 @@
 """Validation and reliability scoring for web search sources."""
 
 import unicodedata
+from app.services.extraction.product_page_validator import classify_source
 
 from urllib.parse import (
     urlparse,
@@ -360,6 +361,7 @@ class SourceFilter:
 
             output.append(
                 SearchSourceItem(
+                    result_type=classify_source(url),
                     title=(
                         result.title
                         .strip()

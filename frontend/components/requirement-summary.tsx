@@ -10,8 +10,15 @@ export function RequirementSummary({ requirement }: { requirement?: ParsedRequir
         <dl className="mt-4 grid gap-4 text-sm sm:grid-cols-2 lg:grid-cols-3">
           {[
             ["Danh mục", requirement.category || "Chưa xác định"],
-            ["Ngân sách tối thiểu", formatMoney(requirement.budget_min, requirement.currency)],
-            ["Ngân sách tối đa", formatMoney(requirement.budget_max, requirement.currency)],
+            ...(requirement.budget_mode === "FLEXIBLE_TARGET" ? [
+              ["Ngân sách mục tiêu", formatMoney(requirement.budget_target, requirement.currency)],
+              ["Khoảng giá tham khảo", `${formatMoney(requirement.preferred_min, requirement.currency)} – ${formatMoney(requirement.preferred_max, requirement.currency)}`],
+            ] : requirement.budget_mode === "RANGE" ? [
+              ["Khoảng ngân sách", `${formatMoney(requirement.budget_min, requirement.currency)} – ${formatMoney(requirement.budget_max, requirement.currency)}`],
+            ] : [
+              ["Ngân sách tối thiểu", formatMoney(requirement.budget_min, requirement.currency)],
+              ["Ngân sách tối đa", formatMoney(requirement.budget_max, requirement.currency)],
+            ]),
             ["Tiền tệ", requirement.currency || "Chưa xác định"],
             ["Mục đích", requirement.purpose?.join(", ") || "Chưa cung cấp"],
             ["Thương hiệu", requirement.brands?.join(", ") || "Không có thương hiệu được chỉ định"],

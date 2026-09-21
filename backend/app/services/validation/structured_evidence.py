@@ -38,7 +38,8 @@ def build_field_evidence(db: Session, session_id: str, context: CandidateContext
             continue
         associated = next((item for item in context.offers
                            if item.source_id == source.id and item.product_url == observed.product_url), None)
-        if associated is None:
+        review_evidence = raw.payload.get('page_validation') is not None and not raw.payload['page_validation'].get('product_page_valid')
+        if associated is None and not review_evidence:
             continue
         fields: dict[str, str | int | float] = {}
         if (offer is not None and offer.source_id == source.id
@@ -60,8 +61,8 @@ def build_field_evidence(db: Session, session_id: str, context: CandidateContext
             result.append(FieldEvidence(
                 field=field, value=value, source=source.title, domain=source.domain,
                 # Merchant is only known for the actual associated offer.
-                merchant=associated.merchant,
-                url=source.url,
+                merchant=associated.merchant if associated else None,
+                url=raw.payload.get('evidence_url') or source.url,
                 retrieved_at=(raw.created_at.replace(tzinfo=timezone.utc)
                               if raw.created_at.tzinfo is None else raw.created_at),
                 reliability=source.reliability_score,

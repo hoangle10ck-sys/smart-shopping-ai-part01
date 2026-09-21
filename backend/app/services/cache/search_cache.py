@@ -36,6 +36,8 @@ def make_cache_key(requirement: RequirementData, *, scope: dict | None = None) -
         "version": 1, "scope": scope or {},
         "category": normalize_text(requirement.category or ""),
         "budget_min": requirement.budget_min, "budget_max": requirement.budget_max,
+        "budget_mode": requirement.budget_mode, "budget_target": requirement.budget_target,
+        "preferred_min": requirement.preferred_min, "preferred_max": requirement.preferred_max,
         "currency": normalize_text(requirement.currency),
         "purpose": texts(requirement.purpose), "brands": texts(requirement.brands),
         "requirements": sorted((normalize_text(item.name), normalize_text(item.value), item.priority)

@@ -1047,9 +1047,10 @@ async def _safe_public_url(
 ) -> bool:
     """Validate URL before server-side fetching."""
 
-    parsed = urlparse(
-        url
-    )
+    from app.services.extraction.product_page_validator import http_url
+    if not http_url(url):
+        return False
+    parsed = urlparse(url)
 
     if parsed.scheme not in {
         "http",
@@ -1251,209 +1252,75 @@ class ProductImageResolver:
 
         return None
 
-    async def resolve(
-        self,
-        *,
-        page_url: str,
-        title: str = "",
-        tavily_image_url: (
-            str
-            | None
-        ) = None,
-    ) -> str | None:
-        """
-        Resolve one reliable product image.
-
-        Priority:
-        1. JSON-LD Product.image
-        2. Real product <img> matching product title
-        3. og:image only when page declares itself as product
-        4. Tavily only when source page cannot be fetched
-
-        A wrong image is worse than no image.
-        """
-
-        async with (
-            self.semaphore
-        ):
-            fetched = (
-                await self
-                ._fetch_html(
-                    page_url
-                )
-            )
-
-
-        # =====================================================
-        # PAGE FETCHED
-        # =====================================================
-
-        if (
-            fetched
-            is not None
-        ):
-            (
-                final_url,
-                html,
-            ) = fetched
-
-            parser = (
-                ProductPageHTMLParser()
-            )
-
+    async def inspect(self, page_url: str, expected_name: str = "", *, resolve_images: bool = True) -> dict:
+        """Validate the page and verify a bounded number of image responses."""
+        from app.services.extraction.product_page_validator import inspect_page
+        async with self.semaphore:
+            result = None
             try:
-                parser.feed(
-                    html
-                )
+                async with asyncio.timeout(18):
+                    fetched = await self._fetch_html(page_url)
+                    if not fetched:
+                        return {"product_page_valid": False, "evidence_url": page_url,
+                                "fetch_blocked": True, "verification_level": "UNVERIFIED", "product_page_confidence": 0,
+                                "reason": "Không tải được trang để xác minh.", "image_url": None}
+                    final_url, html = fetched
+                    result = inspect_page(final_url, html, expected_name)
+                    if not resolve_images:
+                        return result
+                    for image_url, origin in result.pop("image_candidates", []):
+                        if await self._image_loads(image_url):
+                            result.update(image_url=image_url, image_source=origin)
+                            break
+                    return result
+            except (TimeoutError, ValueError, httpx.HTTPError):
+                if result is not None:
+                    # A failed image probe must not invalidate a verified sales page.
+                    return result
+                return {"product_page_valid": False, "evidence_url": page_url,
+                        "fetch_blocked": True, "verification_level": "UNVERIFIED", "product_page_confidence": 0,
+                        "reason": "Hết thời gian hoặc dữ liệu trang không hợp lệ.", "image_url": None}
 
-            except Exception:
-                return None
+    async def _image_loads(self, url: str) -> bool:
+        """Allow public raster responses only, with bounded redirects/body size."""
+        from app.services.extraction.product_page_validator import http_url, BAD_IMAGES
+        async with httpx.AsyncClient(timeout=self.timeout, follow_redirects=False) as client:
+            for _ in range(4):
+                if not http_url(url) or BAD_IMAGES.search(url) or not await _safe_public_url(url): return False
+                try:
+                    async with client.stream("GET", url) as response:
+                        if response.is_redirect:
+                            url = urljoin(url, response.headers.get("location", ""))
+                            continue
+                        if response.status_code != 200: return False
+                        if response.headers.get("content-type", "").split(';')[0] not in {
+                            "image/jpeg", "image/png", "image/webp", "image/gif", "image/avif"}:
+                            return False
+                        data = bytearray()
+                        async for chunk in response.aiter_bytes():
+                            data.extend(chunk)
+                            if len(data) > 5_000_000: return False
+                        raw = bytes(data)
+                        return len(raw) > 32 and (raw.startswith((b"\xff\xd8\xff", b"\x89PNG\r\n\x1a\n", b"GIF8")) or
+                            (raw.startswith(b"RIFF") and raw[8:12] == b"WEBP") or b"ftypavif" in raw[:32])
+                except httpx.HTTPError:
+                    return False
+        return False
 
+    async def resolve(self, *, page_url: str, title: str = "", tavily_image_url: str | None = None) -> str | None:
+        # Query-wide/provider images do not prove product identity.
+        return (await self.inspect(page_url, title)).get("image_url")
 
-            # -------------------------------------------------
-            # 1. JSON-LD Product.image
-            #
-            # This is strongest evidence.
-            # -------------------------------------------------
-
-            image = (
-                _extract_json_ld_product_image(
-                    parser,
-                    page_url=final_url,
-                )
-            )
-
-            if image:
-                return image
-
-
-            # -------------------------------------------------
-            # 2. REAL HTML PRODUCT IMAGE
-            #
-            # Uses title/model/alt/class matching.
-            # Put this BEFORE generic og:image.
-            # -------------------------------------------------
-
-            image = (
-                _extract_best_html_image(
-                    parser,
-                    page_url=final_url,
-                    title=title,
-                )
-            )
-
-            if image:
-                return image
-
-
-            # -------------------------------------------------
-            # 3. OPEN GRAPH
-            #
-            # Only trust it when site explicitly identifies
-            # current page as a product.
-            #
-            # This prevents search icons, article covers,
-            # website logos, etc. from becoming product images.
-            # -------------------------------------------------
-
-            og_type = (
-                parser.meta.get(
-                    "og:type",
-                    "",
-                )
-                .strip()
-                .lower()
-            )
-
-            if (
-                "product"
-                in og_type
-            ):
-                image = (
-                    _extract_meta_image(
-                        parser,
-                        page_url=final_url,
-                    )
-                )
-
-                if image:
-                    return image
-
-
-            # -------------------------------------------------
-            # IMPORTANT
-            #
-            # We successfully loaded the page but could not
-            # prove that an image is the product image.
-            #
-            # Do NOT fall back to Tavily here.
-            # It can be logo/search icon/article image.
-            # -------------------------------------------------
-
-            return None
-
-
-        # =====================================================
-        # PAGE COULD NOT BE FETCHED
-        #
-        # Only now may Tavily be used as last fallback.
-        # =====================================================
-
-            # ---------------------------------------------------------
-    # TAVILY FALLBACK
-    #
-    # Wrong image is worse than no image.
-    #
-    # When the actual product page cannot provide a
-    # trustworthy image, do not blindly attach a Tavily image.
-    # This prevents search icons/logos from appearing.
-    # ---------------------------------------------------------
-
-        return None
-
-
-    async def enrich_sources(
-        self,
-        sources: list[
-            SearchSourceItem
-        ],
-    ) -> None:
-        """Resolve images for multiple search sources concurrently."""
-
-        async def enrich(
-            source: SearchSourceItem,
-        ) -> None:
+    async def enrich_sources(self, sources: list[SearchSourceItem]) -> None:
+        from app.services.extraction.product_page_validator import classify_source
+        async def enrich(source):
+            source.image_url = None
             try:
-                source.image_url = (
-                    await self.resolve(
-                        page_url=(
-                            source.url
-                        ),
-
-                        title=(
-                            source.title
-                            or ""
-                        ),
-
-                        tavily_image_url=(
-                            source.image_url
-                        ),
-                    )
-                )
-
+                source.page_validation = await self.inspect(source.url)
+                source.image_url = source.page_validation.get("image_url")
+                source.result_type = source.page_validation.get('result_type') or classify_source(source.url)
             except Exception:
-                # Image enrichment is optional.
-                # Search/recommendation must never fail
-                # only because an image page could not load.
-                return
-
-
-        await asyncio.gather(
-            *[
-                enrich(
-                    source
-                )
-                for source
-                in sources
-            ]
-        )
+                source.page_validation = {"product_page_valid": False, "evidence_url": source.url,
+                                          "reason": "Không xác minh được trang.", "image_url": None}
+                source.result_type = classify_source(source.url)
+        await asyncio.gather(*(enrich(source) for source in sources))

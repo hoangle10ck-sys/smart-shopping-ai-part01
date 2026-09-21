@@ -1,15 +1,25 @@
 """Schemas for product detail API."""
 
 from datetime import datetime
+from typing import Literal
 from typing import Any
 
 from pydantic import BaseModel, Field
+from app.schemas.recommendation import RecommendationItem
 
 
 class ProductOfferItem(BaseModel):
     """One merchant offer for a product."""
 
     id: int
+    image_url: str | None = None
+    image_source: str | None = None
+    product_page_valid: bool | None = None
+    price_type: Literal['CONCRETE'] | None = None
+    variant: dict[str, str] | None = None
+    verification_level: str | None = None
+    product_page_confidence: float | None = None
+    evidence_url: str | None = None
 
     merchant: str | None = None
 
@@ -36,6 +46,8 @@ class ProductDetailResponse(BaseModel):
     """Full product information for frontend."""
 
     id: int
+    recommendation: RecommendationItem | None = None
+    recommendation_session_id: str | None = None
 
     name: str | None = None
 

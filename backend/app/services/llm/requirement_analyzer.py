@@ -1,6 +1,7 @@
 """Requirement analysis and backend validation service."""
 
 from dataclasses import dataclass
+from app.services.budget import apply_budget_semantics
 
 from app.schemas.requirement import (
     RequirementData,
@@ -55,6 +56,7 @@ class RequirementAnalyzer:
             )
         )
 
+        requirement = apply_budget_semantics(requirement, raw_query)
         return self.assess(
             requirement
         )

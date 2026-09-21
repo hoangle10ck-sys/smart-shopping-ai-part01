@@ -1,6 +1,7 @@
 """Deterministic hard filtering for product candidates."""
 
 import re
+from app.services.budget import bounds
 
 from app.schemas.ranking import (
     FilterDecision,
@@ -15,6 +16,7 @@ from app.services.normalization.text_normalizer import (
 
 
 CATEGORY_ALIASES: dict[str, set[str]] = {
+    "tivi": {"tivi", "tv", "smart tv", "smart tivi", "television"},
     "dien thoai": {
         "dien thoai",
         "smartphone",
@@ -49,6 +51,7 @@ CATEGORY_ALIASES: dict[str, set[str]] = {
 
 
 UNAVAILABLE_VALUES = {
+    "outofstock", "soldout", "discontinued", "https schema org outofstock",
     "out of stock",
     "out_of_stock",
     "sold out",
@@ -96,6 +99,9 @@ def category_matches(
     if required == candidate:
         return True
 
+    for aliases in CATEGORY_ALIASES.values():
+        if required in aliases and candidate in aliases:
+            return True
     required_aliases = (
         CATEGORY_ALIASES.get(
             required,
@@ -241,6 +247,10 @@ def violates_exclusion(
     return False
 
 
+def is_unavailable(value: str | None) -> bool:
+    return normalized((value or '').rsplit('/', 1)[-1]) in UNAVAILABLE_VALUES
+
+
 class HardFilterService:
     """Apply mandatory filters in the required order."""
 
@@ -251,6 +261,10 @@ class HardFilterService:
     ) -> FilterDecision:
         """Evaluate one candidate."""
 
+        budget_min, budget_max = bounds(requirement)
+        if requirement.budget_mode == 'FLEXIBLE_TARGET':
+            # A preferred window guides retrieval and scoring, not exclusion.
+            budget_min = budget_max = None
         if requirement.category:
             if not category_matches(
                 requirement.category,
@@ -271,9 +285,10 @@ class HardFilterService:
                 )
 
         if (
-            requirement.budget_min
+            requirement.budget_mode == 'FLEXIBLE_TARGET'
+            or budget_min
             is not None
-            or requirement.budget_max
+            or budget_max
             is not None
         ):
             if candidate.price is None:
@@ -292,10 +307,10 @@ class HardFilterService:
                 )
 
             if (
-                requirement.budget_min
+                budget_min
                 is not None
                 and candidate.price
-                < requirement.budget_min
+                < budget_min
             ):
                 return FilterDecision(
                     product_id=(
@@ -312,10 +327,10 @@ class HardFilterService:
                 )
 
             if (
-                requirement.budget_max
+                budget_max
                 is not None
                 and candidate.price
-                > requirement.budget_max
+                > budget_max
             ):
                 return FilterDecision(
                     product_id=(
@@ -383,9 +398,7 @@ class HardFilterService:
                     ],
                 )
 
-        availability = normalized(
-            candidate.availability
-        )
+        availability = normalized((candidate.availability or '').rsplit('/', 1)[-1])
 
         if (
             availability

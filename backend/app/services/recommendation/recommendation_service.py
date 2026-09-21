@@ -1,6 +1,7 @@
 """Deterministic recommendation orchestration."""
 
 from dataclasses import dataclass
+from app.services.budget import stored_budget
 from datetime import datetime, timezone
 
 from pydantic import TypeAdapter
@@ -101,6 +102,7 @@ def requirement_to_schema(
     ]
 
     return RequirementData(
+        **stored_budget(model),
         category=model.category,
         budget_min=model.budget_min,
         budget_max=model.budget_max,
@@ -425,7 +427,14 @@ class RecommendationService:
             ),
             brand=candidate.brand,
             model=candidate.model,
-            image_url=context.product.image_url,
+            image_url=(context.page_validation.get("image_url") if context.page_validation is not None else context.product.image_url),
+            product_page_valid=context.page_validation.get("product_page_valid") if context.page_validation is not None else None,
+            price_type=context.page_validation.get('price_type') if context.page_validation is not None else None,
+            variant=context.page_validation.get('variant') if context.page_validation is not None else None,
+            verification_level=context.page_validation.get("verification_level") if context.page_validation is not None else None,
+            product_page_confidence=context.page_validation.get("product_page_confidence") if context.page_validation is not None else None,
+            evidence_url=context.page_validation.get("evidence_url") if context.page_validation is not None else None,
+            image_source=context.page_validation.get("image_source") if context.page_validation is not None else None,
             price=candidate.price,
             last_checked_at=(
                 offer.last_checked_at.replace(tzinfo=timezone.utc)

@@ -44,6 +44,13 @@ class RecommendationItem(BaseModel):
 
     model: str | None = None
 
+    product_page_valid: bool | None = None
+    price_type: Literal['CONCRETE'] | None = None
+    variant: dict[str, str] | None = None
+    verification_level: Literal['VERIFIED_CONTENT', 'VERIFIED_SEARCH_METADATA', 'UNVERIFIED', 'REJECTED'] | None = None
+    product_page_confidence: float | None = Field(default=None, ge=0, le=100)
+    image_source: str | None = None
+    evidence_url: str | None = None
     image_url: str | None = None
 
     price: int | None = None

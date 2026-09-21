@@ -1,5 +1,7 @@
 """Deterministic canonical-product deduplication."""
 
+from app.services.extraction.product_page_validator import identity_tokens, VARIANTS
+
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
@@ -28,6 +30,17 @@ class ProductDeduplicator:
                 .order_by(Product.id)
             )
         )
+
+        def variant_signature(item):
+            tokens = identity_tokens(item.name)
+            capacities = {t for t in tokens if t.endswith(("gb", "tb")) and any(c.isdigit() for c in t)}
+            specs = item.specifications or {}
+            return (tokens & VARIANTS, capacities, str(specs.get("storage", "")).lower().replace(" ", ""),
+                    str(specs.get('variant', '')).lower())
+        signature = variant_signature(candidate)
+        products = [p for p in products if variant_signature(p)[:2] == signature[:2]
+                    and variant_signature(p)[3] == signature[3]
+                    and (not signature[2] or not variant_signature(p)[2] or signature[2] == variant_signature(p)[2])]
 
         candidate_category = (
             normalize_product_text(

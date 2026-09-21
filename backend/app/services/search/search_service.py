@@ -63,11 +63,6 @@ from app.services.search.tavily_provider import (
 )
 
 
-# Maximum number of valid product pages for which
-# we fetch HTML images during one search request.
-MAX_IMAGE_ENRICH_SOURCES = 10
-
-
 class AllSearchQueriesFailed(SearchProviderError):
     """No query succeeded; callers must preserve the previous search results."""
 
@@ -100,17 +95,25 @@ class SearchService:
         ↓
     SourceFilter
         ↓
-    ProductExtraction
+    sales-page / image verification (Live)
         ↓
-    keep only real product candidates
-        ↓
-    ProductImageResolver
+    ProductExtraction (verified direct pages first)
         ↓
     database persistence
 
-    Important:
-    We no longer crawl images for every Tavily result.
+    Query/result limits and resolver concurrency/timeouts bound network work.
     """
+
+    def _offer_entries(self, entries):
+        """Keep page sources singular; expand only concrete verified variant offers."""
+        from app.services.extraction.dealer_offers import concrete_proofs
+        for query, source in entries:
+            variants = (source.page_validation or {}).get('variant_offers')
+            if not self.settings.demo_mode and variants:
+                for proof in concrete_proofs(source.page_validation):
+                    yield query, source.model_copy(update={'page_validation':proof,'image_url':proof.get('image_url')})
+            else:
+                yield query, source
 
     def __init__(
         self,
@@ -213,7 +216,7 @@ class SearchService:
                     [],
                     (
                         "Không thể tìm kiếm cho query "
-                        f"'{query}': {exc}"
+                        f"'{query}' [{getattr(exc, 'kind', 'unexpected_error')}]: {exc}"
                     ),
                 )
 
@@ -222,17 +225,16 @@ class SearchService:
         # SEARCH ALL QUERIES CONCURRENTLY
         # =====================================================
 
-        batches = (
-            await asyncio.gather(
-                *[
-                    run_query(
-                        query
-                    )
-                    for query
-                    in queries
-                ]
-            )
-        )
+        diagnostics = []
+        if self.settings.demo_mode:
+            batches = await asyncio.gather(*(run_query(query) for query in queries))
+        else:
+            from app.models.requirement import Requirement
+            from app.services.search.progressive_retrieval import ProgressiveRetriever
+            requirement = db.scalar(select(Requirement).where(Requirement.session_id == session_id))
+            retriever = ProgressiveRetriever(self.provider, self.image_resolver, self.settings)
+            batches = await retriever.run(queries, requirement)
+            diagnostics = retriever.diagnostics
 
 
         # A successful empty response is different from a failed provider call.
@@ -325,6 +327,13 @@ class SearchService:
         # -> crawl only those pages.
         # =====================================================
 
+        if not self.settings.demo_mode:
+            # Verify actual page content before constructing any sales offer.
+            source_entries.sort(key=lambda entry: entry[1].result_type != 'DIRECT_PRODUCT')
+            all_sources.sort(key=lambda source: source.result_type != 'DIRECT_PRODUCT')
+            if not any((source.page_validation or {}).get('product_page_valid') for source in all_sources):
+                warnings.append('Không tìm được trang bán sản phẩm đủ tin cậy trong giới hạn tìm kiếm.')
+
         candidate_entries: list[
             tuple[
                 str,
@@ -337,7 +346,7 @@ class SearchService:
         for (
             query,
             source_item,
-        ) in source_entries:
+        ) in self._offer_entries(source_entries):
 
             try:
                 candidate = (
@@ -350,10 +359,37 @@ class SearchService:
                 candidate = None
 
 
-            if (
-                candidate
-                is None
-            ):
+            if not self.settings.demo_mode:
+                from app.services.extraction.product_page_validator import same_identity
+                from app.services.normalization.product_normalizer import infer_product_category
+                proof = source_item.page_validation or {"product_page_valid": False}
+                if proof.get("product_page_valid"):
+                    consistent = candidate is not None and same_identity(candidate.name, proof["name"])
+                    model = proof.get("model")
+                    if isinstance(model, dict): model = model.get("name")
+                    candidate = RawProductCandidateData(
+                        name=proof["name"], brand=proof.get("brand") or (candidate.brand if consistent else None),
+                        model=model or (candidate.model if consistent else None),
+                        category=(proof.get('category') if 'category_evidence' in proof else
+                                  infer_product_category(proof["name"], proof.get('category') or (candidate.category if consistent else None))),
+                        price_text=str(proof["price"]) + " VND",
+                        rating_text=str(proof["rating"]) if proof.get("rating") is not None else None,
+                        review_count_text=str(proof["review_count"]) if proof.get("review_count") is not None else None,
+                        specifications={**(candidate.specifications if consistent else {}), **proof.get("specifications", {})},
+                        availability=(proof.get("availability") or "").rsplit("/", 1)[-1].replace("OutOfStock", "out_of_stock").replace("InStock", "in_stock") or None,
+                        product_url=proof["product_url"], source_domain=source_item.domain,
+                        merchant=proof.get("merchant"), image_url=proof.get("image_url"),
+                        evidence_url=proof.get("evidence_url"), page_validation=proof,
+                        raw_text=source_item.content,
+                    )
+                elif candidate is not None:
+                    candidate.product_url = None
+                    candidate.image_url = None
+                    candidate.price_text = None
+                    candidate.page_validation = proof
+                    candidate.evidence_url = source_item.url
+                    warnings.append("Source retained as evidence only: " + source_item.url)
+            if candidate is None:
                 continue
 
 
@@ -370,70 +406,6 @@ class SearchService:
         # IMAGE RESOLUTION
         #
         # Only valid product candidates are allowed here.
-        # =====================================================
-
-        if (
-            not self.settings.demo_mode
-            and candidate_entries
-        ):
-
-            image_sources: list[
-                SearchSourceItem
-            ] = []
-
-            image_seen_urls: set[
-                str
-            ] = set()
-
-
-            for (
-                _,
-                source_item,
-                _,
-            ) in candidate_entries:
-
-                if (
-                    source_item.url
-                    in image_seen_urls
-                ):
-                    continue
-
-                image_seen_urls.add(
-                    source_item.url
-                )
-
-                image_sources.append(
-                    source_item
-                )
-
-                if (
-                    len(
-                        image_sources
-                    )
-                    >= MAX_IMAGE_ENRICH_SOURCES
-                ):
-                    break
-
-
-            try:
-                await (
-                    self.image_resolver
-                    .enrich_sources(
-                        image_sources
-                    )
-                )
-
-            except Exception:
-                warnings.append(
-                    (
-                        "Không thể tải ảnh từ "
-                        "một số nguồn sản phẩm."
-                    )
-                )
-
-
-        # =====================================================
-        # COPY RESOLVED IMAGE INTO CANDIDATE
         # =====================================================
 
         raw_products: list[
@@ -602,6 +574,7 @@ class SearchService:
 
 
         return SearchExecutionResponse(
+            retrieval_diagnostics=diagnostics,
             session_id=(
                 session_id
             ),

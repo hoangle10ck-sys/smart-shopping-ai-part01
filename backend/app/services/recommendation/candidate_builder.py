@@ -1,6 +1,7 @@
 """Build scoring candidates from session-specific database evidence."""
 
 from dataclasses import dataclass
+from app.services.extraction.product_page_validator import same_identity
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -28,6 +29,22 @@ class CandidateContext:
     offers: list[ProductOffer]
 
     source_reliabilities: list[float]
+    page_validation: dict | None = None
+
+
+def offer_observation(db, offer, product, session_id=None):
+    """Read offer-specific provenance without borrowing another merchant's image."""
+    query = select(RawProductCandidate).where(RawProductCandidate.source_id == offer.source_id)
+    if session_id is not None:
+        query = query.where(RawProductCandidate.session_id == session_id)
+    for row in db.scalars(query.order_by(RawProductCandidate.id.desc())):
+        raw = row.payload
+        proof = raw.get('page_validation')
+        if proof is None or not same_identity(raw.get('name'), product.name):
+            continue
+        if proof.get('product_page_valid') and raw.get('product_url') == offer.product_url and proof.get('price') == offer.price:
+            return proof
+    return None
 
 
 class CandidateBuilder:
@@ -76,6 +93,13 @@ class CandidateBuilder:
         ] = {}
 
         for offer in offers:
+            observations = list(db.scalars(select(RawProductCandidate).where(
+                RawProductCandidate.session_id == session_id,
+                RawProductCandidate.source_id == offer.source_id)))
+            if observations and all(r.payload.get('page_validation') is not None for r in observations):
+                product = db.get(Product, offer.product_id)
+                if product is None or offer_observation(db, offer, product, session_id) is None:
+                    continue
             offers_by_product.setdefault(
                 offer.product_id,
                 [],
@@ -100,6 +124,18 @@ class CandidateBuilder:
             best_offer = self._best_offer(
                 product_offers
             )
+            verified = [o for o in product_offers if offer_observation(db, o, product, session_id)]
+            if verified:
+                def quality_key(o):
+                    source = db.get(Source, o.source_id)
+                    proof = offer_observation(db, o, product, session_id)
+                    from app.services.filter.hard_filter import is_unavailable
+                    return (is_unavailable(o.availability),
+                            o.price is None or o.price <= 0,
+                            -(source.reliability_score or 0) if source else 0,
+                            -(o.last_checked_at.timestamp() if o.last_checked_at else 0),
+                            -len(proof.get('specifications', {})), o.price or 10**18, o.id)
+                best_offer = min(verified, key=quality_key)
 
             source_reliabilities: list[
                 float
@@ -200,6 +236,7 @@ class CandidateBuilder:
                     source_reliabilities=(
                         source_reliabilities
                     ),
+                    page_validation=offer_observation(db, best_offer, product, session_id) if best_offer else None,
                 )
             )
 

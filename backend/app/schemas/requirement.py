@@ -31,6 +31,11 @@ class RequirementItem(BaseModel):
 class RequirementData(BaseModel):
     """Structured shopping requirement produced from natural language."""
 
+    budget_mode: Literal['HARD_MAX', 'FLEXIBLE_TARGET', 'RANGE'] = 'HARD_MAX'
+    budget_target: int | None = Field(default=None, ge=0)
+    preferred_min: int | None = Field(default=None, ge=0)
+    preferred_max: int | None = Field(default=None, ge=0)
+
     category: str | None = Field(
         default=None,
         max_length=120,
@@ -115,6 +120,13 @@ class RequirementData(BaseModel):
                 "budget_min cannot be greater than budget_max"
             )
 
+        if self.budget_mode == 'FLEXIBLE_TARGET':
+            if self.budget_target is None or self.preferred_min is None or self.preferred_max is None:
+                raise ValueError('Flexible budgets require a target and explicit window')
+            if not self.preferred_min <= self.budget_target <= self.preferred_max:
+                raise ValueError('Flexible target must lie inside its window')
+        elif self.budget_min is not None and self.budget_max is not None:
+            self.budget_mode = 'RANGE'
         return self
 
 

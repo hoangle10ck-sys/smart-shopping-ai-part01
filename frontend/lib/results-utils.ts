@@ -97,3 +97,24 @@ export function filterAndSort(products: readonly RecommendationItem[], filters: 
     return (filters.sort === "price_asc" ? difference : -difference) || a.rank - b.rank || a.product_id - b.product_id;
   });
 }
+/** A backend page proof is required; URL shape alone never certifies a sale. */
+export function safeSalesUrl(value: unknown, verified?: boolean | null): string | null {
+  const safe = safeHttpUrl(value);
+  if (!safe || verified !== true) return null;
+  const url = new URL(safe);
+  if (url.username || url.password || (url.port && !["80", "443"].includes(url.port))) return null;
+  let path: string;
+  try { path = decodeURIComponent(url.pathname).toLowerCase().replace(/^\/+|\/+$/g, ""); }
+  catch { return null; }
+  if (!path || /^(xe-may|dien-thoai|laptop|tv|tivi|tai-nghe|san-pham|products?|shop)$/.test(path)) return null;
+  if (/(^|\/)(category|categories|collections?|search|tim-kiem|blog|news|tin-tuc|reviews?|bai-viet|brands?|thuong-hieu)(\/|$)/.test(path)) return null;
+  if (["q", "query", "search", "s"].some((key) => url.searchParams.has(key))) return null;
+  return safe;
+}
+
+export function safeProductImageUrl(value: unknown): string | null {
+  const safe = safeHttpUrl(value);
+  if (!safe || /logo|favicon|icon|banner|category|placeholder|sprite|tracking|avatar/i.test(safe)) return null;
+  const url = new URL(safe);
+  return url.username || url.password || url.pathname.toLowerCase().endsWith(".svg") ? null : safe;
+}

@@ -35,7 +35,7 @@ PRODUCT_CATEGORY_ALIASES = {
     "máy tính bảng": ("may tinh bang", "tablet", "ipad"),
     "đồng hồ thông minh": ("dong ho thong minh", "smartwatch", "apple watch"),
     "loa": ("loa", "speaker"),
-    "tivi": ("tivi", "tv"),
+    "tivi": ("tivi", "tv", "smart tv", "smart tivi", "television"),
     "máy ảnh": ("may anh", "camera", "dslr", "mirrorless"),
     "máy giặt": ("may giat", "washing machine"),
     "tủ lạnh": ("tu lanh", "refrigerator"),
@@ -56,6 +56,18 @@ PRODUCT_CATEGORY_ALIASES = {
 
 def infer_product_category(name: str | None, explicit_category: str | None = None) -> str | None:
     """Use a source category or an unambiguous product name; otherwise unknown."""
+    text = normalize_product_text(name) or ""
+    # The sold object is the title's head noun, not the device it fits. Live
+    # merchant pages may put TV mounts in a broad TV category.
+    for prefix, category in {'gia treo': 'giá treo', 'op lung': 'ốp lưng',
+                             'bao da': 'bao da', 'mieng dan': 'miếng dán',
+                             'sua chua': 'dịch vụ sửa chữa', 'remote': 'remote',
+                             'dieu khien': 'remote', 'ke tivi': 'kệ tivi', 'ke tv': 'kệ tivi',
+                             'chan de': 'chân đế', 'phu kien': 'phụ kiện',
+                             'hdmi cable': 'phụ kiện', 'cap hdmi': 'phụ kiện',
+                             'tv box': 'tv box', 'android tv box': 'tv box', 'box tv': 'tv box'}.items():
+        if text == prefix or text.startswith(prefix + ' '):
+            return category
     explicit = normalize_display_text(explicit_category)
     if explicit:
         key = normalize_product_text(explicit)
@@ -64,7 +76,6 @@ def infer_product_category(name: str | None, explicit_category: str | None = Non
                 return category
         # A source may explicitly describe a category outside our vocabulary.
         return explicit
-    text = normalize_product_text(name) or ""
     matches = [category for category, aliases in PRODUCT_CATEGORY_ALIASES.items()
                if any(re.search(rf"(?<!\w){re.escape(alias)}(?!\w)", text) for alias in aliases)]
     return matches[0] if len(matches) == 1 else None

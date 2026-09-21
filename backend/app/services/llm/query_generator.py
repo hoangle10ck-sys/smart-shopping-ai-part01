@@ -11,7 +11,6 @@ from app.schemas.requirement import (
 from app.services.search.source_strategy import (
     SourceStrategy,
     commerce_search_terms,
-    is_motorcycle_category,
 )
 
 
@@ -41,6 +40,9 @@ class QueryGenerator:
         requirement: RequirementData,
     ) -> str:
 
+        if requirement.budget_mode == 'FLEXIBLE_TARGET':
+            return (f'giá khoảng {requirement.budget_target} VND '
+                    f'từ {requirement.preferred_min} đến {requirement.preferred_max} VND')
         budget_min = (
             requirement.budget_min
         )
@@ -84,6 +86,8 @@ class QueryGenerator:
             name = str(
                 item.name
             ).strip()
+            name = {'fuel_efficiency': 'tiêu thụ nhiên liệu', 'battery': 'pin',
+                    'microphone': 'mic', 'storage': 'bộ nhớ', 'weight': 'trọng lượng'}.get(name, name.replace('_', ' '))
 
             value = str(
                 item.value
@@ -156,153 +160,87 @@ class QueryGenerator:
         candidates: list[str] = []
 
 
-        # =====================================================
-        # MOTORCYCLE
-        # =====================================================
+        # =================================================
+        # GENERIC PRODUCTS
+        # =================================================
 
-        if is_motorcycle_category(
-            category
+        brand_text = " ".join(
+            brands
+        )
+
+        product_phrase = (
+            self._join(
+                brand_text,
+                category,
+            )
+        )
+
+        candidates.append(
+            self._join(
+                product_phrase,
+                budget,
+                purpose,
+                criteria,
+                "mua",
+                "giá bán",
+                "Việt Nam",
+            )
+        )
+
+        # Keep a short commercial query even when only two queries are configured.
+        candidates.append(self._join(product_phrase, budget, purpose, criteria, "mua chính hãng"))
+
+        for query in (
+            commerce_search_terms(
+                product_phrase
+            )
         ):
-            normalized_brands = {
-                brand.lower()
-                for brand in brands
-            }
-
-
-            if (
-                not brands
-                or "honda"
-                in normalized_brands
-            ):
-                candidates.append(
-                    self._join(
-                        "site:honda.com.vn",
-                        "Honda xe máy",
-                        "Vision Air Blade Lead Wave",
-                        "giá bán sản phẩm",
-                        budget,
-                    )
-                )
-
-
-            if (
-                not brands
-                or "yamaha"
-                in normalized_brands
-            ):
-                candidates.append(
-                    self._join(
-                        "site:yamaha-motor.com.vn",
-                        "Yamaha xe máy",
-                        "Janus Sirius Grande FreeGo Exciter",
-                        "giá bán sản phẩm",
-                        budget,
-                    )
-                )
-
-
             candidates.append(
                 self._join(
-                    brands[0]
-                    if len(brands) == 1
-                    else "",
-                    "xe máy",
+                    query,
                     budget,
                     purpose,
                     criteria,
-                    "giá bán chính hãng",
-                    "Việt Nam",
                 )
             )
 
+        preferred_domains = (
+            self.source_strategy
+            .preferred_domains(
+                category
+            )
+        )
 
+        for domain in (
+            preferred_domains
+        ):
             candidates.append(
                 self._join(
-                    "Honda Yamaha xe máy",
-                    budget,
-                    "Vision Air Blade Lead Wave",
-                    "Janus Sirius Grande",
-                    "giá bán",
-                    "Việt Nam",
-                )
-            )
-
-        else:
-            # =================================================
-            # GENERIC PRODUCTS
-            # =================================================
-
-            brand_text = " ".join(
-                brands
-            )
-
-            product_phrase = (
-                self._join(
-                    brand_text,
-                    category,
-                )
-            )
-
-            candidates.append(
-                self._join(
+                    f"site:{domain}",
                     product_phrase,
                     budget,
                     purpose,
                     criteria,
-                    "mua",
                     "giá bán",
-                    "Việt Nam",
                 )
             )
 
-            for query in (
-                commerce_search_terms(
-                    product_phrase
-                )
-            ):
-                candidates.append(
-                    self._join(
-                        query,
-                        budget,
-                        criteria,
-                    )
-                )
-
-            preferred_domains = (
-                self.source_strategy
-                .preferred_domains(
-                    category
-                )
+        candidates.append(
+            self._join(
+                product_phrase,
+                budget,
+                purpose,
+                criteria,
+                "nơi bán",
+                "mua online",
+                "Việt Nam",
             )
-
-            for domain in (
-                preferred_domains
-            ):
-                candidates.append(
-                    self._join(
-                        f"site:{domain}",
-                        product_phrase,
-                        budget,
-                        criteria,
-                        "giá bán",
-                    )
-                )
-
-            candidates.append(
-                self._join(
-                    product_phrase,
-                    budget,
-                    criteria,
-                    "nơi bán",
-                    "mua online",
-                    "Việt Nam",
-                )
-            )
+        )
 
 
-        # =====================================================
-        # DEDUP
-        # =====================================================
+    # =====================================================
+    # DEDUP
+    # =====================================================
 
         output: list[str] = []
 

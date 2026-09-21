@@ -38,15 +38,16 @@ def live(monkeypatch):
             if state["fail"]:
                 raise RuntimeError("Mock search failure")
             return [SearchResult(
-                title="Laptop Cache X1", url="https://cache-test.example/laptop",
+                title="Laptop Cache X1", url="https://cache-test.example/products/laptop-cache-x1",
                 content=f"PRODUCT: Laptop Cache X1 | PRICE: {state['price']} VND | SPECS: ram=16GB",
             )]
 
-    async def no_images(*args, **kwargs):
-        return None
-
+    from tests.fixtures.sales_pages import sales_page
+    async def page(self, url):
+        return url, sales_page(name="Laptop Cache X1", price=state["price"],
+                               additionalProperty=[{"name": "ram", "value": "16GB"}])
     monkeypatch.setattr(search_service, "get_search_provider", Provider)
-    monkeypatch.setattr(ProductImageResolver, "enrich_sources", no_images)
+    monkeypatch.setattr(ProductImageResolver, "_fetch_html", page)
     return state
 
 

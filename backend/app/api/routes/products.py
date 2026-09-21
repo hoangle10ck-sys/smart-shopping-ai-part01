@@ -14,6 +14,8 @@ from sqlalchemy.orm import (
 
 from app.core.database import get_db
 from app.models.product import Product
+from app.services.recommendation.candidate_builder import offer_observation
+from app.services.recommendation.recommendation_service import RecommendationService
 from app.models.product_offer import (
     ProductOffer,
 )
@@ -58,6 +60,7 @@ def _offer_sort_key(
 def get_product(
     product_id: int,
     db: Session = Depends(get_db),
+    session_id: str | None = None,
 ) -> ProductDetailResponse:
     """Return complete product information."""
 
@@ -92,10 +95,19 @@ def get_product(
         key=_offer_sort_key,
     ):
         source = offer.source
+        proof = offer_observation(db, offer, product)
 
         offers.append(
             ProductOfferItem(
                 id=offer.id,
+                image_url=proof.get('image_url') if proof else None,
+                image_source=proof.get('image_source') if proof else None,
+                product_page_valid=proof.get('product_page_valid') if proof else None,
+                price_type=proof.get('price_type') if proof else None,
+                variant=proof.get('variant') if proof else None,
+                verification_level=proof.get('verification_level') if proof else None,
+                product_page_confidence=proof.get('product_page_confidence') if proof else None,
+                evidence_url=proof.get('evidence_url') if proof else (source.url if source else None),
                 merchant=offer.merchant,
                 price=offer.price,
                 currency=(
@@ -130,7 +142,18 @@ def get_product(
             )
         )
 
+    recommendation = None
+    if session_id:
+        try:
+            view = RecommendationService().load(db=db, session_id=session_id)
+        except ValueError as exc:
+            raise HTTPException(status_code=404, detail="Session not found.") from exc
+        recommendation = next((item for item in view.recommendations if item.product_id == product_id), None)
+        if recommendation is None:
+            raise HTTPException(status_code=404, detail="Product not recommended in this session.")
     return ProductDetailResponse(
+        recommendation=recommendation,
+        recommendation_session_id=session_id,
         id=product.id,
         name=product.name,
         category=product.category,
