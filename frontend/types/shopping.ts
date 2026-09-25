@@ -35,6 +35,7 @@ export interface RecommendationEvidence {
 }
 
 export interface RecommendationItem {
+  variant?: Record<string, string>;
   product_page_valid?: boolean | null;
   image_source?: string | null;
   evidence_url?: string | null;

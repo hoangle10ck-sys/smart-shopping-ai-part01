@@ -10,9 +10,8 @@ import type {
 
 import { PipelineProgress } from "@/components/pipeline-progress";
 
-import {
-  SiteHeader,
-} from "@/components/site-header";
+import { Icon } from "@/components/icon";
+import { useRouter } from "next/navigation";
 
 import {
   analyzeRequirement,
@@ -22,13 +21,15 @@ import {
 
 
 const examples = [
+  "Điện thoại khoảng 10 triệu, camera tốt, pin lâu",
   "Laptop khoảng 20 triệu để học lập trình",
-  "Tai nghe dưới 500 nghìn, mic tốt, pin lâu",
-  "Điện thoại khoảng 10 triệu, camera đẹp",
+  "TV khoảng 10 triệu để xem phim",
+  "Xe máy khoảng 33 triệu để đi học",
 ];
 
 
 export default function Home() {
+  const router = useRouter();
   const [pipelinePhase, setPipelinePhase] = useState<"analyze" | "search">("analyze");
   const [
     query,
@@ -205,9 +206,7 @@ export default function Home() {
 
 
       setError(
-        caught instanceof Error
-          ? caught.message
-          : "Không thể kết nối với hệ thống AI.",
+        "Chưa thể kết nối để tìm kiếm. Vui lòng thử lại sau ít phút.",
       );
     } finally {
       setLoading(false);
@@ -350,9 +349,7 @@ export default function Home() {
 
 
       setError(
-        caught instanceof Error
-          ? caught.message
-          : "Không thể gửi thông tin bổ sung.",
+        "Chưa gửi được thông tin bổ sung. Vui lòng thử lại.",
       );
     } finally {
       setLoading(false);
@@ -394,8 +391,7 @@ export default function Home() {
     }
 
 
-    window.location.href =
-      `/results/${searchResult.session_id}`;
+    router.push(`/results/${searchResult.session_id}`);
   }
 
 
@@ -446,344 +442,63 @@ export default function Home() {
 
 
   return (
-    <main className="min-h-screen">
-      <SiteHeader />
-
-
-      {/* HERO */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute -left-32 top-12 h-96 w-96 rounded-full bg-blue-400/15 blur-3xl" />
-
-          <div className="absolute right-0 top-20 h-96 w-96 rounded-full bg-violet-400/15 blur-3xl" />
-        </div>
-
-
-        <div className="mx-auto max-w-7xl px-5 pb-24 pt-24 text-center lg:px-8 lg:pt-32">
-          {/* BADGE */}
-          <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-bold text-blue-700">
-            ✨ AI Shopping Assistant
-
-            <span className="rounded-full bg-blue-600 px-2 py-0.5 text-[10px] text-white">
-              BETA
-            </span>
+    <main id="main-content" tabIndex={-1}>
+      <section className="relative border-b border-[#dce4de] bg-[#f6f7f0]">
+        <div className="page-container grid gap-10 py-12 lg:grid-cols-[.95fr_1.05fr] lg:items-center lg:gap-16 lg:py-22">
+          <div>
+            <p className="eyebrow flex items-center gap-2"><Icon name="spark" width="16" height="16" /> Trợ lý mua sắm của bạn</p>
+            <h1 className="mt-6 max-w-xl text-[clamp(2.5rem,4.5vw,4.2rem)] leading-[1.13] font-semibold tracking-[-.045em]">
+              Mua sắm thông minh hơn.<br /><span className="text-[#287452]">Bắt đầu từ nhu cầu.</span>
+            </h1>
+            <p className="muted mt-6 max-w-md text-base leading-7">Mô tả điều bạn đang tìm. Smart Shopping AI tìm kiếm, đánh giá và đề xuất sản phẩm từ các nguồn trên web để bạn có thêm cơ sở lựa chọn.</p>
+            <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-xs font-medium text-[#526a58]">
+              <span className="flex items-center gap-2"><Icon name="globe" width="16" height="16" /> Nguồn thông tin rõ ràng</span>
+              <span className="flex items-center gap-2"><Icon name="layers" width="16" height="16" /> So sánh theo nhu cầu</span>
+            </div>
           </div>
-
-
-          {/* TITLE */}
-          <h1 className="mx-auto max-w-4xl text-5xl font-black leading-[1.08] tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
-            Tìm sản phẩm phù hợp
-
-            <span className="block bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent">
-              bằng trí tuệ nhân tạo
-            </span>
-          </h1>
-
-
-          {/* DESCRIPTION */}
-          <p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-slate-500">
-            Chỉ cần mô tả nhu cầu của bạn.
-            Smart Shopping AI sẽ phân tích,
-            tìm kiếm, đánh giá và xếp hạng
-            sản phẩm phù hợp nhất.
-          </p>
-
-
-          {/* SEARCH FORM */}
-          <form
-            onSubmit={
-              handleSubmit
-            }
-            className="mx-auto mt-10 max-w-3xl"
-          >
-            <div className="rounded-[28px] border border-slate-200 bg-white p-3 shadow-2xl shadow-blue-950/10">
-              <textarea
-                value={query}
-                onChange={(
-                  event,
-                ) => {
-                  setQuery(
-                    event
-                      .target
-                      .value,
-                  );
-
-                  if (error) {
-                    setError(
-                      null,
-                    );
-                  }
-                }}
-                rows={3}
-                disabled={
-                  loading
-                }
-                placeholder="Ví dụ: Tôi cần laptop khoảng 20 triệu để học lập trình, RAM 16GB, pin tốt..."
-                className="w-full resize-none rounded-2xl border-0 bg-transparent px-4 py-4 text-base leading-7 text-slate-900 outline-none placeholder:text-slate-400"
-              />
-
-
-              <div className="flex flex-col gap-3 border-t border-slate-100 px-2 pt-3 sm:flex-row sm:items-center sm:justify-between">
-                <div className="text-left text-xs font-medium text-slate-400">
-                  🔒 AI chỉ sử dụng thông tin
-                  để tìm sản phẩm phù hợp.
-                </div>
-
-
-                <button
-                  type="submit"
-                  disabled={
-                    loading
-                  }
-                  className="inline-flex min-w-40 items-center justify-center rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3.5 text-sm font-extrabold text-white shadow-lg shadow-blue-500/25 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
-                >
-                  {loading
-                    ? "Đang chờ backend..."
-                    : "✨ Tìm bằng AI"}
-                </button>
-              </div>
-            </div>
-          </form>
-
-
-          {loading && <div className="mx-auto mt-5 max-w-3xl"><PipelineProgress phase={pipelinePhase} /></div>}
-
-          {/* ERROR */}
-          {error && (
-            <div className="mx-auto mt-4 max-w-3xl rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-left text-sm font-semibold text-red-700">
-              {error}
-            </div>
-          )}
-
-
-          {/* CLARIFICATION */}
-          {clarificationSessionId &&
-            clarificationQuestion && (
-              <div className="mx-auto mt-6 max-w-3xl overflow-hidden rounded-[28px] border border-blue-200 bg-white text-left shadow-xl shadow-blue-950/5">
-                {/* HEADER */}
-                <div className="border-b border-blue-100 bg-gradient-to-r from-blue-50 to-indigo-50 px-5 py-4">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-600 text-xl shadow-sm">
-                      🤖
-                    </div>
-
-
-                    <div>
-                      <div className="font-extrabold text-slate-950">
-                        Smart Shopping AI
-                      </div>
-
-                      <div className="mt-0.5 text-xs font-semibold text-blue-600">
-                        Cần thêm thông tin
-                        {clarificationRound >
-                          0
-                          ? ` • Câu hỏi ${clarificationRound}`
-                          : ""}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-                {/* BODY */}
-                <div className="p-5">
-                  <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-sm font-bold leading-7 text-slate-800">
-                      {
-                        clarificationQuestion
-                      }
-                    </p>
-                  </div>
-
-
-                  <div className="mt-4">
-                    <label className="mb-2 block text-xs font-extrabold uppercase tracking-wide text-slate-500">
-                      Câu trả lời của bạn
-                    </label>
-
-
-                    <textarea
-                      value={
-                        clarificationAnswer
-                      }
-                      onChange={(
-                        event,
-                      ) => {
-                        setClarificationAnswer(
-                          event
-                            .target
-                            .value,
-                        );
-
-                        if (
-                          error
-                        ) {
-                          setError(
-                            null,
-                          );
-                        }
-                      }}
-                      onKeyDown={
-                        handleClarificationKeyDown
-                      }
-                      rows={3}
-                      disabled={
-                        loading
-                      }
-                      autoFocus
-                      placeholder="Ví dụ: Tôi dùng chủ yếu để học online và họp trực tuyến..."
-                      className="w-full resize-none rounded-2xl border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
-                    />
-                  </div>
-
-
-                  <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <p className="text-xs text-slate-400">
-                      Nhấn Enter để tiếp tục,
-                      Shift + Enter để xuống dòng.
-                    </p>
-
-
-                    <button
-                      type="button"
-                      disabled={
-                        loading ||
-                        clarificationAnswer
-                          .trim()
-                          .length <
-                          2
-                      }
-                      onClick={() =>
-                        void handleClarification()
-                      }
-                      className="inline-flex items-center justify-center rounded-2xl bg-blue-600 px-5 py-3 text-sm font-extrabold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-40"
-                    >
-                      {loading
-                        ? "AI đang xử lý..."
-                        : "Tiếp tục với AI →"}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
-
-
-          {/* EXAMPLES */}
-          <div className="mx-auto mt-7 flex max-w-3xl flex-wrap justify-center gap-2">
-            <span className="py-2 text-xs font-bold text-slate-400">
-              Thử nhanh:
-            </span>
-
-
-            {examples.map(
-              (
-                example,
-              ) => (
-                <button
-                  key={
-                    example
-                  }
-                  type="button"
-                  disabled={
-                    loading
-                  }
-                  onClick={() =>
-                    chooseExample(
-                      example,
-                    )
-                  }
-                  className="rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-600 shadow-sm transition hover:border-blue-300 hover:text-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  {example}
-                </button>
-              ),
-            )}
+          <div className="min-w-0">
+            <form onSubmit={handleSubmit} className="surface overflow-hidden !rounded-3xl !border-[#cddbc9] p-5 shadow-[0_16px_50px_-24px_#244a3040] sm:p-7" aria-busy={loading}>
+              <div className="mb-5 flex items-center justify-between gap-3"><label htmlFor="shopping-query" className="font-semibold">Bạn đang tìm sản phẩm gì?</label><Icon name="spark" className="text-[#287452]" /></div>
+              <textarea id="shopping-query" value={query} onChange={event => { setQuery(event.target.value); setError(null); }} rows={5} disabled={loading}
+                onKeyDown={event => { if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) { event.preventDefault(); if (!loading) event.currentTarget.form?.requestSubmit(); } }}
+                placeholder="Ví dụ: Tôi cần điện thoại khoảng 10 triệu, camera tốt, pin lâu..."
+                aria-describedby="search-hint" aria-invalid={!!error}
+                className="field resize-y !rounded-xl !border-[#e0e7dc] !bg-[#f8faf6] !p-4 !text-base leading-7" />
+              <p id="search-hint" className="muted mt-3 text-xs">Thêm ngân sách, mục đích và tiêu chí bạn quan tâm.</p>
+              <button type="submit" disabled={loading} className="btn btn-primary mt-5 w-full !py-3.5 !text-sm"><Icon name="search" />{loading ? 'Đang xử lý nhu cầu…' : 'Tìm bằng AI'}<Icon name="arrow" className="ml-auto" /></button>
+              <p className="muted mt-3 text-center text-[11px]">Ctrl + Enter để tìm kiếm · Không cần biết trước tên sản phẩm</p>
+            </form>
+            {error && <div role="alert" className="notice mt-4"><p>{error}</p><button type="button" className="text-link mt-2" onClick={() => document.getElementById('shopping-query')?.focus()}>Kiểm tra nhu cầu và thử lại</button></div>}
+            {loading && <div className="mt-4"><PipelineProgress phase={pipelinePhase} /></div>}
           </div>
         </div>
       </section>
 
+      {clarificationSessionId && clarificationQuestion && <section aria-label="Bổ sung nhu cầu" className="page-container pt-8">
+        <div className="surface mx-auto max-w-3xl p-6 sm:p-8">
+          <span className="tag tag-green">Cần thêm thông tin · Câu hỏi {clarificationRound}</span>
+          <h2 className="section-title mt-4">{clarificationQuestion}</h2>
+          <label htmlFor="clarification-answer" className="field-label mt-5">Câu trả lời của bạn</label>
+          <textarea id="clarification-answer" autoFocus value={clarificationAnswer} onChange={event => { setClarificationAnswer(event.target.value); setError(null); }} onKeyDown={handleClarificationKeyDown} rows={3} disabled={loading} placeholder="Ví dụ: Tôi dùng chủ yếu để học online và họp trực tuyến..." className="field mt-2" />
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><p className="muted text-xs">Enter để tiếp tục · Shift + Enter để xuống dòng</p><button type="button" disabled={loading || clarificationAnswer.trim().length < 2} onClick={() => void handleClarification()} className="btn btn-primary">{loading ? 'Đang xử lý…' : 'Tiếp tục với AI →'}</button></div>
+        </div>
+      </section>}
 
-      {/* HOW IT WORKS */}
-      <section
-        id="how-it-works"
-        className="border-y border-slate-200 bg-white"
-      >
-        <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
-          <div className="mb-12 text-center">
-            <p className="text-sm font-extrabold uppercase tracking-[0.25em] text-blue-600">
-              Quy trình AI
-            </p>
+      <section aria-label="Gợi ý nhu cầu" className="page-container py-8">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-start">
+          <p className="muted shrink-0 pt-2 text-xs font-semibold">Bắt đầu với một gợi ý</p>
+          <div className="flex flex-wrap gap-2">{examples.map(example => <button key={example} type="button" disabled={loading} onClick={() => chooseExample(example)} className="btn btn-secondary !rounded-full !px-4 !py-2 !text-xs">{example}<span aria-hidden="true" className="text-[#6b816e]">↗</span></button>)}</div>
+        </div>
+      </section>
 
-
-            <h2 className="mt-3 text-3xl font-black text-slate-950">
-              Mua sắm thông minh trong
-              3 bước
-            </h2>
-          </div>
-
-
-          <div className="grid gap-5 md:grid-cols-3">
-            {[
-              {
-                icon: "💬",
-
-                title:
-                  "1. Mô tả nhu cầu",
-
-                text:
-                  "Nhập ngân sách, mục đích và điều bạn quan tâm bằng ngôn ngữ tự nhiên.",
-              },
-
-              {
-                icon: "🧠",
-
-                title:
-                  "2. AI phân tích",
-
-                text:
-                  "Nếu thông tin chưa đủ, AI sẽ hỏi thêm trước khi tìm kiếm và chấm điểm sản phẩm.",
-              },
-
-              {
-                icon: "🏆",
-
-                title:
-                  "3. Nhận đề xuất",
-
-                text:
-                  "Xem AI Match, độ tin cậy, giá, rating và lý do sản phẩm phù hợp.",
-              },
-            ].map(
-              (item) => (
-                <article
-                  key={
-                    item.title
-                  }
-                  className="rounded-[28px] border border-slate-200 bg-slate-50 p-7"
-                >
-                  <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-2xl shadow-sm">
-                    {
-                      item.icon
-                    }
-                  </div>
-
-
-                  <h3 className="text-lg font-extrabold text-slate-950">
-                    {
-                      item.title
-                    }
-                  </h3>
-
-
-                  <p className="mt-3 leading-7 text-slate-500">
-                    {
-                      item.text
-                    }
-                  </p>
-                </article>
-              ),
-            )}
-          </div>
+      <section id="how-it-works" className="page-container pb-18 pt-8">
+        <div className="mb-7 flex flex-wrap items-end justify-between gap-4"><div><p className="eyebrow">Từ ý tưởng đến lựa chọn</p><h2 className="mt-2 text-2xl font-semibold tracking-tight">Ít thời gian tìm. Nhiều cơ sở chọn.</h2></div><span className="muted text-sm">Một quy trình rõ ràng trong 3 bước</span></div>
+        <div className="grid gap-4 md:grid-cols-3">
+          {([
+            {icon:'search', title:'Nói điều bạn cần', text:'Ngân sách, mục đích sử dụng và những tiêu chí quan trọng. Mô tả theo cách của bạn.'},
+            {icon:'layers', title:'Khám phá các lựa chọn', text:'Hệ thống phân tích nhu cầu, tìm nguồn và đối chiếu thông tin sản phẩm.'},
+            {icon:'shield', title:'Quyết định có cơ sở', text:'Xem điểm phù hợp, bằng chứng và thông tin còn thiếu trước khi mở trang bán.'},
+          ] as const).map((item, index) => <div key={item.title} className="surface p-6"><div className="flex items-center justify-between"><span className="rounded-xl bg-[#edf3e9] p-3 text-[#286543]"><Icon name={item.icon} /></span><span className="text-sm text-[#69756d]">0{index+1}</span></div><h3 className="mt-5 font-semibold">{item.title}</h3><p className="muted mt-2 text-sm leading-6">{item.text}</p></div>)}
         </div>
       </section>
     </main>

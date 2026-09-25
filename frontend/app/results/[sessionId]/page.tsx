@@ -19,9 +19,8 @@ import {
   ProductCard,
 } from "@/components/product-card";
 
-import {
-  SiteHeader,
-} from "@/components/site-header";
+import Link from "next/link";
+import { EmptyState, ErrorState } from "@/components/ui-state";
 
 import {
   createComparison,
@@ -229,223 +228,37 @@ function SessionResults({ sessionId }: { sessionId: string }) {
   const visibleProducts = filterAndSort(data?.recommendations ?? [], filters);
 
   return (
-    <main className="min-h-screen bg-slate-50">
-      <SiteHeader />
-
-
-      <section className="border-b border-slate-200 bg-white">
-        <div className="mx-auto max-w-7xl px-5 py-12 lg:px-8">
-          <div className="inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-extrabold text-blue-700">
-            AI RECOMMENDATION
-          </div>
-
-
-          <h1 className="mt-4 text-3xl font-black text-slate-950 sm:text-4xl">
-            Sản phẩm AI đề xuất
-          </h1>
-
-
-          <p className="mt-3 max-w-2xl text-slate-500">
-            Các sản phẩm được lọc và
-            xếp hạng dựa trên nhu cầu,
-            ngân sách, rating, nguồn dữ
-            liệu và độ tin cậy.
-          </p>
-        </div>
-      </section>
-
-
-      <section className="mx-auto max-w-7xl px-5 py-10 lg:px-8">
-        {/* LOADING */}
+    <main id="main-content" tabIndex={-1} className={selectedProductIds.length ? 'pb-36' : ''}>
+      <section className="page-heading"><div className="page-container">
+        <div className="flex flex-wrap items-center justify-between gap-4"><p className="eyebrow">Được chọn theo nhu cầu của bạn</p><Link href="/" className="text-link">← Tìm kiếm mới</Link></div>
+        <h1 className="page-title mt-3">Khám phá lựa chọn phù hợp.</h1>
+        <p className="muted mt-3 max-w-2xl text-sm leading-6">Đối chiếu giá, mức đáp ứng và thông tin nguồn để chọn điều phù hợp với bạn.</p>
+      </div></section>
+      <section className="page-container page-content">
         {loading && <PipelineProgress phase="read" />}
-
-        {/* ERROR */}
-        {error && (
-          <div className="rounded-3xl border border-red-200 bg-red-50 p-6 text-red-700">
-            <div className="font-extrabold">
-              Không thể tải kết quả
-            </div>
-
-            <p className="mt-2 text-sm">
-              {error}
-            </p>
-          </div>
-        )}
-
-
-        {/* DATA */}
-        {data && !loading && !error && (
-          <>
-            <div className="mb-5 rounded-2xl border border-slate-200 bg-white p-5">
-              <p className="font-extrabold">{dataModeLabel(data.data_mode)}</p>
-              <p className="mt-2 text-sm text-slate-500">{data.data_semantics === "snapshot" ? "Kết quả snapshot đã lưu; giá có thể khác giá hiện tại." : data.data_semantics === "legacy_recomputed" ? "Phiên cũ chưa có snapshot: backend tính lại đồng bộ từ dữ liệu hiện có." : "Chưa có kết quả được tạo."}</p>
-              {!data.data_mode && <p className="mt-1 text-xs text-slate-500">Cấu hình Demo/Live hiện tại không đủ để xác định nguồn dữ liệu lịch sử.</p>}
-            </div>
-            {data.status && <PipelineProgress phase={data.status} />}
-            {(data.status === "PROCESSING" || data.status === "PENDING" || data.status === "FAILED") && <button type="button" onClick={() => setReload((value) => value + 1)} className="mb-5 font-bold text-blue-700">Tải lại trạng thái đã lưu</button>}
-            {!!data.warnings?.length && <ul role="alert" className="mb-6 list-disc space-y-2 rounded-2xl border border-amber-200 bg-amber-50 p-5 pl-9 text-sm text-amber-900">{data.warnings.map((warning, index) => <li key={index}>{warning}</li>)}</ul>}
-            <RequirementSummary requirement={data.requirement} />
-            <ResultFilters products={data.recommendations} value={filters} onChange={setFilters} visibleCount={visibleProducts.length} />
-            <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
-              <div>
-                <span className="text-2xl font-black text-slate-950">
-                  {
-                    data.total_recommended
-                  }
-                </span>
-
-                <span className="ml-2 text-sm font-medium text-slate-500">
-                  sản phẩm phù hợp nhất
-                </span>
-              </div>
-
-
-              <div className="flex flex-wrap items-center gap-3">
-                <div className="rounded-2xl border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-500">
-                  ⚡ Xử lý trong{" "}
-                  {Math.round(
-                    data.processing_time_ms,
-                  )}
-                  ms
-                </div>
-
-
-                {selectedProductIds.length >
-                  0 && (
-                  <div className="rounded-2xl border border-blue-200 bg-blue-50 px-4 py-2 text-xs font-bold text-blue-700">
-                    Đã chọn{" "}
-                    {
-                      selectedProductIds.length
-                    }
-                    /3
-                  </div>
-                )}
-              </div>
-            </div>
-
-
-            {/* PRODUCT GRID */}
-            {visibleProducts.length >
-            0 ? (
-              <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-                {visibleProducts.map(
-                  (product) => (
-                    <ProductCard
-                      key={
-                        product.product_id
-                      }
-                      product={
-                        product
-                      }
-                      sessionId={
-                        sessionId
-                      }
-                      selected={
-                        selectedProductIds.includes(
-                          product.product_id,
-                        )
-                      }
-                      compareDisabled={
-                        selectedProductIds.length >=
-                          3 &&
-                        !selectedProductIds.includes(
-                          product.product_id,
-                        )
-                      }
-                      onToggleCompare={
-                        toggleCompare
-                      }
-                    />
-                  ),
-                )}
-              </div>
-            ) : (
-              <div className="rounded-3xl border border-slate-200 bg-white p-12 text-center">
-                <div className="text-5xl">
-                  🔎
-                </div>
-
-                <h2 className="mt-5 text-xl font-black">
-                  {data.recommendations.length ? "Không có sản phẩm khớp bộ lọc" : "Phiên chưa có đề xuất sản phẩm"}
-                </h2>
-
-                <p className="mt-2 text-slate-500">
-                  {data.recommendations.length ? "Đặt lại bộ lọc để xem đầy đủ kết quả đã lưu." : "Xem trạng thái và cảnh báo phía trên để biết kết quả của phiên."}
-                </p>
-              </div>
-            )}
-          </>
-        )}
+        {error && <ErrorState title="Không thể tải kết quả" retry={() => setReload(value => value + 1)} />}
+        {data && !loading && !error && <>
+          <div className="mb-5 flex flex-wrap items-center gap-3"><span className={`tag ${data.data_mode === 'live' ? 'tag-green' : 'tag-amber'}`}>{dataModeLabel(data.data_mode)}</span><p className="muted text-xs">{data.data_semantics === 'snapshot' ? 'Kết quả đã lưu · Giá có thể khác thời điểm hiện tại.' : data.data_semantics === 'legacy_recomputed' ? 'Phiên cũ: dữ liệu được tính lại đồng bộ.' : 'Chưa có kết quả được tạo.'}</p></div>
+          {data.status && data.status !== 'COMPLETED' && <PipelineProgress phase={data.status} />}
+          {(data.status === 'PROCESSING' || data.status === 'PENDING' || data.status === 'FAILED') && <button type="button" onClick={() => setReload(value => value + 1)} className="btn btn-secondary mb-5">Tải lại trạng thái đã lưu</button>}
+          {!!data.warnings?.length && <div role="alert" className="notice mb-6">
+            <p className="font-semibold">Lưu ý về dữ liệu</p><p className="mt-1 break-words">{data.warnings[0]}</p>
+            {data.warnings.length > 1 && <details className="mt-2"><summary>Xem thêm {data.warnings.length - 1} lưu ý về nguồn</summary><ul className="mt-3 space-y-2">{data.warnings.slice(1).map((warning,index) => <li key={index}>{warning}</li>)}</ul></details>}
+          </div>}
+          <RequirementSummary requirement={data.requirement} />
+          <ResultFilters products={data.recommendations} value={filters} onChange={setFilters} visibleCount={visibleProducts.length} />
+          <div className="mb-5 flex flex-wrap items-center justify-between gap-3"><h2 className="section-title">{data.total_recommended} đề xuất dành cho bạn</h2><p className="muted text-xs">{data.total_found} ứng viên · {data.total_filtered} sau bộ lọc · {Math.round(data.processing_time_ms)} ms</p></div>
+          {visibleProducts.length ? <div className="grid items-start gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {visibleProducts.map(product => <ProductCard key={product.product_id} product={product} sessionId={sessionId} selected={selectedProductIds.includes(product.product_id)} compareDisabled={selectedProductIds.length >= 3 && !selectedProductIds.includes(product.product_id)} onToggleCompare={toggleCompare} />)}
+          </div> : <EmptyState title={data.recommendations.length ? 'Không có sản phẩm khớp bộ lọc' : 'Chưa tìm thấy sản phẩm phù hợp.'} description={data.recommendations.length ? 'Đặt lại bộ lọc để xem đầy đủ kết quả đã lưu.' : 'Bạn có thể thử ngân sách khác, giảm bớt tiêu chí hoặc mô tả thêm nhu cầu.'} action={data.recommendations.length ? <button type="button" onClick={() => setFilters({...EMPTY_FILTERS})} className="btn btn-primary">Đặt lại bộ lọc</button> : undefined} />}
+        </>}
       </section>
-
-
-      {/* FLOATING COMPARE BAR */}
-      {selectedProductIds.length >
-        0 && (
-        <div className="fixed bottom-5 left-1/2 z-50 w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2">
-          <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-2xl shadow-slate-950/20">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <p className="font-extrabold text-slate-950">
-                  So sánh sản phẩm
-                </p>
-
-                <p className="mt-1 text-xs text-slate-500">
-                  Đã chọn{" "}
-                  {
-                    selectedProductIds.length
-                  }{" "}
-                  sản phẩm. Chọn từ 2
-                  đến 3 sản phẩm.
-                </p>
-              </div>
-
-
-              <div className="flex gap-2">
-                <button
-                  type="button"
-                  disabled={
-                    comparing
-                  }
-                  onClick={() =>
-                    setSelectedProductIds(
-                      [],
-                    )
-                  }
-                  className="rounded-2xl border border-slate-200 px-4 py-3 text-sm font-bold text-slate-600 transition hover:bg-slate-50 disabled:opacity-50"
-                >
-                  Bỏ chọn
-                </button>
-
-
-                <button
-                  type="button"
-                  disabled={
-                    selectedProductIds.length <
-                      2 ||
-                    comparing
-                  }
-                  onClick={
-                    handleCompare
-                  }
-                  className="rounded-2xl bg-blue-600 px-5 py-3 text-sm font-extrabold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  {comparing
-                    ? "Đang so sánh..."
-                    : `So sánh ngay (${selectedProductIds.length})`}
-                </button>
-              </div>
-            </div>
-
-
-            {compareError && (
-              <div className="mt-3 rounded-xl bg-red-50 px-3 py-2 text-xs font-semibold text-red-600">
-                {compareError}
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+      {selectedProductIds.length > 0 && <aside aria-label="Sản phẩm đã chọn so sánh" className="fixed bottom-4 left-1/2 z-40 w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2">
+        <div className="surface !border-[#aac2ad] p-4 !shadow-xl"><div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
+          <div><p className="text-sm font-semibold">So sánh sản phẩm</p><p className="muted mt-1 text-xs">Đã chọn {selectedProductIds.length}/3 · Chọn ít nhất 2 sản phẩm</p></div>
+          <div className="flex gap-2"><button type="button" disabled={comparing} onClick={() => setSelectedProductIds([])} className="btn btn-secondary">Bỏ chọn</button><button type="button" disabled={selectedProductIds.length < 2 || comparing} onClick={handleCompare} className="btn btn-primary">{comparing ? 'Đang so sánh...' : `So sánh ngay (${selectedProductIds.length})`}</button></div>
+        </div>{compareError && <p role="alert" className="mt-3 text-xs text-red-700">Chưa thể tạo so sánh. Vui lòng thử lại.</p>}</div>
+      </aside>}
     </main>
   );
 }

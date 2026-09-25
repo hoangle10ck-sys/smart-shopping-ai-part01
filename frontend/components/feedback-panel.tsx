@@ -59,11 +59,9 @@ export function FeedbackPanel({
       });
 
       setSubmitted(true);
-    } catch (caught) {
+    } catch {
       setError(
-        caught instanceof Error
-          ? caught.message
-          : "Không gửi được phản hồi.",
+        "Chưa gửi được phản hồi. Vui lòng thử lại.",
       );
     } finally {
       setLoading(false);
@@ -87,11 +85,9 @@ export function FeedbackPanel({
       });
 
       setSubmitted(true);
-    } catch (caught) {
+    } catch {
       setError(
-        caught instanceof Error
-          ? caught.message
-          : "Không gửi được phản hồi.",
+        "Chưa gửi được phản hồi. Vui lòng thử lại.",
       );
     } finally {
       setLoading(false);
@@ -101,7 +97,7 @@ export function FeedbackPanel({
 
   if (submitted) {
     return (
-      <div className="mt-4 rounded-2xl bg-emerald-50 px-4 py-3 text-center text-sm font-bold text-emerald-700">
+      <div role="status" className="mt-4 rounded-xl bg-[#eaf3e8] px-4 py-3 text-center text-xs font-semibold text-[#245b38]">
         ✓ Cảm ơn bạn đã phản hồi
       </div>
     );
@@ -119,7 +115,7 @@ export function FeedbackPanel({
           type="button"
           disabled={loading}
           onClick={submitHelpful}
-          className="rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-xs font-bold text-emerald-700 transition hover:bg-emerald-100"
+          className="btn btn-secondary !px-2 !text-xs"
         >
           👍 Hữu ích
         </button>
@@ -132,7 +128,7 @@ export function FeedbackPanel({
               !negative,
             )
           }
-          className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-xs font-bold text-red-700 transition hover:bg-red-100"
+          aria-pressed={negative} className="btn btn-secondary !px-2 !text-xs"
         >
           👎 Không phù hợp
         </button>
@@ -151,14 +147,12 @@ export function FeedbackPanel({
                 <button
                   key={item}
                   type="button"
-                  onClick={() =>
-                    setReason(item)
-                  }
+                  disabled={loading} aria-pressed={reason === item} onClick={() => setReason(item)}
                   className={[
                     "rounded-full border px-3 py-1.5 text-xs font-semibold",
 
                     reason === item
-                      ? "border-blue-600 bg-blue-600 text-white"
+                      ? "border-[#165b46] bg-[#165b46] text-white"
                       : "border-slate-200 bg-white text-slate-600",
                   ].join(" ")}
                 >
@@ -176,7 +170,7 @@ export function FeedbackPanel({
               )
             }
             rows={2}
-            placeholder="Ý kiến thêm..."
+            aria-label="Ý kiến thêm" disabled={loading} placeholder="Ý kiến thêm..."
             className="mt-3 w-full resize-none rounded-xl border border-slate-200 bg-white p-3 text-xs outline-none focus:border-blue-400"
           />
 
@@ -186,7 +180,7 @@ export function FeedbackPanel({
             onClick={
               submitNegative
             }
-            className="mt-3 w-full rounded-xl bg-slate-950 px-4 py-2.5 text-xs font-extrabold text-white transition hover:bg-blue-600 disabled:opacity-50"
+            className="btn btn-primary mt-3 w-full"
           >
             {loading
               ? "Đang gửi..."
@@ -196,7 +190,7 @@ export function FeedbackPanel({
       )}
 
       {error && (
-        <p className="mt-2 text-xs font-semibold text-red-600">
+        <p role="alert" className="mt-2 text-xs font-semibold text-red-600">
           {error}
         </p>
       )}

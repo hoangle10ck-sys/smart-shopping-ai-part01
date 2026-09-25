@@ -1,0 +1,103 @@
+{
+  "method": "Agent browser navigation and screenshot review after final automated validation",
+  "viewports": [
+    {
+      "width": 375,
+      "routes": 5,
+      "documentOverflow": false
+    },
+    {
+      "width": 768,
+      "routes": 5,
+      "documentOverflow": false
+    },
+    {
+      "width": 1366,
+      "routes": 5,
+      "documentOverflow": false
+    },
+    {
+      "width": 1920,
+      "routes": 5,
+      "documentOverflow": false
+    }
+  ],
+  "flows": [
+    "home prompt chip, Ctrl+Enter, clarification, search loading, results",
+    "filter, sort, reset, matching/evidence disclosure, positive feedback, detail, compare, history reopen",
+    "archived real Live motorcycle variants, TV null image, phone flexible window, unknown matches; desktop and mobile",
+    "server error without trace, retry, empty results"
+  ],
+  "liveImages": [
+    {
+      "scenario": 0,
+      "name": "Honda Vision - cao cap",
+      "url": "https://hondath.vn/wp-content/uploads/2026/05/vision-cao-cap-mau-do-xam.png",
+      "loaded": true
+    },
+    {
+      "scenario": 0,
+      "name": "Honda Vision - dac biet",
+      "url": "https://hondath.vn/wp-content/uploads/2026/05/vision-dac-biet-mau-nau-xam.png",
+      "loaded": true
+    },
+    {
+      "scenario": 0,
+      "name": "Honda Vision - tieu chuan",
+      "url": "https://hondath.vn/wp-content/uploads/2026/05/vision-tieu-chuan-mau-trang.png",
+      "loaded": true
+    },
+    {
+      "scenario": 0,
+      "name": "Honda Vision - the thao",
+      "url": "https://hondath.vn/wp-content/uploads/2026/05/vision-the-thao-mau-xam-den.png",
+      "loaded": true
+    },
+    {
+      "scenario": 0,
+      "name": "Honda Winner X - tieu chuan",
+      "url": "https://hondath.vn/wp-content/uploads/2024/06/Honda-Xe-con-tay-Winner-X-2024-ban-tieu-chuan-mau-den-bac-1.jpg",
+      "loaded": true
+    },
+    {
+      "scenario": 2,
+      "name": "Smart Tivi Samsung UHD 4K 55 inch 2025 (55U8500F)",
+      "url": null,
+      "loaded": false
+    },
+    {
+      "scenario": 2,
+      "name": "Smart Tivi Samsung UHD 4K 65 inch 2025 (65U8500F)",
+      "url": null,
+      "loaded": false
+    },
+    {
+      "scenario": 3,
+      "name": "Xiaomi Redmi Note 17 Pro Max 5G 8GB 512GB",
+      "url": "https://cdn2.cellphones.com.vn/200x/media/catalog/product/x/i/xiaomi-redmi-note-17-pro-max-5g-white.jpg",
+      "loaded": true
+    },
+    {
+      "scenario": 3,
+      "name": "Xiaomi Redmi Note 17 Pro 5G 6GB/256GB",
+      "url": "https://cdn.hoanghamobile.vn/i/preview/Uploads/2026/08/17/q16-purple-back11-160338679.png",
+      "loaded": true
+    },
+    {
+      "scenario": 3,
+      "name": "Vivo V30 5G (12GB | 512GB) Chính Hãng Like New",
+      "url": "https://www.duchuymobile.com/images/variant_image/69/vivo-v30-5g-den.jpg",
+      "loaded": true
+    }
+  ],
+  "externalRequests": [
+    "https://hondath.vn/wp-content/uploads/2026/05/vision-cao-cap-mau-do-xam.png",
+    "https://hondath.vn/wp-content/uploads/2026/05/vision-dac-biet-mau-nau-xam.png",
+    "https://hondath.vn/wp-content/uploads/2026/05/vision-tieu-chuan-mau-trang.png",
+    "https://hondath.vn/wp-content/uploads/2026/05/vision-the-thao-mau-xam-den.png",
+    "https://hondath.vn/wp-content/uploads/2024/06/Honda-Xe-con-tay-Winner-X-2024-ban-tieu-chuan-mau-den-bac-1.jpg",
+    "https://cdn2.cellphones.com.vn/200x/media/catalog/product/x/i/xiaomi-redmi-note-17-pro-max-5g-white.jpg",
+    "https://cdn.hoanghamobile.vn/i/preview/Uploads/2026/08/17/q16-purple-back11-160338679.png",
+    "https://www.duchuymobile.com/images/variant_image/69/vivo-v30-5g-den.jpg"
+  ]
+}

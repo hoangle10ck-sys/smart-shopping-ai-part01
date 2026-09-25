@@ -26,7 +26,7 @@ export function formatMoney(value: unknown, currency?: string): string {
   const number = finiteNumber(value);
   if (number === null) return "Chưa có dữ liệu";
   // Do not invent VND if currency is missing in an older response.
-  return `${number.toLocaleString("vi-VN")} ${currency || "(chưa rõ tiền tệ)"}`;
+  return currency === "VND" ? `${number.toLocaleString("vi-VN")}đ` : `${number.toLocaleString("vi-VN")} ${currency || "(chưa rõ tiền tệ)"}`;
 }
 
 export function safeHttpUrl(value: unknown): string | null {
