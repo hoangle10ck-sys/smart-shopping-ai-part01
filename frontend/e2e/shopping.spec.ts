@@ -157,6 +157,7 @@ test("sales links require page proof and broken remote images use the local plac
   await expect(link).toHaveAttribute("href", item.product_url);
   await expect(link).toHaveAttribute("target", "_blank");
   await expect(link).toHaveAttribute("rel", "noopener noreferrer");
+  await expect(card.getByRole("link", { name: "Xem nguồn ↗", exact: true })).toHaveAttribute("href", item.evidence_url);
   await expect(card.getByText("Chưa có ảnh sản phẩm", { exact: true })).toBeVisible();
   for (const url of ["https://retailer.example/", "https://retailer.example/xe-may/", "https://retailer.example/search?q=x", "https://retailer.example/blog/model"]) {
     item.product_url = url;

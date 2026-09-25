@@ -3,6 +3,8 @@ import type {
 } from "next";
 
 import "./globals.css";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 
 export const metadata: Metadata = {
   title: {
@@ -23,7 +25,10 @@ export default function RootLayout({
   return (
     <html lang="vi">
       <body>
+        <a href="#main-content" className="skip-link">Đến nội dung chính</a>
+        <SiteHeader />
         {children}
+        <SiteFooter />
       </body>
     </html>
   );

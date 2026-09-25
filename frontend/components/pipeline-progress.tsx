@@ -1,22 +1,17 @@
 export type PipelinePhase = "analyze" | "search" | "read" | "PENDING" | "PROCESSING" | "COMPLETED" | "FAILED";
-
 const messages: Record<PipelinePhase, string> = {
-  analyze: "Đang chờ backend phân tích nhu cầu và tạo truy vấn…",
-  search: "Đang chờ kết quả tìm kiếm và xếp hạng từ backend…",
-  read: "Đang tải kết quả đã lưu của phiên, không chạy lại tìm kiếm…",
-  PENDING: "Phiên đang chờ hoàn thiện nhu cầu hoặc bắt đầu tìm kiếm.",
-  PROCESSING: "Backend báo phiên đang xử lý. Bạn có thể tải lại để kiểm tra trạng thái.",
-  COMPLETED: "Backend đã trả kết quả hoàn thành; dữ liệu có thể đến từ cache hợp lệ.",
+  analyze: "Đang phân tích nhu cầu…",
+  search: "Đang tìm kiếm và đánh giá sản phẩm…",
+  read: "Đang tải kết quả đã lưu…",
+  PENDING: "Phiên đang chờ hoàn thiện nhu cầu.",
+  PROCESSING: "Tìm kiếm đang được xử lý. Tải lại để kiểm tra kết quả.",
+  COMPLETED: "Đã hoàn thành tìm kiếm.",
   FAILED: "Lần tìm kiếm gần nhất gặp lỗi. Kết quả thành công trước đó, nếu có, vẫn được giữ.",
 };
-
 export function PipelineProgress({ phase }: { phase: PipelinePhase }) {
-  return <section role="status" aria-live="polite" className="mb-6 rounded-2xl border border-blue-100 bg-blue-50 p-5 text-left">
-    <p className="font-bold text-slate-900">{messages[phase]}</p>
-    <p className="mt-2 text-xs text-slate-600">Quy trình tham khảo — backend chưa cung cấp tiến độ realtime cho từng bước:</p>
-    <ol className="mt-3 flex flex-wrap gap-2 text-xs text-slate-600">
-      {["Phân tích nhu cầu", "Tạo truy vấn", "Tìm kiếm", "Thu thập sản phẩm", "Chuẩn hóa", "Lọc", "Chấm điểm", "Xếp hạng", "Hoàn thành"].map((step, index) =>
-        <li key={step} className="rounded-lg border border-blue-100 bg-white px-2 py-1">{index + 1}. {step}</li>)}
-    </ol>
+  const waiting = ['analyze', 'search', 'read', 'PROCESSING'].includes(phase);
+  return <section role="status" aria-live="polite" className={`mb-5 rounded-2xl border p-5 text-left ${phase === 'FAILED' ? 'border-amber-200 bg-amber-50' : 'border-[#dce4de] bg-white'}`}>
+    <div className="flex items-center gap-3">{waiting && <span aria-hidden="true" className="size-5 shrink-0 animate-spin rounded-full border-2 border-[#d5e2d3] border-t-[#165b46]" />}<p className="text-sm font-semibold">{messages[phase]}</p></div>
+    {waiting && <><p className="muted mt-2 text-xs">{phase === 'search' ? 'Tìm nguồn, kiểm tra thông tin và xếp hạng có thể mất một chút thời gian.' : 'Bạn không cần gửi lại yêu cầu trong lúc chờ.'}</p><div aria-hidden="true" className="mt-5 grid grid-cols-3 gap-3">{[1,2,3].map(i => <div key={i} className="space-y-2"><div className="skeleton h-14" /><div className="skeleton h-2 w-3/4" /></div>)}</div></>}
   </section>;
 }

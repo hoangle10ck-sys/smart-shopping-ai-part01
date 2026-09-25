@@ -1,58 +1,19 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Icon } from "./icon";
 
 export function SiteHeader() {
-  return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/90 backdrop-blur-xl">
-      <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 lg:px-8">
-        <Link
-          href="/"
-          className="flex items-center gap-3"
-        >
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-violet-600 text-lg font-black text-white shadow-lg shadow-blue-500/20">
-            AI
-          </div>
-
-          <div>
-            <div className="text-lg font-extrabold tracking-tight text-slate-950">
-              Smart Shopping
-              <span className="text-blue-600">
-                {" "}AI 
-              </span>
-            </div>
-
-            <div className="hidden text-[11px] font-medium text-slate-400 sm:block">
-              Trợ lý mua hàng thông minh
-            </div>
-          </div>
-        </Link>
-
-        <nav className="flex items-center gap-1">
-          <Link
-            href="/"
-            className="rounded-xl px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-950"
-          >
-            Trang chủ
-          </Link>
-
-          <Link
-            href="/history"
-            className="rounded-xl px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-950"
-          >
-            Lịch sử
-          </Link>
-
-          <Link
-            href="/#how-it-works"
-            className="hidden rounded-xl px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-950 sm:block"
-          >
-            Cách hoạt động
-          </Link>
-
-          <div className="ml-2 hidden rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-bold text-emerald-700 md:block">
-            Trợ lý mua sắm
-          </div>
-        </nav>
-      </div>
-    </header>
-  );
+  const pathname = usePathname();
+  return <header className="sticky top-0 z-40 border-b border-[#dce4de] bg-white/95 backdrop-blur-md">
+    <div className="page-container flex min-h-17 items-center justify-between gap-3">
+      <Link href="/" aria-label="Smart Shopping AI — Trang chủ" className="flex min-w-0 items-center gap-2.5">
+        <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-[#165b46] text-white"><Icon name="bag" /></span>
+        <span className="text-sm font-bold tracking-tight sm:text-base">Smart Shopping <span className="text-[#287452]">AI</span></span>
+      </Link>
+      <nav aria-label="Điều hướng chính" className="flex shrink-0 items-center gap-1 text-xs sm:gap-2 sm:text-sm">
+        {[['/', 'Trang chủ'], ['/history', 'Lịch sử']].map(([href, label]) => <Link key={href} href={href} aria-current={pathname === href ? 'page' : undefined} className={`rounded-lg px-2.5 py-3 font-semibold transition sm:px-4 ${pathname === href ? 'bg-[#eef4ed] text-[#165b46]' : 'muted hover:bg-[#f3f5f1]'}`}>{label}</Link>)}
+      </nav>
+    </div>
+  </header>;
 }
