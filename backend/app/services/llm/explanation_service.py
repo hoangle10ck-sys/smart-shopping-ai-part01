@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+from app.services.performance import timed
+from app.services.scoring.scoring_engine import ScoringEngine
+
 import json
 import time
 
@@ -58,12 +61,14 @@ class ExplanationService:
 
         # Demo is an unconditional network boundary, even with an explicit hint.
         self.use_llm = not self.settings.demo_mode and use_llm is not False
+        self._overloaded_providers = set()
 
 
     # =========================================================
     # PUBLIC API
     # =========================================================
 
+    @timed("explanation_ms")
     def explain(
         self,
         *,
@@ -97,6 +102,8 @@ class ExplanationService:
         for provider_name in (
             provider_names
         ):
+            if provider_name in self._overloaded_providers:
+                continue
             try:
                 result = (
                     self._generate_with_provider(
@@ -112,9 +119,14 @@ class ExplanationService:
                     provider_name
                 )
 
-                return result
+                return self._constrain(result, candidate=candidate, requirement=requirement,
+                                       score=score, evidence=evidence)
 
-            except Exception:
+            except Exception as exc:
+                from app.services.llm.client import provider_overloaded
+                if provider_overloaded(exc):
+                    # Only this recommendation run; no permanent provider cache.
+                    self._overloaded_providers.add(provider_name)
                 # Try next provider.
                 continue
 
@@ -237,8 +249,8 @@ class ExplanationService:
     # SHARED PAYLOAD
     # =========================================================
 
-    @staticmethod
     def _build_payload(
+        self,
         *,
         candidate: ScoringCandidate,
         requirement: RequirementData,
@@ -248,6 +260,10 @@ class ExplanationService:
         """Build grounded input for explanation providers."""
 
         return {
+            "requirement_matches": [m.model_dump(mode='json') for m in
+                                    ScoringEngine().requirement_matches(candidate, requirement)],
+            "approved_explanation": self.build_deterministic(candidate=candidate,
+                requirement=requirement,score=score,evidence=evidence).model_dump(mode='json'),
             "requirement": (
                 requirement.model_dump(
                     mode="json",
@@ -305,6 +321,9 @@ class ExplanationService:
             "13. why_fit là các lý do sản phẩm phù hợp.\n"
             "14. tradeoffs là hạn chế hoặc điều cần cân nhắc.\n"
             "15. evidence_notes phải dựa trên evidence được cung cấp.\n\n"
+            "16. requirement_matches là kết luận duy nhất về đáp ứng: unknown không phải matched; unmet không phải matched.\n"
+            "17. Chỉ chọn/sắp xếp nguyên văn các câu của approved_explanation trong đúng trường; summary giữ nguyên. Không thêm nhận định mới.\n"
+            "18. Không được bỏ các cảnh báo ngân sách, availability hoặc thiếu dữ liệu.\n\n"
 
             "DỮ LIỆU HỆ THỐNG:\n"
             + json.dumps(
@@ -345,7 +364,16 @@ class ExplanationService:
         # BUDGET
         # -----------------------------------------------------
 
-        if (
+        if requirement.budget_mode == 'FLEXIBLE_TARGET' and candidate.price is not None:
+            inside = requirement.preferred_min <= candidate.price <= requirement.preferred_max
+            note = (f"Giá {candidate.price} {candidate.currency} "
+                    f"{'nằm trong' if inside else 'ngoài'} khoảng ngân sách ưu tiên "
+                    f"{requirement.preferred_min}–{requirement.preferred_max} {requirement.currency}; "
+                    f"điểm ngân sách {score.budget_score:.2f}/100.")
+            (why_fit if inside else tradeoffs).append(note)
+            if not inside:
+                tradeoffs.append('Ngân sách linh hoạt: sản phẩm được giữ làm phương án dự phòng, không bị loại chỉ vì giá.')
+        elif (
             requirement.budget_max
             is not None
             and candidate.price
@@ -390,12 +418,19 @@ class ExplanationService:
         # -----------------------------------------------------
 
         if requirement.requirements:
-            why_fit.append(
-                (
-                    "Mức đáp ứng các tiêu chí yêu cầu đạt "
-                    f"{score.requirement_score:.2f}/100."
-                )
-            )
+            for match in ScoringEngine().requirement_matches(candidate,requirement):
+                if match.status == 'matched':
+                    why_fit.append(f"{match.name}: đáp ứng quy tắc deterministic cho '{match.requested_value}' ({match.product_value}).")
+                elif match.status == 'unmet':
+                    tradeoffs.append(f"{match.name}: không đáp ứng yêu cầu '{match.requested_value}' ({match.product_value}).")
+                else:
+                    tradeoffs.append(f"{match.name}: chưa đủ dữ liệu/quy tắc để kết luận mức đáp ứng '{match.requested_value}'.")
+        if candidate.availability == 'in_stock':
+            why_fit.append('Nguồn bán ghi nhận còn hàng tại thời điểm kiểm tra.')
+        elif candidate.availability == 'out_of_stock':
+            tradeoffs.append('Nguồn bán ghi nhận hết hàng tại thời điểm kiểm tra.')
+        else:
+            tradeoffs.append('Chưa xác minh được tình trạng còn hàng.')
 
 
         # -----------------------------------------------------
@@ -479,6 +514,8 @@ class ExplanationService:
         # -----------------------------------------------------
 
         if (
+            requirement.budget_mode != 'FLEXIBLE_TARGET'
+            and
             requirement.budget_max
             is not None
             and candidate.price
@@ -1128,6 +1165,9 @@ class ExplanationService:
 
                 except Exception as exc:
                     last_error = exc
+                    from app.services.llm.client import provider_overloaded
+                    if provider_overloaded(exc) or isinstance(exc, TimeoutError):
+                        break
 
 
                     if (
@@ -1154,3 +1194,18 @@ class ExplanationService:
             ) from last_error
         finally:
             client.close()
+    def _constrain(self, result, *, candidate, requirement, score, evidence):
+        """Closed set of verified statements: a prompt alone cannot prevent contradictions.
+
+        Providers may order the grounded statements, never invent or invert a
+        verdict. Unsupported text falls back locally without another LLM call.
+        """
+        safe = self.build_deterministic(candidate=candidate,requirement=requirement,score=score,evidence=evidence)
+        fields = ('why_fit','tradeoffs','evidence_notes')
+        if result.summary != safe.summary or any(
+                sentence not in getattr(safe,field) for field in fields for sentence in getattr(result,field)):
+            safe.generation_mode = 'fallback'
+            return safe
+        for field in fields:
+            setattr(result,field,list(dict.fromkeys([*getattr(result,field),*getattr(safe,field)])))
+        return result

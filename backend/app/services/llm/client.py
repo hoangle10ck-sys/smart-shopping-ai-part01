@@ -27,6 +27,22 @@ from app.services.llm.prompts import (
 
 logger = logging.getLogger(__name__)
 
+
+def provider_overloaded(error: Exception) -> bool:
+    """Recognize SDK status codes and wrapped overloads without logging payloads."""
+    seen = set()
+    while error is not None and id(error) not in seen:
+        seen.add(id(error))
+        code = getattr(error, 'code', None) or getattr(error, 'status_code', None)
+        status = str(getattr(error, 'status', '')).upper()
+        text = str(error).upper()
+        if str(code) in {'429', '503'} or status in {'UNAVAILABLE', 'RESOURCE_EXHAUSTED'}:
+            return True
+        if re.search(r'\b(?:503|429|UNAVAILABLE|RESOURCE_EXHAUSTED)\b', text):
+            return True
+        error = error.__cause__
+    return False
+
 # LLMs extract facts only. Budget mode/window are computed by Python afterward.
 RequirementExtraction = create_model('RequirementExtraction', **{
     name: (field.annotation, deepcopy(field)) for name, field in RequirementData.model_fields.items()
@@ -918,6 +934,7 @@ class GeminiLLMClient(
 
         try:
             from google import genai
+            from google.genai import types
 
         except ImportError as exc:
             raise RuntimeError(
@@ -928,6 +945,10 @@ class GeminiLLMClient(
             ) from exc
 
         self._client = genai.Client(
+            http_options=types.HttpOptions(
+                timeout=max(1, settings.llm_timeout_seconds * 1000),
+                retry_options=types.HttpRetryOptions(attempts=1),
+            ),
             api_key=(
                 settings
                 .gemini_api_key
@@ -1054,8 +1075,11 @@ class GeminiLLMClient(
                     ),
                     attempt + 1,
                     attempts,
-                    exc,
+                    type(exc).__name__,
                 )
+
+                if provider_overloaded(exc) or isinstance(exc, TimeoutError):
+                    break
 
                 if (
                     attempt

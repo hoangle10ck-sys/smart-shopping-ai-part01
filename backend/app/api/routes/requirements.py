@@ -1,6 +1,7 @@
 """Requirement-analysis API endpoints."""
 
 import logging
+from app.services.performance import profile_request
 from app.models.requirement import RequirementBudget
 from app.services.budget import BUDGET_FIELDS
 
@@ -107,6 +108,7 @@ def save_search_queries(
     "/analyze",
     response_model=RequirementAnalysisResponse,
 )
+@profile_request('analysis_request_ms')
 async def analyze_requirement(
     payload: AnalyzeRequirementRequest,
     db: Session = Depends(get_db),
@@ -250,6 +252,7 @@ async def analyze_requirement(
     "/clarify",
     response_model=RequirementAnalysisResponse,
 )
+@profile_request('clarification_ms')
 async def clarify_requirement(
     payload: ClarifyRequirementRequest,
     db: Session = Depends(get_db),

@@ -1,0 +1,424 @@
+{
+  "method": "Median of 3 local runs, query delay 20ms/page delay 40ms; no DB/network.",
+  "limitation": "Synthetic provider behavior based on the observed failure pattern; not a raw Tavily response replay or Live acceptance.",
+  "before_sha256": "fb5ad72a99ea64223464966cfc3c44247f521e26eb7bb5aff5816c3d5690f4cf",
+  "runs": {
+    "before": [
+      {
+        "duration_ms": 659.999,
+        "provider_calls": 4,
+        "pages_requested": 20,
+        "evidence_pages_requested": 19,
+        "direct_candidates": 1,
+        "eligible_offers": 0,
+        "final_recommendations": 0,
+        "stop_reason": "candidate_budget",
+        "queries": [
+          "điện thoại mua giá bán giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu",
+          "điện thoại mua chính hãng giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu",
+          "điện thoại giá khoảng 10000000 VND giá bán",
+          "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua online"
+        ],
+        "rounds": []
+      },
+      {
+        "duration_ms": 663.893,
+        "provider_calls": 4,
+        "pages_requested": 20,
+        "evidence_pages_requested": 19,
+        "direct_candidates": 1,
+        "eligible_offers": 0,
+        "final_recommendations": 0,
+        "stop_reason": "candidate_budget",
+        "queries": [
+          "điện thoại mua giá bán giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu",
+          "điện thoại mua chính hãng giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu",
+          "điện thoại giá khoảng 10000000 VND giá bán",
+          "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua online"
+        ],
+        "rounds": []
+      },
+      {
+        "duration_ms": 661.116,
+        "provider_calls": 4,
+        "pages_requested": 20,
+        "evidence_pages_requested": 19,
+        "direct_candidates": 1,
+        "eligible_offers": 0,
+        "final_recommendations": 0,
+        "stop_reason": "candidate_budget",
+        "queries": [
+          "điện thoại mua giá bán giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu",
+          "điện thoại mua chính hãng giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu",
+          "điện thoại giá khoảng 10000000 VND giá bán",
+          "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua online"
+        ],
+        "rounds": []
+      }
+    ],
+    "after": [
+      {
+        "duration_ms": 331.649,
+        "provider_calls": 4,
+        "pages_requested": 6,
+        "evidence_pages_requested": 0,
+        "direct_candidates": 6,
+        "eligible_offers": 5,
+        "final_recommendations": 5,
+        "stop_reason": "target_reached",
+        "queries": [
+          "điện thoại mua giá bán giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu",
+          "điện thoại mua chính hãng giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu",
+          "\"Samsung Galaxy A49 128GB\" mua",
+          "\"Samsung Galaxy A50\" mua"
+        ],
+        "rounds": [
+          {
+            "round": 1,
+            "kind": "requirement",
+            "queries_generated": [
+              "điện thoại mua giá bán giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu",
+              "điện thoại mua chính hãng giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu"
+            ],
+            "queries_executed": [
+              "điện thoại mua giá bán giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu",
+              "điện thoại mua chính hãng giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu"
+            ],
+            "raw_search_results_per_query": {
+              "điện thoại mua giá bán giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu": 5,
+              "điện thoại mua chính hãng giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu": 5
+            },
+            "unique_search_results": 10,
+            "result_domains": [
+              "guide.example",
+              "merchant1.example"
+            ],
+            "conversion": {
+              "potential_product_urls": 1,
+              "direct_product_candidates": 1,
+              "evidence_only_results": 9,
+              "rejected_before_fetch": 9,
+              "pages_requested": 1,
+              "pages_fetched": 1,
+              "pages_verified": 1,
+              "verification_failed": 0,
+              "wrong_category": 0,
+              "non_product_page": 9,
+              "missing_price": 0,
+              "missing_identity": 0,
+              "out_of_stock": 1,
+              "duplicate": 0,
+              "http_network_failure": 0,
+              "other": 0,
+              "valid_candidates": 0,
+              "eligible_offers": 0,
+              "reused_pages": 0,
+              "reason_counts": {
+                "non_product_page": 9,
+                "out_of_stock": 1
+              }
+            },
+            "cumulative_product_attempts": 1,
+            "cumulative_pages_requested": 1,
+            "cumulative_valid_offers": 0
+          },
+          {
+            "round": 2,
+            "kind": "model_discovery",
+            "queries_generated": [
+              "\"Samsung Galaxy A49 128GB\" mua",
+              "\"Samsung Galaxy A50\" mua"
+            ],
+            "queries_executed": [
+              "\"Samsung Galaxy A49 128GB\" mua",
+              "\"Samsung Galaxy A50\" mua"
+            ],
+            "raw_search_results_per_query": {
+              "\"Samsung Galaxy A49 128GB\" mua": 5,
+              "\"Samsung Galaxy A50\" mua": 5
+            },
+            "unique_search_results": 5,
+            "result_domains": [
+              "merchant0.example",
+              "merchant1.example",
+              "merchant2.example"
+            ],
+            "conversion": {
+              "potential_product_urls": 5,
+              "direct_product_candidates": 5,
+              "evidence_only_results": 0,
+              "rejected_before_fetch": 0,
+              "pages_requested": 5,
+              "pages_fetched": 5,
+              "pages_verified": 5,
+              "verification_failed": 0,
+              "wrong_category": 0,
+              "non_product_page": 0,
+              "missing_price": 0,
+              "missing_identity": 0,
+              "out_of_stock": 0,
+              "duplicate": 0,
+              "http_network_failure": 0,
+              "other": 0,
+              "valid_candidates": 5,
+              "eligible_offers": 5,
+              "reused_pages": 0,
+              "reason_counts": {}
+            },
+            "cumulative_product_attempts": 6,
+            "cumulative_pages_requested": 6,
+            "cumulative_valid_offers": 5
+          }
+        ]
+      },
+      {
+        "duration_ms": 323.752,
+        "provider_calls": 4,
+        "pages_requested": 6,
+        "evidence_pages_requested": 0,
+        "direct_candidates": 6,
+        "eligible_offers": 5,
+        "final_recommendations": 5,
+        "stop_reason": "target_reached",
+        "queries": [
+          "điện thoại mua giá bán giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu",
+          "điện thoại mua chính hãng giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu",
+          "\"Samsung Galaxy A49 128GB\" mua",
+          "\"Samsung Galaxy A50\" mua"
+        ],
+        "rounds": [
+          {
+            "round": 1,
+            "kind": "requirement",
+            "queries_generated": [
+              "điện thoại mua giá bán giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu",
+              "điện thoại mua chính hãng giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu"
+            ],
+            "queries_executed": [
+              "điện thoại mua giá bán giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu",
+              "điện thoại mua chính hãng giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu"
+            ],
+            "raw_search_results_per_query": {
+              "điện thoại mua giá bán giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu": 5,
+              "điện thoại mua chính hãng giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu": 5
+            },
+            "unique_search_results": 10,
+            "result_domains": [
+              "guide.example",
+              "merchant1.example"
+            ],
+            "conversion": {
+              "potential_product_urls": 1,
+              "direct_product_candidates": 1,
+              "evidence_only_results": 9,
+              "rejected_before_fetch": 9,
+              "pages_requested": 1,
+              "pages_fetched": 1,
+              "pages_verified": 1,
+              "verification_failed": 0,
+              "wrong_category": 0,
+              "non_product_page": 9,
+              "missing_price": 0,
+              "missing_identity": 0,
+              "out_of_stock": 1,
+              "duplicate": 0,
+              "http_network_failure": 0,
+              "other": 0,
+              "valid_candidates": 0,
+              "eligible_offers": 0,
+              "reused_pages": 0,
+              "reason_counts": {
+                "non_product_page": 9,
+                "out_of_stock": 1
+              }
+            },
+            "cumulative_product_attempts": 1,
+            "cumulative_pages_requested": 1,
+            "cumulative_valid_offers": 0
+          },
+          {
+            "round": 2,
+            "kind": "model_discovery",
+            "queries_generated": [
+              "\"Samsung Galaxy A49 128GB\" mua",
+              "\"Samsung Galaxy A50\" mua"
+            ],
+            "queries_executed": [
+              "\"Samsung Galaxy A49 128GB\" mua",
+              "\"Samsung Galaxy A50\" mua"
+            ],
+            "raw_search_results_per_query": {
+              "\"Samsung Galaxy A49 128GB\" mua": 5,
+              "\"Samsung Galaxy A50\" mua": 5
+            },
+            "unique_search_results": 5,
+            "result_domains": [
+              "merchant0.example",
+              "merchant1.example",
+              "merchant2.example"
+            ],
+            "conversion": {
+              "potential_product_urls": 5,
+              "direct_product_candidates": 5,
+              "evidence_only_results": 0,
+              "rejected_before_fetch": 0,
+              "pages_requested": 5,
+              "pages_fetched": 5,
+              "pages_verified": 5,
+              "verification_failed": 0,
+              "wrong_category": 0,
+              "non_product_page": 0,
+              "missing_price": 0,
+              "missing_identity": 0,
+              "out_of_stock": 0,
+              "duplicate": 0,
+              "http_network_failure": 0,
+              "other": 0,
+              "valid_candidates": 5,
+              "eligible_offers": 5,
+              "reused_pages": 0,
+              "reason_counts": {}
+            },
+            "cumulative_product_attempts": 6,
+            "cumulative_pages_requested": 6,
+            "cumulative_valid_offers": 5
+          }
+        ]
+      },
+      {
+        "duration_ms": 324.032,
+        "provider_calls": 4,
+        "pages_requested": 6,
+        "evidence_pages_requested": 0,
+        "direct_candidates": 6,
+        "eligible_offers": 5,
+        "final_recommendations": 5,
+        "stop_reason": "target_reached",
+        "queries": [
+          "điện thoại mua giá bán giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu",
+          "điện thoại mua chính hãng giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu",
+          "\"Samsung Galaxy A49 128GB\" mua",
+          "\"Samsung Galaxy A50\" mua"
+        ],
+        "rounds": [
+          {
+            "round": 1,
+            "kind": "requirement",
+            "queries_generated": [
+              "điện thoại mua giá bán giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu",
+              "điện thoại mua chính hãng giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu"
+            ],
+            "queries_executed": [
+              "điện thoại mua giá bán giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu",
+              "điện thoại mua chính hãng giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu"
+            ],
+            "raw_search_results_per_query": {
+              "điện thoại mua giá bán giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu": 5,
+              "điện thoại mua chính hãng giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu": 5
+            },
+            "unique_search_results": 10,
+            "result_domains": [
+              "guide.example",
+              "merchant1.example"
+            ],
+            "conversion": {
+              "potential_product_urls": 1,
+              "direct_product_candidates": 1,
+              "evidence_only_results": 9,
+              "rejected_before_fetch": 9,
+              "pages_requested": 1,
+              "pages_fetched": 1,
+              "pages_verified": 1,
+              "verification_failed": 0,
+              "wrong_category": 0,
+              "non_product_page": 9,
+              "missing_price": 0,
+              "missing_identity": 0,
+              "out_of_stock": 1,
+              "duplicate": 0,
+              "http_network_failure": 0,
+              "other": 0,
+              "valid_candidates": 0,
+              "eligible_offers": 0,
+              "reused_pages": 0,
+              "reason_counts": {
+                "non_product_page": 9,
+                "out_of_stock": 1
+              }
+            },
+            "cumulative_product_attempts": 1,
+            "cumulative_pages_requested": 1,
+            "cumulative_valid_offers": 0
+          },
+          {
+            "round": 2,
+            "kind": "model_discovery",
+            "queries_generated": [
+              "\"Samsung Galaxy A49 128GB\" mua",
+              "\"Samsung Galaxy A50\" mua"
+            ],
+            "queries_executed": [
+              "\"Samsung Galaxy A49 128GB\" mua",
+              "\"Samsung Galaxy A50\" mua"
+            ],
+            "raw_search_results_per_query": {
+              "\"Samsung Galaxy A49 128GB\" mua": 5,
+              "\"Samsung Galaxy A50\" mua": 5
+            },
+            "unique_search_results": 5,
+            "result_domains": [
+              "merchant0.example",
+              "merchant1.example",
+              "merchant2.example"
+            ],
+            "conversion": {
+              "potential_product_urls": 5,
+              "direct_product_candidates": 5,
+              "evidence_only_results": 0,
+              "rejected_before_fetch": 0,
+              "pages_requested": 5,
+              "pages_fetched": 5,
+              "pages_verified": 5,
+              "verification_failed": 0,
+              "wrong_category": 0,
+              "non_product_page": 0,
+              "missing_price": 0,
+              "missing_identity": 0,
+              "out_of_stock": 0,
+              "duplicate": 0,
+              "http_network_failure": 0,
+              "other": 0,
+              "valid_candidates": 5,
+              "eligible_offers": 5,
+              "reused_pages": 0,
+              "reason_counts": {}
+            },
+            "cumulative_product_attempts": 6,
+            "cumulative_pages_requested": 6,
+            "cumulative_valid_offers": 5
+          }
+        ]
+      }
+    ]
+  },
+  "medians": {
+    "before": {
+      "duration_ms": 661.116,
+      "provider_calls": 4,
+      "pages_requested": 20,
+      "evidence_pages_requested": 19,
+      "direct_candidates": 1,
+      "eligible_offers": 0,
+      "final_recommendations": 0
+    },
+    "after": {
+      "duration_ms": 324.032,
+      "provider_calls": 4,
+      "pages_requested": 6,
+      "evidence_pages_requested": 0,
+      "direct_candidates": 6,
+      "eligible_offers": 5,
+      "final_recommendations": 5
+    }
+  }
+}

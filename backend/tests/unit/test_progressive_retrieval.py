@@ -95,7 +95,7 @@ def test_selected_official_version_price_does_not_deprioritize_whole_model():
          'price_min':30000000, 'price_max':32000000}]})}
     assert retriever.model_hints()[:2] == ['Suzuki Orbit 125', 'Acme Urban 110']
     query = retriever.model_query('Suzuki Orbit 125')
-    assert query == '"Suzuki Orbit 125" giá bán'
+    assert query == '"Suzuki Orbit 125" giá bán Việt Nam VND'
     assert retriever.requirement.budget_max == 33000000
 
 

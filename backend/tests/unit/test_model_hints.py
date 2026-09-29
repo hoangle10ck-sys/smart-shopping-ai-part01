@@ -86,8 +86,8 @@ def test_noisy_accessory_or_budget_mentions_are_not_models(text):
 def test_exact_queries_do_not_append_requirements_or_budget(category,model):
     r=ProgressiveRetriever(None,None,None)
     r.requirement=RequirementData(category=category,budget_max=33000000,purpose=['xem phim'])
-    assert r.model_query(model,'mua')==f'"{model}" mua'
-    assert r.model_query(model,'giá','seller.test')==f'site:seller.test "{model}" giá'
+    assert r.model_query(model,'mua')==f'"{model}" mua Việt Nam VND'
+    assert r.model_query(model,'giá','seller.test')==f'site:seller.test "{model}" giá Việt Nam VND'
     assert r.requirement.budget_max==33000000
 
 

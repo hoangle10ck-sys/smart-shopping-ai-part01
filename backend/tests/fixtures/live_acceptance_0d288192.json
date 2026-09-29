@@ -1,0 +1,1162 @@
+{
+  "provenance": "Read-only persisted observations, not original provider responses or HTML; query grouping records ownership, not full round chronology.",
+  "session": {
+    "id": "0d288192-8165-4194-a9b6-e3002a764d8a",
+    "user_id": null,
+    "raw_query": "Điện thoại khoảng 10 triệu, camera tốt, pin lâu",
+    "status": "COMPLETED",
+    "created_at": "2026-09-26 05:31:10.192526",
+    "completed_at": "2026-09-26 05:32:00.611419",
+    "processing_time_ms": 50368.8
+  },
+  "result": {
+    "requirement": {
+      "budget_mode": "FLEXIBLE_TARGET",
+      "budget_target": 10000000,
+      "preferred_min": 9400000,
+      "preferred_max": 10600000,
+      "category": "điện thoại",
+      "budget_min": null,
+      "budget_max": 10000000,
+      "currency": "VND",
+      "purpose": [],
+      "brands": [],
+      "requirements": [
+        {
+          "name": "camera",
+          "value": "tốt",
+          "priority": 4
+        },
+        {
+          "name": "pin",
+          "value": "lâu",
+          "priority": 4
+        }
+      ],
+      "excluded_requirements": [],
+      "sort_preference": "best_match",
+      "confidence": 0.95
+    },
+    "candidates": [
+      {
+        "product_id": 319,
+        "name": "Samsung Galaxy S24 Ultra 12GB 512GB",
+        "category": "điện thoại",
+        "brand": "Samsung",
+        "model": "Galaxy S24 Ultra 12GB 512GB Ưu",
+        "price": 23990000,
+        "currency": "VND",
+        "rating": 4.9,
+        "review_count": 8,
+        "availability": "out_of_stock",
+        "source_reliability": 90.0,
+        "specifications": {
+          "kích thước màn hình": "6.8 inches",
+          "công nghệ màn hình": "Dynamic AMOLED 2X",
+          "camera sau": "Camera chính: 200MP, Laser AF, OIS Camera: 50MP,  PDAF, OIS, zoom quang học 5xCamera tele: 10MPCamera góc siêu rộng: 12 MP, f/2.2, 13mm, 120˚",
+          "camera trước": "12 MP, f/2.2",
+          "chipset": "Snapdragon 8 Gen 3",
+          "công nghệ nfc": "Có",
+          "dung lượng ram": "12 GB",
+          "bộ nhớ trong": "512 GB",
+          "pin": "5000mAh",
+          "thẻ sim": "SIM 1 + SIM 2 / SIM 1 + eSIM / 2 eSIM",
+          "hệ điều hành": "Android 14, One UI 6.1",
+          "độ phân giải màn hình": "1440 x 3120 pixels",
+          "tính năng màn hình": "Độ sáng cao nhất 2,600 nits, 120Hz, HDR10+"
+        }
+      },
+      {
+        "product_id": 320,
+        "name": "Samsung Galaxy S24 Ultra 12GB 256GB",
+        "category": "điện thoại",
+        "brand": "Samsung",
+        "model": null,
+        "price": 25290000,
+        "currency": "VND",
+        "rating": 4.9,
+        "review_count": 59,
+        "availability": "out_of_stock",
+        "source_reliability": 90.0,
+        "specifications": {
+          "kích thước màn hình": "6.8 inches",
+          "công nghệ màn hình": "Dynamic AMOLED 2X",
+          "camera sau": "Camera chính: 200MP, Laser AF, OIS Camera: 50MP,  PDAF, OIS, zoom quang học 5xCamera tele: 10MPCamera góc siêu rộng: 12 MP, f/2.2, 13mm, 120˚",
+          "camera trước": "12 MP, f/2.2",
+          "chipset": "Snapdragon 8 Gen 3 For Galaxy",
+          "công nghệ nfc": "Có",
+          "dung lượng ram": "12 GB",
+          "bộ nhớ trong": "256 GB",
+          "pin": "5,000mAh",
+          "thẻ sim": "SIM 1 + SIM 2 / SIM 1 + eSIM / 2 eSIM",
+          "hệ điều hành": "Android 14, One UI 6.1",
+          "độ phân giải màn hình": "1440 x 3120 pixels",
+          "tính năng màn hình": "Độ sáng cao nhất 2,600 nits, 120Hz, Corning® Gorilla® Armor®, 16 triệu màu",
+          "loại cpu": "3.39GHz,3.1GHz,2.9GHz,2.2GHz",
+          "tương thích": "Bút SPEN - tích hợp sẵn lên máy"
+        }
+      }
+    ],
+    "filter_decisions": [
+      {
+        "product_id": 319,
+        "accepted": false,
+        "rejection_stage": "availability",
+        "reasons": [
+          "Sản phẩm hiện không còn hàng."
+        ]
+      },
+      {
+        "product_id": 320,
+        "accepted": false,
+        "rejection_stage": "availability",
+        "reasons": [
+          "Sản phẩm hiện không còn hàng."
+        ]
+      }
+    ],
+    "recommendations": [],
+    "total_found": 2,
+    "total_filtered": 0,
+    "data_semantics": "snapshot",
+    "data_mode": "live"
+  },
+  "warnings": [
+    "Source retained as evidence only: https://vietnamnet.vn/top-dien-thoai-duoi-10-trieu-dang-mua-thang-7-man-hinh-camera-dep-pin-khoe-2534592.html",
+    "Source retained as evidence only: https://cellphones.com.vn/sforum/dien-thoai-tam-trung-dang-mua-nhat",
+    "Source retained as evidence only: https://hungmobile.vn/tin-tuc/top-dien-thoai-2-trieu-tot-nhat.html",
+    "Source retained as evidence only: https://mobappy.co.jp/top-dien-thoai-android-gia-re-dang-mua-nhat-2026-goi-y-dang-tien-cho-moi-nhu-cau",
+    "Source retained as evidence only: https://www.youtube.com/watch?v=etGY7JVoUDw",
+    "Source retained as evidence only: https://dienmaycholon.com/kinh-nghiem-mua-sam/top-dien-thoai-duoi-10-trieu-chup-anh-dep-dang-mua-hien-nay",
+    "Source retained as evidence only: https://www.youtube.com/watch?v=sbPRprYOxdg",
+    "Source retained as evidence only: https://clickbuy.com.vn/dien-thoai-7-8-trieu.html",
+    "Source retained as evidence only: https://www.youtube.com/watch?v=kZ52_N-pqzE",
+    "Source retained as evidence only: https://www.devicespecifications.com/en/model/bae85ef6",
+    "Source retained as evidence only: https://www.mi.com/au/product/redmi-note-13-5g",
+    "Source retained as evidence only: https://www.amazon.com/clp/B0CSDYXF59",
+    "Source retained as evidence only: https://www.walmart.com/ip/Xiaomi-Redmi-Note-13-5G-4G-LTE-128GB-6GB-6-67-108MP-Triple-Tmobile-Mint-Tello-Global-Global-Bands-Unlocked-Ocean-Teal-Global-ROM/5463412525",
+    "Source retained as evidence only: https://www.chotot.com/dien-thoai-samsung-s24-sd6a0e",
+    "Source retained as evidence only: https://cellphones.com.vn/mobile/samsung/galaxy-s/s24-series.html",
+    "Source retained as evidence only: https://www.youtube.com/watch?v=u9yv3RmqAm8",
+    "Source retained as evidence only: https://www.samsung.com/in/smartphones/galaxy-s24",
+    "Source retained as evidence only: https://www.samsung.com/us/smartphones/galaxy-s24",
+    "Source retained as evidence only: https://cellphones.com.vn/bo-loc/dien-thoai-gia-duoi-10-trieu",
+    "Source retained as evidence only: https://chuyensidienthoai.vn/danh-muc/smartphone",
+    "Source retained as evidence only: https://clickbuy.com.vn/dien-thoai",
+    "Source retained as evidence only: https://bloganchoi.com/tag/dien-thoai-pin-trau-cau-hinh-manh/feed",
+    "Source retained as evidence only: https://bloganchoi.com/tag/dien-thoai-samsung-galaxy-m62/feed",
+    "Source retained as evidence only: https://bloganchoi.com/tag/dien-thoai-vivo-y33s/feed",
+    "Source retained as evidence only: https://bloganchoi.com/tag/dien-thoai-realme-c25/feed",
+    "Source retained as evidence only: https://bloganchoi.com/tag/dien-thoai-realme-9i/feed",
+    "Source retained as evidence only: https://24hstore.vn/review-san-pham/dien-thoai-duoi-10-trieu-n8676",
+    "Source retained as evidence only: https://hungmobile.vn/tin-tuc/top-dien-thoai-duoi-10-trieu-dang-mua-nhat.html",
+    "Source retained as evidence only: https://fptshop.com.vn/tin-tuc/danh-gia/top-dien-thoai-chup-anh-dep-pin-trau-2025-178915",
+    "Source retained as evidence only: https://cellphones.com.vn/sforum/so-sanh-nubia-z60s-pro-va-samsung-s24-fe",
+    "Source retained as evidence only: https://cellphones.com.vn/mobile/samsung/galaxy-s.html",
+    "Source retained as evidence only: https://www.ebay.com/b/Samsung-Galaxy-S24-Ultra-512GB/9355/bn_7122009163",
+    "Source retained as evidence only: https://www.walmart.com/ip/Samsung-Galaxy-S24-Ultra-5G-SM-S928B-DS-512GB-12GB-RAM-DUAL-SIM-Global-Model-Factory-Unlocked-GSM-Titanium-Gray/5367869663",
+    "Source retained as evidence only: https://www.amazon.com/clp/B0D3264WQ8",
+    "Source retained as evidence only: https://www.samsung.com/us/smartphones/galaxy-s24-ultra",
+    "Source retained as evidence only: https://chuyensidienthoai.vn/san-pham/inoi-a72-4gb-128gb-fullbox-hang-chinh-hang",
+    "Source retained as evidence only: https://chuyensidienthoai.vn/lua-chon-cong-cu-sua-chua-dien-thoai-phu-hop"
+  ],
+  "observations": [
+    {
+      "query": "site:cellphones.com.vn \"Samsung Galaxy S24\" giá bán",
+      "url": "https://cellphones.com.vn/samsung-galaxy-s24-ultra-512gb.html",
+      "title": "Samsung Galaxy S24 Ultra (12GB 512GB) Ưu đãi khủng, góp 0%",
+      "content": "Bên cạnh thời gian ra mắt thì giá bán điện thoại Samsung Galaxy S24 Ultra cũng là điều được mọi người quan tm. Là một trong những chiếc smartphone cao cấp, được trang bị nhiều tính năng và công nghệ mới nhất giá bán của điện thoại được đánh giá là khá phù hợp so với những tính năng được trang bị.\n\nChi tiết giá bán khởi điểm theo từng phiên bản như sau:\n\n- Phiên bản: 12GB/256GB được bán với giá khoảng 33.990.000 đồng\n\n- Phiên bản: 12GB/512GB giá bán khoảng 37.490.000 đồng [...] - Phiên bản : S24 Ultra 12GB - 1TB được bán với giá 44.490.000 đồng\n\n## Mua Samsung Galaxy S24 Ultra 12GB 512GB giá tốt, ưu đãi hấp dẫn tại CellphoneS\n\nSamsung Galaxy S24 Ultra 12GB 512GB là siêu phẩm công nghệ ấn tượng với chất lượng vượt trội. Chắc chắn khi sở hữu sẽ giúp bạn có những trải nghiệm và khám phá vô cùng ấn tượng. Hiện tại bạn có thể đăng ký đặt trước điện thoại tại CellphoneS để sớm sở hữu về tay cũng như tận hưởng những ưu đãi cực lớn từ hệ thống nhé.\n\nXem thêm\n\nVideo đánh giá [...] 23.990.000đ\n\n~~36.810.000đ~~\n\nPhiên bản\n\n12GB 512GB12GB 256GB12GB 1TB\n\nMàu sắc\n\n Flash Sale Samsung Galaxy S24 Ultra 12GB 512GB-Đen\n\n  Đen  23.990.000₫\n Flash Sale Samsung Galaxy S24 Ultra 12GB 512GB-Tím\n\n  Tím  23.990.000₫\n Flash Sale Samsung Galaxy S24 Ultra 12GB 512GB-Xám\n\n  Xám  23.990.000₫\n Flash Sale Samsung Galaxy S24 Ultra 12GB 512GB-Vàng\n\n  Vàng  23.990.000₫\n\nTẠM HẾT HÀNG(Vui lòng liên hệ 1800.2097);)\n\nĐăng ký nhận thông tin khi có hàng",
+      "proof": {
+        "product_page_valid": true,
+        "evidence_url": "https://cellphones.com.vn/samsung-galaxy-s24-ultra-512gb.html",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "VERIFIED_CONTENT",
+        "product_page_confidence": 95,
+        "fetch_blocked": false,
+        "reason": "Trang chi tiết có identity và giá bán cụ thể cùng nguồn.",
+        "result_type": "DIRECT_PRODUCT",
+        "page_heading": "Samsung Galaxy S24 Ultra 12GB 512GB",
+        "discovery": [
+          {
+            "name": "Samsung Galaxy S24 Ultra 12GB 512GB",
+            "brand": "Samsung",
+            "model": "Galaxy S24 Ultra 12GB 512GB",
+            "variant": {
+              "sku": "samsung-galaxy-s24-ultra-512gb"
+            },
+            "price_type": "DISCOVERY_ONLY"
+          }
+        ],
+        "product_url": "https://cellphones.com.vn/samsung-galaxy-s24-ultra-512gb.html",
+        "name": "Samsung Galaxy S24 Ultra 12GB 512GB",
+        "brand": "Samsung",
+        "price_type": "CONCRETE",
+        "variant": {
+          "sku": "samsung-galaxy-s24-ultra-512gb"
+        },
+        "category": "điện thoại",
+        "category_evidence": {
+          "category": "điện thoại",
+          "source": "breadcrumb",
+          "confidence": 90,
+          "conflict": false,
+          "reason": "Category observed on the verified main product page.",
+          "observations": {
+            "json_ld_category": null,
+            "json_ld_type": "Product",
+            "breadcrumbs": [
+              [
+                "CELLPHONES",
+                "Điện thoại",
+                "Samsung",
+                "Galaxy S",
+                "Galaxy S24 Series",
+                "Samsung Galaxy S24 Ultra 12GB 512GB"
+              ],
+              [
+                "Trang chủ ",
+                " / ",
+                " Samsung Galaxy S24 Ultra 12GB 512GB"
+              ]
+            ],
+            "h1": "Samsung Galaxy S24 Ultra 12GB 512GB",
+            "title": "Samsung Galaxy S24 Ultra (12GB 512GB) Ưu đãi khủng, góp 0%",
+            "url_path": "/samsung-galaxy-s24-ultra-512gb.html"
+          }
+        },
+        "confidence_signals": {
+          "page_identity": 30,
+          "same_page_price": 25,
+          "product_metadata_or_buy_action": 30,
+          "direct_path": 10
+        },
+        "model": null,
+        "price": 23990000,
+        "merchant": "CELLPHONES",
+        "specifications": {
+          "kích thước màn hình": "6.8 inches",
+          "công nghệ màn hình": "Dynamic AMOLED 2X",
+          "camera sau": "Camera chính: 200MP, Laser AF, OIS Camera: 50MP,  PDAF, OIS, zoom quang học 5xCamera tele: 10MPCamera góc siêu rộng: 12 MP, f/2.2, 13mm, 120˚",
+          "camera trước": "12 MP, f/2.2",
+          "chipset": "Snapdragon 8 Gen 3",
+          "công nghệ nfc": "Có",
+          "dung lượng ram": "12 GB",
+          "bộ nhớ trong": "512 GB",
+          "pin": "5000mAh",
+          "thẻ sim": "SIM 1 + SIM 2 / SIM 1 + eSIM / 2 eSIM",
+          "hệ điều hành": "Android 14, One UI 6.1",
+          "độ phân giải màn hình": "1440 x 3120 pixels",
+          "tính năng màn hình": "Độ sáng cao nhất 2,600 nits, 120Hz, HDR10+"
+        },
+        "rating": "4.9",
+        "review_count": "8",
+        "availability": "https://schema.org/OutOfStock",
+        "image_candidates": [],
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": "CELLPHONES"
+    },
+    {
+      "query": "site:cellphones.com.vn \"Samsung Galaxy S24\" giá bán",
+      "url": "https://cellphones.com.vn/samsung-galaxy-s24-ultra.html",
+      "title": "Samsung S24 Ultra 5G giảm đến 7Tr, lên đời trợ giá 1Tr",
+      "content": "Galaxy S24 Ultra cung cấp ba phiên bản cấu hình để đáp ứng nhu cầu đa dạng của người dùng, với mức giá khởi điểm hấp dẫn so với các tính năng cao cấp mà sản phẩm mang lại. Cụ thể:\n\nGiá Samsung S24 Ultra mới 09/2026:\n\n|  |  |  |\n --- \n| Tên sản phẩm | Giá bán | Giá thu cũ lên đời |\n| Samsung Galaxy S24 Ultra 12GB 256GB | 25.290.000đ | 24.290.000đ |\n| Samsung Galaxy S24 Ultra 12GB 512GB | 23.990.000đ | 22.990.000đ |\n| Samsung Galaxy S24 Ultra 12GB 1TB | 44.490.000đ | 43.490.000đ | [...] 25.290.000đ\n\n~~29.450.000đ~~\n\nPhiên bản\n\n12GB 512GB12GB 256GB12GB 1TB\n\nMàu sắc\n\n Flash Sale Samsung Galaxy S24 Ultra 12GB 256GB-Vàng\n\n  Vàng  25.290.000₫\n Flash Sale Samsung Galaxy S24 Ultra 12GB 256GB-Xám\n\n  Xám  25.290.000₫\n Flash Sale Samsung Galaxy S24 Ultra 12GB 256GB-Đen\n\n  Đen  25.290.000₫\n Flash Sale Samsung Galaxy S24 Ultra 12GB 256GB-Tím\n\n  Tím  25.290.000₫\n\nSẮP VỀ HÀNG(Vui lòng liên hệ 1800.2097);)\n\nĐăng ký nhận thông tin khi có hàng [...] Với mức giá từ hơn 22 triệu đồng, S24 Ultra mang đến lựa chọn phù hợp cho cả người dùng phổ thông và những ai cần thiết bị lưu trữ lớn. Đy là một sự đầu tư xứng đáng cho chiếc điện thoại flagship tích hợp hàng loạt công nghệ hiện đại.\n\nSau sự thành công của S24 Ultra, Samsung sẽ chính thức giới thiệu S25 Ultra vào ngày 23/1/2025 với hàng loạt tính năng AI thông minh và nng cấp về ngoại hình. Xem ngay thông số và giá Samsung S25 Ultra tại CellphoneS!",
+      "proof": {
+        "product_page_valid": true,
+        "evidence_url": "https://cellphones.com.vn/samsung-galaxy-s24-ultra.html",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "VERIFIED_CONTENT",
+        "product_page_confidence": 95,
+        "fetch_blocked": false,
+        "reason": "Trang chi tiết có identity và giá bán cụ thể cùng nguồn.",
+        "result_type": "DIRECT_PRODUCT",
+        "page_heading": "Samsung Galaxy S24 Ultra 12GB 256GB",
+        "discovery": [
+          {
+            "name": "Samsung Galaxy S24 Ultra 12GB 256GB",
+            "brand": "Samsung",
+            "model": "Galaxy S24 Ultra 12GB 256GB",
+            "variant": {
+              "sku": "samsung-galaxy-s24-ultra"
+            },
+            "price_type": "DISCOVERY_ONLY"
+          }
+        ],
+        "product_url": "https://cellphones.com.vn/samsung-galaxy-s24-ultra.html",
+        "name": "Samsung Galaxy S24 Ultra 12GB 256GB",
+        "brand": "Samsung",
+        "price_type": "CONCRETE",
+        "variant": {
+          "sku": "samsung-galaxy-s24-ultra"
+        },
+        "category": "điện thoại",
+        "category_evidence": {
+          "category": "điện thoại",
+          "source": "breadcrumb",
+          "confidence": 90,
+          "conflict": false,
+          "reason": "Category observed on the verified main product page.",
+          "observations": {
+            "json_ld_category": null,
+            "json_ld_type": "Product",
+            "breadcrumbs": [
+              [
+                "CELLPHONES",
+                "Điện thoại",
+                "Samsung",
+                "Galaxy S",
+                "Galaxy S24 Series",
+                "Samsung Galaxy S24 Ultra 12GB 256GB"
+              ],
+              [
+                "Trang chủ ",
+                " / ",
+                " Samsung Galaxy S24 Ultra 12GB 256GB"
+              ]
+            ],
+            "h1": "Samsung Galaxy S24 Ultra 12GB 256GB",
+            "title": "Samsung S24 Ultra 5G giảm đến 7Tr, lên đời trợ giá 1Tr",
+            "url_path": "/samsung-galaxy-s24-ultra.html"
+          }
+        },
+        "confidence_signals": {
+          "page_identity": 30,
+          "same_page_price": 25,
+          "product_metadata_or_buy_action": 30,
+          "direct_path": 10
+        },
+        "model": null,
+        "price": 25290000,
+        "merchant": "CELLPHONES",
+        "specifications": {
+          "kích thước màn hình": "6.8 inches",
+          "công nghệ màn hình": "Dynamic AMOLED 2X",
+          "camera sau": "Camera chính: 200MP, Laser AF, OIS Camera: 50MP,  PDAF, OIS, zoom quang học 5xCamera tele: 10MPCamera góc siêu rộng: 12 MP, f/2.2, 13mm, 120˚",
+          "camera trước": "12 MP, f/2.2",
+          "chipset": "Snapdragon 8 Gen 3 For Galaxy",
+          "công nghệ nfc": "Có",
+          "dung lượng ram": "12 GB",
+          "bộ nhớ trong": "256 GB",
+          "pin": "5,000mAh ",
+          "thẻ sim": "SIM 1 + SIM 2 / SIM 1 + eSIM / 2 eSIM",
+          "hệ điều hành": "Android 14, One UI 6.1",
+          "độ phân giải màn hình": "1440 x 3120 pixels",
+          "tính năng màn hình": "Độ sáng cao nhất 2,600 nits, 120Hz, Corning® Gorilla® Armor®, 16 triệu màu",
+          "loại cpu": "3.39GHz,3.1GHz,2.9GHz,2.2GHz",
+          "tương thích": "Bút SPEN - tích hợp sẵn lên máy"
+        },
+        "rating": "4.9",
+        "review_count": "59",
+        "availability": "https://schema.org/OutOfStock",
+        "image_candidates": [],
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": "CELLPHONES"
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "url": "https://vietnamnet.vn/top-dien-thoai-duoi-10-trieu-dang-mua-thang-7-man-hinh-camera-dep-pin-khoe-2534592.html",
+      "title": "Top điện thoại dưới 10 triệu đáng mua tháng 7: Màn hình, camera đẹp, pin khoẻ",
+      "content": "icon\n\n## Điện thoại dưới 10 triệu đồng tháng 7/2026 được coi là phn khúc hấp dẫn nhất dành cho người dùng phổ thông với màn hình chất lượng cao và thời lượng pin ấn tượng.\n\nThị trường điện thoại tầm trung trong năm 2026 đang chứng kiến sự cạnh tranh rất quyết liệt khi hàng loạt hãng lớn như Xiaomi, Samsung, OPPO, HONOR, Nothing hay Nubia liên tục tung ra những sản phẩm có cấu hình mạnh, màn hình chất lượng cao và thời lượng pin ấn tượng nhưng vẫn giữ mức giá dưới 10 triệu đồng. [...] Top điện thoại giá 2-3 triệu đáng mua nhất tháng 7: Pin khỏe, dùng bềnPhn khúc điện thoại giá 2-3 triệu đồng vẫn giữ sức hút lớn đối với học sinh, sinh viên, người lao động và những ai cần một chiếc smartphone phục vụ các nhu cầu cơ bản.\n\n ### Top điện thoại 128GB giá rẻ dưới 3 triệu đáng mua nhất tháng 7/2026\n ### Điện thoại dòng ‘Pro’ phn khúc giá 25 triệu đồng, pin 7.000 mAh tại Việt Nam\n ### Apple đồng loạt tăng giá Mac, iPad và nhiều thiết bị khác, giá iPhone ra sao?\n\n.svg) [...] icon\n Công nghệ \n\n  + Chính trị\n  + Thời sự\n  + Kinh doanh\n  + Dn tộc và Tôn giáo\n  + Giáo dục\n  + Thế giới\n  + Thể thao\n  + Văn hóa - Giải trí\n  + Đời sống\n  + Sức khỏe\n  + Công nghệ\n  + Xe\n  + Bất động sản\n  + Du lịch\n  + Bạn đọc\n\nThứ Bảy, 11/07/2026 - 08:00\n\n# Top điện thoại dưới 10 triệu đáng mua tháng 7: Màn hình, camera đẹp, pin khoẻ\n\nHải Phong\n\n Xem các bài viết của tác giả\n\nSao chép liên kết; \"Sao chép liên kết\")   \n\n11/07/2026   08:00 (GMT+07:00)\n\n icon",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://vietnamnet.vn/top-dien-thoai-duoi-10-trieu-dang-mua-thang-7-man-hinh-camera-dep-pin-khoe-2534592.html",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      },
+      "merchant": null
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "url": "https://cellphones.com.vn/sforum/dien-thoai-tam-trung-dang-mua-nhat",
+      "title": "Top 9 mẫu điện thoại tầm trung đáng mua nhất năm 2026",
+      "content": "### Vivo V30E 12GB 256GB\n\nVivo V30E là lựa chọn hợp lý cho người dùng đang tìm điện thoại ổn định, chụp ảnh tốt và pin lu. Máy sử dụng chip Snapdragon 6 Gen 1, RAM 12GB và bộ nhớ trong 256GB, đủ sức xử lý mượt mà các tác vụ đa nhiệm.\n\nVivo V30E 12GB 256GB \n\nVivo V30E 12GB 256GB\n\nCamera sau 50MP kết hợp ống kính góc siêu rộng 8MP, cho khả năng chụp linh hoạt. Camera trước 32MP cùng nhiều tính năng AI hỗ trợ selfie đẹp mắt, phù hợp với nhu cầu quay vlog, chụp ảnh đăng mạng xã hội. [...] Camera: Với nhu cầu chụp ảnh ngày càng phổ biến, các mẫu tầm trung giờ đy đã được trang bị cảm biến từ 50MP trở lên, đi kèm công nghệ AI, chống rung OIS cho hình ảnh sắc nét hơn.\n Pin và sạc: Pin từ 5000mAh đang là tiêu chuẩn mới. Sạc nhanh từ 25W trở lên sẽ giúp tiết kiệm thời gian đáng kể.\n Tính năng mở rộng: Một số tính năng như cảm biến vn tay dưới màn hình, kháng nước, hỗ trợ 5G,... đang dần phổ biến ở dòng tầm trung, tạo thêm giá trị cho người dùng. [...] ### Realme 13 Plus 5G 8GB 256GB\n\nRealme 13 Plus 5G gy ấn tượng với chip Dimensity 7300 Energy, RAM 8GB và màn hình OLED 6.67 inch hỗ trợ tần số quét 120Hz. Đy là mẫu điện thoại sinh ra để chơi game, đa nhiệm và giải trí.\n\nCamera chính 50MP sử dụng cảm biến Sony LYT-600, kết hợp camera góc rộng 8MP giúp tạo ra những bức ảnh sắc nét. Hệ thống làm mát bằng buồng hơi giúp máy hoạt động ổn định trong thời gian dài.\n\nRealme 13 Plus 5G 8GB 256GB \n\nRealme 13 Plus 5G 8GB 256GB",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://cellphones.com.vn/sforum/dien-thoai-tam-trung-dang-mua-nhat",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Trang không phải trang bán sản phẩm: ARTICLE",
+        "result_type": "ARTICLE",
+        "page_heading": "Top 9 mẫu điện thoại tầm trung đáng mua nhất năm",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "url": "https://hungmobile.vn/tin-tuc/top-dien-thoai-2-trieu-tot-nhat.html",
+      "title": "Top 12 điện thoại 2 triệu tốt nhất 2026: game khoẻ, pin trâu ngon nhất",
+      "content": "Redmi 13R 5G là lựa chọn tuyệt vời cho ai muốn trải nghiệm 5G với mức giá cực rẻ. Máy sở hữu màn hình 6.74 inch 90Hz, camera 50MP và pin 5000mAh cho thời gian sử dụng dài.  \n Điểm mạnh là con chip Dimensity 6100+ tiết kiệm pin nhưng vẫn đủ sức đáp ứng mọi tác vụ hằng ngày.\n\n Màn hình: 6.74 inch, IPS LCD, 90Hz, 600 nits\n Cấu hình: MediaTek Dimensity 6100+ (6nm), RAM 4GB, ROM 128GB\n Camera: Sau 50MP + 0.08MP | Trước 5MP\n Pin + sạc: 5000mAh, 18W (tặng kèm sạc 10W)\n Khác: Vn tay cạnh bên [...] Redmi 14C 4G\n\n### 4. Redmi Note 13 5G: Camera 100MP, màn AMOLED đẹp\n\nNếu bạn thích chụp ảnh, Redmi Note 13 5G sẽ khiến bạn hài lòng với camera chính 100MP và màn AMOLED 120Hz siêu sắc nét. Chip Dimensity 6080 đáp ứng tốt các tác vụ và chơi game nhẹ.\n\n Màn hình: 6.67 inch, AMOLED, 120Hz, 1000 nits\n Cấu hình: MediaTek Dimensity 6080, RAM 6GB, ROM 128GB\n Camera: Sau 100MP + 2MP | Trước 16MP\n Pin + sạc: 5000mAh, 33W\n Khác: Vn tay cạnh bên\n\nRedmi Note 13 5G \n\nRedmi Note 13 5G [...] Redmi 14C 4G là mẫu điện thoại mới với camera 50MP, pin 5160mAh và màn hình 6.88 inch 120Hz. Máy phù hợp cho người dùng cần điện thoại cơ bản, bền bỉ và pin lu.\n\n Màn hình: 6.88 inch, IPS LCD, 120Hz, 600 nits\n Cấu hình: MediaTek Helio G81 Ultra, RAM 4GB, ROM 128GB\n Camera: Sau 50MP + 2MP + 0.08MP | Trước 13MP\n Pin + sạc: 5160mAh, 18W\n Khác: Vn tay cạnh bên\n\nXiaomi Redmi 14C \n\nXiaomi Redmi 14C\n\n \n\nBạn có thể tham khảo điện thoại dưới đy:\n\n Redmi 14C 4G",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "NEWS",
+        "evidence_url": "https://hungmobile.vn/tin-tuc/top-dien-thoai-2-trieu-tot-nhat.html",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      },
+      "merchant": null
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "url": "https://mobappy.co.jp/top-dien-thoai-android-gia-re-dang-mua-nhat-2026-goi-y-dang-tien-cho-moi-nhu-cau",
+      "title": "Top điện thoại Android giá rẻ, đáng mua nhất 2026 – Gợi ý đáng tiền cho mọi nhu cầu",
+      "content": "Nếu ưu tiên thời lượng pin và hiệu năng tốt, Redmi 15 là một trong những lựa chọn sáng giá nhất.\n\n### Thông số nổi bật\n\n Màn hình IPS LCD 6.9 inch\n Độ phn giải FHD+\n Tần số quét 144Hz\n Snapdragon 685\n RAM 6GB/8GB\n Bộ nhớ 128GB/256GB\n Camera chính 50MP AI\n Pin 7.000mAh\n Sạc nhanh 33W\n\n### Ưu điểm\n\n✔ Pin cực lớn sử dụng đến 2 ngày.\n\n✔ Màn hình 144Hz mượt hiếm có trong tầm giá. [...] ✔ Snapdragon 685 đủ mạnh cho Facebook, TikTok, YouTube và các game phổ biến như Liên Qun Mobile, PUBG Mobile mức đồ họa trung bình.\n\n✔ Camera 50MP cho chất lượng ảnh khá tốt khi đủ sáng.\n\n## 2. OPPO A5 – Thiết kế đẹp, pin khỏe\n\n### Cấu hình\n\n Màn hình LCD 6.67 inch\n Tần số quét 90Hz\n Snapdragon 6s Gen 1 (tùy thị trường)\n RAM 6GB\n ROM 128GB\n Camera AI\n Pin 6.500mAh\n Sạc nhanh SuperVOOC\n\n### Điểm mạnh [...] ### Ưu điểm\n\n Máy bền.\n Dễ sửa chữa.\n Linh kiện phổ biến.\n Hệ điều hành One UI dễ dùng.\n Giá cực kỳ rẻ trên thị trường máy cũ\n\n## 4. Samsung Galaxy A52 – Vẫn rất đáng mua\n\n### Thông số nổi bật\n\n Super AMOLED 6.5 inch\n 90Hz\n Snapdragon 720G\n Camera chính 64MP OIS\n Camera góc rộng\n Camera macro\n Camera đo chiều su\n Pin 4.500mAh\n Sạc nhanh 25W\n Chuẩn kháng nước IP67\n\n### Điểm nổi bật\n\n Màn hình AMOLED hiển thị đẹp.\n Camera chống rung OIS.\n Chụp đêm tốt.\n Loa stereo.\n Chống nước IP67.",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://mobappy.co.jp/top-dien-thoai-android-gia-re-dang-mua-nhat-2026-goi-y-dang-tien-cho-moi-nhu-cau/",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Trang không phải trang bán sản phẩm: ARTICLE",
+        "result_type": "ARTICLE",
+        "page_heading": "Top điện thoại Android giá rẻ, đáng mua nhất 2026 – Gợi ý đáng tiền cho mọi nhu cầu",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "url": "https://www.youtube.com/watch?v=etGY7JVoUDw",
+      "title": "Which Flagship Can You Buy for Under 10 Million?",
+      "content": "[1:13] Plus nhá các bạn nhá. Tại sao mình lại lựa chọn cái chiếc điện thoại này? Thì thứ nhất là cái camera của nó nó không phải là quá đẹp nhưng nó thuộc dạng chụp\n[1:20] ảnh khá đấy. Có đầy đủ cả camera góp rộng các thứ nữa. Về phần hiệu năng thì đây là chiếc điện thoại có hiệu năng tốt nhất ở trong tầm giá. Với con chip DMJ\n[1:29] 9400 Plus mạnh nhất ở trong cái tầm giá này không có con nào mạnh hơn. Về pin thì nó có viên pin lên tới là 8000 mAh, [...] [10:35] 17 triệu mà có hai sự lựa chọn cùng tầm giá là 14 Pro Max V S24 Ultra. Nhu cầu của em là camera trước camera sau đều quay video 60 FPS hiệu năng ngon dùng\n[10:43] lâu dài. Chúc anh Dương và gia đình thật nhiều sức khỏe. Rồi cảm bạn rất nhiều.\n[10:47] Cả hai chiếc điện thoại này thì đều có cả camera trước, camera sau đều quay được 60 FPS. hiệu năng ngon để mà dùng lâu dài thì mình thấy là về tối ưu hiệu [...] [10:55] năng nhá thì 14 Pro Max vẫn tối ưu nhỉnh hơn đấy. Đấy nhưng mà về camera ấy thì S24 Ultra sẽ có camera ngon hơn đặc biệt là về vấn đề chụp ảnh nhưng quay video\n[11:03] thì mình thích cái kiểu quay video của 14 Pro Max hơn còn về AI thì rõ ràng là S4 Ultra sẽ hơn rồi. S4 Ultra còn có bộ nhớ trong tối thiểu là 256 GB thoải mái\n[11:10] cho bạn có thể lưu trữ được. Nhưng mà chỉ có điều là ở đây bạn ghi là dùng lâu dài thì thực sự là mình cũng hơi lăn tăn về về màn hình màn niếc thôi chứ còn",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://www.youtube.com/watch?v=etGY7JVoUDw",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      },
+      "merchant": null
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "url": "https://dienmaycholon.com/kinh-nghiem-mua-sam/top-dien-thoai-duoi-10-trieu-chup-anh-dep-dang-mua-hien-nay",
+      "title": "Top 10 điện thoại dưới 10 triệu đáng mua hiện nay",
+      "content": "Mặt khác, chiếc điện thoại Realme này còn mang đến trải nghiệm hiển thị mượt mà với màn hình IPS LCD 6.67 inch, độ phn giải 1604 × 720px kết hợp tần số quét 90Hz giúp mang đến trải nghiệm hiển thị sắc nét và chạm vuốt mượt mà.\n\nNgoài ra, điện thoại còn có các ưu điểm nổi bật như sở hữu camera AI 50MP chụp ảnh sắc nét, chip Helio G85 duy trì hiệu năng ổn định, pin 5000mAh duy trì trải nghiệm suốt ngày dài.\n\n### Realme 14 5G 8GB 256GB [...] Chưa dừng lại ở đó, điện thoại còn có khả năng chụp ảnh lý tưởng với camera chính 50MP hỗ trợ AI và chống rung OIS. Đồng thời, viên pin 6000mAh đi kèm sạc nhanh 45W cũng giúp duy trì trải nghiệm suốt cả ngày dài.\n\nXem thêm: Điểm danh TOP điện thoại giá từ 7 đến 13 triệu bán chạy tại Điện Máy Chợ Lớn [...] Chất lượng hệ thống camera: Người dùng nên chọn điện thoại sở hữu camera có độ phn giải cao để mang đến khả năng chụp ảnh rõ nét. Theo đó, các thiết bị có camera chính 64MP hay 100MP, hay thậm chí là 200MP sẽ giúp ảnh chụp có độ chi tiết cao, sắc nét và chất lượng ngay cả trong điều kiện thiếu sáng.\n Thời lượng pin lu dài: Một chiếc điện thoại có thời lượng pin lu dài sẽ giúp cho quá trình trải nghiệm của bạn không bị gián đoạn giữa chừng.",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://dienmaycholon.com/kinh-nghiem-mua-sam/top-dien-thoai-duoi-10-trieu-chup-anh-dep-dang-mua-hien-nay",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Trang không phải trang bán sản phẩm: ARTICLE",
+        "result_type": "ARTICLE",
+        "page_heading": "Top 10 điện thoại dưới 10 triệu đáng mua hiện nay dành cho bạn",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "url": "https://www.youtube.com/watch?v=sbPRprYOxdg",
+      "title": "Phone Consultation: Are there any good, reliable, and affordable phones under 10 million?",
+      "content": "[8:50] tiên là pin tốt, camera đẹp. Em đang dùng Galaxy S23 nhưng mà muốn đổi máy ạ.\n[8:56] Thế thì theo cá nhân mình nhá thì mình nghĩ là nếu mà hàng chính hãng ấy bạn có thể ưu tiên chiếc Xiaomi 15T Pro đang được bán tại Clickby với mức giá là 15.7\n[9:04] triệu90. Đấy thì cái chiếc điện thoại này mình đánh giá là có nó có camera ở mức độ khá đấy nhá. Đầy đủ luôn. Camera chính này, camera tele cũng có này, [...] [1:55] Samsung Galaxy S24. Galaxy S24 ấy thì nếu mà so với cả iPhone 14 thì được cái là nó sẽ có thêm cả camera tele các bạn\n[2:02] ạ. Và nó có cái màn hình tấn số quét nó sẽ mượt mà hơn. Mức giá thì nó sẽ rơi vào tầm khoảng 95 triệu tại Clickby.\n[2:10] Đấy, giá các bạn cũng có thể nhìn thấy trên hình. Thì hai con này thì mình đánh giá là về khả năng quay video với cả chụp ảnh đều ở mức độ đủ tốt. Nếu như [...] [9:12] camera góc siêu rộng cũng có này. Thậm chí là camera TL của nó là T5X. Con này chụp ảnh được đây nhá. Đấy, pin thì nó ở mức độ 500 thì mình đánh giá là pin 500\n[9:19] là ở mức độ đủ tốt rồi. Nó không phải là pin silicon cacbon nó không trâu như những viên pin 6000 hay 7000. Nhưng 500 cá nhân mình đánh giá là đủ tốt rồi đấy.\n[9:27] Hỗ trợ sạc 90 W là sạc siêu nhanh rồi.\n[9:29] Giờ lại còn màn hình 1,5K 120 Hz 6,83 inch AMOLED là đủ lớn rồi. Có vân tay",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://www.youtube.com/watch?v=sbPRprYOxdg",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      },
+      "merchant": null
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "url": "https://clickbuy.com.vn/dien-thoai-7-8-trieu.html",
+      "title": "Top 5 điện thoại 7-8 triệu đáng tiền nhất 2026",
+      "content": "Điện thoại 7-8 triệu chụp ảnh đẹp: Nếu ưu tiên camera, OPPO Reno13 F 5G và Redmi Note 14 Pro 5G là hai lựa chọn nổi bật. Cả hai đều có thuật toán xử lý ảnh tốt, phù hợp chụp chn dung, du lịch và mạng xã hội.\n Điện thoại 7 8 triệu chơi game tốt: Xiaomi Redmi Note 15 5G là lựa chọn tối ưu cho game thủ. Chip mạnh, màn hình mượt và pin lớn giúp chơi game ổn định trong thời gian dài. [...] Camera và pin: Nếu bạn quan tm đến điện thoại 7 8 triệu chụp ảnh đẹp, hãy ưu tiên máy có camera chính độ phn giải cao, hỗ trợ AI. Bên cạnh đó, pin từ 5.000 mAh trở lên sẽ giúp bạn yên tm sử dụng cả ngày dài [...] Chuyên gia công nghệ với 12+ năm kinh nghiệm trong ngành bán lẻ điện thoại di động. Đánh giá khách quan dựa trên trải nghiệm thực tế và phn tích chuyên su về thị trường smartphone Việt Nam.\n\n📅 19/01/2026 🔄 Cập nhật liên tục\n\n### Có thể bạn sẽ thích\n\nXiaomi Redmi Note 14 Pro (5G) 8GB 256GB - 1 Đổi 1 12 Tháng\n\n1 đổi 1 12 Tháng\n\nXiaomi Redmi Note 14 Pro (5G) 8GB 256GB - 1 Đổi 1 12 Tháng\n\n7,390,000 ₫ ~~9,490,000 ₫~~\n\n(13 đánh giá)\n\nƯu đãi Edu  7,190,000 ₫\n\nKhách hàng thn thiết  7,331,000 ₫",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://clickbuy.com.vn/dien-thoai-7-8-trieu.html",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Trang không phải trang bán sản phẩm: ARTICLE",
+        "result_type": "ARTICLE",
+        "page_heading": "Top 5 điện thoại 7-8 triệu đáng mua nhất 2026",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "\"Redmi Note 13 5G\" mua",
+      "url": "https://www.youtube.com/watch?v=kZ52_N-pqzE",
+      "title": "Xiaomi Redmi Note 13 5G Review | Upgrade to the Pro?",
+      "content": "Posted: 25 Apr 2024\nReviewing Xiaomi's Redmi Note 13 5G budget smartphone, costing under £300 in the UK. This well-specced phone lacks some of the polish of the Pro version, but the Xiaomi Redmi Note 13 5G still boasts a 108MP camera, HyperOS shenanigans, a 6.67-inch AMOLED screen and 5000mAh battery. But how's the gaming experience, is that camera any good, and does the battery life suck? I've been testing it as my full time phone for a week now so here's the review! [...] My take-away verdict is that the Xiaomi Redmi Note 13 5G makes quite a few compromises to reach that sub-£300 budget price. For one, gamers will be disappointed if trying to play anything more complex than PubG. Genshin Impact is very much a no-no! [...] now I've had this phone in my stash for quite a while now but never quite got around to fully reviewing it so for the last week I've stashed my sim inside of xiaomi's redmi note 13 5G at 279 pond it's xiaomi's most affordable redmi 13 blower here in blighty with our latest freshest hyper OS software experience got a gorgeous 6.67 in AMOLED display a proper runy big 5,000 mAh battery and a 108 mapel main camera so pretty solid specs on paper though you can upgrade to that pro model for just a",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://www.youtube.com/watch?v=kZ52_N-pqzE",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      },
+      "merchant": null
+    },
+    {
+      "query": "\"Redmi Note 13 5G\" mua",
+      "url": "https://www.devicespecifications.com/en/model/bae85ef6",
+      "title": "Xiaomi Redmi Note 13 5G Global - Specifications",
+      "content": "CPU: 2x 2.4 GHz ARM Cortex-A76, 6x 2.0 GHz ARM Cortex-A55, Cores: 8  \nGPU: ARM Mali-G57 MC2, Cores: 2  \nRAM: 6 GB, 8 GB, 12 GB, 2133 MHz  \nStorage: 128 GB, 256 GB  \nMemory cards: microSD, microSDHC, microSDXC  \nDisplay: 6.67 in, AMOLED, 1080 x 2400 pixels, 30 bit  \nBattery: 5000 mAh, Li-Polymer  \nOS: MIUI 14 (Android 13)  \nCamera: 12000 x 9000 pixels, 1920 x 1080 pixels, 30 fps  \nSIM card: Nano-SIM, Nano-SIM / microSD [...] Dimensions: 74.95 x 161.11 x 7.6 mm  \nWeight: 173 g  \nSoC: MediaTek Dimensity 6080 (MT6833GP)  \nCPU: 2x 2.4 GHz ARM Cortex-A76, 6x 2.0 GHz ARM Cortex-A55, Cores: 8  \nGPU: ARM Mali-G57 MC2  \nRAM: 6 GB, 8 GB, 12 GB, 2133 MHz  \nStorage: 128 GB, 256 GB  \nDisplay: 6.67 in, AMOLED, 1080 x 2400 pixels, 30 bit  \nBattery: 5000 mAh, Li-Polymer  \nOS: MIUI 14 (Android 13)  \nCamera: 12000 x 9000 pixels, 1920 x 1080 pixels, 30 fps [...] | 5G NR The 5G (fifth generation) mobile networks use the new radio access technology (RAT) developed by 3GPP, dubbed 5G NR and deemed as the global standard for the air interface of 5G networks. 5G NR operates in two frequency ranges - FR1 (sub-6 GHz) and FR2 (above 24 GHz). In the FR1 frequency range, the 5G mobile networks use a number of bands, some of which are traditionally used by previous standards. The FR2 provides shorter range but higher available bandwidth than bands in the FR1. |",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.devicespecifications.com/en/model/bae85ef6",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Trang không phải trang bán sản phẩm: ARTICLE",
+        "result_type": "ARTICLE",
+        "page_heading": "Xiaomi Redmi Note 13 5G Global - Specifications",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "\"Redmi Note 13 5G\" mua",
+      "url": "https://www.mi.com/au/product/redmi-note-13-5g",
+      "title": "Redmi Note 13 5g | Xiaomi Australia | All Specs, Features",
+      "content": "Get the key specs, reviews, best price of Redmi Note 13 5g : Super-clear 108MP triple camera, 120Hz FHD+AMOLED display, Super-clear 108MP triple camera",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.mi.com/au/product/redmi-note-13-5g/",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Redmi Note 13 5G  Overview",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "\"Redmi Note 13 5G\" mua",
+      "url": "https://www.amazon.com/clp/B0CSDYXF59",
+      "title": "Xiaomi Redmi Note 13 5g + 4g lte (For Tmobile Mint Tello ...",
+      "content": "Xiaomi Redmi Note 13 5g ・ 108mp Global Unlocked. Made for US 4/64GB | 50MP ・ 6.7\", Dual SIM, 50MP Triple Camera",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.amazon.com/clp/B0CSDYXF59",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "",
+        "discovery": [],
+        "rejection_code": "missing_identity",
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "\"Redmi Note 13 5G\" mua",
+      "url": "https://www.walmart.com/ip/Xiaomi-Redmi-Note-13-5G-4G-LTE-128GB-6GB-6-67-108MP-Triple-Tmobile-Mint-Tello-Global-Global-Bands-Unlocked-Ocean-Teal-Global-ROM/5463412525",
+      "title": "Xiaomi Redmi Note 13 5G+4G LTE 128GB 6GB 6.67\" 108MP, Unlocked for Tmobile, Mint, Tello & Global (Ocean Teal) - Walmart.com",
+      "content": "Walmart plus\nthumbnail image 1 of Xiaomi Redmi Note 13 5G 128GB ROM 6GB RAM Dual SIM GSM Unlocked - Ocean Teal, 1 of 2\nthumbnail image 2 of Xiaomi Redmi Note 13 5G 128GB ROM 6GB RAM Dual SIM GSM Unlocked - Ocean Teal, 2 of 2\nXiaomi Redmi Note 13 5G 128GB ROM 6GB RAM Dual SIM GSM Unlocked - Ocean Teal\nXiaomi Redmi Note 13 5G 128GB ROM 6GB RAM Dual SIM GSM Unlocked - Ocean Teal\n\n# Xiaomi Redmi Note 13 5G 128GB ROM 6GB RAM Dual SIM GSM Unlocked - Ocean Teal\n\n## Key item features\n\n## Specs [...] Walmart\nBanner title icon\nWalmart+\nBanner title icon\nXiaomi Redmi Note 13 5G 128GB ROM 6GB RAM Dual SIM GSM Unlocked - Ocean Teal\n\n## Sorry, this item is out of stock\n\n### In 50+ people's carts, Straight Talk Samsung Galaxy A26, 5G, 128GB, Black - Prepaid Smartphone [Locked to Straight Talk], $99.88\n\n![Straight Talk Samsung Galaxy A26, 5G, 128GB, Black - Prepaid Smartphone [Locked to Straight Talk]]( [...] Privacy choices icon",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.walmart.com/ip/Xiaomi-Redmi-Note-13-5G-4G-LTE-128GB-6GB-6-67-108MP-Triple-Tmobile-Mint-Tello-Global-Global-Bands-Unlocked-Ocean-Teal-Global-ROM/5463412525",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Xiaomi Redmi Note 13 5G 128GB ROM 6GB RAM Dual SIM GSM Unlocked - Ocean Teal",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "\"Samsung Galaxy S24\" mua",
+      "url": "https://www.chotot.com/dien-thoai-samsung-s24-sd6a0e",
+      "title": "Giá Samsung S24 09/2026 - Flagship tích hợp Galaxy AI",
+      "content": "Mua ngay\n\n### Samsung S24 Plus\n\n9,89 triệu - 12,09 triệu\n\n Màn hình 6.7\" QHD+ siêu nét\n RAM 12GB xử lý mạnh mẽ\n Pin 4900mAh sạc siêu nhanh 45W\n\nMua ngay\n\n### Samsung S24 FE\n\n7,56 triệu - 9,23 triệu\n\n Màn hình 6.7\" viền siêu mỏng\n Tích hợp tiện ích Galaxy AI\n Chip Exynos 2400e tối ưu\n\nMua ngay\n\n## Trải nghiệm Samsung S24 tốt hơn\n\nĐồng bộ S24 với các thiết bị Samsung khác trong hệ sinh thái Galaxy để có sử dụng tiện lợi hơn.\n\n### Galaxy Book\n\nXem ngay\n\n### Galaxy Tab\n\nXem ngay\n\n### Galaxy Watch [...] Đối với thế hệ Galaxy S24, Samsung S24 bản 256GB là ưu tiên số một. Lý do là bản 128GB sử dụng bộ nhớ chuẩn UFS 3.1 cũ, trong khi từ bản 256GB trở lên, thiết bị được trang bị bộ nhớ UFS 4.0 thế hệ mới, cho tốc độ đọc/ghi dữ liệu nhanh gấp đôi. Điều này giúp các tác vụ mở game nặng, xử lý video hay phản hồi AI diễn ra chớp nhoáng hơn hẳn. Chênh lệch giá giữa các phiên bản khi mua lướt không nhiều, nên 256GB là \"điểm ngọt\" lý tưởng nhất.\n\n## Samsung Galaxy S24 giá 8,54 triệu - 10,44 triệu [...] ### Khoảng giá Samsung Galaxy S24 phổ biến hiện nay\n\nKhoảng giá phổ biến nhất để mua Samsung S24 thời điểm này rơi vào mức 7-10 triệu đồng và 10-15 triệu. Đy là một con số \"trong mơ\" khi bạn chỉ cần bỏ ra số tiền của một thiết bị tầm trung nhưng lại nhận về trọn bộ tính năng cao cấp từ khung kim loại, chip đầu bảng đến trí tuệ nhn tạo Galaxy AI.\n\n#### Những mẫu Samsung Galaxy S24 đáng tham khảo\n\nSamsung Galaxy S24 5G Snap 8 gen 3 | 𝐆Ó𝐏 𝐎𝐍𝐋𝐈𝐍𝐄\n\n5\n\nSamsung Galaxy S24 5G Snap 8 gen 3 | 𝐆Ó𝐏 𝐎𝐍𝐋𝐈𝐍𝐄",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.chotot.com/dien-thoai-samsung-s24-sd6a0e",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Trang không phải trang bán sản phẩm: ARTICLE",
+        "result_type": "ARTICLE",
+        "page_heading": "Samsung Galaxy S24",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "\"Samsung Galaxy S24\" mua",
+      "url": "https://cellphones.com.vn/mobile/samsung/galaxy-s/s24-series.html",
+      "title": "Giá Samsung Galaxy S24 series cập nhật mới, ưu đãi sốc",
+      "content": "Nếu bạn đang tìm kiếm địa chỉ phn phối smartphone uy tín trên thị trường Việt để mua Samsuny S24 Series giá rẻ thì điểm đến mà bạn không nên bỏ lỡ là cửa hàng công nghệ CellphoneS. Tại CellphoneS, bạn hoàn toàn có thể yên tm mua sắm khi chất lượng sản phẩm luôn đạt chuẩn chính hãng và có mức giá thành cực kỳ ưu đãi.  Bạn có thể kết nối tới đường dy nóng 1800 2097 để nhận thêm thông tin và ghi danh của mình vào danh sách trải nghiệm sớm S24 Series tại CellphoneS ngay nhé!\n\nXem thêm [...] Chưa hết, khả năng xử lý đồ họa GPU của Samsung Galaxy S24 Series cũng được đánh giá là vô cùng mạnh mẽ. Điều này chứng minh S24 Series sẽ cung cấp hiệu suất chơi game vượt trội, đảm bảo trải nghiệm mượt mà, hình ảnh chất lượng cao, và độ ổn định ấn tượng.\n\nMột mẫu bạn có thể khám phá thêm chính là Samsung S24 Plus ra mắt thuộc dòng S24 series, cùng khám phá ngay để không bỏ lỡ nhiều ưu đãi hấp dẫn ngay nhé!\n\n## Mua Samsung S24 Series giá rẻ tại CellphoneS [...] Bên cạnh đó, giá bán điện thoại Samsung S24 series hiện nay còn được áp dụng thêm nhiều ưu đãi và tặng kèm phiếu mua hàng 500K khi mua tại CellphoneS, cùng xem ngay để chọn được mẫu điện thoại phù hợp với nhu cầu ngay nhé!\n\n## Galaxy S24 Series ra mắt khi nào?\n\n> Chính thức, Series Galaxy S24 mới nhất sẽ được ra mắt ngày 17/1/2024 tính theo giờ Mỹ tại sự kiện Galaxy Unpacked.",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://cellphones.com.vn/mobile/samsung/galaxy-s/s24-series.html",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Samsung Galaxy S24",
+        "discovery": [
+          {
+            "name": "Samsung Galaxy S24",
+            "brand": "Samsung",
+            "model": "Galaxy S24",
+            "variant": {},
+            "price_type": "AGGREGATE_RANGE",
+            "price_min": 14990000,
+            "price_max": 15490000
+          }
+        ],
+        "rejection_code": "missing_price",
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "\"Samsung Galaxy S24\" mua",
+      "url": "https://www.youtube.com/watch?v=u9yv3RmqAm8",
+      "title": "Samsung Galaxy S24 review",
+      "content": "when it comes to Thermal management the s24 didn't exactly Ace our stress tests it eventually throttled down to 60% of Max CPU performance at least this happened gradually without major dips or spikes the s24 has a 4,000 mAh battery which is larger than last year's the battery life is a bit better too with an overall active use score of 12 hours and 6 minutes notably the video play back score saw a decent Improvement just like last year the s24 supports 25 W charging and there's no charger in [...] # Samsung Galaxy S24 review\n## GSMArena Official\n2100000 subscribers\n8071 likes\n\n### Description\n972645 views\nPosted: 2 Feb 2024\nThe new Galaxy S24 introduces a refreshed, refined, even design, and fits an even larger display into the same footprint. Check out our video review to learn ALL YOU NEED TO KNOW about the phone's top features, build and screen quality, battery life, performance, and camera image quality. \n\n▶ Check price\n\nNote: Commissions may be earned from the link above [...] Pann smoothly and walking Shake is nicely ironed out in low light videos from the main cam have respectable quality with good detail and reasonable noise performance dynamic range is all right and color saturation is maintained well so there you have it guys the Samsung galaxy s24 compared to last year the most notable changes are a bit tougher frame a brighter and more adaptive display a bump and battery life and a new chipset the improvements in the cameras are quite minor and the return of",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://www.youtube.com/watch?v=u9yv3RmqAm8",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      },
+      "merchant": null
+    },
+    {
+      "query": "\"Samsung Galaxy S24\" mua",
+      "url": "https://www.samsung.com/in/smartphones/galaxy-s24",
+      "title": "Galaxy S24 & S24+",
+      "content": "At 15.64cm and 16.91cm, the display sizes of both Galaxy S24 and S24+ increased by 0.25cm compared to Galaxy S23 and S23+. However, Galaxy S24+ comes with a QHD+ display, while Galaxy S23's screen remains FHD+. Galaxy S24+ has longer battery life than Galaxy S24. Compared to their predecessors, Galaxy S24's 4000mAh (typical) battery has 100mAh more than Galaxy S23. And Galaxy S24+'s 4900mAh (typical) battery has 200mAh more than Galaxy S23+. [...] ### Pick your epic\n\nBoth of these devices stepped up their game. Now see how Galaxy S24 and S24+ stack up to one another.\n\n## Mineral-inspired colours\n\nGalaxy S24 Series devices in Onyx Black, Marble Gray, Cobalt Violet and Amber Yellow, then a Galaxy S24 Series device in special colour Jade Green.\nGalaxy S24 Series device in Amber Yellow, then devices in special colours Jade Green, Sapphire Blue and Sandstone Orange.\n\nAvailable only on Samsung.com [...] Level up your game with these two massive screens. Thanks to their increased display size and ultra-slim bezels, Galaxy S24's 15.64cm FHD+ display and Galaxy S24+'s 16.91cm QHD+ display offer more screen real estate than ever before, delivering the most immersive viewing experience., Plus, you can enjoy optimal colour and contrast with Vision Booster on both displays.\n\nGalaxy S24 Plus is held outdoors in the sunlight. A video with rich colour and high contrast plays on the screen.",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.samsung.com/in/smartphones/galaxy-s24/",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Trang không phải trang bán sản phẩm: ARTICLE",
+        "result_type": "ARTICLE",
+        "page_heading": "Galaxy S24 | S24+",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "\"Samsung Galaxy S24\" mua",
+      "url": "https://www.samsung.com/us/smartphones/galaxy-s24",
+      "title": "Samsung Galaxy S24 & S24+ | Features & Highlights | Samsung US",
+      "content": "RECOMMENDED\n\n## Galaxy S24 | S24+\n\n## Galaxy S24 | S24+ is sold out\n\nWe're out of stock. Experience Galaxy S25 Series, the next evolution of Galaxy AI with a new 50MP Ultra Wide lens.\n\n## Footer Navigation\n\n### SHOP\n\n### PRODUCT\n\n### SUPPORT\n\n### ACCOUNT\n\n### SUSTAINABILITY\n\n### ABOUT US\n\nCopyright© 1995-2026 SAMSUNG. All Rights Reserved.\n\nGet Shop Samusng App\nNever miss a thing. Sign up for texts to be notified about our best offers\n\nProduct Registration [...] SHOP BY CATEGORY\n\nGalaxy Z Fold8\nGalaxy Z Fold8\nGalaxy Z Fold8 Ultra\nGalaxy Z Fold8 Ultra\nGalaxy Z Flip8\nGalaxy Z Flip8\nGalaxy Watch Ultra2\nGalaxy Watch Ultra2\nalt=\"\"\nalt=\"\"\nGalaxy Tab S11 Series\nGalaxy Tab S11 Series\nalt=\"\"\nalt=\"\"\nalt=\"\"\nalt=\"\"\nWiFi Speakers\nWiFi Speakers\nOdyssey Neo G9 Curved Monitor\nOdyssey Neo G9 Curved Monitor\nalt=\"\"\nalt=\"\"\nalt=\"\"\nalt=\"\"\nBespoke Slide-in Gas Range\nBespoke Slide-in Gas Range\nBespoke Smart 3rd Rack Dishwasher\nBespoke Smart 3rd Rack Dishwasher\n\nDiscover",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.samsung.com/us/smartphones/galaxy-s24/",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Samsung Galaxy S24 & S24+ | Features & Highlights | Samsung US",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND giá bán",
+      "url": "https://cellphones.com.vn/bo-loc/dien-thoai-gia-duoi-10-trieu",
+      "title": "Điện thoại giá 10 triệu chính hãng, giảm sâu 09/2026",
+      "content": "Thị trường điện thoại giá dưới 10 triệu ngày càng sôi động với nhiều mẫu có cấu hình mạnh, thiết kế thời trang. Dưới đy là những cái tên tiêu biểu đang được người dùng yêu thích và đánh giá cao về trải nghiệm tổng thể cũng như hiệu năng.\n\n### Samsung Galaxy A56 5G 8GB 128GB [...] Mẫu điện thoại dưới 10 triệu này sở hữu chip Dimensity 8400-Ultra và RAM 12GB giúp chạy đa nhiệm mượt mà và xử lý game ổn định. Màn hình AMOLED 1.5K 120Hz mang đến khả năng hiển thị sống động, còn sạc nhanh 90W giúp nạp đầy pin chỉ trong thời gian ngắn.\n\nBên cạnh đó, camera 50MP trên máy còn hỗ trợ OIS cho ảnh rõ và chi tiết hơn khi chụp tay. Nhờ vậy, POCO X7 Pro 5G là lựa chọn mà người dùng cần một smartphone hiệu năng mạnh, thiết kế đẹp và bền không nên bỏ lỡ. [...] Loại điện thoại\n\nDung lượng RAM\n\nBộ nhớ trong\n\nTính năng đặc biệt\n\nTính năng camera\n\nTần số quét\n\nKiểu màn hình\n\nCông nghệ NFC\n\nHỗ trợ mạng\n\nHãy chọn mức giá phù hợp với bạn\n\n.000đ\n\n-\n\n.000đ\n\nHãy chọn mức giá phù hợp với bạn\n\n.000đ\n\n-\n\n.000đ\n\nBộ lọc\n\nKhoảng giá\n\n.000đ\n\n-\n\n.000đ\n\nTrạng thái hàng\n\nNhu cầu sử dụng\n\nChip xử lí\n\nLoại điện thoại\n\nDung lượng RAM\n\nBộ nhớ trong\n\nTính năng đặc biệt\n\nTính năng camera\n\nTần số quét\n\nKiểu màn hình\n\nCông nghệ NFC\n\nHỗ trợ mạng\n\nSắp xếp theo",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://cellphones.com.vn/bo-loc/dien-thoai-gia-duoi-10-trieu",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Điện thoại giá 10 triệu chính hãng, giảm sâu 09/2026",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND giá bán",
+      "url": "https://chuyensidienthoai.vn/danh-muc/smartphone",
+      "title": "ĐIỆN THOẠI GIÁ RẺ CHỈ TẦM 1 TRIỆU | TMOBILE",
+      "content": "~~8.200.000 ₫~~ Giá gốc là: 8.200.000 ₫.7.250.000 ₫Giá hiện tại là: 7.250.000 ₫.\n\nMUA NGAY\n\nOppo A5 5G 4GB/128GB Fullbox\n\nXem nhanh\n\nA Series\n\nOppo A5 5G 4GB/128GB Fullbox\n\n~~4.740.000 ₫~~ Giá gốc là: 4.740.000 ₫.4.000.000 ₫Giá hiện tại là: 4.000.000 ₫.\n\nMUA NGAY\n\nXiaomi Redmi 17 4GB/128GB Fullbox (Hàng Công Ty)\")\n\nXem nhanh\n\nSmartphone\n\nXiaomi Redmi 17 4GB/128GB Fullbox (Hàng Công Ty)\n\n~~6.490.000 ₫~~ Giá gốc là: 6.490.000 ₫.4.940.000 ₫Giá hiện tại là: 4.940.000 ₫.\n\nMUA NGAY [...] ~~6.990.000 ₫~~ Giá gốc là: 6.990.000 ₫.5.600.000 ₫Giá hiện tại là: 5.600.000 ₫.\n\nMUA NGAY\n\nSamsung Galaxy A37 5G 8GB/128GB Fullbox (Hàng Công Ty)\")\n\nXem nhanh\n\nSamsung Galaxy A37 5G 8GB/128GB Fullbox (Hàng Công Ty)\n\n~~10.790.000 ₫~~ Giá gốc là: 10.790.000 ₫.7.550.000 ₫Giá hiện tại là: 7.550.000 ₫.\n\nMUA NGAY\n\nSamsung Galaxy A27 5G 6GB/128GB Fullbox (Hàng Công Ty)\")\n\nXem nhanh\n\nSamsung Galaxy A27 5G 6GB/128GB Fullbox (Hàng Công Ty) [...] ~~8.490.000 ₫~~ Giá gốc là: 8.490.000 ₫.6.850.000 ₫Giá hiện tại là: 6.850.000 ₫.\n\nMUA NGAY\n\nXiaomi Redmi Note 15 5G 6GB/128GB Fullbox\n\nXem nhanh\n\nSmartphone\n\nXiaomi Redmi Note 15 5G 6GB/128GB Fullbox\n\n~~7.490.000 ₫~~ Giá gốc là: 7.490.000 ₫.4.700.000 ₫Giá hiện tại là: 4.700.000 ₫.\n\nMUA NGAY\n\nMeizu Mblu 21 6GB/128GB Cũ 99\n\nXem nhanh\n\nMeizu Mblu 21 6GB/128GB Cũ 99\n\n~~2.290.000 ₫~~ Giá gốc là: 2.290.000 ₫.1.900.000 ₫Giá hiện tại là: 1.900.000 ₫.\n\nMUA NGAY",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://chuyensidienthoai.vn/danh-muc/smartphone",
+        "page_fetched": false,
+        "fetch_failure": "http_or_network",
+        "fetch_blocked": true,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "reason": "Title and direct URL must identify the same model/variant.",
+        "image_url": null,
+        "image_source": null,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND giá bán",
+      "url": "https://clickbuy.com.vn/dien-thoai",
+      "title": "Điện thoại iPhone, Samsung, Xiaomi chính hãng bảo hành 2 năm",
+      "content": "(1 đánh giá)\n\nƯu đãi Edu  9,190,000 ₫\n\nKhách hàng thn thiết  9,315,000 ₫\n\nTặng củ sạc samsung 25W chính hãng trị giá 490.000đ\n\n+ 6 Khuyến mãi khác 8GB 128GB - 1 Đổi 1 12 Tháng\")\n\nSamsung Galaxy A56 (5G) 8GB 128GB - 1 Đổi 1 12 Tháng\n\n1 đổi 1 12 Tháng\n\nSamsung Galaxy A56 (5G) 8GB 128GB - 1 Đổi 1 12 Tháng\n\n8,990,000 ₫ ~~9,810,000 ₫~~\n\n(40 đánh giá)\n\nƯu đãi Edu  8,790,000 ₫\n\nKhách hàng thn thiết  8,918,000 ₫\n\nTặng củ sạc samsung 25W chính hãng trị giá 490.000đ [...] Samsung Galaxy A57 (5G) 8GB 128GB - 1 Đổi 1 12 Tháng\n\n1 đổi 1 12 Tháng\n\nSamsung Galaxy A57 (5G) 8GB 128GB - 1 Đổi 1 12 Tháng\n\n10,690,000 ₫ ~~12,490,000 ₫~~\n\n(1 đánh giá)\n\nƯu đãi Edu  10,490,000 ₫\n\nKhách hàng thn thiết  10,604,000 ₫\n\nTặng củ sạc samsung 25W chính hãng trị giá 490.000đ\n\n+ 6 Khuyến mãi khác 8GB 128GB - 1 Đổi 1 12 Tháng\")\n\nSamsung Galaxy A37 (5G) 8GB 128GB - 1 Đổi 1 12 Tháng\n\n1 đổi 1 12 Tháng\n\nSamsung Galaxy A37 (5G) 8GB 128GB - 1 Đổi 1 12 Tháng\n\n9,390,000 ₫ ~~10,790,000 ₫~~ [...] iNOI nổi bật với việc cung cấp các mẫu điện thoại giá rẻ, với mức giá dao động từ 990.000 đến 3 triệu đồng, nhằm đáp ứng nhu cầu của người tiêu dùng có ngn sách hạn chế. Thương hiệu này tập trung vào việc mang lại giá trị tốt nhất cho khách hàng thông qua các sản phẩm có hiệu suất ổn định và tính năng cơ bản, phù hợp với nhu cầu sử dụng hàng ngày.\n\n### Mua điện thoại di động tại Clickbuy",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "CATEGORY",
+        "evidence_url": "https://clickbuy.com.vn/dien-thoai",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Discovery HTTP budget exhausted; metadata retained."
+      },
+      "merchant": null
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua online",
+      "url": "https://bloganchoi.com/tag/dien-thoai-pin-trau-cau-hinh-manh/feed",
+      "title": "điện thoại pin trâu cấu hình mạnh – BlogAnChoi",
+      "content": "Mua Realme Q3 Pro trên Lazada với giá từ 5.650.000 VND tại đy\n Mua Realme Q3 Pro trên Shopee với giá từ 5.959.000 VND tại đy\n\n## 6. Xiaomi POCO M3 Pro 5G – Giá khoảng 4.790.000 VNĐ\n\nXiaomi POCO M3 Pro 5G là một trong những chiếc điện thoại tốt nhất trong tầm giá. (Nguồn: Internet)\")\n\nXiaomi POCO M3 Pro 5G là một trong những chiếc điện thoại tốt nhất trong tầm giá. (Nguồn: Internet)\n\n### Thông số kỹ thuật [...] Mua Samsung Galaxy M62 trên Shopee với giá từ 7.790.000 VND tại đy\n Mua Samsung Galaxy M62 trên Lazada với giá từ 7.990.000 VND tại đy\n\n## 9. Vivo Y33S – Giá khoảng 6.990.000 VNĐ\n\nVivo Y33S có thiết kế đẹp và bắt mắt. (nguồn: Internet)\")\n\nVivo Y33S có thiết kế đẹp và bắt mắt. (nguồn: Internet)\n\n### Thông số kỹ thuật [...] Mua Vivo Y33S trên Shopee với giá từ 6.950.000 VND tại đy\n Mua Vivo Y33S trên Thế Giới Di Động với giá từ 6.990.000 VND tại đy\n\n## 8. Realme 9i – Giá khoảng 6.490.000 VNĐ\n\nRealme 9i có mặt lưng làm bằng nhựa bóng, dễ in dấu vn tay. (Nguồn: Internet)\")\n\nRealme 9i có mặt lưng làm bằng nhựa bóng, dễ in dấu vn tay. (Nguồn: Internet)\n\n### Thông số kỹ thuật",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "CATEGORY",
+        "evidence_url": "https://bloganchoi.com/tag/dien-thoai-pin-trau-cau-hinh-manh/feed",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      },
+      "merchant": null
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua online",
+      "url": "https://bloganchoi.com/tag/dien-thoai-samsung-galaxy-m62/feed",
+      "title": "điện thoại Samsung Galaxy M62 – BlogAnChoi",
+      "content": "Mua Realme Q3 Pro trên Lazada với giá từ 5.650.000 VND tại đy\n Mua Realme Q3 Pro trên Shopee với giá từ 5.959.000 VND tại đy\n\n## 6. Xiaomi POCO M3 Pro 5G – Giá khoảng 4.790.000 VNĐ\n\nXiaomi POCO M3 Pro 5G là một trong những chiếc điện thoại tốt nhất trong tầm giá. (Nguồn: Internet)\")\n\nXiaomi POCO M3 Pro 5G là một trong những chiếc điện thoại tốt nhất trong tầm giá. (Nguồn: Internet)\n\n### Thông số kỹ thuật [...] Khả năng chụp ảnh của máy cũng được đánh giá cao, có thể cho ra những bức ảnh rõ nét, màu sắc sống động. Realme Q3 Pro sở hữu viên pin 4500 mAh cùng với sạc nhanh 30W. Dung lượng 4500 mAh tuy không quá “khủng” nhưng đủ để bạn sử dụng trong khoảng thời gian tương đối dài.\n\nBạn có thể xem video đánh giá chi tiết Realme Q3 Pro dưới đy:\n\n### Mua Realme Q3 Pro ở đu? Giá bao nhiêu? [...] Chip: MediaTek Helio G80\n RAM: 8 GB\n Bộ nhớ trong: 128 GB\n Màn hình: IPS LCD, 6,58 inch, Full HD+\n Camera trước: 16 MP\n Camera sau: Camera chính 50 MP, cảm biến độ su 2 MP, macro 2 MP\n Dung lượng pin: 5000 mAh\n\nVivo Y33S là chiếc điện thoại tầm trung của nhà Vivo với thiết kế mỏng, đẹp, bắt mắt và trẻ trung. Tuy nhiên thiết kế của máy chỉ bằng nhựa nên khi cầm không đem lại cảm giác quá chắc tay cho người dùng.",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "CATEGORY",
+        "evidence_url": "https://bloganchoi.com/tag/dien-thoai-samsung-galaxy-m62/feed",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      },
+      "merchant": null
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua online",
+      "url": "https://bloganchoi.com/tag/dien-thoai-vivo-y33s/feed",
+      "title": "điện thoại Vivo Y33S – BlogAnChoi",
+      "content": "Mua Realme Q3 Pro trên Lazada với giá từ 5.650.000 VND tại đy\n Mua Realme Q3 Pro trên Shopee với giá từ 5.959.000 VND tại đy\n\n## 6. Xiaomi POCO M3 Pro 5G – Giá khoảng 4.790.000 VNĐ\n\nXiaomi POCO M3 Pro 5G là một trong những chiếc điện thoại tốt nhất trong tầm giá. (Nguồn: Internet)\")\n\nXiaomi POCO M3 Pro 5G là một trong những chiếc điện thoại tốt nhất trong tầm giá. (Nguồn: Internet)\n\n### Thông số kỹ thuật [...] Khả năng chụp ảnh của máy cũng được đánh giá cao, có thể cho ra những bức ảnh rõ nét, màu sắc sống động. Realme Q3 Pro sở hữu viên pin 4500 mAh cùng với sạc nhanh 30W. Dung lượng 4500 mAh tuy không quá “khủng” nhưng đủ để bạn sử dụng trong khoảng thời gian tương đối dài.\n\nBạn có thể xem video đánh giá chi tiết Realme Q3 Pro dưới đy:\n\n### Mua Realme Q3 Pro ở đu? Giá bao nhiêu? [...] Bphone A40 có dung lượng pin 5000 mAh cùng với thiết kế tản nhiệt tối ưu, đủ để bạn có thể sử dụng trong khoảng thời gian dài mà không lo sợ hết pin hay nóng máy. Ngoài ra Bphone A40 còn được hỗ trợ sạc nhanh 18W.\n\nBạn có thể xem video đánh giá chi tiết Bphone A40 dưới đy:\n\n### Mua Bphone A40 ở đu? Giá bao nhiêu?\n\n Mua Bphone A40 trên Shopee với giá từ 4.490.000 VND tại đy\n Mua Bphone A40 trên Lazada với giá từ 4.300.000 VND tại đy\n\n## 3. Tecno POVA 2 – Giá khoảng 4.090.000 VNĐ",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "CATEGORY",
+        "evidence_url": "https://bloganchoi.com/tag/dien-thoai-vivo-y33s/feed",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      },
+      "merchant": null
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua online",
+      "url": "https://bloganchoi.com/tag/dien-thoai-realme-c25/feed",
+      "title": "điện thoại Realme C25 – BlogAnChoi",
+      "content": "Mua Realme Q3 Pro trên Lazada với giá từ 5.650.000 VND tại đy\n Mua Realme Q3 Pro trên Shopee với giá từ 5.959.000 VND tại đy\n\n## 6. Xiaomi POCO M3 Pro 5G – Giá khoảng 4.790.000 VNĐ\n\nXiaomi POCO M3 Pro 5G là một trong những chiếc điện thoại tốt nhất trong tầm giá. (Nguồn: Internet)\")\n\nXiaomi POCO M3 Pro 5G là một trong những chiếc điện thoại tốt nhất trong tầm giá. (Nguồn: Internet)\n\n### Thông số kỹ thuật [...] Chip: MediaTek Helio G80\n RAM: 8 GB\n Bộ nhớ trong: 128 GB\n Màn hình: IPS LCD, 6,58 inch, Full HD+\n Camera trước: 16 MP\n Camera sau: Camera chính 50 MP, cảm biến độ su 2 MP, macro 2 MP\n Dung lượng pin: 5000 mAh\n\nVivo Y33S là chiếc điện thoại tầm trung của nhà Vivo với thiết kế mỏng, đẹp, bắt mắt và trẻ trung. Tuy nhiên thiết kế của máy chỉ bằng nhựa nên khi cầm không đem lại cảm giác quá chắc tay cho người dùng. [...] Bphone A40 có dung lượng pin 5000 mAh cùng với thiết kế tản nhiệt tối ưu, đủ để bạn có thể sử dụng trong khoảng thời gian dài mà không lo sợ hết pin hay nóng máy. Ngoài ra Bphone A40 còn được hỗ trợ sạc nhanh 18W.\n\nBạn có thể xem video đánh giá chi tiết Bphone A40 dưới đy:\n\n### Mua Bphone A40 ở đu? Giá bao nhiêu?\n\n Mua Bphone A40 trên Shopee với giá từ 4.490.000 VND tại đy\n Mua Bphone A40 trên Lazada với giá từ 4.300.000 VND tại đy\n\n## 3. Tecno POVA 2 – Giá khoảng 4.090.000 VNĐ",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "CATEGORY",
+        "evidence_url": "https://bloganchoi.com/tag/dien-thoai-realme-c25/feed",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      },
+      "merchant": null
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua online",
+      "url": "https://bloganchoi.com/tag/dien-thoai-realme-9i/feed",
+      "title": "điện thoại realme 9i – BlogAnChoi",
+      "content": "Mua Realme Q3 Pro trên Lazada với giá từ 5.650.000 VND tại đy\n Mua Realme Q3 Pro trên Shopee với giá từ 5.959.000 VND tại đy\n\n## 6. Xiaomi POCO M3 Pro 5G – Giá khoảng 4.790.000 VNĐ\n\nXiaomi POCO M3 Pro 5G là một trong những chiếc điện thoại tốt nhất trong tầm giá. (Nguồn: Internet)\")\n\nXiaomi POCO M3 Pro 5G là một trong những chiếc điện thoại tốt nhất trong tầm giá. (Nguồn: Internet)\n\n### Thông số kỹ thuật",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "CATEGORY",
+        "evidence_url": "https://bloganchoi.com/tag/dien-thoai-realme-9i/feed",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      },
+      "merchant": null
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu đại lý",
+      "url": "https://24hstore.vn/review-san-pham/dien-thoai-duoi-10-trieu-n8676",
+      "title": "TOP 11+ Điện thoại dưới 10 triệu cực tốt ĐÁNG MUA nhất 2026",
+      "content": "iPhone 11 Pro Max 512GB Cũ 98% cực sang trọng và đẳng cấp tại 24hStore hiện nay có giá là 9.990.000đ. Còn đối với máy tình trạng máy 99% và Máy đẹp Like New sẽ có giá chỉ nhỉnh hơn vài trăm nghìn đồng, không quá mắc, cụ thể dao động từ 10.190.000đ đến 10.690.000đ tùy theo màu. [...] Thông số kỹ thuật:\n\n Màn hình: AMOLED6.7\"Full HD+.\n Màn hình rộng: 6.4 inch (hình chữ nhật hoàn chỉnh) / 6.3 inch (tính đến các góc tròn).\n Ram: 8GB\n Chip: Snapdragon 695 5G, hiệu suất tối đa là 2.2 GHz.\n Camera sau: Chính 108 MP & Phụ 2 MP, 2 MP.\n Camera trước: 32 MP.\n Dung lượng pin: 4800 mAh 67W.\n Dung lượng lưu trữ: 128 GB.\n\nOPPO Reno8 T 5G tại 24hStore có giá 8.790.000đ đầy đủ phụ kiện và bảo hành, quý bạn đọc có thể tham khảo.\n\n### OPPO Reno8 Z 5G - OPPO dưới 10 triệu thỏa sức chơi game [...] |  |  |  |\n --- \n| Dòng điện thoại | Hệ thống camera | Giá bán |\n| iPhone 12 Mini 128GB Cũ | Camera góc rộng 12MP  Camera góc siêu rộng 12MP Camera trước 12MP | 9.890.000đ |\n| iPhone 12 64GB Cũ - 128GB - 256GB | Camera góc rộng 12MP  Camera góc siêu rộng 12MP Camera trước 12MP | 6.690.000đ - 9.690.000đ |\n| Samsung Galaxy A35 5G | Camera sau 50MP + 8.0 MP + 5.0 MP, camera trước 13MP | 6.690.000đ - 7.690.000đ |",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "REVIEW",
+        "evidence_url": "https://24hstore.vn/review-san-pham/dien-thoai-duoi-10-trieu-n8676",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      },
+      "merchant": null
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu đại lý",
+      "url": "https://hungmobile.vn/tin-tuc/top-dien-thoai-duoi-10-trieu-dang-mua-nhat.html",
+      "title": "TOP 20 điện thoại DUỚI 10 TRIỆU tốt nhất, chụp ảnh đẹp nhất 2026",
+      "content": "Oppo Find X8s\n\n### 5. Oppo Find X8s Plus: Màn lớn hơn, pin 6000mAh, camera flagship\n\nOppo Find X8s Plus là bản phù hợp hơn cho người thích màn lớn và pin tốt hơn so với X8s. Máy vẫn giữ chip Dimensity 9400+, cụm 3 camera 50MP và pin 6000mAh, rất đáng cn nhắc dưới 10 triệu.\n\nCấu hình:\n\n Màn hình: 6.59 inch AMOLED, 120Hz, 4500 nits\n Chip: Dimensity 9400+\n RAM/ROM: 12GB/256GB\n Camera: 50MP + 50MP + 50MP | 32MP\n Pin: 6000mAh, sạc 80W\n\nOppo X8s Plus \n\nOppo X8s Plus [...] Gửi bình luận\n\nVui lòng để lại thông tin để gửi bình luận !\n\nSản phẩm bán chạy\n\nRedmi K80 5G Mới 100% (Sẵn TV)\n\n### Redmi K80 5G Mới 100% (Sẵn TV)\n\n10.190.000 ₫\n\nvivo iQOO Z10 Turbo Nguyên Seal Xịn\n\n### vivo iQOO Z10 Turbo Nguyên Seal Xịn\n\n9.190.000 ₫\n\nOppo Find X8s Plus Mới (ĐBH)\n\n### Oppo Find X8s Plus Mới (ĐBH)\n\n10.590.000 ₫\n\nOppo Find X8s Mới (ĐBH)\n\n### Oppo Find X8s Mới (ĐBH)\n\n10.690.000 ₫\n\nRedmi Turbo 5 Max Nguyên Seal Xịn\n\n### Redmi Turbo 5 Max Nguyên Seal Xịn\n\n10.690.000 ₫ [...] ## I. TOP điện thoại dưới 10 triệu của Xiaomi\n\n### 1. Redmi Turbo 4 Pro: Snapdragon 8s Gen 4, pin 7550mAh cực tru\n\nRedmi Turbo 4 Pro nổi bật trong tầm giá dưới 10 triệu nhờ chip Snapdragon 8s Gen 4, RAM 12GB và pin 7550mAh rất ấn tượng. Máy phù hợp với người dùng cần hiệu năng mạnh, màn đẹp và thời lượng pin cực tốt.\n\nCấu hình:\n\n Màn hình: 6.83 inch AMOLED, 120Hz, 3200 nits\n Chip: Snapdragon 8s Gen 4\n RAM/ROM: 12GB/256GB\n Camera: 50MP + 8MP | 20MP\n Pin: 7550mAh, sạc 90W\n\nRedmi Turbo 4 Pro",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "NEWS",
+        "evidence_url": "https://hungmobile.vn/tin-tuc/top-dien-thoai-duoi-10-trieu-dang-mua-nhat.html",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      },
+      "merchant": null
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu đại lý",
+      "url": "https://fptshop.com.vn/tin-tuc/danh-gia/top-dien-thoai-chup-anh-dep-pin-trau-2025-178915",
+      "title": "Top điện thoại chụp ảnh đẹp pin trâu 2025 từ giá rẻ đến cao cấp",
+      "content": "December 9, 2025 - Bắt kịp xu thế công nghệ mới của thời đại, Samsung đã ứng dụng AI tiên tiến cho Galaxy S25 Ultra với các tính năng quay chụp thông minh như tự động loại bỏ chi tiết thừa, tái tạo tông màu",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "NEWS",
+        "evidence_url": "https://fptshop.com.vn/tin-tuc/danh-gia/top-dien-thoai-chup-anh-dep-pin-trau-2025-178915",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      },
+      "merchant": null
+    },
+    {
+      "query": "site:cellphones.com.vn \"Samsung Galaxy S24\" giá bán",
+      "url": "https://cellphones.com.vn/sforum/so-sanh-nubia-z60s-pro-va-samsung-s24-fe",
+      "title": "So sánh Nubia Z60s Pro và Samsung S24 FE: Mua máy nào?",
+      "content": "Nubia Z60s Pro\n\nTrong khi đó, Samsung Galaxy S24 FE vẫn được kế thừa những nét đặc trưng của dòng S, bao gồm ngôn ngữ thiết kế và những tính năng AI của dòng Galaxy S. Tại CellphoneS, mẫu Samsung S24 FE có giá bán 12,890,000đ (8/128GB).\n\nGalaxy S24 FE \n\nGalaxy S24 FE\n\n \n\n## Chi tiết so sánh Nubia Z60s Pro và Samsung S24 FE\n\nDưới đy chúng ta sẽ cùng nhau đi so sánh Nubia Z60s Pro và Samsung S24 FE một cách chi tiết để xem trong phn khúc giá hơn 10 triệu đồng thì đu mới là thiết bị đáng mua nhé. [...] Trong khi đó, Nubia Z60s Pro sở hữu vi xử lý mạnh mẽ với dung lượng RAM và bộ nhớ trong cao hơn, camera góc siêu rộng có độ phn giải cao hơn, pin và sạc cũng tốt hơn. Tại CellphoneS, các bạn có thể đặt mua Galaxy S24 FE với mức giá chỉ 12,890,000đ đối với phiên bản 8/128GB. Với Nubia Z60s Pro, nếu bạn đọc quan tm thì có thể đăng ký thông tin qua đường liên kết bên dưới nhé.\n\n[Product\\_Info id='74613']\n\n[cpsSubscriber id='105896' ] [...] Thành Đạt, Tác giả Sforum - Trang tin công nghệ mới nhất\n\nThành Đạt\n\nNgày cập nhật: 24/06/2025\n\nSo sánh Nubia Z60s Pro và Samsung S24 FE để xem trong phn khúc giá khoảng 10 triệu đồng thì đu mới là sự lựa chọn tốt nhất, đảm bảo được các yếu tố hiệu suất trên giá bán.",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://cellphones.com.vn/sforum/so-sanh-nubia-z60s-pro-va-samsung-s24-fe",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Trang không phải trang bán sản phẩm: NEWS",
+        "result_type": "NEWS",
+        "page_heading": "So sánh Nubia Z60s Pro và Samsung S24 FE: Chọn hiệu năng hay sự cân bằng trải nghiệm",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "site:cellphones.com.vn \"Samsung Galaxy S24\" giá bán",
+      "url": "https://cellphones.com.vn/mobile/samsung/galaxy-s.html",
+      "title": "Samsung Galaxy S chính hãng | Nhiều dòng giá tốt 09/2026",
+      "content": "### Samsung Galaxy S24 8GB 512GB\n\nSắp về hàng\n\nTrả góp 0%\n\n : \n\n17.190.000đ\n\n26.490.000đ\n\nGiảm 35%\n\n6.2 inches\n\n8 GB\n\n512 GB\n\nTrả góp 0% - 0đ phụ phí - 0đ trả trước - kỳ hạn đến 12 tháng\n\n5\n\nTrả góp 0%\n\nXem thêm 3 sản phẩm\n\nSản phẩm nổi bật: Samsung Galaxy S26  Samsung Galaxy S26 Plus [...] |  |  |  |\n --- \n| Tên sản phẩm | Giá bán | Giá thu cũ lên đời |\n| Samsung Galaxy S26 Ultra 5G 12GB 256GB | 29.000.000đ | 28.500.000đ |\n| Samsung Galaxy S26 5G 12GB 256GB | 20.590.000đ | 20.090.000đ |\n| Samsung Galaxy S24 Ultra 12GB 256GB | 25.290.000đ | 24.290.000đ |\n| Samsung Galaxy S26 Plus 5G 12GB 256GB | 23.000.000đ | 22.500.000đ |\n| Samsung Galaxy S25 256GB | 17.490.000đ | 16.490.000đ | [...] 5\n\nTrả góp 0%\n\nSamsung Galaxy S25 Plus 256GB\n\n### Samsung Galaxy S25 Plus 256GB\n\nTrả góp 0%\n\n : \n\n19.990.000đ\n\n26.500.000đ\n\nGiảm 25%\n\n6.7 inches\n\n12 GB\n\n256 GB\n\nTrả góp 0% - 0đ phụ phí - 0đ trả trước - kỳ hạn đến 12 tháng\n\n2 Giờ\n\n5\n\nTrả góp 0%\n\nSamsung Galaxy S24 Ultra 12GB 256GB\n\n### Samsung Galaxy S24 Ultra 12GB 256GB\n\nSắp về hàng\n\nTrả góp 0%\n\n : \n\n25.290.000đ\n\n29.450.000đ\n\nGiảm 14%\n\n6.8 inches\n\n12 GB\n\n256 GB\n\nTrả góp 0% - 0đ phụ phí - 0đ trả trước - kỳ hạn đến 12 tháng\n\n4.9\n\nTrả góp 0%",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://cellphones.com.vn/mobile/samsung/galaxy-s.html",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Điện thoại Samsung Galaxy S",
+        "discovery": [
+          {
+            "name": "Điện thoại Samsung Galaxy S",
+            "brand": "Samsung",
+            "model": "Điện thoại Samsung Galaxy S",
+            "variant": {},
+            "price_type": "AGGREGATE_RANGE",
+            "price_min": 13390000,
+            "price_max": 41990000
+          }
+        ],
+        "rejection_code": "missing_price",
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "\"Samsung Galaxy S24 Ultra 12GB 512GB\" giá",
+      "url": "https://www.ebay.com/b/Samsung-Galaxy-S24-Ultra-512GB/9355/bn_7122009163",
+      "title": "Samsung Galaxy S24 Ultra 512GB for Sale",
+      "content": "Find great deals on Samsung Galaxy S24 Ultra 512GB. Samsung US $351.01 to US $752.01 (11)Free. Samsung US $594.66 to US $688.66. Samsung US $181.00 to US $690.",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.ebay.com/b/Samsung-Galaxy-S24-Ultra-512GB/9355/bn_7122009163",
+        "page_fetched": false,
+        "fetch_failure": "http_or_network",
+        "fetch_blocked": true,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "reason": "Title and direct URL must identify the same model/variant.",
+        "image_url": null,
+        "image_source": null,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "\"Samsung Galaxy S24 Ultra 12GB 512GB\" giá",
+      "url": "https://www.walmart.com/ip/Samsung-Galaxy-S24-Ultra-5G-SM-S928B-DS-512GB-12GB-RAM-DUAL-SIM-Global-Model-Factory-Unlocked-GSM-Titanium-Gray/5367869663",
+      "title": "Samsung Galaxy S24 Ultra 5G Cell Phone, Dual SIM, 512GB, 12GB RAM, Unlocked GSM, Titanium Gray - Walmart.com",
+      "content": "# Samsung Galaxy S24 Ultra 5G SM-S928B/DS 512GB 12GB RAM DUAL SIM (Global Model) Factory Unlocked GSM (Titanium Gray)\n\n## Key item features\n\n## Specs\n\nWPP Logo\n\n(Only one option can be selected at a time)\n\n## How do you want your item?\n\nWalmart Plus\n\n### Samsung Galaxy S24 Ultra 5G, US Version, 512GB SM-S928U1, Titanium Black - Unlocked $832.39\n\nSamsung Galaxy S24 Ultra 5G, US Version, 512GB SM-S928U1, Titanium Black - Unlocked [...] Samsung Galaxy S24 Ultra 5G SM-S928B/DS 512GB 12GB RAM DUAL SIM (Global Model) Factory Unlocked GSM (Titanium Gray)\nSamsung Galaxy S24 Ultra 5G SM-S928B/DS 512GB 12GB RAM DUAL SIM (Global Model) Factory Unlocked GSM (Titanium Gray) [...] ### Samsung Galaxy S24 Ultra 5G, US Version, 512GB SM-S928U1, Titanium Black - Unlocked\n\nWe’d love to hear what you think!\n\nPrivacy choices icon",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.walmart.com/blocked?url=L2lwL1NhbXN1bmctR2FsYXh5LVMyNC1VbHRyYS01Ry1TTS1TOTI4Qi1EUy01MTJHQi0xMkdCLVJBTS1EVUFMLVNJTS1HbG9iYWwtTW9kZWwtRmFjdG9yeS1VbmxvY2tlZC1HU00tVGl0YW5pdW0tR3JheS81MzY3ODY5NjYz&uuid=91fe5989-b96b-11f1-b398-da8c34e03317&vid=&g=b",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Robot or human?",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "\"Samsung Galaxy S24 Ultra 12GB 512GB\" giá",
+      "url": "https://www.amazon.com/clp/B0D3264WQ8",
+      "title": "Samsung Galaxy S24 Ultra 5G, US Version, 512GB ...",
+      "content": "Samsung Galaxy S24 Ultra 5G, US Version, 512GB, Titanium Black ・ 12GB RAM Android 16 Factory Unlocked Smartphone ・ 7000mAh Battery, Fingerprint/Face ID, Dual",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.amazon.com/clp/B0D3264WQ8",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "More to explore",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "\"Samsung Galaxy S24 Ultra 12GB 512GB\" giá",
+      "url": "https://www.samsung.com/us/smartphones/galaxy-s24-ultra",
+      "title": "Samsung Galaxy S24 Ultra | Features & Highlights | Samsung US",
+      "content": "Skip to content\n\nWelcome to the\nPlease enjoy our special offers for you\n\nMY BENEFITS SPECIAL OFFERS\n\nNO SUGGESTIONS\n\nAI Suggested Searches\n\nSuggested Searches\n\nPOPULAR SEARCHES\n\nRECENT SEARCHES\n\nRELATED PRODUCTS\n\nRECOMMENDED\n\n## Galaxy S24 Ultra\n\nBuy now\n\n## Galaxy S24 Ultra is sold out\n\nWe're out of stock. Experience Galaxy S25 Ultra, the next evolution of Galaxy AI with a new 50MP Ultra Wide lens.\n\nBuy now\n\n \n\nProduct Registration [...] Back view\n\nThe serial number and model name are printed on the label located on the lower left side of the device’s exterior, near the front. They are also on a second label, inside the refrigerator compartment on a side wall above the top shelf.\n\n \n\nBack view [...] Quick and easy product registration..  \nReceive up-to-date personalized services and tips.\n\nSerial Number/IMEI\n\nEnter your Serial Number/IMEI\n\nQR Scan\n\nScan the QR code on your products for easy registration.\n\n\\ This feature can only be supported on Samsung Home Appliances and non-smart B2C monitors.\n\nEnter your Serial Number/IMEI\n\nQuick and easy product registration.\n\nThis product is already registered. Make sure you entered the right serial number or IMEI.\n\n \n\nBack view",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.samsung.com/us/smartphones/galaxy-s24-ultra/",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Samsung Galaxy S24 Ultra | Features & Highlights | Samsung US",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "site:chuyensidienthoai.vn điện thoại giá khoảng 10000000 VND giá bán",
+      "url": "https://chuyensidienthoai.vn/san-pham/inoi-a72-4gb-128gb-fullbox-hang-chinh-hang",
+      "title": "Inoi A72 4GB/128GB FULLBOX (Hàng Công Ty) - Tmobile",
+      "content": "Giá bán đã bao gồm VAT Kiểm hàng, Giá của điện thoại INOI A72 hiện đang dao độngchỉ từ 2.490.000 VNĐ tại thị trường Việt. phân khúc tầm trung.",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://chuyensidienthoai.vn/san-pham/inoi-a72-4gb-128gb-fullbox-hang-chinh-hang",
+        "page_fetched": false,
+        "fetch_failure": "http_or_network",
+        "fetch_blocked": true,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "reason": "Exact product identity is missing from snippet.",
+        "image_url": null,
+        "image_source": null,
+        "page_requested": true
+      },
+      "merchant": null
+    },
+    {
+      "query": "site:chuyensidienthoai.vn điện thoại giá khoảng 10000000 VND giá bán",
+      "url": "https://chuyensidienthoai.vn/lua-chon-cong-cu-sua-chua-dien-thoai-phu-hop",
+      "title": "Lựa Chọn Công Cụ Sửa Chữa Điện Thoại Phù Hợp - Tmobile",
+      "content": "Tua Vít Chuyên Dụng: Bao gồm đầu Phillips, phẳng, và sao (star), phù hợp với iPhone, Samsung. Giá từ 50.000-200.000 VNĐ, mua tại Chợ Tân Bình.",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://chuyensidienthoai.vn/lua-chon-cong-cu-sua-chua-dien-thoai-phu-hop/",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Trang không phải trang bán sản phẩm: ARTICLE",
+        "result_type": "ARTICLE",
+        "page_heading": "Lựa Chọn Công Cụ Sửa Chữa Điện Thoại Phù Hợp",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      },
+      "merchant": null
+    }
+  ]
+}

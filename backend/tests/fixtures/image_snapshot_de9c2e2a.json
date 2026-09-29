@@ -1,0 +1,36 @@
+{
+  "session_id": "de9c2e2a-8c7f-40b0-ab62-ba7e045c0acd",
+  "provenance": "Read-only persisted snapshot; historical HTML and image probe outcomes were not persisted. No network.",
+  "recommendations": [
+    {
+      "name": "OPPO Reno14 5G 12GB 256GB",
+      "product_url": "https://cellphones.com.vn/dien-thoai-oppo-reno14.html",
+      "price": 15500000,
+      "merchant": "CELLPHONES",
+      "verification_level": "VERIFIED_CONTENT",
+      "image_url": null,
+      "image_source": null,
+      "availability": "in_stock"
+    },
+    {
+      "name": "POCO X8 Pro Max 12GB 256GB",
+      "product_url": "https://cellphones.com.vn/dien-thoai-xiaomi-poco-x8-pro-max.html",
+      "price": 13990000,
+      "merchant": "CELLPHONES",
+      "verification_level": "VERIFIED_CONTENT",
+      "image_url": null,
+      "image_source": null,
+      "availability": "in_stock"
+    },
+    {
+      "name": "Samsung Galaxy S25 Ultra 12GB 256GB",
+      "product_url": "https://cellphones.com.vn/dien-thoai-samsung-galaxy-s25-ultra.html",
+      "price": 25990000,
+      "merchant": "CELLPHONES",
+      "verification_level": "VERIFIED_CONTENT",
+      "image_url": null,
+      "image_source": null,
+      "availability": "in_stock"
+    }
+  ]
+}

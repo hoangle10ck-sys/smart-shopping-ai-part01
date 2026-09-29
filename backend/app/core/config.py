@@ -73,6 +73,8 @@ class Settings(BaseSettings):
     # =========================================================
 
     llm_timeout_seconds: int = 30
+    explanation_concurrency: int = 3
+    explanation_timeout_seconds: float = 8.0
 
     search_timeout_seconds: int = 15
 
@@ -90,7 +92,16 @@ class Settings(BaseSettings):
     max_results_per_query: int = 5
     live_search_budget_seconds: float = 120.0
     live_search_max_queries: int = 12
-    live_search_target_products: int = 1
+    live_search_target_products: int = 5
+    live_search_min_products: int = 3
+    live_search_query_concurrency: int = 2
+    live_search_page_concurrency: int = 4
+    live_search_per_domain_concurrency: int = 2
+    live_search_initial_candidates: int = 10
+    live_search_max_candidates: int = 20
+    live_search_discovery_pages: int = 4
+    live_search_page_budget_seconds: float = 4.0
+    live_search_domain_budget_seconds: float = 6.0
 
     top_k: int = 5
 

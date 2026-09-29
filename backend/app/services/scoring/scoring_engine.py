@@ -27,7 +27,7 @@ SOURCE_WEIGHT = 0.10
 REQUIREMENT_ALIASES: dict[str, set[str]] = {
     "microphone": {"mic", "micro"},
     "battery": {"pin"},
-    "camera": {"may anh"},
+    "camera": {"may anh", "camera sau", "camera truoc", "rear camera", "front camera"},
     "weight": {"trong luong"},
     "ram": {"memory", "bo nho ram"},
     "storage": {"ssd", "bo nho", "dung luong"},
@@ -171,6 +171,19 @@ def _capacity_gb(value: str) -> float | None:
     return float(number.replace(",", ".")) * {"mb": 1 / 1024, "gb": 1, "tb": 1024}[unit]
 
 
+def _battery_mah(value: str) -> float | None:
+    """mAh-specific grouping; do not change decimal parsing for kg/hours/GB."""
+    match = re.search(r"(?<![\w.,+-])(\d+(?:[.,]\d+)*)\s*mah\b", value, re.I)
+    if not match:
+        return None
+    number = match.group(1)
+    if re.fullmatch(r"[1-9]\d{0,2}([.,])\d{3}(?:\1\d{3})*", number):
+        return float(number.replace('.', '').replace(',', ''))
+    if re.fullmatch(r"\d+(?:[.,]\d+)?", number):
+        return float(number.replace(',', '.'))
+    return None
+
+
 def _value_satisfies(key: str, actual: str, required: str, category: str | None) -> bool:
     """Compare a property's own value; unknown/absent evidence earns no credit."""
     actual_text, required_text = normalized(actual), normalized(required)
@@ -211,9 +224,8 @@ def _value_satisfies(key: str, actual: str, required: str, category: str | None)
         minimum_hours = {"tai nghe": 24, "laptop": 8}.get(normalized(category))
         if hours and minimum_hours is not None:
             return float(hours.group(1).replace(",", ".")) >= minimum_hours
-        mah = re.search(r"(\d+(?:[.,]\d+)?)\s*mah\b", actual.lower())
-        return bool(mah and normalized(category) == "dien thoai"
-                    and float(mah.group(1).replace(",", ".")) >= 4000)
+        mah = _battery_mah(actual)
+        return mah is not None and normalized(category) == "dien thoai" and mah >= 4000
 
     # Preserve the complete requested value; matching one token is insufficient.
     return bool(required_text and re.search(
@@ -244,6 +256,8 @@ def _is_known_mismatch(key: str, actual: str, required: str, category: str | Non
     }:
         return False  # Presence or an unspecified quality is not measured quality.
     if key == "battery" and wanted in {"pin lau", "lau", "long battery life"}:
+        if normalized(category) == 'dien thoai':
+            return _battery_mah(actual) is not None
         unit = r"(?:hours?|hrs?|h|gio)" if normalized(category) in {"tai nghe", "laptop"} else (
             "mah" if normalized(category) == "dien thoai" else None
         )
@@ -446,6 +460,13 @@ class ScoringEngine:
         for item in requirement.requirements:
             key = _property_key(item.name)
             actuals = values.get(key, [])
+            # A specifically requested front/rear camera must not borrow the
+            # other camera's OIS. Generic camera requests may inspect both.
+            requested_key = normalized(item.name)
+            sides = ({'camera sau', 'rear camera'}, {'camera truoc', 'front camera'})
+            side = next((group for group in sides if requested_key in group), None)
+            if side:
+                actuals = [v for k,v in candidate.specifications.items() if normalized(k) in side]
             matched = next((value for value in actuals if _value_satisfies(
                 key, value, item.value, candidate.category
             )), None)

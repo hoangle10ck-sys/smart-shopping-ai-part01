@@ -5,6 +5,18 @@ from html import unescape
 from urllib.parse import unquote, urlsplit
 
 from app.services.normalization.product_normalizer import infer_product_category
+from app.services.normalization.text_normalizer import normalize_product_text
+
+
+def verified_category(value):
+    """Main-page family evidence, after explicit object/accessory taxonomy."""
+    explicit = infer_product_category(value)
+    if explicit:
+        return explicit
+    text = normalize_product_text(value) or ''
+    if re.match(r'^(?:xiaomi\s+)?redmi note \d+\b', text):
+        return 'điện thoại'
+    return None
 
 
 def breadcrumb_taxonomy(parser):
@@ -40,16 +52,16 @@ def category_evidence(parser, product, url, *, verified, normalized_schema_categ
     breadcrumbs = breadcrumb_taxonomy(parser)
     def taxonomy(values):
         # The deepest recognized category wins over a broad ancestor.
-        return next((c for value in reversed(values) if (c := infer_product_category(value))), None)
+        return next((c for value in reversed(values) if (c := verified_category(value))), None)
     breadcrumb_categories = {c for path in breadcrumbs if (c := taxonomy(path))}
     # Reuse a verified parser's explicit taxonomy normalization where supplied;
     # retain the raw schema in observations for provenance/conflict auditing.
     schema_category = (normalized_schema_category or infer_product_category('', unescape(schema))) if schema else None
-    h1_category = infer_product_category(parser.heading)
-    title_category = infer_product_category(' '.join(parser.title))
+    h1_category = verified_category(parser.heading)
+    title_category = verified_category(' '.join(parser.title))
     heading_category = h1_category or title_category
     path = unquote(urlsplit(url).path).strip('/')
-    path_category = infer_product_category(path.rsplit('/',1)[-1]) or infer_product_category(path)
+    path_category = verified_category(path.rsplit('/',1)[-1]) or infer_product_category(path)
     accessories = {'ốp lưng','bao da','miếng dán','giá treo','remote','kệ tivi','chân đế','phụ kiện'}
     strong = {c for c in (schema_category, *breadcrumb_categories, heading_category) if c}
     if path_category in accessories: strong.add(path_category)

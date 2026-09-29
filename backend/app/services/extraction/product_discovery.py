@@ -2,6 +2,42 @@
 import json
 
 
+def discover_child_products(parser, page_url):
+    """Extract bounded same-origin links; every child still needs verification."""
+    from urllib.parse import urlsplit
+    import ipaddress
+    from app.services.extraction.product_page_validator import http_url, possible_product_url
+    found = {}
+    def add(name, link):
+        if not isinstance(name, str) or not name.strip(): return
+        url = http_url(link, page_url)
+        if not url or url == page_url or not possible_product_url(url): return
+        host = urlsplit(url).hostname or ''
+        if host != urlsplit(page_url).hostname or host == 'localhost' or host.endswith('.localhost'): return
+        try:
+            if not ipaddress.ip_address(host).is_global: return
+        except ValueError:
+            pass  # Runtime DNS/public-address check is still mandatory in resolver.
+        if len(found) < 12:
+            found.setdefault(url, {'name': name.strip(), 'url': url, 'parent_url': page_url})
+
+    def visit(node, in_list=False):
+        if isinstance(node, list):
+            for item in node[:30]: visit(item, in_list)
+        elif isinstance(node, dict):
+            if in_list:
+                item = node.get('item', node)
+                if isinstance(item, dict): add(item.get('name'), item.get('url'))
+            for key in ('@graph', 'mainEntity'): visit(node.get(key))
+            visit(node.get('itemListElement'), True)
+    for block in parser.blocks:
+        try: visit(json.loads(block))
+        except (ValueError, TypeError): continue
+    for link in getattr(parser, 'product_links', []):
+        add(' '.join(link['text']), link['href'])
+    return list(found.values())
+
+
 def discover_products(parser, url=''):
     from app.services.extraction.product_page_validator import same_identity, structured_price
     from app.services.extraction.product_extraction_service import infer_brand, infer_model

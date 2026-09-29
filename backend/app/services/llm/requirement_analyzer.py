@@ -1,6 +1,7 @@
 """Requirement analysis and backend validation service."""
 
 from dataclasses import dataclass
+from app.services.performance import timed
 from app.services.budget import apply_budget_semantics
 
 from app.schemas.requirement import (
@@ -38,6 +39,7 @@ class RequirementAnalyzer:
             else get_llm_client()
         )
 
+    @timed('requirement_analysis_ms')
     async def analyze(
         self,
         raw_query: str,
@@ -125,7 +127,8 @@ class RequirementAnalyzer:
                 "budget"
             )
 
-        if not requirement.purpose:
+        if not requirement.purpose and not any(item.name.strip() and item.value.strip()
+                                               for item in requirement.requirements):
             missing_fields.append(
                 "purpose"
             )

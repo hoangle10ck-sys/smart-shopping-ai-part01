@@ -1,5 +1,6 @@
 """Real pipeline with local HTML/HTTP fixtures and no paid provider calls."""
 from copy import deepcopy
+import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import select
 
@@ -17,7 +18,8 @@ from app.services.extraction.product_image_resolver import ProductImageResolver
 from tests.fixtures.sales_pages import sales_page
 
 
-def test_offer_identity_image_evidence_snapshot_and_detail(monkeypatch):
+@pytest.mark.parametrize('image_pattern', ['json_ld', 'lazy', 'srcset'])
+def test_offer_identity_image_evidence_snapshot_and_detail(monkeypatch, image_pattern):
     settings = get_settings()
     monkeypatch.setattr(settings, 'demo_mode', False)
     monkeypatch.setattr(settings, 'openai_api_key', '')
@@ -32,9 +34,13 @@ def test_offer_identity_image_evidence_snapshot_and_detail(monkeypatch):
             return [SearchResult(title=name, url=url,
                 content=f'PRODUCT: {name} | CATEGORY: laptop | BRAND: Example | MODEL: X15 | PRICE: 1 VND | SPECS: ram=16GB') for url in reversed(urls)]
     async def fetch(self, url):
-        return url, sales_page(name=name, price=state['price'] if url == urls[0] else 14000000,
-                              image='/x15.jpg' if url == urls[0] else '/other-shop.jpg',
+        image = '/x15.jpg' if url == urls[0] else '/other-shop.jpg'
+        html = sales_page(name=name, price=state['price'] if url == urls[0] else 14000000,
+                              image=image if image_pattern == 'json_ld' else None,
                               brand='Example', model='X15', additionalProperty=[{'name': 'ram', 'value': '16GB'}])
+        if image_pattern == 'lazy': html += f'<img alt="{name}" src="/placeholder.png" data-original="{image}">'
+        if image_pattern == 'srcset': html += f'<img alt="{name}" srcset="{image} 600w">'
+        return url, html
     async def image_ok(self, url): return True
     monkeypatch.setattr(search_service, 'get_search_provider', Provider)
     monkeypatch.setattr(ProductImageResolver, '_fetch_html', fetch)
@@ -61,7 +67,7 @@ def test_offer_identity_image_evidence_snapshot_and_detail(monkeypatch):
         assert saved['image_url'] == 'https://cellphones.com.vn/x15.jpg'
         assert saved['merchant'] == 'Test Merchant'
         assert saved['product_page_valid'] is True
-        assert saved['image_source'] == 'json_ld_product'
+        assert saved['image_source'] == ('json_ld_product' if image_pattern == 'json_ld' else 'html_product_image')
         assert any(e['url'] == urls[2] for e in saved['evidence']['fields'])
         with SessionLocal() as db:
             offers = list(db.scalars(select(ProductOffer)))

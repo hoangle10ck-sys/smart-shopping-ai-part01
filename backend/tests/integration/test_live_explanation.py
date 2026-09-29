@@ -12,6 +12,7 @@ from app.core.config import get_settings
 from app.core.database import SessionLocal
 from app.main import app
 from app.services.llm import explanation_service as module
+from app.services.llm import explanation_batch as batch_module
 from app.services.recommendation.recommendation_service import RecommendationService
 
 
@@ -39,16 +40,16 @@ def test_live_provider_roundtrip_and_safe_fallback(monkeypatch, provider, outcom
         monkeypatch.setattr(module.time, "sleep", lambda _: None)
         calls, timeouts, closed = [], [], []
 
-        def response_text():
+        def response_text(prompt):
             calls.append(provider)
             if outcome == "timeout":
                 raise httpx.ReadTimeout("Mock timeout")
             if outcome == "invalid":
                 return json.dumps({"summary": []})
             # Provider attempts to add numeric data; the pipeline must never use it.
+            grounded = json.loads(prompt.split('DỮ LIỆU HỆ THỐNG:\n',1)[1])['approved_explanation']
             return json.dumps({
-                "summary": "Giải thích dựa trên evidence được cung cấp.",
-                "why_fit": ["Phù hợp cho học online."], "tradeoffs": [], "evidence_notes": [],
+                **grounded,
                 "generation_mode": provider,
                 "price": 1, "rating": 0, "specifications": {"ram": "999GB"}, "final_score": 0,
             })
@@ -57,17 +58,17 @@ def test_live_provider_roundtrip_and_safe_fallback(monkeypatch, provider, outcom
             def __init__(self, *, timeout):
                 timeouts.append(timeout)
 
-            def __enter__(self):
+            async def __aenter__(self):
                 return self
 
-            def __exit__(self, *args):
+            async def __aexit__(self, *args):
                 closed.append(True)
 
-            def post(self, url, *, headers, json):
+            async def post(self, url, *, headers, json):
                 assert url == module.OPENAI_RESPONSES_URL
                 assert json["store"] is False
-                text = response_text()
-                return SimpleNamespace(status_code=200, json=lambda: {
+                text = response_text(json['input'][0]['content'][0]['text'])
+                return SimpleNamespace(status_code=200, raise_for_status=lambda:None, json=lambda: {
                     "output": [{"type": "message", "content": [{"type": "output_text", "text": text}]}],
                 })
 
@@ -76,14 +77,19 @@ def test_live_provider_roundtrip_and_safe_fallback(monkeypatch, provider, outcom
                 timeouts.append(http_options.timeout)
                 assert http_options.retry_options.attempts == 1
                 self.models = self
+                self.aio = self
 
-            def generate_content(self, **kwargs):
-                return SimpleNamespace(parsed=None, text=response_text())
+            async def __aenter__(self): return self
+
+            async def __aexit__(self, *args): closed.append('async')
+
+            async def generate_content(self, **kwargs):
+                return SimpleNamespace(parsed=None, text=response_text(kwargs['contents']))
 
             def close(self):
                 closed.append(True)
 
-        monkeypatch.setattr(module.httpx, "Client", OpenAIClient)
+        monkeypatch.setattr(batch_module.httpx, "AsyncClient", OpenAIClient)
         monkeypatch.setattr(genai, "Client", GeminiClient)
         with SessionLocal() as db:
             result = RecommendationService().run(db=db, session_id=session_id)
@@ -93,12 +99,12 @@ def test_live_provider_roundtrip_and_safe_fallback(monkeypatch, provider, outcom
         assert item["explanation"]["generation_mode"] == expected_mode
         for key in ("price", "rating", "review_count", "specifications", "score", "confidence", "evidence"):
             assert item[key] == original[key]
-        assert calls == [provider] * (1 if outcome == "success" else 2)
-        assert timeouts and all(t == (7 if provider == "openai" else 7000) for t in timeouts)
+        assert calls == [provider]  # Timeout/invalid prose no longer retries.
+        assert timeouts and all(0 < t <= (7 if provider == "openai" else 7000) for t in timeouts)
         assert closed
 
         # Serializing and reading OpenAI mode must be accepted by the public schema.
         loaded = client.get(f"/api/search/{session_id}")
         assert loaded.status_code == 200
         assert loaded.json()["recommendations"][0] == item
-        assert len(calls) == (1 if outcome == "success" else 2)
+        assert len(calls) == 1

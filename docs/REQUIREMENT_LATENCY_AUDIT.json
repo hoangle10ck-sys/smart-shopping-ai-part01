@@ -1,0 +1,1617 @@
+{
+  "session": {
+    "id": "ce69ae93-4497-4f31-8b67-5547543bc859",
+    "user_id": null,
+    "raw_query": "Tôi cần điện thoại khoảng 10 triệu, camera tốt, pin lâu",
+    "status": "COMPLETED",
+    "created_at": "2026-09-28 12:41:57.313804",
+    "completed_at": "2026-09-28 12:43:10.077222",
+    "processing_time_ms": 72718.63
+  },
+  "timings": {
+    "requirement_analysis_ms": 0.0,
+    "clarification_ms": 0.0,
+    "query_generation_ms": 0.0,
+    "search_provider_ms": 25811.482,
+    "product_discovery_ms": 4645.522,
+    "product_verification_ms": 12141.592,
+    "page_fetch_ms": 14842.177,
+    "verification_ms": 5024.281,
+    "extraction_ms": 458.46,
+    "filtering_ms": 0.367,
+    "scoring_ms": 3.98,
+    "explanation_ms": 23544.545,
+    "total_search_ms": 72718.625
+  },
+  "delta_previous_ms": {
+    "requirement_analysis_ms": 0.0,
+    "clarification_ms": 0.0,
+    "query_generation_ms": 0.0,
+    "search_provider_ms": -5547.875,
+    "product_discovery_ms": 1654.734,
+    "product_verification_ms": 1179.712,
+    "page_fetch_ms": -501.25,
+    "verification_ms": 2625.736,
+    "extraction_ms": 15.209,
+    "filtering_ms": 0.08,
+    "scoring_ms": 3.56,
+    "explanation_ms": 19388.317,
+    "total_search_ms": 18452.181
+  },
+  "counters": {
+    "provider_calls": 9,
+    "round_count": 7,
+    "page_attempts": 23,
+    "product_attempts": 20,
+    "candidate_cap": 20,
+    "stop_reason": "candidate_budget",
+    "eligible_offers": 3
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "kind": "requirement",
+      "duration_ms": 6030.585,
+      "new_verified_products": 0,
+      "no_progress_rounds": 0,
+      "new_model_hints": 17,
+      "new_merchant_domains": 0,
+      "new_direct_urls": 2,
+      "new_child_urls": 0,
+      "queries_generated": [
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng"
+      ],
+      "queries_executed": [
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng"
+      ],
+      "raw_search_results_per_query": {
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam": 5,
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng": 5
+      },
+      "unique_search_results": 9,
+      "result_domains": [
+        "cellphones.com.vn",
+        "clickbuy.com.vn",
+        "dienmaycholon.com",
+        "hungmobile.vn",
+        "mobappy.co.jp",
+        "nguyenkim.com",
+        "vnreview.vn",
+        "youtube.com"
+      ],
+      "conversion": {
+        "potential_product_urls": 3,
+        "direct_product_candidates": 0,
+        "evidence_only_results": 9,
+        "rejected_before_fetch": 6,
+        "pages_requested": 3,
+        "pages_fetched": 3,
+        "pages_verified": 0,
+        "verification_failed": 3,
+        "wrong_category": 0,
+        "non_product_page": 7,
+        "missing_price": 0,
+        "missing_identity": 0,
+        "out_of_stock": 0,
+        "duplicate": 0,
+        "http_network_failure": 0,
+        "other": 2,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 0,
+        "reason_counts": {
+          "other": 2,
+          "non_product_page": 7
+        }
+      },
+      "cumulative_product_attempts": 2,
+      "cumulative_pages_requested": 3,
+      "cumulative_valid_offers": 0,
+      "new_eligible_offers": 0,
+      "queries": [
+        {
+          "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+          "provider_ms": 4753.33,
+          "results": 5,
+          "error": null
+        },
+        {
+          "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+          "provider_ms": 3031.948,
+          "results": 5,
+          "error": null
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "kind": "model_discovery",
+      "duration_ms": 6704.236,
+      "new_verified_products": 2,
+      "no_progress_rounds": 0,
+      "new_model_hints": 2,
+      "new_merchant_domains": 2,
+      "new_direct_urls": 5,
+      "new_child_urls": 0,
+      "queries_generated": [
+        "\"POCO X8 Pro\" mua Việt Nam VND",
+        "\"OPPO Reno14 F\" mua Việt Nam VND"
+      ],
+      "queries_executed": [
+        "\"POCO X8 Pro\" mua Việt Nam VND",
+        "\"OPPO Reno14 F\" mua Việt Nam VND"
+      ],
+      "raw_search_results_per_query": {
+        "\"POCO X8 Pro\" mua Việt Nam VND": 5,
+        "\"OPPO Reno14 F\" mua Việt Nam VND": 5
+      },
+      "unique_search_results": 10,
+      "result_domains": [
+        "cellphones.com.vn",
+        "facebook.com",
+        "oppo.com",
+        "thegioididong.com",
+        "youtube.com"
+      ],
+      "conversion": {
+        "potential_product_urls": 5,
+        "direct_product_candidates": 2,
+        "evidence_only_results": 8,
+        "rejected_before_fetch": 5,
+        "pages_requested": 5,
+        "pages_fetched": 5,
+        "pages_verified": 2,
+        "verification_failed": 3,
+        "wrong_category": 0,
+        "non_product_page": 5,
+        "missing_price": 0,
+        "missing_identity": 0,
+        "out_of_stock": 0,
+        "duplicate": 0,
+        "http_network_failure": 0,
+        "other": 3,
+        "valid_candidates": 2,
+        "eligible_offers": 2,
+        "reused_pages": 0,
+        "reason_counts": {
+          "non_product_page": 5,
+          "other": 3
+        }
+      },
+      "cumulative_product_attempts": 7,
+      "cumulative_pages_requested": 8,
+      "cumulative_valid_offers": 2,
+      "new_eligible_offers": 2,
+      "queries": [
+        {
+          "query": "\"POCO X8 Pro\" mua Việt Nam VND",
+          "provider_ms": 2603.494,
+          "results": 5,
+          "error": null
+        },
+        {
+          "query": "\"OPPO Reno14 F\" mua Việt Nam VND",
+          "provider_ms": 2952.221,
+          "results": 5,
+          "error": null
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "kind": "merchant_products",
+      "duration_ms": 4908.116,
+      "new_verified_products": 1,
+      "no_progress_rounds": 0,
+      "new_model_hints": 3,
+      "new_merchant_domains": 2,
+      "new_direct_urls": 3,
+      "new_child_urls": 0,
+      "queries_generated": [
+        "\"Redmi K80 5G\" giá Việt Nam VND"
+      ],
+      "queries_executed": [
+        "\"Redmi K80 5G\" giá Việt Nam VND"
+      ],
+      "raw_search_results_per_query": {
+        "\"Redmi K80 5G\" giá Việt Nam VND": 5
+      },
+      "unique_search_results": 5,
+      "result_domains": [
+        "cellphones.com.vn",
+        "hungmobile.vn",
+        "mobilecity.vn",
+        "shopee.vn",
+        "youtube.com"
+      ],
+      "conversion": {
+        "potential_product_urls": 4,
+        "direct_product_candidates": 1,
+        "evidence_only_results": 4,
+        "rejected_before_fetch": 1,
+        "pages_requested": 4,
+        "pages_fetched": 4,
+        "pages_verified": 1,
+        "verification_failed": 3,
+        "wrong_category": 0,
+        "non_product_page": 1,
+        "missing_price": 1,
+        "missing_identity": 1,
+        "out_of_stock": 1,
+        "duplicate": 0,
+        "http_network_failure": 0,
+        "other": 1,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 0,
+        "reason_counts": {
+          "missing_price": 1,
+          "missing_identity": 1,
+          "other": 1,
+          "non_product_page": 1,
+          "out_of_stock": 1
+        }
+      },
+      "cumulative_product_attempts": 11,
+      "cumulative_pages_requested": 12,
+      "cumulative_valid_offers": 2,
+      "new_eligible_offers": 0,
+      "queries": [
+        {
+          "query": "\"Redmi K80 5G\" giá Việt Nam VND",
+          "provider_ms": 2804.751,
+          "results": 5,
+          "error": null
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "kind": "merchant_products",
+      "duration_ms": 6927.574,
+      "new_verified_products": 0,
+      "no_progress_rounds": 0,
+      "new_model_hints": 0,
+      "new_merchant_domains": 0,
+      "new_direct_urls": 1,
+      "new_child_urls": 0,
+      "queries_generated": [
+        "site:thegioididong.com \"Redmi K80 12GB 256GB\" giá bán Việt Nam VND"
+      ],
+      "queries_executed": [
+        "site:thegioididong.com \"Redmi K80 12GB 256GB\" giá bán Việt Nam VND"
+      ],
+      "raw_search_results_per_query": {
+        "site:thegioididong.com \"Redmi K80 12GB 256GB\" giá bán Việt Nam VND": 5
+      },
+      "unique_search_results": 5,
+      "result_domains": [
+        "thegioididong.com"
+      ],
+      "conversion": {
+        "potential_product_urls": 3,
+        "direct_product_candidates": 0,
+        "evidence_only_results": 5,
+        "rejected_before_fetch": 2,
+        "pages_requested": 3,
+        "pages_fetched": 3,
+        "pages_verified": 0,
+        "verification_failed": 3,
+        "wrong_category": 0,
+        "non_product_page": 2,
+        "missing_price": 0,
+        "missing_identity": 2,
+        "out_of_stock": 0,
+        "duplicate": 0,
+        "http_network_failure": 0,
+        "other": 1,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 0,
+        "reason_counts": {
+          "non_product_page": 2,
+          "missing_identity": 2,
+          "other": 1
+        }
+      },
+      "cumulative_product_attempts": 14,
+      "cumulative_pages_requested": 15,
+      "cumulative_valid_offers": 2,
+      "new_eligible_offers": 0,
+      "queries": [
+        {
+          "query": "site:thegioididong.com \"Redmi K80 12GB 256GB\" giá bán Việt Nam VND",
+          "provider_ms": 4656.937,
+          "results": 5,
+          "error": null
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "kind": "alternative_model",
+      "duration_ms": 4081.718,
+      "new_verified_products": 0,
+      "no_progress_rounds": 0,
+      "new_model_hints": 1,
+      "new_merchant_domains": 1,
+      "new_direct_urls": 3,
+      "new_child_urls": 0,
+      "queries_generated": [
+        "\"Oppo Find X8s Plus\" giá Việt Nam VND"
+      ],
+      "queries_executed": [
+        "\"Oppo Find X8s Plus\" giá Việt Nam VND"
+      ],
+      "raw_search_results_per_query": {
+        "\"Oppo Find X8s Plus\" giá Việt Nam VND": 5
+      },
+      "unique_search_results": 5,
+      "result_domains": [
+        "chotot.com",
+        "hungmobile.vn",
+        "shopee.vn",
+        "viettablet.com",
+        "youtube.com"
+      ],
+      "conversion": {
+        "potential_product_urls": 4,
+        "direct_product_candidates": 0,
+        "evidence_only_results": 5,
+        "rejected_before_fetch": 1,
+        "pages_requested": 4,
+        "pages_fetched": 4,
+        "pages_verified": 0,
+        "verification_failed": 4,
+        "wrong_category": 0,
+        "non_product_page": 3,
+        "missing_price": 0,
+        "missing_identity": 1,
+        "out_of_stock": 0,
+        "duplicate": 0,
+        "http_network_failure": 0,
+        "other": 1,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 0,
+        "reason_counts": {
+          "non_product_page": 3,
+          "missing_identity": 1,
+          "other": 1
+        }
+      },
+      "cumulative_product_attempts": 16,
+      "cumulative_pages_requested": 19,
+      "cumulative_valid_offers": 2,
+      "new_eligible_offers": 0,
+      "queries": [
+        {
+          "query": "\"Oppo Find X8s Plus\" giá Việt Nam VND",
+          "provider_ms": 2214.895,
+          "results": 5,
+          "error": null
+        }
+      ]
+    },
+    {
+      "round": 6,
+      "kind": "alternative_model",
+      "duration_ms": 6668.8,
+      "new_verified_products": 1,
+      "no_progress_rounds": 0,
+      "new_model_hints": 2,
+      "new_merchant_domains": 0,
+      "new_direct_urls": 3,
+      "new_child_urls": 0,
+      "queries_generated": [
+        "\"Oppo Find X8s\" giá Việt Nam VND"
+      ],
+      "queries_executed": [
+        "\"Oppo Find X8s\" giá Việt Nam VND"
+      ],
+      "raw_search_results_per_query": {
+        "\"Oppo Find X8s\" giá Việt Nam VND": 5
+      },
+      "unique_search_results": 5,
+      "result_domains": [
+        "cellphones.com.vn",
+        "facebook.com",
+        "hungmobile.vn",
+        "mobile57.com",
+        "oppo.com"
+      ],
+      "conversion": {
+        "potential_product_urls": 4,
+        "direct_product_candidates": 1,
+        "evidence_only_results": 4,
+        "rejected_before_fetch": 1,
+        "pages_requested": 3,
+        "pages_fetched": 3,
+        "pages_verified": 1,
+        "verification_failed": 2,
+        "wrong_category": 0,
+        "non_product_page": 1,
+        "missing_price": 0,
+        "missing_identity": 0,
+        "out_of_stock": 0,
+        "duplicate": 0,
+        "http_network_failure": 0,
+        "other": 3,
+        "valid_candidates": 1,
+        "eligible_offers": 1,
+        "reused_pages": 1,
+        "reason_counts": {
+          "other": 3,
+          "non_product_page": 1
+        }
+      },
+      "cumulative_product_attempts": 19,
+      "cumulative_pages_requested": 22,
+      "cumulative_valid_offers": 3,
+      "new_eligible_offers": 1,
+      "queries": [
+        {
+          "query": "\"Oppo Find X8s\" giá Việt Nam VND",
+          "provider_ms": 2886.45,
+          "results": 5,
+          "error": null
+        }
+      ]
+    },
+    {
+      "round": 7,
+      "kind": "alternative_model",
+      "duration_ms": 6360.039,
+      "new_verified_products": 0,
+      "no_progress_rounds": 0,
+      "new_model_hints": 1,
+      "new_merchant_domains": 0,
+      "new_direct_urls": 1,
+      "new_child_urls": 0,
+      "queries_generated": [
+        "\"Redmi Turbo 5 Max\" giá Việt Nam VND"
+      ],
+      "queries_executed": [
+        "\"Redmi Turbo 5 Max\" giá Việt Nam VND"
+      ],
+      "raw_search_results_per_query": {
+        "\"Redmi Turbo 5 Max\" giá Việt Nam VND": 5
+      },
+      "unique_search_results": 5,
+      "result_domains": [
+        "cellphones.com.vn",
+        "facebook.com",
+        "mi.com",
+        "shopee.vn",
+        "youtube.com"
+      ],
+      "conversion": {
+        "potential_product_urls": 3,
+        "direct_product_candidates": 0,
+        "evidence_only_results": 3,
+        "rejected_before_fetch": 2,
+        "pages_requested": 1,
+        "pages_fetched": 1,
+        "pages_verified": 0,
+        "verification_failed": 1,
+        "wrong_category": 0,
+        "non_product_page": 2,
+        "missing_price": 1,
+        "missing_identity": 0,
+        "out_of_stock": 0,
+        "duplicate": 0,
+        "http_network_failure": 0,
+        "other": 0,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 0,
+        "reason_counts": {
+          "missing_price": 1,
+          "non_product_page": 2
+        }
+      },
+      "cumulative_product_attempts": 20,
+      "cumulative_pages_requested": 23,
+      "cumulative_valid_offers": 3,
+      "new_eligible_offers": 0,
+      "queries": [
+        {
+          "query": "\"Redmi Turbo 5 Max\" giá Việt Nam VND",
+          "provider_ms": 5095.521,
+          "results": 5,
+          "error": null
+        }
+      ]
+    }
+  ],
+  "domain_budgets": {
+    "cellphones.com.vn": {
+      "attempts": 5,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 3014.354,
+      "budget_ms": 6000.0
+    },
+    "chotot.com": {
+      "attempts": 1,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 1020.813,
+      "budget_ms": 6000.0
+    },
+    "clickbuy.com.vn": {
+      "attempts": 1,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 507.83,
+      "budget_ms": 6000.0
+    },
+    "hungmobile.vn": {
+      "attempts": 2,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 1884.544,
+      "budget_ms": 6000.0
+    },
+    "mobile57.com": {
+      "attempts": 1,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 1217.703,
+      "budget_ms": 6000.0
+    },
+    "mobilecity.vn": {
+      "attempts": 1,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 834.625,
+      "budget_ms": 6000.0
+    },
+    "nguyenkim.com": {
+      "attempts": 1,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 521.547,
+      "budget_ms": 6000.0
+    },
+    "oppo.com": {
+      "attempts": 2,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 3653.235,
+      "budget_ms": 6000.0
+    },
+    "shopee.vn": {
+      "attempts": 2,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 366.205,
+      "budget_ms": 6000.0
+    },
+    "thegioididong.com": {
+      "attempts": 5,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 4072.23,
+      "budget_ms": 6000.0
+    },
+    "viettablet.com": {
+      "attempts": 1,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 319.256,
+      "budget_ms": 6000.0
+    },
+    "vnreview.vn": {
+      "attempts": 1,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 413.591,
+      "budget_ms": 6000.0
+    }
+  },
+  "page_timings": [
+    {
+      "url": "https://cellphones.com.vn/dien-thoai-oppo-find-x8.html",
+      "domain": "cellphones.com.vn",
+      "inspection_ms": 260.013
+    },
+    {
+      "url": "https://cellphones.com.vn/dien-thoai-oppo-reno14.html",
+      "domain": "cellphones.com.vn",
+      "inspection_ms": 487.394
+    },
+    {
+      "url": "https://cellphones.com.vn/dien-thoai-xiaomi-poco-x8-pro-max.html",
+      "domain": "cellphones.com.vn",
+      "inspection_ms": 522.352
+    },
+    {
+      "url": "https://cellphones.com.vn/dien-thoai-xiaomi-redmi-k80-12gb-256gb-cu-dep.html",
+      "domain": "cellphones.com.vn",
+      "inspection_ms": 1330.422
+    },
+    {
+      "url": "https://cellphones.com.vn/dien-thoai-xiaomi-redmi-turbo-5-max.html",
+      "domain": "cellphones.com.vn",
+      "inspection_ms": 411.605
+    },
+    {
+      "url": "https://clickbuy.com.vn/dien-thoai-7-8-trieu.html",
+      "domain": "clickbuy.com.vn",
+      "inspection_ms": 506.783
+    },
+    {
+      "url": "https://hungmobile.vn/dien-thoai/oppo-find-x8s-plus.html",
+      "domain": "hungmobile.vn",
+      "inspection_ms": 893.572
+    },
+    {
+      "url": "https://hungmobile.vn/dien-thoai/xiaomi-redmi-k80-5g.html",
+      "domain": "hungmobile.vn",
+      "inspection_ms": 990.37
+    },
+    {
+      "url": "https://mobilecity.vn/dien-thoai/xiaomi-redmi-k80-5g-manh-gia-re.html",
+      "domain": "mobilecity.vn",
+      "inspection_ms": 834.259
+    },
+    {
+      "url": "https://shopee.vn/list/%C4%91i%E1%BB%87n%20tho%E1%BA%A1i/oppo/find%20x8s%20plus",
+      "domain": "shopee.vn",
+      "inspection_ms": 183.095
+    },
+    {
+      "url": "https://shopee.vn/list/%C4%91i%E1%BB%87n%20tho%E1%BA%A1i/xiaomi/redmi%20k80",
+      "domain": "shopee.vn",
+      "inspection_ms": 182.262
+    },
+    {
+      "url": "https://vnreview.vn/threads/thang-4-2026-top-dien-thoai-chinh-hang-dang-mua-nhat-phan-khuc-duoi-10-trieu-dong.81364",
+      "domain": "vnreview.vn",
+      "inspection_ms": 412.181
+    },
+    {
+      "url": "https://www.chotot.com/mua-ban-dien-thoai-oppo-find-x8s-plus-gia-tu-10-trieu-den-15-trieu-sfhXLm1VLcWiO0",
+      "domain": "www.chotot.com",
+      "inspection_ms": 1020.452
+    },
+    {
+      "url": "https://www.mobile57.com/vn/phones/oppo-find-x8s-15040",
+      "domain": "www.mobile57.com",
+      "inspection_ms": 1217.621
+    },
+    {
+      "url": "https://www.nguyenkim.com/nen-mua-dien-thoai-nao-NKUQ2075.b",
+      "domain": "www.nguyenkim.com",
+      "inspection_ms": 520.444
+    },
+    {
+      "url": "https://www.oppo.com/vn/smartphones/series-find-x/find-x8/specs",
+      "domain": "www.oppo.com",
+      "inspection_ms": 2097.593
+    },
+    {
+      "url": "https://www.oppo.com/vn/smartphones/series-reno/reno14-f-5g",
+      "domain": "www.oppo.com",
+      "inspection_ms": 1553.888
+    },
+    {
+      "url": "https://www.thegioididong.com/dtdd-xiaomi",
+      "domain": "www.thegioididong.com",
+      "inspection_ms": 798.046
+    },
+    {
+      "url": "https://www.thegioididong.com/dtdd-xiaomi-redmi",
+      "domain": "www.thegioididong.com",
+      "inspection_ms": 1264.609
+    },
+    {
+      "url": "https://www.thegioididong.com/dtdd/oppo-reno14-f-5g-12gb-256gb",
+      "domain": "www.thegioididong.com",
+      "inspection_ms": 2145.385
+    },
+    {
+      "url": "https://www.thegioididong.com/dtdd/xiaomi-poco-x8-pro-8gb-256gb",
+      "domain": "www.thegioididong.com",
+      "inspection_ms": 1258.466
+    },
+    {
+      "url": "https://www.thegioididong.com/dtdd/xiaomi-redmi-k80",
+      "domain": "www.thegioididong.com",
+      "inspection_ms": 658.535
+    },
+    {
+      "url": "https://www.viettablet.com/oppo-find-x8s-va-x8s-plus-ra-mat",
+      "domain": "www.viettablet.com",
+      "inspection_ms": 318.868
+    }
+  ],
+  "recommendations": [
+    {
+      "name": "OPPO Find X8 16GB 512GB",
+      "price": 19490000,
+      "url": "https://cellphones.com.vn/dien-thoai-oppo-find-x8.html",
+      "specifications": {
+        "hệ điều hành khi ra mắt": "ColorOS 15, nền tảng Android 15",
+        "chipset": "MediaTek Dimensity 9400",
+        "dung lượng ram": "16 GB",
+        "bộ nhớ trong": "512 GB",
+        "loại cpu": "8 nhân",
+        "gpu": "Immortalis G925 MC12",
+        "kích thước màn hình": "6.59 inches",
+        "công nghệ màn hình": "AMOLED",
+        "độ phân giải màn hình": "1256 x 2760 pixels",
+        "tính năng màn hình": "Tần số quét: 120Hz, Kính cường lực GG 7i  Độ sáng tối đa: 1600 nits  Màu sắc hiển thị: 1 tỷ màu",
+        "camera sau": "50MP OIS (Chính) + 50MP (Chân dung Tele) + 50MP (Góc rộng)",
+        "camera trước": "32MP, khẩu độ F/2.4",
+        "pin": "5630 mAh",
+        "hỗ trợ mạng": "5G",
+        "thẻ sim": "Dual nano-SIM hoặc 1 nano-SIM + 1 eSIM",
+        "công nghệ nfc": "Có"
+      },
+      "historical_matches": [
+        {
+          "name": "camera",
+          "requested_value": "tốt",
+          "product_value": null,
+          "status": "unknown",
+          "reason": "Chưa đủ dữ liệu để đối chiếu giá trị yêu cầu."
+        },
+        {
+          "name": "pin",
+          "requested_value": "lâu",
+          "product_value": "5630 mAh",
+          "status": "matched",
+          "reason": "Giá trị đáp ứng quy tắc so sánh deterministic."
+        }
+      ],
+      "corrected_matches": [
+        {
+          "name": "camera",
+          "requested_value": "tốt",
+          "product_value": "50MP OIS (Chính) + 50MP (Chân dung Tele) + 50MP (Góc rộng)",
+          "status": "matched",
+          "reason": "Giá trị đáp ứng quy tắc so sánh deterministic."
+        },
+        {
+          "name": "pin",
+          "requested_value": "lâu",
+          "product_value": "5630 mAh",
+          "status": "matched",
+          "reason": "Giá trị đáp ứng quy tắc so sánh deterministic."
+        }
+      ],
+      "historical_score": {
+        "budget_score": 0.0,
+        "requirement_score": 50.0,
+        "purpose_score": 100.0,
+        "rating_score": 98.0,
+        "review_score": 40.0,
+        "source_score": 90.0,
+        "final_score": 55.8
+      },
+      "corrected_score": {
+        "budget_score": 0.0,
+        "requirement_score": 100.0,
+        "purpose_score": 100.0,
+        "rating_score": 98.0,
+        "review_score": 40.0,
+        "source_score": 90.0,
+        "final_score": 70.8
+      },
+      "historical_explanation": {
+        "summary": "OPPO Find X8 có thông số rất cao về camera và pin đáp ứng tốt nhu cầu sử dụng, tuy nhiên mức giá 19.490.000 VND vượt xa ngân sách 10.000.000 VND của bạn, khiến điểm phù hợp tổng thể (AI Match) chỉ đạt 55.8/100.",
+        "why_fit": [
+          "Pin dung lượng lớn 5630 mAh đáp ứng tốt tiêu chí pin lâu.",
+          "Hệ thống 3 camera sau 50MP (chính OIS, tele chân dung, góc rộng) và camera trước 32MP thỏa mãn nhu cầu camera tốt.",
+          "Được đánh giá rất cao từ người dùng với rating 4.9/5."
+        ],
+        "tradeoffs": [
+          "Giá bán 19.490.000 VND vượt quá ngân sách mục tiêu 10.000.000 VND (điểm ngân sách đạt 0.0/100)."
+        ],
+        "evidence_notes": [
+          "AI Match Score (55.8) thể hiện độ tương thích của sản phẩm với yêu cầu của bạn, trong khi Data Confidence (81.25%) đo lường độ tin cậy của thông tin sản phẩm.",
+          "Dữ liệu giá 19.490.000 VND, điểm đánh giá 4.9/5 (34 lượt đánh giá) và thông số kỹ thuật được xác minh từ 1 nguồn bán (CELLPHONES)."
+        ],
+        "generation_mode": "gemini"
+      }
+    },
+    {
+      "name": "OPPO Reno14 5G 12GB 256GB",
+      "price": 15500000,
+      "url": "https://cellphones.com.vn/dien-thoai-oppo-reno14.html",
+      "specifications": {
+        "hệ điều hành khi ra mắt": "ColorOS 15, Android 15",
+        "chipset": "MediaTek Dimensity 8350 5G, tối đa 3.35GHz",
+        "dung lượng ram": "12 GB",
+        "bộ nhớ trong": "256 GB",
+        "loại cpu": "8 nhân, 3.35GHz",
+        "gpu": "ARM G615-MC6",
+        "kích thước màn hình": "6.59 inches",
+        "công nghệ màn hình": "AMOLED",
+        "độ phân giải màn hình": "1256 x 2760 pixels",
+        "tính năng màn hình": "Tần số quét 120Hz, độ sáng 1200 nits, kính GG7i",
+        "camera sau": "Chính 50MP OIS, F/1.8Tele 50MP OIS, F/2.8Góc rộng 8MP, F/2.2",
+        "camera trước": "50MP, F/2.0",
+        "pin": "6000mAh",
+        "hỗ trợ mạng": "5G",
+        "thẻ sim": "2 Nano-SIM",
+        "công nghệ nfc": "Có",
+        "thời điểm ra mắt": "07/2025"
+      },
+      "historical_matches": [
+        {
+          "name": "camera",
+          "requested_value": "tốt",
+          "product_value": null,
+          "status": "unknown",
+          "reason": "Chưa đủ dữ liệu để đối chiếu giá trị yêu cầu."
+        },
+        {
+          "name": "pin",
+          "requested_value": "lâu",
+          "product_value": "6000mAh",
+          "status": "matched",
+          "reason": "Giá trị đáp ứng quy tắc so sánh deterministic."
+        }
+      ],
+      "corrected_matches": [
+        {
+          "name": "camera",
+          "requested_value": "tốt",
+          "product_value": "Chính 50MP OIS, F/1.8Tele 50MP OIS, F/2.8Góc rộng 8MP, F/2.2",
+          "status": "matched",
+          "reason": "Giá trị đáp ứng quy tắc so sánh deterministic."
+        },
+        {
+          "name": "pin",
+          "requested_value": "lâu",
+          "product_value": "6000mAh",
+          "status": "matched",
+          "reason": "Giá trị đáp ứng quy tắc so sánh deterministic."
+        }
+      ],
+      "historical_score": {
+        "budget_score": 0.0,
+        "requirement_score": 50.0,
+        "purpose_score": 100.0,
+        "rating_score": 100.0,
+        "review_score": 20.0,
+        "source_score": 90.0,
+        "final_score": 55.0
+      },
+      "corrected_score": {
+        "budget_score": 0.0,
+        "requirement_score": 100.0,
+        "purpose_score": 100.0,
+        "rating_score": 100.0,
+        "review_score": 20.0,
+        "source_score": 90.0,
+        "final_score": 70.0
+      },
+      "historical_explanation": {
+        "summary": "OPPO Reno14 5G đáp ứng xuất sắc nhu cầu camera và pin lâu, tuy nhiên mức giá 15.500.000 VND vượt vượt ngân sách 10.000.000 VND của người dùng.",
+        "why_fit": [
+          "Pin dung lượng lớn 6000mAh đáp ứng tốt tiêu chí pin lâu.",
+          "Hệ thống camera ấn tượng với camera chính 50MP OIS, tele 50MP OIS và camera trước 50MP đáp ứng yêu cầu camera tốt.",
+          "Màn hình AMOLED 120Hz, RAM 12GB và bộ nhớ trong 256GB cung cấp trải nghiệm mượt mà."
+        ],
+        "tradeoffs": [
+          "Giá bán 15.500.000 VND cao hơn nhiều so với ngân sách mục tiêu 10.000.000 VND (điểm budget_score là 0.0).",
+          "Số lượng đánh giá còn hạn chế với 4 lượt đánh giá."
+        ],
+        "evidence_notes": [
+          "Điểm phù hợp AI Match (final_score) đạt 55.0/100, phản ánh việc vi phạm hạn mức ngân sách dù đáp ứng tốt nhu cầu tính năng.",
+          "Mức độ tin cậy dữ liệu (Data Confidence) đạt 81.25% dựa trên thông tin xác minh từ nguồn CELLPHONES.",
+          "Giá bán 15.500.000 VND, điểm đánh giá 5.0/5 từ 4 lượt đánh giá đều đã được xác minh."
+        ],
+        "generation_mode": "gemini"
+      }
+    },
+    {
+      "name": "POCO X8 Pro Max 12GB 256GB",
+      "price": 13990000,
+      "url": "https://cellphones.com.vn/dien-thoai-xiaomi-poco-x8-pro-max.html",
+      "specifications": {
+        "hệ điều hành khi ra mắt": "Xiaomi HyperOS 3 (Android 16)",
+        "chipset": "MediaTek Dimensity 9500s",
+        "dung lượng ram": "12 GB",
+        "bộ nhớ trong": "256 GB",
+        "loại cpu": "1 × Cortex-X925 (tối đa 3.73GHz) + 3 × Cortex-X4 (tối đa 3.3GHz) + 4 × Cortex-A720 (tối đa 2.4GHz)",
+        "gpu": "Immortalis-G925 MC11",
+        "kích thước màn hình": "6.83 inches",
+        "công nghệ màn hình": "AMOLED",
+        "độ phân giải màn hình": "2772 x 1280 pixels",
+        "tính năng màn hình": "Độ sáng tối đa 3.500 nits, PWM 3840Hz, 68 tỷ màu, dải màu DCI-P3, HDR10+",
+        "camera sau": "50 MP f/1.5 (cảm biến Light Hunter 600, OIS) + 8 MP (góc siêu rộng)",
+        "camera trước": "20 MP",
+        "pin": "8.500 mAh",
+        "thẻ sim": "Dual nano-SIM hoặc 1 nano-SIM + 1 eSIM",
+        "thời điểm ra mắt": "03/2026"
+      },
+      "historical_matches": [
+        {
+          "name": "camera",
+          "requested_value": "tốt",
+          "product_value": null,
+          "status": "unknown",
+          "reason": "Chưa đủ dữ liệu để đối chiếu giá trị yêu cầu."
+        },
+        {
+          "name": "pin",
+          "requested_value": "lâu",
+          "product_value": "8.500 mAh",
+          "status": "unmet",
+          "reason": "Giá trị đã biết không đáp ứng yêu cầu."
+        }
+      ],
+      "corrected_matches": [
+        {
+          "name": "camera",
+          "requested_value": "tốt",
+          "product_value": "50 MP f/1.5 (cảm biến Light Hunter 600, OIS) + 8 MP (góc siêu rộng)",
+          "status": "matched",
+          "reason": "Giá trị đáp ứng quy tắc so sánh deterministic."
+        },
+        {
+          "name": "pin",
+          "requested_value": "lâu",
+          "product_value": "8.500 mAh",
+          "status": "matched",
+          "reason": "Giá trị đáp ứng quy tắc so sánh deterministic."
+        }
+      ],
+      "historical_score": {
+        "budget_score": 0.0,
+        "requirement_score": 0.0,
+        "purpose_score": 100.0,
+        "rating_score": 98.0,
+        "review_score": 20.0,
+        "source_score": 90.0,
+        "final_score": 39.8
+      },
+      "corrected_score": {
+        "budget_score": 0.0,
+        "requirement_score": 100.0,
+        "purpose_score": 100.0,
+        "rating_score": 98.0,
+        "review_score": 20.0,
+        "source_score": 90.0,
+        "final_score": 69.8
+      },
+      "historical_explanation": {
+        "summary": "POCO X8 Pro Max 12GB 256GB đạt 39.80/100 điểm phù hợp và 81.25/100 điểm tin cậy dữ liệu.",
+        "why_fit": [
+          "Mức đáp ứng các tiêu chí yêu cầu đạt 0.00/100.",
+          "Rating hiện có là 4.9/5.",
+          "Có 9 lượt đánh giá."
+        ],
+        "tradeoffs": [
+          "Giá 13990000 VND vượt ngân sách tối đa 10000000 VND."
+        ],
+        "evidence_notes": [
+          "Giá đã xác minh: 13990000 VND.",
+          "Rating đã xác minh: 4.9/5.",
+          "Số lượt đánh giá: 9.",
+          "Có thông số kỹ thuật: bộ nhớ trong, camera sau, camera trước, chipset, công nghệ màn hình, dung lượng ram, gpu, hệ điều hành khi ra mắt, kích thước màn hình, loại cpu, pin, thẻ sim, thời điểm ra mắt, tính năng màn hình, độ phân giải màn hình.",
+          "Nguồn bán: CELLPHONES.",
+          "Có URL sản phẩm để kiểm chứng.",
+          "Sản phẩm mới được xác minh từ một nguồn."
+        ],
+        "generation_mode": "fallback"
+      }
+    }
+  ],
+  "last_model_progress": [
+    {
+      "model": "POCO X8 Pro",
+      "attempts": 1,
+      "state": "evidence_missing",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": true,
+      "exhausted": false
+    },
+    {
+      "model": "OPPO Reno14 F",
+      "attempts": 1,
+      "state": "evidence_missing",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": true,
+      "exhausted": false
+    },
+    {
+      "model": "POCO X8 Pro Max 12GB 256GB",
+      "attempts": 0,
+      "state": "fallback_or_rejected",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "OPPO Reno14 5G 12GB 256GB",
+      "attempts": 0,
+      "state": "fallback_or_rejected",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Redmi K80 12GB 256GB",
+      "attempts": 2,
+      "state": "unavailable",
+      "failed_domains": [
+        "cellphones.com.vn"
+      ],
+      "attempted_domains": [
+        "thegioididong.com"
+      ],
+      "unscoped_exhausted": true,
+      "exhausted": true
+    },
+    {
+      "model": "OPPO Find X8 16GB 512GB",
+      "attempts": 0,
+      "state": "fallback_or_rejected",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Oppo Find X8s",
+      "attempts": 1,
+      "state": "evidence_missing",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": true,
+      "exhausted": false
+    },
+    {
+      "model": "Redmi Turbo 5 Max",
+      "attempts": 1,
+      "state": "evidence_missing",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": true,
+      "exhausted": false
+    },
+    {
+      "model": "Oppo Find X8s Plus",
+      "attempts": 1,
+      "state": "evidence_missing",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": true,
+      "exhausted": false
+    },
+    {
+      "model": "Vivo V30E 12GB 256GB",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "OPPO A5",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Samsung Galaxy A52",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "OPPO Reno 10",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Redmi Note 12",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Samsung Galaxy A54",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Samsung Galaxy Z Flip 5",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "OPPO Find N2 Flip",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "REDMI K70 Pro",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Xiaomi 13T Pro 5G",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Samsung Galaxy S23 FE",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Redmi K80 Pro",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Redmi K80 Ultra",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "REDMI TURBO 5",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Redmi Note 14 Pro",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "OPPO Reno13 F 5G",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Redmi Note 15 5G",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    }
+  ],
+  "replay": {
+    "method": "Recorded query sequence, archived rows/proofs only; stop checked between rounds. Not a replay of changed model-query order or Live timing.",
+    "queries": [
+      "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "\"POCO X8 Pro\" mua Việt Nam VND",
+      "\"OPPO Reno14 F\" mua Việt Nam VND",
+      "\"Redmi K80 5G\" giá Việt Nam VND",
+      "site:thegioididong.com \"Redmi K80 12GB 256GB\" giá bán Việt Nam VND",
+      "\"Oppo Find X8s Plus\" giá Việt Nam VND",
+      "\"Oppo Find X8s\" giá Việt Nam VND"
+    ],
+    "rounds": [
+      {
+        "round": 1,
+        "kind": "requirement",
+        "duration_ms": 100.758,
+        "new_verified_products": 0,
+        "no_progress_rounds": 0,
+        "new_model_hints": 17,
+        "new_merchant_domains": 0,
+        "new_direct_urls": 3,
+        "new_child_urls": 0,
+        "queries_generated": [
+          "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+          "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng"
+        ],
+        "queries_executed": [
+          "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+          "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng"
+        ],
+        "raw_search_results_per_query": {
+          "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam": 5,
+          "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng": 5
+        },
+        "unique_search_results": 9,
+        "result_domains": [
+          "cellphones.com.vn",
+          "clickbuy.com.vn",
+          "dienmaycholon.com",
+          "hungmobile.vn",
+          "mobappy.co.jp",
+          "nguyenkim.com",
+          "vnreview.vn",
+          "youtube.com"
+        ],
+        "conversion": {
+          "potential_product_urls": 3,
+          "direct_product_candidates": 0,
+          "evidence_only_results": 9,
+          "rejected_before_fetch": 6,
+          "pages_requested": 3,
+          "pages_fetched": 3,
+          "pages_verified": 0,
+          "verification_failed": 3,
+          "wrong_category": 0,
+          "non_product_page": 7,
+          "missing_price": 0,
+          "missing_identity": 0,
+          "out_of_stock": 0,
+          "duplicate": 0,
+          "http_network_failure": 0,
+          "other": 2,
+          "valid_candidates": 0,
+          "eligible_offers": 0,
+          "reused_pages": 0,
+          "reason_counts": {
+            "other": 2,
+            "non_product_page": 7
+          }
+        },
+        "cumulative_product_attempts": 2,
+        "cumulative_pages_requested": 3,
+        "cumulative_valid_offers": 0
+      },
+      {
+        "round": 2,
+        "kind": "model_discovery",
+        "duration_ms": 163.792,
+        "new_verified_products": 2,
+        "no_progress_rounds": 0,
+        "new_model_hints": 2,
+        "new_merchant_domains": 2,
+        "new_direct_urls": 5,
+        "new_child_urls": 0,
+        "queries_generated": [
+          "\"POCO X8 Pro\" mua Việt Nam VND",
+          "\"OPPO Reno14 F\" mua Việt Nam VND"
+        ],
+        "queries_executed": [
+          "\"POCO X8 Pro\" mua Việt Nam VND",
+          "\"OPPO Reno14 F\" mua Việt Nam VND"
+        ],
+        "raw_search_results_per_query": {
+          "\"POCO X8 Pro\" mua Việt Nam VND": 5,
+          "\"OPPO Reno14 F\" mua Việt Nam VND": 5
+        },
+        "unique_search_results": 10,
+        "result_domains": [
+          "cellphones.com.vn",
+          "facebook.com",
+          "oppo.com",
+          "thegioididong.com",
+          "youtube.com"
+        ],
+        "conversion": {
+          "potential_product_urls": 5,
+          "direct_product_candidates": 2,
+          "evidence_only_results": 8,
+          "rejected_before_fetch": 5,
+          "pages_requested": 5,
+          "pages_fetched": 5,
+          "pages_verified": 2,
+          "verification_failed": 3,
+          "wrong_category": 0,
+          "non_product_page": 5,
+          "missing_price": 0,
+          "missing_identity": 0,
+          "out_of_stock": 0,
+          "duplicate": 0,
+          "http_network_failure": 0,
+          "other": 3,
+          "valid_candidates": 2,
+          "eligible_offers": 2,
+          "reused_pages": 0,
+          "reason_counts": {
+            "non_product_page": 5,
+            "other": 3
+          }
+        },
+        "cumulative_product_attempts": 7,
+        "cumulative_pages_requested": 8,
+        "cumulative_valid_offers": 2
+      },
+      {
+        "round": 3,
+        "kind": "merchant_products",
+        "duration_ms": 138.757,
+        "new_verified_products": 1,
+        "no_progress_rounds": 0,
+        "new_model_hints": 4,
+        "new_merchant_domains": 2,
+        "new_direct_urls": 3,
+        "new_child_urls": 0,
+        "queries_generated": [
+          "\"Redmi K80 5G\" giá Việt Nam VND"
+        ],
+        "queries_executed": [
+          "\"Redmi K80 5G\" giá Việt Nam VND"
+        ],
+        "raw_search_results_per_query": {
+          "\"Redmi K80 5G\" giá Việt Nam VND": 5
+        },
+        "unique_search_results": 5,
+        "result_domains": [
+          "cellphones.com.vn",
+          "hungmobile.vn",
+          "mobilecity.vn",
+          "shopee.vn",
+          "youtube.com"
+        ],
+        "conversion": {
+          "potential_product_urls": 4,
+          "direct_product_candidates": 1,
+          "evidence_only_results": 4,
+          "rejected_before_fetch": 1,
+          "pages_requested": 4,
+          "pages_fetched": 4,
+          "pages_verified": 1,
+          "verification_failed": 3,
+          "wrong_category": 0,
+          "non_product_page": 1,
+          "missing_price": 1,
+          "missing_identity": 1,
+          "out_of_stock": 1,
+          "duplicate": 0,
+          "http_network_failure": 0,
+          "other": 1,
+          "valid_candidates": 0,
+          "eligible_offers": 0,
+          "reused_pages": 0,
+          "reason_counts": {
+            "missing_price": 1,
+            "missing_identity": 1,
+            "other": 1,
+            "non_product_page": 1,
+            "out_of_stock": 1
+          }
+        },
+        "cumulative_product_attempts": 11,
+        "cumulative_pages_requested": 12,
+        "cumulative_valid_offers": 2
+      },
+      {
+        "round": 4,
+        "kind": "merchant_products",
+        "duration_ms": 145.665,
+        "new_verified_products": 0,
+        "no_progress_rounds": 0,
+        "new_model_hints": 0,
+        "new_merchant_domains": 0,
+        "new_direct_urls": 1,
+        "new_child_urls": 0,
+        "queries_generated": [
+          "site:thegioididong.com \"Redmi K80 12GB 256GB\" giá bán Việt Nam VND"
+        ],
+        "queries_executed": [
+          "site:thegioididong.com \"Redmi K80 12GB 256GB\" giá bán Việt Nam VND"
+        ],
+        "raw_search_results_per_query": {
+          "site:thegioididong.com \"Redmi K80 12GB 256GB\" giá bán Việt Nam VND": 5
+        },
+        "unique_search_results": 5,
+        "result_domains": [
+          "thegioididong.com"
+        ],
+        "conversion": {
+          "potential_product_urls": 3,
+          "direct_product_candidates": 0,
+          "evidence_only_results": 5,
+          "rejected_before_fetch": 2,
+          "pages_requested": 3,
+          "pages_fetched": 3,
+          "pages_verified": 0,
+          "verification_failed": 3,
+          "wrong_category": 0,
+          "non_product_page": 2,
+          "missing_price": 0,
+          "missing_identity": 2,
+          "out_of_stock": 0,
+          "duplicate": 0,
+          "http_network_failure": 0,
+          "other": 1,
+          "valid_candidates": 0,
+          "eligible_offers": 0,
+          "reused_pages": 0,
+          "reason_counts": {
+            "non_product_page": 2,
+            "missing_identity": 2,
+            "other": 1
+          }
+        },
+        "cumulative_product_attempts": 14,
+        "cumulative_pages_requested": 15,
+        "cumulative_valid_offers": 2
+      },
+      {
+        "round": 5,
+        "kind": "alternative_model",
+        "duration_ms": 155.001,
+        "new_verified_products": 0,
+        "no_progress_rounds": 0,
+        "new_model_hints": 1,
+        "new_merchant_domains": 1,
+        "new_direct_urls": 3,
+        "new_child_urls": 0,
+        "queries_generated": [
+          "\"Oppo Find X8s Plus\" giá Việt Nam VND"
+        ],
+        "queries_executed": [
+          "\"Oppo Find X8s Plus\" giá Việt Nam VND"
+        ],
+        "raw_search_results_per_query": {
+          "\"Oppo Find X8s Plus\" giá Việt Nam VND": 5
+        },
+        "unique_search_results": 5,
+        "result_domains": [
+          "chotot.com",
+          "hungmobile.vn",
+          "shopee.vn",
+          "viettablet.com",
+          "youtube.com"
+        ],
+        "conversion": {
+          "potential_product_urls": 4,
+          "direct_product_candidates": 0,
+          "evidence_only_results": 5,
+          "rejected_before_fetch": 1,
+          "pages_requested": 4,
+          "pages_fetched": 4,
+          "pages_verified": 0,
+          "verification_failed": 4,
+          "wrong_category": 0,
+          "non_product_page": 3,
+          "missing_price": 0,
+          "missing_identity": 1,
+          "out_of_stock": 0,
+          "duplicate": 0,
+          "http_network_failure": 0,
+          "other": 1,
+          "valid_candidates": 0,
+          "eligible_offers": 0,
+          "reused_pages": 0,
+          "reason_counts": {
+            "non_product_page": 3,
+            "missing_identity": 1,
+            "other": 1
+          }
+        },
+        "cumulative_product_attempts": 16,
+        "cumulative_pages_requested": 19,
+        "cumulative_valid_offers": 2
+      },
+      {
+        "round": 6,
+        "kind": "alternative_model",
+        "duration_ms": 190.916,
+        "new_verified_products": 1,
+        "no_progress_rounds": 0,
+        "new_model_hints": 3,
+        "new_merchant_domains": 0,
+        "new_direct_urls": 3,
+        "new_child_urls": 0,
+        "queries_generated": [
+          "\"Oppo Find X8s\" giá Việt Nam VND"
+        ],
+        "queries_executed": [
+          "\"Oppo Find X8s\" giá Việt Nam VND"
+        ],
+        "raw_search_results_per_query": {
+          "\"Oppo Find X8s\" giá Việt Nam VND": 5
+        },
+        "unique_search_results": 5,
+        "result_domains": [
+          "cellphones.com.vn",
+          "facebook.com",
+          "hungmobile.vn",
+          "mobile57.com",
+          "oppo.com"
+        ],
+        "conversion": {
+          "potential_product_urls": 4,
+          "direct_product_candidates": 1,
+          "evidence_only_results": 4,
+          "rejected_before_fetch": 1,
+          "pages_requested": 3,
+          "pages_fetched": 3,
+          "pages_verified": 1,
+          "verification_failed": 2,
+          "wrong_category": 0,
+          "non_product_page": 1,
+          "missing_price": 0,
+          "missing_identity": 0,
+          "out_of_stock": 0,
+          "duplicate": 0,
+          "http_network_failure": 0,
+          "other": 3,
+          "valid_candidates": 1,
+          "eligible_offers": 1,
+          "reused_pages": 1,
+          "reason_counts": {
+            "other": 3,
+            "non_product_page": 1
+          }
+        },
+        "cumulative_product_attempts": 19,
+        "cumulative_pages_requested": 22,
+        "cumulative_valid_offers": 3
+      }
+    ],
+    "stop_reason": "fallback_minimum_no_near_evidence",
+    "page_attempts": 22,
+    "eligible_urls": [
+      "https://cellphones.com.vn/dien-thoai-xiaomi-poco-x8-pro-max.html",
+      "https://cellphones.com.vn/dien-thoai-oppo-reno14.html",
+      "https://cellphones.com.vn/dien-thoai-oppo-find-x8.html"
+    ],
+    "absent_rows": []
+  }
+}

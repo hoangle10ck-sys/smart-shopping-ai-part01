@@ -1,0 +1,75 @@
+{
+  "session_id": "de9c2e2a-8c7f-40b0-ab62-ba7e045c0acd",
+  "historical": [
+    {
+      "name": "OPPO Reno14 5G 12GB 256GB",
+      "product_url": "https://cellphones.com.vn/dien-thoai-oppo-reno14.html",
+      "price": 15500000,
+      "merchant": "CELLPHONES",
+      "verification_level": "VERIFIED_CONTENT",
+      "image_url": null,
+      "image_source": null,
+      "availability": "in_stock"
+    },
+    {
+      "name": "POCO X8 Pro Max 12GB 256GB",
+      "product_url": "https://cellphones.com.vn/dien-thoai-xiaomi-poco-x8-pro-max.html",
+      "price": 13990000,
+      "merchant": "CELLPHONES",
+      "verification_level": "VERIFIED_CONTENT",
+      "image_url": null,
+      "image_source": null,
+      "availability": "in_stock"
+    },
+    {
+      "name": "Samsung Galaxy S25 Ultra 12GB 256GB",
+      "product_url": "https://cellphones.com.vn/dien-thoai-samsung-galaxy-s25-ultra.html",
+      "price": 25990000,
+      "merchant": "CELLPHONES",
+      "verification_level": "VERIFIED_CONTENT",
+      "image_url": null,
+      "image_source": null,
+      "availability": "in_stock"
+    }
+  ],
+  "historical_limit": "HTML and per-image HTTP outcomes were not stored; extraction rejection vs fetch failure cannot be determined for this Live session.",
+  "synthetic_replay": [
+    {
+      "name": "OPPO Reno14 5G 12GB 256GB",
+      "historical_image_url": null,
+      "pattern": "Synthetic HTML: matching alt + placeholder src + data-original; not historical retailer HTML",
+      "before_safe_candidates": 0,
+      "after_safe_candidates": 1,
+      "price_preserved": true,
+      "page_valid": true
+    },
+    {
+      "name": "POCO X8 Pro Max 12GB 256GB",
+      "historical_image_url": null,
+      "pattern": "Synthetic HTML: matching alt + placeholder src + data-original; not historical retailer HTML",
+      "before_safe_candidates": 0,
+      "after_safe_candidates": 1,
+      "price_preserved": true,
+      "page_valid": true
+    },
+    {
+      "name": "Samsung Galaxy S25 Ultra 12GB 256GB",
+      "historical_image_url": null,
+      "pattern": "Synthetic HTML: matching alt + placeholder src + data-original; not historical retailer HTML",
+      "before_safe_candidates": 0,
+      "after_safe_candidates": 1,
+      "price_preserved": true,
+      "page_valid": true
+    }
+  ],
+  "initial_pattern_tests_before": {
+    "passed": 28,
+    "failed": 18
+  },
+  "added_safety_repro_before": {
+    "passed": 0,
+    "failed": 5
+  },
+  "network_used": false,
+  "database_written": false
+}

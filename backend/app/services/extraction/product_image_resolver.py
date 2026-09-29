@@ -6,6 +6,7 @@ import asyncio
 import ipaddress
 import json
 import socket
+from contextlib import asynccontextmanager
 
 from dataclasses import dataclass
 from html.parser import HTMLParser
@@ -1091,6 +1092,35 @@ class ProductImageResolver:
         settings = (
             get_settings()
         )
+        self._client = None
+        self._configure_limits(settings, concurrency)
+
+    @asynccontextmanager
+    async def session(self):
+        """Connection pooling scoped to one retrieval, including image probes."""
+        if self._client is not None:
+            yield
+            return
+        async with httpx.AsyncClient(
+            timeout=httpx.Timeout(self.timeout, connect=min(2.5, self.timeout)),
+            follow_redirects=False,
+            limits=httpx.Limits(max_connections=8, max_keepalive_connections=8),
+        ) as client:
+            self._client = client
+            try:
+                yield
+            finally:
+                self._client = None
+
+    @asynccontextmanager
+    async def _http_client(self):
+        if self._client is not None:
+            yield self._client
+        else:
+            async with httpx.AsyncClient(timeout=self.timeout, follow_redirects=False) as client:
+                yield client
+
+    def _configure_limits(self, settings, concurrency):
 
         configured_timeout = float(
             settings
@@ -1154,11 +1184,7 @@ class ProductImageResolver:
         }
 
 
-        async with httpx.AsyncClient(
-            timeout=self.timeout,
-            follow_redirects=False,
-            headers=headers,
-        ) as client:
+        async with self._http_client() as client:
 
             for _ in range(
                 4
@@ -1171,11 +1197,18 @@ class ProductImageResolver:
                     return None
 
                 try:
-                    response = (
-                        await client.get(
-                            current_url
-                        )
-                    )
+                    # Stream with a byte cap; slicing response.text after a
+                    # full download does not bound network/memory consumption.
+                    async with client.stream('GET', current_url, headers=headers) as response:
+                        if response.status_code == 200:
+                            body = bytearray()
+                            async for chunk in response.aiter_bytes():
+                                body.extend(chunk)
+                                if len(body) > 2_000_000:
+                                    return None
+                            # aiter_bytes already decodes Content-Encoding (gzip,
+                            # br). Do not feed decoded bytes through that decoder again.
+                            html = bytes(body).decode(response.encoding or 'utf-8', errors='replace')
 
                 except httpx.HTTPError:
                     return None
@@ -1236,12 +1269,6 @@ class ProductImageResolver:
                     return None
 
 
-                html = (
-                    response.text[
-                        :2_000_000
-                    ]
-                )
-
                 if not html:
                     return None
 
@@ -1255,17 +1282,22 @@ class ProductImageResolver:
     async def inspect(self, page_url: str, expected_name: str = "", *, resolve_images: bool = True) -> dict:
         """Validate the page and verify a bounded number of image responses."""
         from app.services.extraction.product_page_validator import inspect_page
+        from app.services.performance import measure
         async with self.semaphore:
             result = None
             try:
                 async with asyncio.timeout(18):
-                    fetched = await self._fetch_html(page_url)
+                    with measure('page_fetch_ms'):
+                        fetched = await self._fetch_html(page_url)
                     if not fetched:
                         return {"product_page_valid": False, "evidence_url": page_url,
+                                "page_fetched": False, "fetch_failure": "http_or_network",
                                 "fetch_blocked": True, "verification_level": "UNVERIFIED", "product_page_confidence": 0,
                                 "reason": "Không tải được trang để xác minh.", "image_url": None}
                     final_url, html = fetched
-                    result = inspect_page(final_url, html, expected_name)
+                    with measure('verification_ms'):
+                        result = inspect_page(final_url, html, expected_name)
+                    result['page_fetched'] = True
                     if not resolve_images:
                         return result
                     for image_url, origin in result.pop("image_candidates", []):
@@ -1278,34 +1310,66 @@ class ProductImageResolver:
                     # A failed image probe must not invalidate a verified sales page.
                     return result
                 return {"product_page_valid": False, "evidence_url": page_url,
+                        "page_fetched": bool(result), "fetch_failure": "timeout_or_invalid_data",
                         "fetch_blocked": True, "verification_level": "UNVERIFIED", "product_page_confidence": 0,
                         "reason": "Hết thời gian hoặc dữ liệu trang không hợp lệ.", "image_url": None}
 
     async def _image_loads(self, url: str) -> bool:
-        """Allow public raster responses only, with bounded redirects/body size."""
-        from app.services.extraction.product_page_validator import http_url, BAD_IMAGES
-        async with httpx.AsyncClient(timeout=self.timeout, follow_redirects=False) as client:
+        """Bounded GET prefix probe; HEAD support is never required."""
+        from app.services.extraction.product_page_validator import http_url, same_identity
+        from app.services.extraction.product_image_candidates import (
+            bad_image, image_label, normalized_image_url, raster_prefix,
+        )
+        from app.services.performance import current_trace
+        original_label = image_label(url)
+        record = dict(url=url, attempts=[], reason='cancelled_or_interrupted', accepted=False, bytes_read=0)
+        trace = current_trace.get()
+        if trace is not None:
+            records = trace.diagnostics.setdefault('image_probes', [])
+            if len(records) < 100: records.append(record)
+        def finish(accepted, reason):
+            record.update(accepted=accepted, reason=reason)
+            return accepted
+        async with self._http_client() as client:
             for _ in range(4):
-                if not http_url(url) or BAD_IMAGES.search(url) or not await _safe_public_url(url): return False
+                if not http_url(url) or bad_image(url) or not await _safe_public_url(url):
+                    return finish(False, 'unsafe_url')
                 try:
-                    async with client.stream("GET", url) as response:
+                    async with client.stream('GET', url, headers={
+                        'Range': 'bytes=0-4095',
+                        'Accept': 'image/avif,image/webp,image/png,image/jpeg,image/gif',
+                    }) as response:
+                        mime = response.headers.get('content-type', '').split(';')[0].strip().lower()
+                        record['attempts'].append(dict(url=url, status=response.status_code, mime=mime))
                         if response.is_redirect:
-                            url = urljoin(url, response.headers.get("location", ""))
+                            target = normalized_image_url(response.headers.get('location'), url)
+                            if not target:
+                                return finish(False, 'unsafe_redirect')
+                            label = image_label(target)
+                            # Opaque original URLs remain valid; changing the asset
+                            # needs matching identity. A different opaque hash is unknown.
+                            if label != original_label and not same_identity(original_label, label):
+                                return finish(False, 'unrelated_or_unproven_redirect')
+                            url = target
                             continue
-                        if response.status_code != 200: return False
-                        if response.headers.get("content-type", "").split(';')[0] not in {
-                            "image/jpeg", "image/png", "image/webp", "image/gif", "image/avif"}:
-                            return False
+                        if response.status_code not in {200, 206}:
+                            return finish(False, 'http_status')
+                        if response.status_code == 206:
+                            import re
+                            if not re.fullmatch(r'bytes 0-\d+/(?:\d+|\*)', response.headers.get('content-range', '')):
+                                return finish(False, 'invalid_content_range')
+                        if mime not in {'image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/avif'}:
+                            return finish(False, 'non_raster_mime')
                         data = bytearray()
-                        async for chunk in response.aiter_bytes():
-                            data.extend(chunk)
-                            if len(data) > 5_000_000: return False
-                        raw = bytes(data)
-                        return len(raw) > 32 and (raw.startswith((b"\xff\xd8\xff", b"\x89PNG\r\n\x1a\n", b"GIF8")) or
-                            (raw.startswith(b"RIFF") and raw[8:12] == b"WEBP") or b"ftypavif" in raw[:32])
+                        async for chunk in response.aiter_bytes(chunk_size=4096):
+                            data.extend(chunk[:4096 - len(data)])
+                            if len(data) >= 4096: break
+                        record['bytes_read'] = len(data)
+                        accepted = raster_prefix(bytes(data))
+                        return finish(accepted, 'verified_raster_prefix' if accepted else 'invalid_or_tiny_raster')
                 except httpx.HTTPError:
-                    return False
-        return False
+                    return finish(False, 'http_transport_error')
+        return finish(False, 'redirect_limit')
 
     async def resolve(self, *, page_url: str, title: str = "", tavily_image_url: str | None = None) -> str | None:
         # Query-wide/provider images do not prove product identity.

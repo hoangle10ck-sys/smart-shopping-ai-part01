@@ -1,0 +1,349 @@
+{
+  "historical": {
+    "session_id": "8a713af2-4217-4c00-aeaa-ca6dbd18bf48",
+    "provenance": "Read-only persisted data. No original HTML, extracted candidate list or per-image probe logs available. No network.",
+    "recommendations": [
+      {
+        "name": "OPPO Reno14 5G 12GB 256GB",
+        "merchant": "CELLPHONES",
+        "product_url": "https://cellphones.com.vn/dien-thoai-oppo-reno14.html",
+        "image_url": null,
+        "image_source": null,
+        "product_page_valid": true,
+        "verification_level": "VERIFIED_CONTENT",
+        "product_page_confidence": 95.0,
+        "price": 15500000
+      },
+      {
+        "name": "POCO X8 Pro Max 12GB 256GB",
+        "merchant": "CELLPHONES",
+        "product_url": "https://cellphones.com.vn/dien-thoai-xiaomi-poco-x8-pro-max.html",
+        "image_url": null,
+        "image_source": null,
+        "product_page_valid": true,
+        "verification_level": "VERIFIED_CONTENT",
+        "product_page_confidence": 95.0,
+        "price": 13990000
+      },
+      {
+        "name": "Samsung Galaxy S25 Ultra 12GB 256GB",
+        "merchant": "CELLPHONES",
+        "product_url": "https://cellphones.com.vn/dien-thoai-samsung-galaxy-s25-ultra.html",
+        "image_url": null,
+        "image_source": null,
+        "product_page_valid": true,
+        "verification_level": "VERIFIED_CONTENT",
+        "product_page_confidence": 95.0,
+        "price": 25990000
+      }
+    ],
+    "total_search_ms": 18199.245,
+    "retrieval_counts": {
+      "provider_calls": 5,
+      "round_count": 3,
+      "page_attempts": 13,
+      "eligible_offers": 3
+    }
+  },
+  "historical_exact_cause": "UNDETERMINED: original HTML and per-image extraction/probe outcomes were not persisted.",
+  "initial_new_tests": {
+    "passed": 14,
+    "failed": 12
+  },
+  "pattern_replay": [
+    {
+      "name": "OPPO Reno14 5G 12GB 256GB",
+      "pattern": "json_ld",
+      "provenance": "Synthetic DOM; archived identity and observed CDN URL envelope only",
+      "before_candidates": 1,
+      "after_candidates": 1,
+      "image_diagnostics": {
+        "accepted_count": 1,
+        "rejections": [],
+        "candidate_count": 1,
+        "has_product_image": true,
+        "has_social_image": false,
+        "html_image_count": 0
+      },
+      "offline_selected_candidates": [
+        {
+          "url": "https://cdn2.cellphones.com.vn/200x/media/catalog/product/a/b/ab93e80f.webp?width=600&quality=90",
+          "source": "json_ld_product"
+        }
+      ]
+    },
+    {
+      "name": "OPPO Reno14 5G 12GB 256GB",
+      "pattern": "og",
+      "provenance": "Synthetic DOM; archived identity and observed CDN URL envelope only",
+      "before_candidates": 1,
+      "after_candidates": 1,
+      "image_diagnostics": {
+        "accepted_count": 1,
+        "rejections": [],
+        "candidate_count": 1,
+        "has_product_image": false,
+        "has_social_image": true,
+        "html_image_count": 0
+      },
+      "offline_selected_candidates": [
+        {
+          "url": "https://cdn2.cellphones.com.vn/200x/media/catalog/product/a/b/ab93e80f.webp?width=600&quality=90",
+          "source": "og:image"
+        }
+      ]
+    },
+    {
+      "name": "OPPO Reno14 5G 12GB 256GB",
+      "pattern": "gallery",
+      "provenance": "Synthetic DOM; archived identity and observed CDN URL envelope only",
+      "before_candidates": 0,
+      "after_candidates": 1,
+      "image_diagnostics": {
+        "accepted_count": 1,
+        "rejections": [],
+        "candidate_count": 1,
+        "has_product_image": false,
+        "has_social_image": false,
+        "html_image_count": 1
+      },
+      "offline_selected_candidates": [
+        {
+          "url": "https://cdn2.cellphones.com.vn/200x/media/catalog/product/a/b/ab93e80f.webp?width=600&quality=90",
+          "source": "html_product_image"
+        }
+      ]
+    },
+    {
+      "name": "OPPO Reno14 5G 12GB 256GB",
+      "pattern": "picture",
+      "provenance": "Synthetic DOM; archived identity and observed CDN URL envelope only",
+      "before_candidates": 0,
+      "after_candidates": 1,
+      "image_diagnostics": {
+        "accepted_count": 1,
+        "rejections": [],
+        "candidate_count": 1,
+        "has_product_image": false,
+        "has_social_image": false,
+        "html_image_count": 1
+      },
+      "offline_selected_candidates": [
+        {
+          "url": "https://cdn2.cellphones.com.vn/200x/media/catalog/product/a/b/ab93e80f.webp?width=600&quality=90",
+          "source": "html_product_image"
+        }
+      ]
+    },
+    {
+      "name": "POCO X8 Pro Max 12GB 256GB",
+      "pattern": "json_ld",
+      "provenance": "Synthetic DOM; archived identity and observed CDN URL envelope only",
+      "before_candidates": 1,
+      "after_candidates": 1,
+      "image_diagnostics": {
+        "accepted_count": 1,
+        "rejections": [],
+        "candidate_count": 1,
+        "has_product_image": true,
+        "has_social_image": false,
+        "html_image_count": 0
+      },
+      "offline_selected_candidates": [
+        {
+          "url": "https://cdn2.cellphones.com.vn/200x/media/catalog/product/a/b/ab93e80f.webp?width=600&quality=90",
+          "source": "json_ld_product"
+        }
+      ]
+    },
+    {
+      "name": "POCO X8 Pro Max 12GB 256GB",
+      "pattern": "og",
+      "provenance": "Synthetic DOM; archived identity and observed CDN URL envelope only",
+      "before_candidates": 1,
+      "after_candidates": 1,
+      "image_diagnostics": {
+        "accepted_count": 1,
+        "rejections": [],
+        "candidate_count": 1,
+        "has_product_image": false,
+        "has_social_image": true,
+        "html_image_count": 0
+      },
+      "offline_selected_candidates": [
+        {
+          "url": "https://cdn2.cellphones.com.vn/200x/media/catalog/product/a/b/ab93e80f.webp?width=600&quality=90",
+          "source": "og:image"
+        }
+      ]
+    },
+    {
+      "name": "POCO X8 Pro Max 12GB 256GB",
+      "pattern": "gallery",
+      "provenance": "Synthetic DOM; archived identity and observed CDN URL envelope only",
+      "before_candidates": 0,
+      "after_candidates": 1,
+      "image_diagnostics": {
+        "accepted_count": 1,
+        "rejections": [],
+        "candidate_count": 1,
+        "has_product_image": false,
+        "has_social_image": false,
+        "html_image_count": 1
+      },
+      "offline_selected_candidates": [
+        {
+          "url": "https://cdn2.cellphones.com.vn/200x/media/catalog/product/a/b/ab93e80f.webp?width=600&quality=90",
+          "source": "html_product_image"
+        }
+      ]
+    },
+    {
+      "name": "POCO X8 Pro Max 12GB 256GB",
+      "pattern": "picture",
+      "provenance": "Synthetic DOM; archived identity and observed CDN URL envelope only",
+      "before_candidates": 0,
+      "after_candidates": 1,
+      "image_diagnostics": {
+        "accepted_count": 1,
+        "rejections": [],
+        "candidate_count": 1,
+        "has_product_image": false,
+        "has_social_image": false,
+        "html_image_count": 1
+      },
+      "offline_selected_candidates": [
+        {
+          "url": "https://cdn2.cellphones.com.vn/200x/media/catalog/product/a/b/ab93e80f.webp?width=600&quality=90",
+          "source": "html_product_image"
+        }
+      ]
+    },
+    {
+      "name": "Samsung Galaxy S25 Ultra 12GB 256GB",
+      "pattern": "json_ld",
+      "provenance": "Synthetic DOM; archived identity and observed CDN URL envelope only",
+      "before_candidates": 1,
+      "after_candidates": 1,
+      "image_diagnostics": {
+        "accepted_count": 1,
+        "rejections": [],
+        "candidate_count": 1,
+        "has_product_image": true,
+        "has_social_image": false,
+        "html_image_count": 0
+      },
+      "offline_selected_candidates": [
+        {
+          "url": "https://cdn2.cellphones.com.vn/200x/media/catalog/product/a/b/ab93e80f.webp?width=600&quality=90",
+          "source": "json_ld_product"
+        }
+      ]
+    },
+    {
+      "name": "Samsung Galaxy S25 Ultra 12GB 256GB",
+      "pattern": "og",
+      "provenance": "Synthetic DOM; archived identity and observed CDN URL envelope only",
+      "before_candidates": 1,
+      "after_candidates": 1,
+      "image_diagnostics": {
+        "accepted_count": 1,
+        "rejections": [],
+        "candidate_count": 1,
+        "has_product_image": false,
+        "has_social_image": true,
+        "html_image_count": 0
+      },
+      "offline_selected_candidates": [
+        {
+          "url": "https://cdn2.cellphones.com.vn/200x/media/catalog/product/a/b/ab93e80f.webp?width=600&quality=90",
+          "source": "og:image"
+        }
+      ]
+    },
+    {
+      "name": "Samsung Galaxy S25 Ultra 12GB 256GB",
+      "pattern": "gallery",
+      "provenance": "Synthetic DOM; archived identity and observed CDN URL envelope only",
+      "before_candidates": 0,
+      "after_candidates": 1,
+      "image_diagnostics": {
+        "accepted_count": 1,
+        "rejections": [],
+        "candidate_count": 1,
+        "has_product_image": false,
+        "has_social_image": false,
+        "html_image_count": 1
+      },
+      "offline_selected_candidates": [
+        {
+          "url": "https://cdn2.cellphones.com.vn/200x/media/catalog/product/a/b/ab93e80f.webp?width=600&quality=90",
+          "source": "html_product_image"
+        }
+      ]
+    },
+    {
+      "name": "Samsung Galaxy S25 Ultra 12GB 256GB",
+      "pattern": "picture",
+      "provenance": "Synthetic DOM; archived identity and observed CDN URL envelope only",
+      "before_candidates": 0,
+      "after_candidates": 1,
+      "image_diagnostics": {
+        "accepted_count": 1,
+        "rejections": [],
+        "candidate_count": 1,
+        "has_product_image": false,
+        "has_social_image": false,
+        "html_image_count": 1
+      },
+      "offline_selected_candidates": [
+        {
+          "url": "https://cdn2.cellphones.com.vn/200x/media/catalog/product/a/b/ab93e80f.webp?width=600&quality=90",
+          "source": "html_product_image"
+        }
+      ]
+    }
+  ],
+  "live_requests": 0,
+  "historical_backfill": false,
+  "continuation_validation": {
+    "date": "2026-09-29",
+    "network_requests": 0,
+    "fixture_notice": "Synthetic DOM and asset names; not historical HTML or verified Live images.",
+    "initial_full_suite": {
+      "collected": 771,
+      "passed": 753,
+      "failed": 18,
+      "errors": 0,
+      "warnings": 3
+    },
+    "proven_wip_failure": "ProductImageResolver imported missing raster_prefix; helper added after 18 real test failures.",
+    "targeted": {
+      "passed": 136,
+      "failed": 0,
+      "warnings": 2,
+      "seconds": 5.66
+    },
+    "backend_final": {
+      "collected": 771,
+      "passed": 771,
+      "failed": 0,
+      "errors": 0,
+      "warnings": 2,
+      "seconds": 58.66
+    },
+    "frontend": {
+      "passed": 41,
+      "failed": 0
+    },
+    "lint": "PASS",
+    "build": "PASS",
+    "e2e": {
+      "passed": 15,
+      "failed": 0,
+      "exit_code": 0,
+      "reported_duration": "4.9m",
+      "teardown": "Stopped the two owned test server processes after all tests passed; runner then exited 0."
+    }
+  }
+}

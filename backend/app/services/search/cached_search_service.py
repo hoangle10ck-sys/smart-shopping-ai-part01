@@ -20,6 +20,7 @@ from app.services.recommendation.recommendation_service import (
 )
 from app.services.search.base import SearchProviderError
 from app.services.search.search_service import SearchService
+from app.services.performance import current_trace
 
 
 class CachedSearchService:
@@ -37,6 +38,16 @@ class CachedSearchService:
         requirement = requirement_to_schema(model)
         enabled = not self.settings.demo_mode and self.settings.cache_ttl_seconds > 0
         key = make_cache_key(requirement, scope={
+            'retrieval_version': 8,
+            'live_search_page_budget_seconds': self.settings.live_search_page_budget_seconds,
+            'live_search_domain_budget_seconds': self.settings.live_search_domain_budget_seconds,
+            'live_search_target_products': self.settings.live_search_target_products,
+            'live_search_min_products': self.settings.live_search_min_products,
+            'live_search_max_queries': self.settings.live_search_max_queries,
+            'live_search_budget_seconds': self.settings.live_search_budget_seconds,
+            'live_search_initial_candidates': self.settings.live_search_initial_candidates,
+            'live_search_max_candidates': self.settings.live_search_max_candidates,
+            'live_search_discovery_pages': self.settings.live_search_discovery_pages,
             "mode": "live", "search_provider": "tavily", "top_k": self.settings.top_k,
             "max_search_queries": self.settings.max_search_queries,
             "max_results_per_query": self.settings.max_results_per_query,
@@ -132,4 +143,9 @@ class CachedSearchService:
             demo_mode=False,
             warnings=[f"Kết quả từ cache còn hạn; dữ liệu tại {as_utc(snapshot.created_at).isoformat()}."],
         )
+        trace = current_trace.get()
+        if trace is not None:
+            trace.diagnostics.update(cache_hit=True, final_recommendations=len(result.recommendations),
+                                     valid_candidates=result.total_found, eligible_offers=result.total_filtered,
+                                     stop_reason='snapshot_cache')
         return raw, result

@@ -232,7 +232,7 @@ async def test_aggregate_feeds_model_variant_followups_with_budget_and_intent():
     exact = [d for d in retriever.diagnostics if '"' in d['query']]
     assert exact and all(d['requirement_context']['budget_target']==33000000 and
         d['requirement_context']['purpose']==['đi học'] for d in exact)
-    assert any(d['query']=='"Honda Example X1 Đỏ" mua' for d in exact)
+    assert any(d['query']=='"Honda Example X1 Đỏ" mua Việt Nam VND' for d in exact)
     assert all(d['requirement_context']==req.model_dump() for d in retriever.diagnostics)
     assert not retriever.enough()
 
