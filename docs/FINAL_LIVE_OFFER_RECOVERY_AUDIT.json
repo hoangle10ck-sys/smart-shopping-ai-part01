@@ -1,0 +1,1836 @@
+{
+  "session_id": "dfc295bb-0cef-41b3-83b5-7c1bb1d46335",
+  "source_count": 33,
+  "shape_counts": {
+    "direct_product": 2,
+    "article_news_review_video": 22,
+    "direct_looking_unverified": 6,
+    "category_listing": 3
+  },
+  "confirmed_valid_direct_false_negatives": 0,
+  "classification_note": "No omitted valid offer established by stored proof. Original HTML absent; unverified pages are not certified false-negatives.",
+  "historical_rejection_counts": {
+    "non_product_page": 21,
+    "out_of_stock": 2,
+    "missing_price": 5,
+    "other": 2,
+    "http_network_failure": 2,
+    "missing_identity": 1
+  },
+  "historical_duplicate_provider_rows": 12,
+  "historical_timings": {
+    "requirement_analysis_ms": 0.0,
+    "clarification_ms": 0.0,
+    "query_generation_ms": 0.0,
+    "search_provider_ms": 20376.868,
+    "product_discovery_ms": 1087.28,
+    "product_verification_ms": 7567.347,
+    "page_fetch_ms": 10816.035,
+    "verification_ms": 2554.75,
+    "extraction_ms": 245.846,
+    "filtering_ms": 0.092,
+    "scoring_ms": 0.008,
+    "explanation_ms": 0.0,
+    "total_search_ms": 31805.65
+  },
+  "historical_domain_budgets": {
+    "cellphones.com.vn": {
+      "attempts": 3,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 2614.052,
+      "budget_ms": 6000.0
+    },
+    "chotot.com": {
+      "attempts": 1,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 1521.926,
+      "budget_ms": 6000.0
+    },
+    "clickbuy.com.vn": {
+      "attempts": 1,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 675.747,
+      "budget_ms": 6000.0
+    },
+    "dienthoaihay.vn": {
+      "attempts": 1,
+      "failures": 1,
+      "skipped": 0,
+      "active_ms": 233.563,
+      "budget_ms": 6000.0
+    },
+    "mobappy.co.jp": {
+      "attempts": 1,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 2145.52,
+      "budget_ms": 6000.0
+    },
+    "mobilecity.vn": {
+      "attempts": 2,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 1501.368,
+      "budget_ms": 6000.0
+    },
+    "smartprix.com": {
+      "attempts": 1,
+      "failures": 1,
+      "skipped": 0,
+      "active_ms": 294.958,
+      "budget_ms": 6000.0
+    },
+    "thegioididong.com": {
+      "attempts": 4,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 2618.212,
+      "budget_ms": 6000.0
+    },
+    "tinhte.vn": {
+      "attempts": 1,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 498.547,
+      "budget_ms": 6000.0
+    }
+  },
+  "historical_rounds": [
+    {
+      "round": 1,
+      "kind": "requirement",
+      "duration_ms": 6684.99,
+      "new_verified_products": 0,
+      "no_progress_rounds": 1,
+      "queries_generated": [
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng"
+      ],
+      "queries_executed": [
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng"
+      ],
+      "raw_search_results_per_query": {
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam": 5,
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng": 5
+      },
+      "unique_search_results": 9,
+      "result_domains": [
+        "cellphones.com.vn",
+        "dienmaycholon.com",
+        "hungmobile.vn",
+        "mobappy.co.jp",
+        "youtube.com"
+      ],
+      "conversion": {
+        "potential_product_urls": 1,
+        "direct_product_candidates": 0,
+        "evidence_only_results": 9,
+        "rejected_before_fetch": 8,
+        "pages_requested": 1,
+        "pages_fetched": 1,
+        "pages_verified": 0,
+        "verification_failed": 1,
+        "wrong_category": 0,
+        "non_product_page": 9,
+        "missing_price": 0,
+        "missing_identity": 0,
+        "out_of_stock": 0,
+        "duplicate": 0,
+        "http_network_failure": 0,
+        "other": 0,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 0,
+        "reason_counts": {
+          "non_product_page": 9
+        }
+      },
+      "cumulative_product_attempts": 0,
+      "cumulative_pages_requested": 1,
+      "cumulative_valid_offers": 0
+    },
+    {
+      "round": 2,
+      "kind": "model_discovery",
+      "duration_ms": 5294.392,
+      "new_verified_products": 2,
+      "no_progress_rounds": 0,
+      "queries_generated": [
+        "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND",
+        "\"Redmi Note 13 5G\" mua Việt Nam VND"
+      ],
+      "queries_executed": [
+        "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND",
+        "\"Redmi Note 13 5G\" mua Việt Nam VND"
+      ],
+      "raw_search_results_per_query": {
+        "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND": 5,
+        "\"Redmi Note 13 5G\" mua Việt Nam VND": 5
+      },
+      "unique_search_results": 10,
+      "result_domains": [
+        "cellphones.com.vn",
+        "chotot.com",
+        "dienthoaihay.vn",
+        "mobilecity.vn",
+        "smartprix.com",
+        "thegioididong.com",
+        "tinhte.vn",
+        "viettelstore.vn",
+        "youtube.com"
+      ],
+      "conversion": {
+        "potential_product_urls": 8,
+        "direct_product_candidates": 2,
+        "evidence_only_results": 8,
+        "rejected_before_fetch": 2,
+        "pages_requested": 8,
+        "pages_fetched": 6,
+        "pages_verified": 2,
+        "verification_failed": 6,
+        "wrong_category": 0,
+        "non_product_page": 3,
+        "missing_price": 2,
+        "missing_identity": 0,
+        "out_of_stock": 2,
+        "duplicate": 0,
+        "http_network_failure": 2,
+        "other": 1,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 0,
+        "reason_counts": {
+          "non_product_page": 3,
+          "out_of_stock": 2,
+          "other": 1,
+          "missing_price": 2,
+          "http_network_failure": 2
+        }
+      },
+      "cumulative_product_attempts": 7,
+      "cumulative_pages_requested": 9,
+      "cumulative_valid_offers": 0
+    },
+    {
+      "round": 3,
+      "kind": "commercial",
+      "duration_ms": 5430.179,
+      "new_verified_products": 0,
+      "no_progress_rounds": 1,
+      "queries_generated": [
+        "điện thoại giá khoảng 10000000 VND giá bán",
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua online"
+      ],
+      "queries_executed": [
+        "điện thoại giá khoảng 10000000 VND giá bán",
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua online"
+      ],
+      "raw_search_results_per_query": {
+        "điện thoại giá khoảng 10000000 VND giá bán": 5,
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua online": 5
+      },
+      "unique_search_results": 8,
+      "result_domains": [
+        "cellphones.com.vn",
+        "clickbuy.com.vn",
+        "dienmaycholon.com",
+        "phuongtung.vn",
+        "youtube.com"
+      ],
+      "conversion": {
+        "potential_product_urls": 1,
+        "direct_product_candidates": 0,
+        "evidence_only_results": 8,
+        "rejected_before_fetch": 6,
+        "pages_requested": 2,
+        "pages_fetched": 2,
+        "pages_verified": 0,
+        "verification_failed": 2,
+        "wrong_category": 0,
+        "non_product_page": 7,
+        "missing_price": 1,
+        "missing_identity": 0,
+        "out_of_stock": 0,
+        "duplicate": 0,
+        "http_network_failure": 0,
+        "other": 0,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 0,
+        "reason_counts": {
+          "non_product_page": 7,
+          "missing_price": 1
+        }
+      },
+      "cumulative_product_attempts": 7,
+      "cumulative_pages_requested": 11,
+      "cumulative_valid_offers": 0
+    },
+    {
+      "round": 4,
+      "kind": "merchant_discovery",
+      "duration_ms": 2808.609,
+      "new_verified_products": 0,
+      "no_progress_rounds": 2,
+      "queries_generated": [
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu đại lý"
+      ],
+      "queries_executed": [
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu đại lý"
+      ],
+      "raw_search_results_per_query": {
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu đại lý": 5
+      },
+      "unique_search_results": 5,
+      "result_domains": [
+        "cellphones.com.vn",
+        "clickbuy.com.vn",
+        "dienmaycholon.com",
+        "hungmobile.vn",
+        "youtube.com"
+      ],
+      "conversion": {
+        "potential_product_urls": 1,
+        "direct_product_candidates": 0,
+        "evidence_only_results": 5,
+        "rejected_before_fetch": 4,
+        "pages_requested": 0,
+        "pages_fetched": 0,
+        "pages_verified": 0,
+        "verification_failed": 0,
+        "wrong_category": 0,
+        "non_product_page": 5,
+        "missing_price": 0,
+        "missing_identity": 0,
+        "out_of_stock": 0,
+        "duplicate": 0,
+        "http_network_failure": 0,
+        "other": 0,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 1,
+        "reason_counts": {
+          "non_product_page": 5
+        }
+      },
+      "cumulative_product_attempts": 7,
+      "cumulative_pages_requested": 11,
+      "cumulative_valid_offers": 0
+    },
+    {
+      "round": 5,
+      "kind": "merchant_products",
+      "duration_ms": 4554.501,
+      "new_verified_products": 0,
+      "no_progress_rounds": 3,
+      "queries_generated": [
+        "site:thegioididong.com \"vivo V30E 12GB 256GB\" giá bán Việt Nam VND"
+      ],
+      "queries_executed": [
+        "site:thegioididong.com \"vivo V30E 12GB 256GB\" giá bán Việt Nam VND"
+      ],
+      "raw_search_results_per_query": {
+        "site:thegioididong.com \"vivo V30E 12GB 256GB\" giá bán Việt Nam VND": 5
+      },
+      "unique_search_results": 5,
+      "result_domains": [
+        "thegioididong.com"
+      ],
+      "conversion": {
+        "potential_product_urls": 3,
+        "direct_product_candidates": 0,
+        "evidence_only_results": 5,
+        "rejected_before_fetch": 2,
+        "pages_requested": 3,
+        "pages_fetched": 3,
+        "pages_verified": 0,
+        "verification_failed": 3,
+        "wrong_category": 0,
+        "non_product_page": 2,
+        "missing_price": 1,
+        "missing_identity": 1,
+        "out_of_stock": 0,
+        "duplicate": 0,
+        "http_network_failure": 0,
+        "other": 1,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 0,
+        "reason_counts": {
+          "non_product_page": 2,
+          "missing_identity": 1,
+          "other": 1,
+          "missing_price": 1
+        }
+      },
+      "cumulative_product_attempts": 10,
+      "cumulative_pages_requested": 14,
+      "cumulative_valid_offers": 0
+    },
+    {
+      "round": 6,
+      "kind": "merchant_products",
+      "duration_ms": 4383.696,
+      "new_verified_products": 0,
+      "no_progress_rounds": 4,
+      "queries_generated": [
+        "site:mobilecity.vn \"Redmi Note 13 Pro 5G 8GB\" giá bán Việt Nam VND"
+      ],
+      "queries_executed": [
+        "site:mobilecity.vn \"Redmi Note 13 Pro 5G 8GB\" giá bán Việt Nam VND"
+      ],
+      "raw_search_results_per_query": {
+        "site:mobilecity.vn \"Redmi Note 13 Pro 5G 8GB\" giá bán Việt Nam VND": 5
+      },
+      "unique_search_results": 5,
+      "result_domains": [
+        "mobilecity.vn"
+      ],
+      "conversion": {
+        "potential_product_urls": 1,
+        "direct_product_candidates": 0,
+        "evidence_only_results": 5,
+        "rejected_before_fetch": 4,
+        "pages_requested": 1,
+        "pages_fetched": 1,
+        "pages_verified": 0,
+        "verification_failed": 1,
+        "wrong_category": 0,
+        "non_product_page": 4,
+        "missing_price": 1,
+        "missing_identity": 0,
+        "out_of_stock": 0,
+        "duplicate": 0,
+        "http_network_failure": 0,
+        "other": 0,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 0,
+        "reason_counts": {
+          "missing_price": 1,
+          "non_product_page": 4
+        }
+      },
+      "cumulative_product_attempts": 11,
+      "cumulative_pages_requested": 15,
+      "cumulative_valid_offers": 0
+    }
+  ],
+  "sources": [
+    {
+      "index": 1,
+      "url": "https://cellphones.com.vn/dien-thoai-vivo-v30e.html",
+      "shape": "direct_product",
+      "query": "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND",
+      "requested": true,
+      "fetched": true,
+      "verified": true,
+      "availability": "https://schema.org/OutOfStock",
+      "rejection_code": null,
+      "reason": "Trang chi tiết có identity và giá bán cụ thể cùng nguồn."
+    },
+    {
+      "index": 2,
+      "url": "https://cellphones.com.vn/dien-thoai-xiaomi-redmi-note-13-pro-5g-8gb-256gb.html",
+      "shape": "direct_product",
+      "query": "\"Redmi Note 13 5G\" mua Việt Nam VND",
+      "requested": true,
+      "fetched": true,
+      "verified": true,
+      "availability": "https://schema.org/OutOfStock",
+      "rejection_code": null,
+      "reason": "Trang chi tiết có identity và giá bán cụ thể cùng nguồn."
+    },
+    {
+      "index": 3,
+      "url": "https://cellphones.com.vn/sforum/dien-thoai-tam-trung-dang-mua-nhat",
+      "shape": "article_news_review_video",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 4,
+      "url": "https://hungmobile.vn/tin-tuc/top-dien-thoai-2-trieu-tot-nhat.html",
+      "shape": "article_news_review_video",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 5,
+      "url": "https://mobappy.co.jp/top-dien-thoai-android-gia-re-dang-mua-nhat-2026-goi-y-dang-tien-cho-moi-nhu-cau",
+      "shape": "article_news_review_video",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "reason": "Trang không phải trang bán sản phẩm: ARTICLE"
+    },
+    {
+      "index": 6,
+      "url": "https://www.youtube.com/watch?v=i0kCwHOfOb8&xstg=CAMSBhUD_LL2Hw%3D%3D",
+      "shape": "article_news_review_video",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 7,
+      "url": "https://www.youtube.com/watch?v=etGY7JVoUDw&xstg=CAMSBhUD_LL2Hw%3D%3D",
+      "shape": "article_news_review_video",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 8,
+      "url": "https://dienmaycholon.com/kinh-nghiem-mua-sam/top-dien-thoai-duoi-10-trieu-chup-anh-dep-dang-mua-hien-nay",
+      "shape": "article_news_review_video",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 9,
+      "url": "https://www.youtube.com/watch?v=sbPRprYOxdg",
+      "shape": "article_news_review_video",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 10,
+      "url": "https://www.youtube.com/watch?v=etGY7JVoUDw",
+      "shape": "article_news_review_video",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 11,
+      "url": "https://hungmobile.vn/tin-tuc/dien-thoai-duoi-3-trieu.html",
+      "shape": "article_news_review_video",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 12,
+      "url": "https://viettelstore.vn/tin-tuc/danh-gia-vivo-v30e",
+      "shape": "article_news_review_video",
+      "query": "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 13,
+      "url": "https://tinhte.vn/thread/vivo-v30-5g-va-v30e-5g-bat-dau-duoc-ban-tu-9-49-den-13-99-trieu.3788295",
+      "shape": "article_news_review_video",
+      "query": "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "reason": "Title and direct URL must identify the same model/variant."
+    },
+    {
+      "index": 14,
+      "url": "https://www.thegioididong.com/dtdd/vivo-v30e-12gb",
+      "shape": "direct_looking_unverified",
+      "query": "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "reason": "Need one unambiguous same-source price and commercial merchant signals."
+    },
+    {
+      "index": 15,
+      "url": "https://www.smartprix.com/mobiles/vivo_v30e_5g_vs_vivo_v30_5g_12gb_ram_256gb_-cpd1m8y13f7f_pd15xlmtfy7.php",
+      "shape": "article_news_review_video",
+      "query": "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND",
+      "requested": true,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "reason": "Title and direct URL must identify the same model/variant."
+    },
+    {
+      "index": 16,
+      "url": "https://www.chotot.com/kinh-nghiem/danh-gia-dien-thoai-redmi-note-13.html",
+      "shape": "article_news_review_video",
+      "query": "\"Redmi Note 13 5G\" mua Việt Nam VND",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "reason": "Trang không phải trang bán sản phẩm: ARTICLE"
+    },
+    {
+      "index": 17,
+      "url": "https://www.youtube.com/watch?v=7cTIACFRIxA",
+      "shape": "article_news_review_video",
+      "query": "\"Redmi Note 13 5G\" mua Việt Nam VND",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 18,
+      "url": "https://mobilecity.vn/dien-thoai/xiaomi-redmi-note-13-gia-re.html",
+      "shape": "direct_looking_unverified",
+      "query": "\"Redmi Note 13 5G\" mua Việt Nam VND",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "missing_price",
+      "reason": "Chưa xác minh được trang bán sản phẩm cụ thể."
+    },
+    {
+      "index": 19,
+      "url": "https://dienthoaihay.vn/xiaomi/xiaomi-redmi-note-13-5g-p705.html",
+      "shape": "direct_looking_unverified",
+      "query": "\"Redmi Note 13 5G\" mua Việt Nam VND",
+      "requested": true,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "reason": "Title and direct URL must identify the same model/variant."
+    },
+    {
+      "index": 20,
+      "url": "https://cellphones.com.vn/bo-loc/dien-thoai-gia-re-duoi-2-trieu",
+      "shape": "category_listing",
+      "query": "điện thoại giá khoảng 10000000 VND giá bán",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "missing_price",
+      "reason": "Chưa xác minh được trang bán sản phẩm cụ thể."
+    },
+    {
+      "index": 21,
+      "url": "https://phuongtung.vn/bai-viet/nhung-chiec-dien-thoai-thong-minh-co-gia-cao-nhat-viet-nam",
+      "shape": "article_news_review_video",
+      "query": "điện thoại giá khoảng 10000000 VND giá bán",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 22,
+      "url": "https://www.youtube.com/watch?v=xxJiy02wqq4",
+      "shape": "article_news_review_video",
+      "query": "điện thoại giá khoảng 10000000 VND giá bán",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 23,
+      "url": "https://clickbuy.com.vn/dien-thoai-7-8-trieu.html",
+      "shape": "category_listing",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua online",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "reason": "Trang không phải trang bán sản phẩm: ARTICLE"
+    },
+    {
+      "index": 24,
+      "url": "https://www.thegioididong.com/hoi-dap/tong-hop-bang-gia-dien-thoai-vivo-cac-phien-ban-1503139",
+      "shape": "article_news_review_video",
+      "query": "site:thegioididong.com \"vivo V30E 12GB 256GB\" giá bán Việt Nam VND",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 25,
+      "url": "https://www.thegioididong.com/dtdd-vivo",
+      "shape": "category_listing",
+      "query": "site:thegioididong.com \"vivo V30E 12GB 256GB\" giá bán Việt Nam VND",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "missing_identity",
+      "reason": "Chưa xác minh được trang bán sản phẩm cụ thể."
+    },
+    {
+      "index": 26,
+      "url": "https://www.thegioididong.com/hoi-dap/cach-gui-file-qua-nfc-573431",
+      "shape": "article_news_review_video",
+      "query": "site:thegioididong.com \"vivo V30E 12GB 256GB\" giá bán Việt Nam VND",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 27,
+      "url": "https://www.thegioididong.com/dtdd/vivo-v60-lite-8gb-256gb",
+      "shape": "direct_looking_unverified",
+      "query": "site:thegioididong.com \"vivo V30E 12GB 256GB\" giá bán Việt Nam VND",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "reason": "Editorial/multiple-product search metadata."
+    },
+    {
+      "index": 28,
+      "url": "https://www.thegioididong.com/dtdd/vivo-v50-lite-5g",
+      "shape": "direct_looking_unverified",
+      "query": "site:thegioididong.com \"vivo V30E 12GB 256GB\" giá bán Việt Nam VND",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "reason": "Need one unambiguous same-source price and commercial merchant signals."
+    },
+    {
+      "index": 29,
+      "url": "https://mobilecity.vn/dien-thoai/xiaomi-redmi-note-13-pro-4g-helio-g99-ultra.html",
+      "shape": "direct_looking_unverified",
+      "query": "site:mobilecity.vn \"Redmi Note 13 Pro 5G 8GB\" giá bán Việt Nam VND",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "missing_price",
+      "reason": "Chưa xác minh được trang bán sản phẩm cụ thể."
+    },
+    {
+      "index": 30,
+      "url": "https://mobilecity.vn/tin-tuc/so-sanh-redmi-note-13-vs-redmi-note-12-5g.html",
+      "shape": "article_news_review_video",
+      "query": "site:mobilecity.vn \"Redmi Note 13 Pro 5G 8GB\" giá bán Việt Nam VND",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 31,
+      "url": "https://mobilecity.vn/tin-tuc/redmi-note-14-series-ra-mat-09-01-chinh%20hang.html",
+      "shape": "article_news_review_video",
+      "query": "site:mobilecity.vn \"Redmi Note 13 Pro 5G 8GB\" giá bán Việt Nam VND",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 32,
+      "url": "https://mobilecity.vn/tin-tuc/danh-gia-hieu-nang-redmi-note-13-pro-man-15k.html",
+      "shape": "article_news_review_video",
+      "query": "site:mobilecity.vn \"Redmi Note 13 Pro 5G 8GB\" giá bán Việt Nam VND",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 33,
+      "url": "https://mobilecity.vn/tin-tuc/dong-xiaomi-redmi-note-10-chinh-thuc-ra-mat.html",
+      "shape": "article_news_review_video",
+      "query": "site:mobilecity.vn \"Redmi Note 13 Pro 5G 8GB\" giá bán Việt Nam VND",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "reason": "Non-product source retained for model/merchant discovery."
+    }
+  ],
+  "alternate_merchant_trace": [
+    {
+      "query": "site:thegioididong.com \"vivo V30E 12GB 256GB\" giá bán Việt Nam VND",
+      "provider_results": 5,
+      "domains": [
+        "thegioididong.com"
+      ],
+      "urls": [
+        "https://www.thegioididong.com/hoi-dap/tong-hop-bang-gia-dien-thoai-vivo-cac-phien-ban-1503139",
+        "https://www.thegioididong.com/dtdd-vivo",
+        "https://www.thegioididong.com/hoi-dap/cach-gui-file-qua-nfc-573431",
+        "https://www.thegioididong.com/dtdd/vivo-v60-lite-8gb-256gb",
+        "https://www.thegioididong.com/dtdd/vivo-v50-lite-5g"
+      ],
+      "model_progress": [
+        {
+          "model": "vivo V30E 12GB 256GB",
+          "attempts": 2,
+          "state": "unavailable",
+          "failed_domains": [
+            "cellphones.com.vn"
+          ],
+          "unscoped_exhausted": true,
+          "exhausted": true
+        },
+        {
+          "model": "Redmi Note 13 Pro 5G 8GB",
+          "attempts": 0,
+          "state": "unavailable",
+          "failed_domains": [
+            "cellphones.com.vn"
+          ],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "vivo V60 Lite 5G 8GB/256GB",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "vivo V50 Lite 5G 8GB/256GB",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 13 5G China",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 13 5G",
+          "attempts": 1,
+          "state": "evidence_missing",
+          "failed_domains": [],
+          "unscoped_exhausted": true,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 13 6-128GB",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 13 8-128GB",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 13 12-256GB",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Xiaomi Note 13",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 12",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 11",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 11S",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Vivo V30 5G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Samsung Galaxy A57 5G 8GB 128GB",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Samsung Galaxy S25 Plus 256GB",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 14 Pro Plus 5G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Vivo V70 FE 5G 8GB/256GB",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Samsung Galaxy S26 5G 12GB/256GB",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "vivo X200 Pro Mini Poco X8",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Samsung Galaxy S24",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 14 5G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "vivo Y200 GT",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Oppo K12s 5G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Oppo K12x 5G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Samsung A07 4G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "OPPO A5",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Samsung Galaxy A52",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 13 Pro Plus",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Vivo V21",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Acer Nitro ANV16S-61-R0B8 R5 AI 340",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Asus ExpertBook B3405CCA Ultra 5 225H",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Samsung Galaxy A37 5G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "OPPO Reno13 F 5G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 14 Pro 5G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 15 5G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        }
+      ]
+    },
+    {
+      "query": "site:mobilecity.vn \"Redmi Note 13 Pro 5G 8GB\" giá bán Việt Nam VND",
+      "provider_results": 5,
+      "domains": [
+        "mobilecity.vn"
+      ],
+      "urls": [
+        "https://mobilecity.vn/dien-thoai/xiaomi-redmi-note-13-pro-4g-helio-g99-ultra.html",
+        "https://mobilecity.vn/tin-tuc/so-sanh-redmi-note-13-vs-redmi-note-12-5g.html",
+        "https://mobilecity.vn/tin-tuc/redmi-note-14-series-ra-mat-09-01-chinh%20hang.html",
+        "https://mobilecity.vn/tin-tuc/danh-gia-hieu-nang-redmi-note-13-pro-man-15k.html",
+        "https://mobilecity.vn/tin-tuc/dong-xiaomi-redmi-note-10-chinh-thuc-ra-mat.html"
+      ],
+      "model_progress": [
+        {
+          "model": "vivo V30E 12GB 256GB",
+          "attempts": 2,
+          "state": "unavailable",
+          "failed_domains": [
+            "cellphones.com.vn"
+          ],
+          "unscoped_exhausted": true,
+          "exhausted": true
+        },
+        {
+          "model": "Redmi Note 13 Pro 5G 8GB",
+          "attempts": 1,
+          "state": "unavailable",
+          "failed_domains": [
+            "cellphones.com.vn"
+          ],
+          "unscoped_exhausted": true,
+          "exhausted": false
+        },
+        {
+          "model": "vivo V60 Lite 5G 8GB/256GB",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "vivo V50 Lite 5G 8GB/256GB",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 13 5G China",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 13 5G",
+          "attempts": 1,
+          "state": "evidence_missing",
+          "failed_domains": [],
+          "unscoped_exhausted": true,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 13 6-128GB",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 13 8-128GB",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 13 12-256GB",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Xiaomi Note 13",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 12",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 11",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 11S",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Vivo V30 5G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Samsung Galaxy A57 5G 8GB 128GB",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Samsung Galaxy S25 Plus 256GB",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 14 Pro Plus 5G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Vivo V70 FE 5G 8GB/256GB",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Samsung Galaxy S26 5G 12GB/256GB",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 13 Pro 8-128GB",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "vivo X200 Pro Mini Poco X8",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Samsung Galaxy S24",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 14 5G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "vivo Y200 GT",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Oppo K12s 5G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Oppo K12x 5G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Samsung A07 4G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "OPPO A5",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Samsung Galaxy A52",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 13 Pro Plus",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Vivo V21",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Acer Nitro ANV16S-61-R0B8 R5 AI 340",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Asus ExpertBook B3405CCA Ultra 5 225H",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Samsung Galaxy A37 5G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "OPPO Reno13 F 5G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 14 Pro 5G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 15 5G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Xiaomi Note 14",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 10",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        },
+        {
+          "model": "Redmi Note 10 Pro 5G",
+          "attempts": 0,
+          "state": "unsearched",
+          "failed_domains": [],
+          "unscoped_exhausted": false,
+          "exhausted": false
+        }
+      ]
+    }
+  ],
+  "offline_replay": {
+    "method": "Archived query responses/proofs only. Unrecorded queries return empty, not invented offers. No HTML/timing reconstruction.",
+    "queries": [
+      "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND",
+      "\"OPPO A5\" mua Việt Nam VND",
+      "site:thegioididong.com \"vivo V30E 12GB 256GB\" giá bán Việt Nam VND",
+      "site:fptshop.com.vn điện thoại giá khoảng 10000000 VND giá bán",
+      "\"vivo V60 Lite 5G 8GB/256GB\" giá Việt Nam VND",
+      "\"vivo V50 Lite 5G 8GB/256GB\" giá Việt Nam VND"
+    ],
+    "unrecorded_queries": [
+      "\"OPPO A5\" mua Việt Nam VND",
+      "site:fptshop.com.vn điện thoại giá khoảng 10000000 VND giá bán",
+      "\"vivo V60 Lite 5G 8GB/256GB\" giá Việt Nam VND",
+      "\"vivo V50 Lite 5G 8GB/256GB\" giá Việt Nam VND"
+    ],
+    "page_urls": [
+      "https://cellphones.com.vn/dien-thoai-vivo-v30e.html",
+      "https://www.thegioididong.com/dtdd/vivo-v30e-12gb",
+      "https://www.thegioididong.com/dtdd/vivo-v60-lite-8gb-256gb",
+      "https://www.thegioididong.com/dtdd/vivo-v50-lite-5g",
+      "https://www.thegioididong.com/dtdd-vivo"
+    ],
+    "direct_candidates": 1,
+    "eligible_offers": 0,
+    "stop_reason": "no_progress",
+    "model_hints": [
+      "vivo V30E 12GB 256GB",
+      "vivo V60 Lite 5G 8GB/256GB",
+      "vivo V50 Lite 5G 8GB/256GB",
+      "OPPO A5",
+      "Samsung Galaxy A52",
+      "Vivo V30 5G",
+      "Vivo V70 FE 5G 8GB/256GB",
+      "Samsung Galaxy S26 5G 12GB/256GB",
+      "Redmi 13R 5G",
+      "Redmi 14C 4G",
+      "Redmi Note 13 5G",
+      "Xiaomi 15T Pro",
+      "Samsung Galaxy S24",
+      "Redmi Note 14 5G",
+      "vivo Y200 GT",
+      "Oppo K12s 5G",
+      "Oppo K12x 5G",
+      "Redmi Note 13 Pro 5G",
+      "Samsung A07 4G"
+    ],
+    "rounds": [
+      {
+        "round": 1,
+        "kind": "requirement",
+        "duration_ms": 81.519,
+        "new_verified_products": 0,
+        "no_progress_rounds": 0,
+        "new_model_hints": 14,
+        "new_merchant_domains": 0,
+        "new_direct_urls": 0,
+        "new_child_urls": 0,
+        "queries_generated": [
+          "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+          "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng"
+        ],
+        "queries_executed": [
+          "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+          "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng"
+        ],
+        "raw_search_results_per_query": {
+          "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam": 5,
+          "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng": 5
+        },
+        "unique_search_results": 9,
+        "result_domains": [
+          "cellphones.com.vn",
+          "dienmaycholon.com",
+          "hungmobile.vn",
+          "mobappy.co.jp",
+          "youtube.com"
+        ],
+        "conversion": {
+          "potential_product_urls": 0,
+          "direct_product_candidates": 0,
+          "evidence_only_results": 9,
+          "rejected_before_fetch": 9,
+          "pages_requested": 0,
+          "pages_fetched": 0,
+          "pages_verified": 0,
+          "verification_failed": 0,
+          "wrong_category": 0,
+          "non_product_page": 9,
+          "missing_price": 0,
+          "missing_identity": 0,
+          "out_of_stock": 0,
+          "duplicate": 0,
+          "http_network_failure": 0,
+          "other": 0,
+          "valid_candidates": 0,
+          "eligible_offers": 0,
+          "reused_pages": 0,
+          "reason_counts": {
+            "non_product_page": 9
+          }
+        },
+        "cumulative_product_attempts": 0,
+        "cumulative_pages_requested": 0,
+        "cumulative_valid_offers": 0
+      },
+      {
+        "round": 2,
+        "kind": "model_discovery",
+        "duration_ms": 134.844,
+        "new_verified_products": 1,
+        "no_progress_rounds": 0,
+        "new_model_hints": 1,
+        "new_merchant_domains": 2,
+        "new_direct_urls": 2,
+        "new_child_urls": 0,
+        "queries_generated": [
+          "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND",
+          "\"OPPO A5\" mua Việt Nam VND"
+        ],
+        "queries_executed": [
+          "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND",
+          "\"OPPO A5\" mua Việt Nam VND"
+        ],
+        "raw_search_results_per_query": {
+          "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND": 5,
+          "\"OPPO A5\" mua Việt Nam VND": 0
+        },
+        "unique_search_results": 5,
+        "result_domains": [
+          "cellphones.com.vn",
+          "smartprix.com",
+          "thegioididong.com",
+          "tinhte.vn",
+          "viettelstore.vn"
+        ],
+        "conversion": {
+          "potential_product_urls": 2,
+          "direct_product_candidates": 1,
+          "evidence_only_results": 4,
+          "rejected_before_fetch": 3,
+          "pages_requested": 2,
+          "pages_fetched": 2,
+          "pages_verified": 1,
+          "verification_failed": 1,
+          "wrong_category": 0,
+          "non_product_page": 3,
+          "missing_price": 1,
+          "missing_identity": 0,
+          "out_of_stock": 1,
+          "duplicate": 0,
+          "http_network_failure": 0,
+          "other": 0,
+          "valid_candidates": 0,
+          "eligible_offers": 0,
+          "reused_pages": 0,
+          "reason_counts": {
+            "non_product_page": 3,
+            "out_of_stock": 1,
+            "missing_price": 1
+          }
+        },
+        "cumulative_product_attempts": 2,
+        "cumulative_pages_requested": 2,
+        "cumulative_valid_offers": 0
+      },
+      {
+        "round": 3,
+        "kind": "merchant_products",
+        "duration_ms": 98.519,
+        "new_verified_products": 0,
+        "no_progress_rounds": 0,
+        "new_model_hints": 4,
+        "new_merchant_domains": 0,
+        "new_direct_urls": 2,
+        "new_child_urls": 0,
+        "queries_generated": [
+          "site:thegioididong.com \"vivo V30E 12GB 256GB\" giá bán Việt Nam VND"
+        ],
+        "queries_executed": [
+          "site:thegioididong.com \"vivo V30E 12GB 256GB\" giá bán Việt Nam VND"
+        ],
+        "raw_search_results_per_query": {
+          "site:thegioididong.com \"vivo V30E 12GB 256GB\" giá bán Việt Nam VND": 5
+        },
+        "unique_search_results": 5,
+        "result_domains": [
+          "thegioididong.com"
+        ],
+        "conversion": {
+          "potential_product_urls": 3,
+          "direct_product_candidates": 0,
+          "evidence_only_results": 5,
+          "rejected_before_fetch": 2,
+          "pages_requested": 3,
+          "pages_fetched": 3,
+          "pages_verified": 0,
+          "verification_failed": 3,
+          "wrong_category": 0,
+          "non_product_page": 2,
+          "missing_price": 1,
+          "missing_identity": 1,
+          "out_of_stock": 0,
+          "duplicate": 0,
+          "http_network_failure": 0,
+          "other": 1,
+          "valid_candidates": 0,
+          "eligible_offers": 0,
+          "reused_pages": 0,
+          "reason_counts": {
+            "non_product_page": 2,
+            "missing_identity": 1,
+            "other": 1,
+            "missing_price": 1
+          }
+        },
+        "cumulative_product_attempts": 5,
+        "cumulative_pages_requested": 5,
+        "cumulative_valid_offers": 0
+      },
+      {
+        "round": 4,
+        "kind": "merchant_products",
+        "duration_ms": 98.69,
+        "new_verified_products": 0,
+        "no_progress_rounds": 1,
+        "new_model_hints": 0,
+        "new_merchant_domains": 0,
+        "new_direct_urls": 0,
+        "new_child_urls": 0,
+        "queries_generated": [
+          "site:fptshop.com.vn điện thoại giá khoảng 10000000 VND giá bán"
+        ],
+        "queries_executed": [
+          "site:fptshop.com.vn điện thoại giá khoảng 10000000 VND giá bán"
+        ],
+        "raw_search_results_per_query": {
+          "site:fptshop.com.vn điện thoại giá khoảng 10000000 VND giá bán": 0
+        },
+        "unique_search_results": 0,
+        "result_domains": [],
+        "conversion": {
+          "potential_product_urls": 0,
+          "direct_product_candidates": 0,
+          "evidence_only_results": 0,
+          "rejected_before_fetch": 0,
+          "pages_requested": 0,
+          "pages_fetched": 0,
+          "pages_verified": 0,
+          "verification_failed": 0,
+          "wrong_category": 0,
+          "non_product_page": 0,
+          "missing_price": 0,
+          "missing_identity": 0,
+          "out_of_stock": 0,
+          "duplicate": 0,
+          "http_network_failure": 0,
+          "other": 0,
+          "valid_candidates": 0,
+          "eligible_offers": 0,
+          "reused_pages": 0,
+          "reason_counts": {}
+        },
+        "cumulative_product_attempts": 5,
+        "cumulative_pages_requested": 5,
+        "cumulative_valid_offers": 0
+      },
+      {
+        "round": 5,
+        "kind": "alternative_model",
+        "duration_ms": 121.947,
+        "new_verified_products": 0,
+        "no_progress_rounds": 2,
+        "new_model_hints": 0,
+        "new_merchant_domains": 0,
+        "new_direct_urls": 0,
+        "new_child_urls": 0,
+        "queries_generated": [
+          "\"vivo V60 Lite 5G 8GB/256GB\" giá Việt Nam VND"
+        ],
+        "queries_executed": [
+          "\"vivo V60 Lite 5G 8GB/256GB\" giá Việt Nam VND"
+        ],
+        "raw_search_results_per_query": {
+          "\"vivo V60 Lite 5G 8GB/256GB\" giá Việt Nam VND": 0
+        },
+        "unique_search_results": 0,
+        "result_domains": [],
+        "conversion": {
+          "potential_product_urls": 0,
+          "direct_product_candidates": 0,
+          "evidence_only_results": 0,
+          "rejected_before_fetch": 0,
+          "pages_requested": 0,
+          "pages_fetched": 0,
+          "pages_verified": 0,
+          "verification_failed": 0,
+          "wrong_category": 0,
+          "non_product_page": 0,
+          "missing_price": 0,
+          "missing_identity": 0,
+          "out_of_stock": 0,
+          "duplicate": 0,
+          "http_network_failure": 0,
+          "other": 0,
+          "valid_candidates": 0,
+          "eligible_offers": 0,
+          "reused_pages": 0,
+          "reason_counts": {}
+        },
+        "cumulative_product_attempts": 5,
+        "cumulative_pages_requested": 5,
+        "cumulative_valid_offers": 0
+      },
+      {
+        "round": 6,
+        "kind": "alternative_model",
+        "duration_ms": 95.598,
+        "new_verified_products": 0,
+        "no_progress_rounds": 3,
+        "new_model_hints": 0,
+        "new_merchant_domains": 0,
+        "new_direct_urls": 0,
+        "new_child_urls": 0,
+        "queries_generated": [
+          "\"vivo V50 Lite 5G 8GB/256GB\" giá Việt Nam VND"
+        ],
+        "queries_executed": [
+          "\"vivo V50 Lite 5G 8GB/256GB\" giá Việt Nam VND"
+        ],
+        "raw_search_results_per_query": {
+          "\"vivo V50 Lite 5G 8GB/256GB\" giá Việt Nam VND": 0
+        },
+        "unique_search_results": 0,
+        "result_domains": [],
+        "conversion": {
+          "potential_product_urls": 0,
+          "direct_product_candidates": 0,
+          "evidence_only_results": 0,
+          "rejected_before_fetch": 0,
+          "pages_requested": 0,
+          "pages_fetched": 0,
+          "pages_verified": 0,
+          "verification_failed": 0,
+          "wrong_category": 0,
+          "non_product_page": 0,
+          "missing_price": 0,
+          "missing_identity": 0,
+          "out_of_stock": 0,
+          "duplicate": 0,
+          "http_network_failure": 0,
+          "other": 0,
+          "valid_candidates": 0,
+          "eligible_offers": 0,
+          "reused_pages": 0,
+          "reason_counts": {}
+        },
+        "cumulative_product_attempts": 5,
+        "cumulative_pages_requested": 5,
+        "cumulative_valid_offers": 0
+      }
+    ]
+  }
+}

@@ -1,0 +1,2379 @@
+{
+  "session": {
+    "id": "981f372a-17e8-49d0-9eec-d1fc4fc94378",
+    "raw_query": "Tôi cần điện thoại khoảng 10 triệu, camera tốt, pin lâu",
+    "status": "COMPLETED",
+    "created_at": "2026-09-28 11:54:18.302992",
+    "completed_at": "2026-09-28 11:55:12.619116",
+    "processing_time_ms": 54266.44
+  },
+  "source_counts": {
+    "direct_product": 4,
+    "article_review_news_video": 27,
+    "listing": 3,
+    "likely_product_unverified": 8,
+    "irrelevant_noise": 6
+  },
+  "sources": [
+    {
+      "index": 1,
+      "url": "https://cellphones.com.vn/dien-thoai-vivo-v30e.html",
+      "title": "vivo V30e (12/256GB) | Giá rẻ trả góp 0% - không trả trước",
+      "query": "site:cellphones.com.vn \"vivo V30e 5G 12GB/256GB\" giá bán Việt Nam VND",
+      "classification": "direct_product",
+      "requested": true,
+      "fetched": true,
+      "verified": true,
+      "availability": "https://schema.org/OutOfStock",
+      "rejection_code": null,
+      "fetch_failure": null,
+      "reason": "Trang chi tiết có identity và giá bán cụ thể cùng nguồn."
+    },
+    {
+      "index": 2,
+      "url": "https://www.anhducdigital.vn/samsung-galaxy-a52-128gb-black-chinh-hang-p1254.html",
+      "title": "Samsung Galaxy A52 128GB | Chính Hãng Giá Tốt",
+      "query": "\"Samsung Galaxy A52\" giá Việt Nam VND",
+      "classification": "direct_product",
+      "requested": true,
+      "fetched": true,
+      "verified": true,
+      "availability": "https://schema.org/InStock",
+      "rejection_code": null,
+      "fetch_failure": null,
+      "reason": "Trang chi tiết có identity và giá bán cụ thể cùng nguồn."
+    },
+    {
+      "index": 3,
+      "url": "https://cellphones.com.vn/samsung-galaxy-a52.html",
+      "title": "Điện thoại Samsung Galaxy A52 | Giá rẻ, thu cũ đổi mới",
+      "query": "\"Samsung Galaxy A52\" giá Việt Nam VND",
+      "classification": "direct_product",
+      "requested": true,
+      "fetched": true,
+      "verified": true,
+      "availability": "https://schema.org/OutOfStock",
+      "rejection_code": null,
+      "fetch_failure": null,
+      "reason": "Trang chi tiết có identity và giá bán cụ thể cùng nguồn."
+    },
+    {
+      "index": 4,
+      "url": "https://www.duchuymobile.com/samsung-galaxy-a52-tbh",
+      "title": "Samsung Galaxy A52 128GB Chính Hãng Trôi Bảo Hành ...",
+      "query": "\"Samsung Galaxy A52\" giá Việt Nam VND",
+      "classification": "direct_product",
+      "requested": true,
+      "fetched": true,
+      "verified": true,
+      "availability": "https://schema.org/InStock",
+      "rejection_code": null,
+      "fetch_failure": null,
+      "reason": "Trang chi tiết có identity và giá bán cụ thể cùng nguồn."
+    },
+    {
+      "index": 5,
+      "url": "https://hungmobile.vn/tin-tuc/top-dien-thoai-duoi-10-trieu-dang-mua-nhat.html",
+      "title": "TOP 20 điện thoại DUỚI 10 TRIỆU tốt nhất, chụp ảnh đẹp nhất 2026",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 6,
+      "url": "https://clickbuy.com.vn/dien-thoai-7-8-trieu.html",
+      "title": "Top 5 điện thoại 7-8 triệu đáng tiền nhất 2026",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "classification": "listing",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "fetch_failure": null,
+      "reason": "Trang không phải trang bán sản phẩm: ARTICLE"
+    },
+    {
+      "index": 7,
+      "url": "https://cellphones.com.vn/sforum/dien-thoai-tam-trung-dang-mua-nhat",
+      "title": "Top 9 mẫu điện thoại tầm trung đáng mua nhất năm 2026",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 8,
+      "url": "https://dienthoaivui.com.vn/dien-thoai-gia-re-cho-hoc-sinh",
+      "title": "50 điện thoại giá rẻ cho học sinh, pin trâu 2026",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "classification": "article_review_news_video",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "fetch_failure": null,
+      "reason": "Trang không phải trang bán sản phẩm: ARTICLE"
+    },
+    {
+      "index": 9,
+      "url": "https://mobappy.co.jp/top-dien-thoai-android-gia-re-dang-mua-nhat-2026-goi-y-dang-tien-cho-moi-nhu-cau",
+      "title": "Top điện thoại Android giá rẻ, đáng mua nhất 2026 – Gợi ý đáng tiền cho mọi nhu cầu",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 10,
+      "url": "https://dienmaycholon.com/kinh-nghiem-mua-sam/top-dien-thoai-duoi-10-trieu-chup-anh-dep-dang-mua-hien-nay",
+      "title": "Top 10 điện thoại dưới 10 triệu đáng mua hiện nay",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 11,
+      "url": "https://www.youtube.com/watch?v=sbPRprYOxdg",
+      "title": "Phone Consultation: Are there any good, reliable, and affordable phones under 10 million?",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 12,
+      "url": "https://www.youtube.com/watch?v=etGY7JVoUDw",
+      "title": "Phone Consultation: Which Flagship Can You Buy for Under 10 Million?",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 13,
+      "url": "https://www.nguyenkim.com/nen-mua-dien-thoai-nao-NKUQ2075.b",
+      "title": "Nên mua điện thoại nào? 10 điện thoại smartphone tốt, bền đáng mua | Nguyễn Kim",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "classification": "likely_product_unverified",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "fetch_failure": null,
+      "reason": "Chưa xác minh được trang bán sản phẩm cụ thể."
+    },
+    {
+      "index": 14,
+      "url": "https://www.didongmy.com/vivo-v30e-gia-bao-nhieu-lieu-co-dang-mua-",
+      "title": "Vivo V30e giá bao nhiêu: Liệu có đáng mua?",
+      "query": "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND",
+      "classification": "article_review_news_video",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "fetch_failure": null,
+      "reason": "Trang không phải trang bán sản phẩm: ARTICLE"
+    },
+    {
+      "index": 15,
+      "url": "https://dienmaycholon.com/dien-thoai-di-dong/vivo-v30e-12gb256gb",
+      "title": "Vivo V30E 12GB 256GB - Mua ngay T8/2026, giao nhanh chóng",
+      "query": "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND",
+      "classification": "likely_product_unverified",
+      "requested": true,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "fetch_failure": "invalid_metadata",
+      "reason": "Malformed page metadata; source remains unverified."
+    },
+    {
+      "index": 16,
+      "url": "https://chuyenphanphoi.vn/san-pham/dien-thoai-vivo-v30e-5g-12gb-256gb-trang-8193.html",
+      "title": "ĐIỆN THOẠI VIVO V30E 12GB 256GB chính hãng giá sỉ, ĐIỆN THOẠI VIVO V30E 12GB 256GB chính hãng giá rẻ,nhà phân phối điện thoại Vivo chính hãng giá sỉ tại hcm và hà nội, nhà phân phối điện thoại Vivo chính hãng giá rẻ tại hcm và hà nội",
+      "query": "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND",
+      "classification": "likely_product_unverified",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "fetch_failure": null,
+      "reason": "Chưa xác minh được trang bán sản phẩm cụ thể."
+    },
+    {
+      "index": 17,
+      "url": "https://chuyenphanphoi.vn/san-pham/dien-thoai-vivo-v30e-5g-12gb-256gb-nau-do-8194.html",
+      "title": "ĐIỆN THOẠI VIVO V30E 5G 12GB 256GB chính hãng giá sỉ, ĐIỆN THOẠI VIVO V30E 5G 12GB 256GB chính hãng giá rẻ,nhà phân phối điện thoại Vivo chính hãng giá sỉ tại hcm và hà nội, nhà phân phối điện thoại Vivo chính hãng giá rẻ tại hcm và hà nội",
+      "query": "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND",
+      "classification": "likely_product_unverified",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "fetch_failure": null,
+      "reason": "Chưa xác minh được trang bán sản phẩm cụ thể."
+    },
+    {
+      "index": 18,
+      "url": "https://www.thegioididong.com/dtdd/vivo-v30e-12gb",
+      "title": "vivo V30e 5G 12GB/256GB - Chính hãng, giá tốt, có mua trả chậm",
+      "query": "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND",
+      "classification": "likely_product_unverified",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "fetch_failure": null,
+      "reason": "Need one unambiguous same-source price and commercial merchant signals."
+    },
+    {
+      "index": 19,
+      "url": "https://fptshop.com.vn/tin-tuc/danh-gia/oppo-a5-pro-5g-191394",
+      "title": "Đánh giá chi tiết OPPO A5 Pro 5G: Smartphone tầm trung bền bỉ và mạnh mẽ đáng mua nhất 2025",
+      "query": "\"OPPO A5\" mua Việt Nam VND",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 20,
+      "url": "https://www.mtcgame.com/vi/razer-gold/razer-gold-vietnam/razer-gold-vietnam-vnd-30000",
+      "title": "Mua Razer Gold Việt Nam VND 30000",
+      "query": "\"OPPO A5\" mua Việt Nam VND",
+      "classification": "irrelevant_noise",
+      "requested": true,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "fetch_failure": "http_or_network",
+      "reason": "Editorial/multiple-product search metadata."
+    },
+    {
+      "index": 21,
+      "url": "https://www.mtcgame.com/vi/razer-gold/razer-gold-vietnam/razer-gold-vietnam-vnd-20000",
+      "title": "Mua Razer Gold Việt Nam VND 20000",
+      "query": "\"OPPO A5\" mua Việt Nam VND",
+      "classification": "irrelevant_noise",
+      "requested": true,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "fetch_failure": "http_or_network",
+      "reason": "Editorial/multiple-product search metadata."
+    },
+    {
+      "index": 22,
+      "url": "https://www.mtcgame.com/vi/razer-gold/razer-gold-vietnam/razer-gold-vietnam-vnd-100000",
+      "title": "Mua Razer Gold Việt Nam VND 100000",
+      "query": "\"OPPO A5\" mua Việt Nam VND",
+      "classification": "irrelevant_noise",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "resource_budget",
+      "fetch_failure": null,
+      "reason": "Per-domain time/failure budget exhausted; source remains unverified."
+    },
+    {
+      "index": 23,
+      "url": "https://coin98.net/mua-btc-bang-vnd",
+      "title": "Hướng dẫn cách mua BTC bằng VND tại Việt Nam",
+      "query": "\"OPPO A5\" mua Việt Nam VND",
+      "classification": "irrelevant_noise",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "fetch_failure": null,
+      "reason": "Chưa xác minh được trang bán sản phẩm cụ thể."
+    },
+    {
+      "index": 24,
+      "url": "https://24hstore.vn/review-san-pham/dien-thoai-duoi-10-trieu-n8676",
+      "title": "TOP 11+ Điện thoại dưới 10 triệu cực tốt ĐÁNG MUA nhất 2026",
+      "query": "điện thoại giá khoảng 10000000 VND giá bán",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 25,
+      "url": "https://www.chotot.com/tags/mua-ban-dien-thoai/dien-thoai-duoi-1-trieu",
+      "title": "Mua bán Điện thoại dưới 1 triệu cũ đẹp, giá rẻ, chính hãng",
+      "query": "điện thoại giá khoảng 10000000 VND giá bán",
+      "classification": "listing",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 26,
+      "url": "https://cellphones.com.vn/bo-loc/dien-thoai-gia-re-duoi-2-trieu",
+      "title": "Điện thoại giá rẻ dưới 2 triệu - Chính hãng, giá tốt",
+      "query": "điện thoại giá khoảng 10000000 VND giá bán",
+      "classification": "listing",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "missing_price",
+      "fetch_failure": null,
+      "reason": "Chưa xác minh được trang bán sản phẩm cụ thể."
+    },
+    {
+      "index": 27,
+      "url": "https://phuongtung.vn/bai-viet/nhung-chiec-dien-thoai-thong-minh-co-gia-cao-nhat-viet-nam",
+      "title": "Những chiếc điện thoại thông minh có giá cao nhất Việt Nam",
+      "query": "điện thoại giá khoảng 10000000 VND giá bán",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 28,
+      "url": "https://hungmobile.vn/tin-tuc/dien-thoai-duoi-3-trieu.html",
+      "title": "TOP 13 điện thoại DUỚI 3 TRIỆU tốt nhất 2026, pin trâu, chơi game ngon",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua online",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 29,
+      "url": "https://bloganchoi.com/tag/dien-thoai-pin-trau-cau-hinh-manh/feed",
+      "title": "điện thoại pin trâu cấu hình mạnh – BlogAnChoi",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu đại lý",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 30,
+      "url": "https://bloganchoi.com/tag/dien-thoai-samsung-galaxy-m62/feed",
+      "title": "điện thoại Samsung Galaxy M62 – BlogAnChoi",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu đại lý",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 31,
+      "url": "https://bloganchoi.com/tag/dien-thoai-vivo-y33s/feed",
+      "title": "điện thoại Vivo Y33S – BlogAnChoi",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu đại lý",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 32,
+      "url": "https://bloganchoi.com/tag/dien-thoai-realme-c25/feed",
+      "title": "điện thoại Realme C25 – BlogAnChoi",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu đại lý",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 33,
+      "url": "https://bloganchoi.com/tag/dien-thoai-realme-9i/feed",
+      "title": "điện thoại realme 9i – BlogAnChoi",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu đại lý",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 34,
+      "url": "https://cellphones.com.vn/sforum/dien-thoai-vivo-pin-trau",
+      "title": "10+ điện thoại vivo pin trâu chất lượng, giá rẻ nhất 2025",
+      "query": "site:cellphones.com.vn \"vivo V30e 5G 12GB/256GB\" giá bán Việt Nam VND",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 35,
+      "url": "https://www.thegioididong.com/tin-tuc/top-5-dien-thoai-gia-10-trieu-dang-mua-1561196",
+      "title": "Gợi ý cho bạn TOP 5 điện thoại với mức giá 10 triệu cực ...",
+      "query": "site:thegioididong.com điện thoại giá khoảng 10000000 VND giá bán",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 36,
+      "url": "https://www.thegioididong.com/hoi-dap/top-10-dien-thoai-tam-5-trieu-dang-mua-nhat-hien-nay-1436835",
+      "title": "TOP 10 điện thoại tầm giá 5 triệu đáng mua hiện nay tại ...",
+      "query": "site:thegioididong.com điện thoại giá khoảng 10000000 VND giá bán",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 37,
+      "url": "https://www.thegioididong.com/game-app/top-10-dien-thoai-cu-duoi-1-trieu-choi-game-tot-nhat-2022-1486633",
+      "title": "Top 14 điện thoại 1 triệu chơi game ổn trong tầm giá 2025 ...",
+      "query": "site:thegioididong.com điện thoại giá khoảng 10000000 VND giá bán",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 38,
+      "url": "https://www.thegioididong.com/hoi-dap/top-10-smartphone-thiet-ke-dep-gia-re-dang-mua-tai-the-1436705",
+      "title": "Top 10 điện thoại đẹp giá rẻ đáng mua tại Thế Giới Di Động",
+      "query": "site:thegioididong.com điện thoại giá khoảng 10000000 VND giá bán",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 39,
+      "url": "https://www.thegioididong.com/hoi-dap/top-8-dien-thoai-android-10-gia-re-dang-mua-tai-the-gioi-1417545",
+      "title": "Top 8 điện thoại Android 10 giá rẻ, đáng mua tại Thế Giới ...",
+      "query": "site:thegioididong.com điện thoại giá khoảng 10000000 VND giá bán",
+      "classification": "article_review_news_video",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 40,
+      "url": "https://news.samsung.com/vn/ra-mat-galaxy-a52-a52-5g-va-a72",
+      "title": "Samsung ra mắt Galaxy A52, A52 5G và A72: mang công ...",
+      "query": "\"Samsung Galaxy A52\" giá Việt Nam VND",
+      "classification": "article_review_news_video",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "fetch_failure": null,
+      "reason": "Trang không phải trang bán sản phẩm: NEWS"
+    },
+    {
+      "index": 41,
+      "url": "https://bachlongstore.vn/samsung-galaxy-a52-8gb-128gb-cu.html",
+      "title": "Samsung Galaxy A52 (8GB-128GB) cũ",
+      "query": "\"Samsung Galaxy A52\" giá Việt Nam VND",
+      "classification": "article_review_news_video",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "fetch_failure": null,
+      "reason": "Trang không phải trang bán sản phẩm: ARTICLE"
+    },
+    {
+      "index": 42,
+      "url": "https://www.oppo.com/vn/newsroom/press/reno10-chinh-thuc-mo-ban",
+      "title": "“Chuyên Gia Chân Dung” Reno10 Series 5G chính thức mở bán với 23.000 đơn đặt trước | OPPO Việt Nam",
+      "query": "\"OPPO Reno 10\" giá Việt Nam VND",
+      "classification": "article_review_news_video",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "fetch_failure": null,
+      "reason": "Chưa xác minh được trang bán sản phẩm cụ thể."
+    },
+    {
+      "index": 43,
+      "url": "https://www.duchuymobile.com/oppo-reno10-5g",
+      "title": "Oppo Reno10 5G (8GB | 256GB) Chính Hãng",
+      "query": "\"OPPO Reno 10\" giá Việt Nam VND",
+      "classification": "likely_product_unverified",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "fetch_failure": null,
+      "reason": "Chưa xác minh được trang bán sản phẩm cụ thể."
+    },
+    {
+      "index": 44,
+      "url": "https://www.thegioididong.com/dtdd/oppo-reno10",
+      "title": "OPPO Reno10 5G 8GB/256GB - Chính hãng, giá tốt, có ...",
+      "query": "\"OPPO Reno 10\" giá Việt Nam VND",
+      "classification": "likely_product_unverified",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "fetch_failure": null,
+      "reason": "Editorial/multiple-product search metadata."
+    },
+    {
+      "index": 45,
+      "url": "https://cellphones.com.vn/oppo-reno10.html",
+      "title": "OPPO Reno10 5G 8GB/256GB | Giảm thẳng 2.5Tr, Góp 0%",
+      "query": "\"OPPO Reno 10\" giá Việt Nam VND",
+      "classification": "likely_product_unverified",
+      "requested": true,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "fetch_failure": "timeout",
+      "reason": "Title and direct URL must identify the same model/variant."
+    },
+    {
+      "index": 46,
+      "url": "https://www.oppo.com/vn/newsroom/press/ra-mat-reno10-series-5g",
+      "title": "Reno Series chính thức bước sang thế hệ thứ 10 Chuyên ...",
+      "query": "\"OPPO Reno 10\" giá Việt Nam VND",
+      "classification": "article_review_news_video",
+      "requested": true,
+      "fetched": true,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "fetch_failure": null,
+      "reason": "Chưa xác minh được trang bán sản phẩm cụ thể."
+    },
+    {
+      "index": 47,
+      "url": "https://en.wikipedia.org/wiki/5G",
+      "title": "5G - Wikipedia",
+      "query": "\"OPPO Reno10 5G 8GB/256GB\" giá Việt Nam VND",
+      "classification": "irrelevant_noise",
+      "requested": false,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": "non_product_page",
+      "fetch_failure": null,
+      "reason": "Non-product source retained for model/merchant discovery."
+    },
+    {
+      "index": 48,
+      "url": "https://www.ericsson.com/en/5g",
+      "title": "What is 5G? How it transforms our world. - Ericsson",
+      "query": "\"OPPO Reno10 5G 8GB/256GB\" giá Việt Nam VND",
+      "classification": "irrelevant_noise",
+      "requested": true,
+      "fetched": false,
+      "verified": false,
+      "availability": null,
+      "rejection_code": null,
+      "fetch_failure": "http_or_network",
+      "reason": "Title and direct URL must identify the same model/variant."
+    }
+  ],
+  "timings": {
+    "requirement_analysis_ms": 0.0,
+    "clarification_ms": 0.0,
+    "query_generation_ms": 0.0,
+    "search_provider_ms": 31359.357,
+    "product_discovery_ms": 2990.788,
+    "product_verification_ms": 10961.88,
+    "page_fetch_ms": 15343.427,
+    "verification_ms": 2398.545,
+    "extraction_ms": 443.251,
+    "filtering_ms": 0.287,
+    "scoring_ms": 0.42,
+    "explanation_ms": 4156.228,
+    "total_search_ms": 54266.444
+  },
+  "previous_timings": {
+    "requirement_analysis_ms": 0.0,
+    "clarification_ms": 0.0,
+    "query_generation_ms": 0.0,
+    "search_provider_ms": 20376.868,
+    "product_discovery_ms": 1087.28,
+    "product_verification_ms": 7567.347,
+    "page_fetch_ms": 10816.035,
+    "verification_ms": 2554.75,
+    "extraction_ms": 245.846,
+    "filtering_ms": 0.092,
+    "scoring_ms": 0.008,
+    "explanation_ms": 0.0,
+    "total_search_ms": 31805.65
+  },
+  "delta_ms": {
+    "requirement_analysis_ms": 0.0,
+    "clarification_ms": 0.0,
+    "query_generation_ms": 0.0,
+    "search_provider_ms": 10982.489,
+    "product_discovery_ms": 1903.508,
+    "product_verification_ms": 3394.533,
+    "page_fetch_ms": 4527.392,
+    "verification_ms": -156.205,
+    "extraction_ms": 197.405,
+    "filtering_ms": 0.195,
+    "scoring_ms": 0.412,
+    "explanation_ms": 4156.228,
+    "total_search_ms": 22460.794
+  },
+  "previous_counts": {
+    "provider_calls": 9,
+    "round_count": 6,
+    "page_attempts": 15,
+    "stop_reason": "no_progress"
+  },
+  "current_counts": {
+    "provider_calls": 12,
+    "round_count": 9,
+    "page_attempts": 24,
+    "stop_reason": "page_budget"
+  },
+  "source_delta": {
+    "old": 33,
+    "new": 48,
+    "overlap": 11,
+    "new_urls": [
+      "https://24hstore.vn/review-san-pham/dien-thoai-duoi-10-trieu-n8676",
+      "https://bachlongstore.vn/samsung-galaxy-a52-8gb-128gb-cu.html",
+      "https://bloganchoi.com/tag/dien-thoai-pin-trau-cau-hinh-manh/feed",
+      "https://bloganchoi.com/tag/dien-thoai-realme-9i/feed",
+      "https://bloganchoi.com/tag/dien-thoai-realme-c25/feed",
+      "https://bloganchoi.com/tag/dien-thoai-samsung-galaxy-m62/feed",
+      "https://bloganchoi.com/tag/dien-thoai-vivo-y33s/feed",
+      "https://cellphones.com.vn/oppo-reno10.html",
+      "https://cellphones.com.vn/samsung-galaxy-a52.html",
+      "https://cellphones.com.vn/sforum/dien-thoai-vivo-pin-trau",
+      "https://chuyenphanphoi.vn/san-pham/dien-thoai-vivo-v30e-5g-12gb-256gb-nau-do-8194.html",
+      "https://chuyenphanphoi.vn/san-pham/dien-thoai-vivo-v30e-5g-12gb-256gb-trang-8193.html",
+      "https://coin98.net/mua-btc-bang-vnd",
+      "https://dienmaycholon.com/dien-thoai-di-dong/vivo-v30e-12gb256gb",
+      "https://dienthoaivui.com.vn/dien-thoai-gia-re-cho-hoc-sinh",
+      "https://en.wikipedia.org/wiki/5G",
+      "https://fptshop.com.vn/tin-tuc/danh-gia/oppo-a5-pro-5g-191394",
+      "https://hungmobile.vn/tin-tuc/top-dien-thoai-duoi-10-trieu-dang-mua-nhat.html",
+      "https://news.samsung.com/vn/ra-mat-galaxy-a52-a52-5g-va-a72",
+      "https://www.anhducdigital.vn/samsung-galaxy-a52-128gb-black-chinh-hang-p1254.html",
+      "https://www.chotot.com/tags/mua-ban-dien-thoai/dien-thoai-duoi-1-trieu",
+      "https://www.didongmy.com/vivo-v30e-gia-bao-nhieu-lieu-co-dang-mua-",
+      "https://www.duchuymobile.com/oppo-reno10-5g",
+      "https://www.duchuymobile.com/samsung-galaxy-a52-tbh",
+      "https://www.ericsson.com/en/5g",
+      "https://www.mtcgame.com/vi/razer-gold/razer-gold-vietnam/razer-gold-vietnam-vnd-100000",
+      "https://www.mtcgame.com/vi/razer-gold/razer-gold-vietnam/razer-gold-vietnam-vnd-20000",
+      "https://www.mtcgame.com/vi/razer-gold/razer-gold-vietnam/razer-gold-vietnam-vnd-30000",
+      "https://www.nguyenkim.com/nen-mua-dien-thoai-nao-NKUQ2075.b",
+      "https://www.oppo.com/vn/newsroom/press/ra-mat-reno10-series-5g",
+      "https://www.oppo.com/vn/newsroom/press/reno10-chinh-thuc-mo-ban",
+      "https://www.thegioididong.com/dtdd/oppo-reno10",
+      "https://www.thegioididong.com/game-app/top-10-dien-thoai-cu-duoi-1-trieu-choi-game-tot-nhat-2022-1486633",
+      "https://www.thegioididong.com/hoi-dap/top-10-dien-thoai-tam-5-trieu-dang-mua-nhat-hien-nay-1436835",
+      "https://www.thegioididong.com/hoi-dap/top-10-smartphone-thiet-ke-dep-gia-re-dang-mua-tai-the-1436705",
+      "https://www.thegioididong.com/hoi-dap/top-8-dien-thoai-android-10-gia-re-dang-mua-tai-the-gioi-1417545",
+      "https://www.thegioididong.com/tin-tuc/top-5-dien-thoai-gia-10-trieu-dang-mua-1561196"
+    ],
+    "removed_urls": [
+      "https://cellphones.com.vn/dien-thoai-xiaomi-redmi-note-13-pro-5g-8gb-256gb.html",
+      "https://dienthoaihay.vn/xiaomi/xiaomi-redmi-note-13-5g-p705.html",
+      "https://hungmobile.vn/tin-tuc/top-dien-thoai-2-trieu-tot-nhat.html",
+      "https://mobilecity.vn/dien-thoai/xiaomi-redmi-note-13-gia-re.html",
+      "https://mobilecity.vn/dien-thoai/xiaomi-redmi-note-13-pro-4g-helio-g99-ultra.html",
+      "https://mobilecity.vn/tin-tuc/danh-gia-hieu-nang-redmi-note-13-pro-man-15k.html",
+      "https://mobilecity.vn/tin-tuc/dong-xiaomi-redmi-note-10-chinh-thuc-ra-mat.html",
+      "https://mobilecity.vn/tin-tuc/redmi-note-14-series-ra-mat-09-01-chinh%20hang.html",
+      "https://mobilecity.vn/tin-tuc/so-sanh-redmi-note-13-vs-redmi-note-12-5g.html",
+      "https://tinhte.vn/thread/vivo-v30-5g-va-v30e-5g-bat-dau-duoc-ban-tu-9-49-den-13-99-trieu.3788295",
+      "https://viettelstore.vn/tin-tuc/danh-gia-vivo-v30e",
+      "https://www.chotot.com/kinh-nghiem/danh-gia-dien-thoai-redmi-note-13.html",
+      "https://www.smartprix.com/mobiles/vivo_v30e_5g_vs_vivo_v30_5g_12gb_ram_256gb_-cpd1m8y13f7f_pd15xlmtfy7.php",
+      "https://www.thegioididong.com/dtdd-vivo",
+      "https://www.thegioididong.com/dtdd/vivo-v50-lite-5g",
+      "https://www.thegioididong.com/dtdd/vivo-v60-lite-8gb-256gb",
+      "https://www.thegioididong.com/hoi-dap/cach-gui-file-qua-nfc-573431",
+      "https://www.thegioididong.com/hoi-dap/tong-hop-bang-gia-dien-thoai-vivo-cac-phien-ban-1503139",
+      "https://www.youtube.com/watch?v=7cTIACFRIxA",
+      "https://www.youtube.com/watch?v=etGY7JVoUDw&xstg=CAMSBhUD_LL2Hw%3D%3D",
+      "https://www.youtube.com/watch?v=i0kCwHOfOb8&xstg=CAMSBhUD_LL2Hw%3D%3D",
+      "https://www.youtube.com/watch?v=xxJiy02wqq4"
+    ],
+    "provider_rows": 57,
+    "previous_provider_rows": 45
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "kind": "requirement",
+      "duration_ms": 4383.885,
+      "new_verified_products": 0,
+      "no_progress_rounds": 0,
+      "new_model_hints": 15,
+      "new_merchant_domains": 0,
+      "new_direct_urls": 1,
+      "new_child_urls": 0,
+      "queries_generated": [
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng"
+      ],
+      "queries_executed": [
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng"
+      ],
+      "raw_search_results_per_query": {
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam": 5,
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng": 5
+      },
+      "unique_search_results": 9,
+      "result_domains": [
+        "cellphones.com.vn",
+        "clickbuy.com.vn",
+        "dienmaycholon.com",
+        "dienthoaivui.com.vn",
+        "hungmobile.vn",
+        "mobappy.co.jp",
+        "nguyenkim.com",
+        "youtube.com"
+      ],
+      "conversion": {
+        "potential_product_urls": 3,
+        "direct_product_candidates": 0,
+        "evidence_only_results": 9,
+        "rejected_before_fetch": 6,
+        "pages_requested": 3,
+        "pages_fetched": 3,
+        "pages_verified": 0,
+        "verification_failed": 3,
+        "wrong_category": 0,
+        "non_product_page": 8,
+        "missing_price": 0,
+        "missing_identity": 0,
+        "out_of_stock": 0,
+        "duplicate": 0,
+        "http_network_failure": 0,
+        "other": 1,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 0,
+        "reason_counts": {
+          "non_product_page": 8,
+          "other": 1
+        }
+      },
+      "cumulative_product_attempts": 1,
+      "cumulative_pages_requested": 3,
+      "cumulative_valid_offers": 0,
+      "query_details": [
+        {
+          "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+          "provider_ms": 3538.266,
+          "results": 5,
+          "errors": null
+        },
+        {
+          "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+          "provider_ms": 2286.893,
+          "results": 5,
+          "errors": null
+        }
+      ],
+      "continuation_note": "not satisfied; novelty reset no_progress"
+    },
+    {
+      "round": 2,
+      "kind": "model_discovery",
+      "duration_ms": 7054.193,
+      "new_verified_products": 0,
+      "no_progress_rounds": 0,
+      "new_model_hints": 1,
+      "new_merchant_domains": 3,
+      "new_direct_urls": 8,
+      "new_child_urls": 0,
+      "queries_generated": [
+        "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND",
+        "\"OPPO A5\" mua Việt Nam VND"
+      ],
+      "queries_executed": [
+        "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND",
+        "\"OPPO A5\" mua Việt Nam VND"
+      ],
+      "raw_search_results_per_query": {
+        "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND": 5,
+        "\"OPPO A5\" mua Việt Nam VND": 5
+      },
+      "unique_search_results": 10,
+      "result_domains": [
+        "chuyenphanphoi.vn",
+        "coin98.net",
+        "didongmy.com",
+        "dienmaycholon.com",
+        "fptshop.com.vn",
+        "mtcgame.com",
+        "thegioididong.com"
+      ],
+      "conversion": {
+        "potential_product_urls": 9,
+        "direct_product_candidates": 0,
+        "evidence_only_results": 10,
+        "rejected_before_fetch": 2,
+        "pages_requested": 8,
+        "pages_fetched": 5,
+        "pages_verified": 0,
+        "verification_failed": 8,
+        "wrong_category": 0,
+        "non_product_page": 2,
+        "missing_price": 1,
+        "missing_identity": 0,
+        "out_of_stock": 0,
+        "duplicate": 0,
+        "http_network_failure": 2,
+        "other": 5,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 0,
+        "reason_counts": {
+          "non_product_page": 2,
+          "other": 5,
+          "missing_price": 1,
+          "http_network_failure": 2
+        }
+      },
+      "cumulative_product_attempts": 8,
+      "cumulative_pages_requested": 11,
+      "cumulative_valid_offers": 0,
+      "query_details": [
+        {
+          "query": "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND",
+          "provider_ms": 3415.675,
+          "results": 5,
+          "errors": null
+        },
+        {
+          "query": "\"OPPO A5\" mua Việt Nam VND",
+          "provider_ms": 4440.778,
+          "results": 5,
+          "errors": null
+        }
+      ],
+      "continuation_note": "not satisfied; novelty reset no_progress"
+    },
+    {
+      "round": 3,
+      "kind": "commercial",
+      "duration_ms": 3946.058,
+      "new_verified_products": 0,
+      "no_progress_rounds": 0,
+      "new_model_hints": 13,
+      "new_merchant_domains": 0,
+      "new_direct_urls": 0,
+      "new_child_urls": 0,
+      "queries_generated": [
+        "điện thoại giá khoảng 10000000 VND giá bán",
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua online"
+      ],
+      "queries_executed": [
+        "điện thoại giá khoảng 10000000 VND giá bán",
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua online"
+      ],
+      "raw_search_results_per_query": {
+        "điện thoại giá khoảng 10000000 VND giá bán": 5,
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua online": 5
+      },
+      "unique_search_results": 9,
+      "result_domains": [
+        "24hstore.vn",
+        "cellphones.com.vn",
+        "chotot.com",
+        "clickbuy.com.vn",
+        "dienmaycholon.com",
+        "hungmobile.vn",
+        "phuongtung.vn",
+        "youtube.com"
+      ],
+      "conversion": {
+        "potential_product_urls": 1,
+        "direct_product_candidates": 0,
+        "evidence_only_results": 9,
+        "rejected_before_fetch": 7,
+        "pages_requested": 1,
+        "pages_fetched": 1,
+        "pages_verified": 0,
+        "verification_failed": 1,
+        "wrong_category": 0,
+        "non_product_page": 8,
+        "missing_price": 1,
+        "missing_identity": 0,
+        "out_of_stock": 0,
+        "duplicate": 0,
+        "http_network_failure": 0,
+        "other": 0,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 1,
+        "reason_counts": {
+          "non_product_page": 8,
+          "missing_price": 1
+        }
+      },
+      "cumulative_product_attempts": 8,
+      "cumulative_pages_requested": 12,
+      "cumulative_valid_offers": 0,
+      "query_details": [
+        {
+          "query": "điện thoại giá khoảng 10000000 VND giá bán",
+          "provider_ms": 2987.45,
+          "results": 5,
+          "errors": null
+        },
+        {
+          "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua online",
+          "provider_ms": 2613.814,
+          "results": 5,
+          "errors": null
+        }
+      ],
+      "continuation_note": "not satisfied; novelty reset no_progress"
+    },
+    {
+      "round": 4,
+      "kind": "merchant_discovery",
+      "duration_ms": 4905.347,
+      "new_verified_products": 0,
+      "no_progress_rounds": 1,
+      "new_model_hints": 0,
+      "new_merchant_domains": 0,
+      "new_direct_urls": 0,
+      "new_child_urls": 0,
+      "queries_generated": [
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu đại lý"
+      ],
+      "queries_executed": [
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu đại lý"
+      ],
+      "raw_search_results_per_query": {
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu đại lý": 5
+      },
+      "unique_search_results": 5,
+      "result_domains": [
+        "bloganchoi.com"
+      ],
+      "conversion": {
+        "potential_product_urls": 0,
+        "direct_product_candidates": 0,
+        "evidence_only_results": 5,
+        "rejected_before_fetch": 5,
+        "pages_requested": 0,
+        "pages_fetched": 0,
+        "pages_verified": 0,
+        "verification_failed": 0,
+        "wrong_category": 0,
+        "non_product_page": 5,
+        "missing_price": 0,
+        "missing_identity": 0,
+        "out_of_stock": 0,
+        "duplicate": 0,
+        "http_network_failure": 0,
+        "other": 0,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 0,
+        "reason_counts": {
+          "non_product_page": 5
+        }
+      },
+      "cumulative_product_attempts": 8,
+      "cumulative_pages_requested": 12,
+      "cumulative_valid_offers": 0,
+      "query_details": [
+        {
+          "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu đại lý",
+          "provider_ms": 4701.355,
+          "results": 5,
+          "errors": null
+        }
+      ],
+      "continuation_note": "not satisfied; one stale round below bounded no_progress limit"
+    },
+    {
+      "round": 5,
+      "kind": "merchant_products",
+      "duration_ms": 5867.108,
+      "new_verified_products": 1,
+      "no_progress_rounds": 0,
+      "new_model_hints": 0,
+      "new_merchant_domains": 1,
+      "new_direct_urls": 1,
+      "new_child_urls": 0,
+      "queries_generated": [
+        "site:cellphones.com.vn \"vivo V30e 5G 12GB/256GB\" giá bán Việt Nam VND"
+      ],
+      "queries_executed": [
+        "site:cellphones.com.vn \"vivo V30e 5G 12GB/256GB\" giá bán Việt Nam VND"
+      ],
+      "raw_search_results_per_query": {
+        "site:cellphones.com.vn \"vivo V30e 5G 12GB/256GB\" giá bán Việt Nam VND": 2
+      },
+      "unique_search_results": 2,
+      "result_domains": [
+        "cellphones.com.vn"
+      ],
+      "conversion": {
+        "potential_product_urls": 1,
+        "direct_product_candidates": 1,
+        "evidence_only_results": 1,
+        "rejected_before_fetch": 1,
+        "pages_requested": 1,
+        "pages_fetched": 1,
+        "pages_verified": 1,
+        "verification_failed": 0,
+        "wrong_category": 0,
+        "non_product_page": 1,
+        "missing_price": 0,
+        "missing_identity": 0,
+        "out_of_stock": 1,
+        "duplicate": 0,
+        "http_network_failure": 0,
+        "other": 0,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 0,
+        "reason_counts": {
+          "out_of_stock": 1,
+          "non_product_page": 1
+        }
+      },
+      "cumulative_product_attempts": 9,
+      "cumulative_pages_requested": 13,
+      "cumulative_valid_offers": 0,
+      "query_details": [
+        {
+          "query": "site:cellphones.com.vn \"vivo V30e 5G 12GB/256GB\" giá bán Việt Nam VND",
+          "provider_ms": 3566.324,
+          "results": 2,
+          "errors": null
+        }
+      ],
+      "continuation_note": "not satisfied; novelty reset no_progress"
+    },
+    {
+      "round": 6,
+      "kind": "merchant_products",
+      "duration_ms": 4022.14,
+      "new_verified_products": 0,
+      "no_progress_rounds": 0,
+      "new_model_hints": 7,
+      "new_merchant_domains": 0,
+      "new_direct_urls": 0,
+      "new_child_urls": 0,
+      "queries_generated": [
+        "site:thegioididong.com điện thoại giá khoảng 10000000 VND giá bán"
+      ],
+      "queries_executed": [
+        "site:thegioididong.com điện thoại giá khoảng 10000000 VND giá bán"
+      ],
+      "raw_search_results_per_query": {
+        "site:thegioididong.com điện thoại giá khoảng 10000000 VND giá bán": 5
+      },
+      "unique_search_results": 5,
+      "result_domains": [
+        "thegioididong.com"
+      ],
+      "conversion": {
+        "potential_product_urls": 0,
+        "direct_product_candidates": 0,
+        "evidence_only_results": 5,
+        "rejected_before_fetch": 5,
+        "pages_requested": 0,
+        "pages_fetched": 0,
+        "pages_verified": 0,
+        "verification_failed": 0,
+        "wrong_category": 0,
+        "non_product_page": 5,
+        "missing_price": 0,
+        "missing_identity": 0,
+        "out_of_stock": 0,
+        "duplicate": 0,
+        "http_network_failure": 0,
+        "other": 0,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 0,
+        "reason_counts": {
+          "non_product_page": 5
+        }
+      },
+      "cumulative_product_attempts": 9,
+      "cumulative_pages_requested": 13,
+      "cumulative_valid_offers": 0,
+      "query_details": [
+        {
+          "query": "site:thegioididong.com điện thoại giá khoảng 10000000 VND giá bán",
+          "provider_ms": 3746.827,
+          "results": 5,
+          "errors": null
+        }
+      ],
+      "continuation_note": "not satisfied; novelty reset no_progress"
+    },
+    {
+      "round": 7,
+      "kind": "alternative_model",
+      "duration_ms": 5907.231,
+      "new_verified_products": 3,
+      "no_progress_rounds": 0,
+      "new_model_hints": 0,
+      "new_merchant_domains": 0,
+      "new_direct_urls": 4,
+      "new_child_urls": 0,
+      "queries_generated": [
+        "\"Samsung Galaxy A52\" giá Việt Nam VND"
+      ],
+      "queries_executed": [
+        "\"Samsung Galaxy A52\" giá Việt Nam VND"
+      ],
+      "raw_search_results_per_query": {
+        "\"Samsung Galaxy A52\" giá Việt Nam VND": 5
+      },
+      "unique_search_results": 5,
+      "result_domains": [
+        "anhducdigital.vn",
+        "bachlongstore.vn",
+        "cellphones.com.vn",
+        "duchuymobile.com",
+        "news.samsung.com"
+      ],
+      "conversion": {
+        "potential_product_urls": 5,
+        "direct_product_candidates": 3,
+        "evidence_only_results": 2,
+        "rejected_before_fetch": 0,
+        "pages_requested": 5,
+        "pages_fetched": 5,
+        "pages_verified": 3,
+        "verification_failed": 2,
+        "wrong_category": 0,
+        "non_product_page": 2,
+        "missing_price": 0,
+        "missing_identity": 0,
+        "out_of_stock": 1,
+        "duplicate": 0,
+        "http_network_failure": 0,
+        "other": 0,
+        "valid_candidates": 2,
+        "eligible_offers": 2,
+        "reused_pages": 0,
+        "reason_counts": {
+          "non_product_page": 2,
+          "out_of_stock": 1
+        }
+      },
+      "cumulative_product_attempts": 12,
+      "cumulative_pages_requested": 18,
+      "cumulative_valid_offers": 2,
+      "query_details": [
+        {
+          "query": "\"Samsung Galaxy A52\" giá Việt Nam VND",
+          "provider_ms": 2342.944,
+          "results": 5,
+          "errors": null
+        }
+      ],
+      "continuation_note": "not satisfied; novelty reset no_progress"
+    },
+    {
+      "round": 8,
+      "kind": "alternative_model",
+      "duration_ms": 5752.325,
+      "new_verified_products": 0,
+      "no_progress_rounds": 0,
+      "new_model_hints": 1,
+      "new_merchant_domains": 1,
+      "new_direct_urls": 4,
+      "new_child_urls": 0,
+      "queries_generated": [
+        "\"OPPO Reno 10\" giá Việt Nam VND"
+      ],
+      "queries_executed": [
+        "\"OPPO Reno 10\" giá Việt Nam VND"
+      ],
+      "raw_search_results_per_query": {
+        "\"OPPO Reno 10\" giá Việt Nam VND": 5
+      },
+      "unique_search_results": 5,
+      "result_domains": [
+        "cellphones.com.vn",
+        "duchuymobile.com",
+        "oppo.com",
+        "thegioididong.com"
+      ],
+      "conversion": {
+        "potential_product_urls": 5,
+        "direct_product_candidates": 0,
+        "evidence_only_results": 5,
+        "rejected_before_fetch": 0,
+        "pages_requested": 5,
+        "pages_fetched": 4,
+        "pages_verified": 0,
+        "verification_failed": 5,
+        "wrong_category": 0,
+        "non_product_page": 0,
+        "missing_price": 0,
+        "missing_identity": 0,
+        "out_of_stock": 0,
+        "duplicate": 0,
+        "http_network_failure": 1,
+        "other": 4,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 0,
+        "reason_counts": {
+          "other": 4,
+          "http_network_failure": 1
+        }
+      },
+      "cumulative_product_attempts": 17,
+      "cumulative_pages_requested": 23,
+      "cumulative_valid_offers": 2,
+      "query_details": [
+        {
+          "query": "\"OPPO Reno 10\" giá Việt Nam VND",
+          "provider_ms": 3171.903,
+          "results": 5,
+          "errors": null
+        }
+      ],
+      "continuation_note": "not satisfied; novelty reset no_progress"
+    },
+    {
+      "round": 9,
+      "kind": "alternative_model",
+      "duration_ms": 3039.192,
+      "new_verified_products": 0,
+      "no_progress_rounds": 0,
+      "new_model_hints": 0,
+      "new_merchant_domains": 0,
+      "new_direct_urls": 1,
+      "new_child_urls": 0,
+      "queries_generated": [
+        "\"OPPO Reno10 5G 8GB/256GB\" giá Việt Nam VND"
+      ],
+      "queries_executed": [
+        "\"OPPO Reno10 5G 8GB/256GB\" giá Việt Nam VND"
+      ],
+      "raw_search_results_per_query": {
+        "\"OPPO Reno10 5G 8GB/256GB\" giá Việt Nam VND": 5
+      },
+      "unique_search_results": 5,
+      "result_domains": [
+        "code.wvlegislature.gov",
+        "en.wikipedia.org",
+        "ericsson.com",
+        "icnirp.org",
+        "viavisolutions.com"
+      ],
+      "conversion": {
+        "potential_product_urls": 4,
+        "direct_product_candidates": 0,
+        "evidence_only_results": 2,
+        "rejected_before_fetch": 1,
+        "pages_requested": 1,
+        "pages_fetched": 0,
+        "pages_verified": 0,
+        "verification_failed": 1,
+        "wrong_category": 0,
+        "non_product_page": 1,
+        "missing_price": 0,
+        "missing_identity": 0,
+        "out_of_stock": 0,
+        "duplicate": 0,
+        "http_network_failure": 1,
+        "other": 0,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 0,
+        "reason_counts": {
+          "non_product_page": 1,
+          "http_network_failure": 1
+        }
+      },
+      "cumulative_product_attempts": 18,
+      "cumulative_pages_requested": 24,
+      "cumulative_valid_offers": 2,
+      "query_details": [
+        {
+          "query": "\"OPPO Reno10 5G 8GB/256GB\" giá Việt Nam VND",
+          "provider_ms": 2424.834,
+          "results": 5,
+          "errors": null
+        }
+      ],
+      "continuation_note": "page_budget reached"
+    }
+  ],
+  "domain_budgets": {
+    "anhducdigital.vn": {
+      "attempts": 1,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 980.244,
+      "budget_ms": 6000.0
+    },
+    "bachlongstore.vn": {
+      "attempts": 1,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 545.096,
+      "budget_ms": 6000.0
+    },
+    "cellphones.com.vn": {
+      "attempts": 4,
+      "failures": 1,
+      "skipped": 0,
+      "active_ms": 6004.004,
+      "budget_ms": 6000.0
+    },
+    "chuyenphanphoi.vn": {
+      "attempts": 2,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 1164.287,
+      "budget_ms": 6000.0
+    },
+    "clickbuy.com.vn": {
+      "attempts": 1,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 308.691,
+      "budget_ms": 6000.0
+    },
+    "coin98.net": {
+      "attempts": 1,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 728.762,
+      "budget_ms": 6000.0
+    },
+    "didongmy.com": {
+      "attempts": 1,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 309.744,
+      "budget_ms": 6000.0
+    },
+    "dienmaycholon.com": {
+      "attempts": 1,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 969.089,
+      "budget_ms": 6000.0
+    },
+    "dienthoaivui.com.vn": {
+      "attempts": 1,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 369.743,
+      "budget_ms": 6000.0
+    },
+    "duchuymobile.com": {
+      "attempts": 2,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 729.855,
+      "budget_ms": 6000.0
+    },
+    "ericsson.com": {
+      "attempts": 1,
+      "failures": 1,
+      "skipped": 0,
+      "active_ms": 165.502,
+      "budget_ms": 6000.0
+    },
+    "mtcgame.com": {
+      "attempts": 2,
+      "failures": 2,
+      "skipped": 1,
+      "active_ms": 201.91,
+      "budget_ms": 6000.0
+    },
+    "news.samsung.com": {
+      "attempts": 1,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 1008.934,
+      "budget_ms": 6000.0
+    },
+    "nguyenkim.com": {
+      "attempts": 1,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 421.602,
+      "budget_ms": 6000.0
+    },
+    "oppo.com": {
+      "attempts": 2,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 1933.398,
+      "budget_ms": 6000.0
+    },
+    "thegioididong.com": {
+      "attempts": 2,
+      "failures": 0,
+      "skipped": 0,
+      "active_ms": 1714.504,
+      "budget_ms": 6000.0
+    }
+  },
+  "page_timings": [
+    {
+      "url": "https://bachlongstore.vn/samsung-galaxy-a52-8gb-128gb-cu.html",
+      "domain": "bachlongstore.vn",
+      "inspection_ms": 544.949
+    },
+    {
+      "url": "https://cellphones.com.vn/bo-loc/dien-thoai-gia-re-duoi-2-trieu",
+      "domain": "cellphones.com.vn",
+      "inspection_ms": 617.496
+    },
+    {
+      "url": "https://cellphones.com.vn/dien-thoai-vivo-v30e.html",
+      "domain": "cellphones.com.vn",
+      "inspection_ms": 2048.947
+    },
+    {
+      "url": "https://cellphones.com.vn/oppo-reno10.html",
+      "domain": "cellphones.com.vn",
+      "inspection_ms": 1171.865
+    },
+    {
+      "url": "https://cellphones.com.vn/samsung-galaxy-a52.html",
+      "domain": "cellphones.com.vn",
+      "inspection_ms": 2163.465
+    },
+    {
+      "url": "https://chuyenphanphoi.vn/san-pham/dien-thoai-vivo-v30e-5g-12gb-256gb-nau-do-8194.html",
+      "domain": "chuyenphanphoi.vn",
+      "inspection_ms": 274.593
+    },
+    {
+      "url": "https://chuyenphanphoi.vn/san-pham/dien-thoai-vivo-v30e-5g-12gb-256gb-trang-8193.html",
+      "domain": "chuyenphanphoi.vn",
+      "inspection_ms": 889.027
+    },
+    {
+      "url": "https://clickbuy.com.vn/dien-thoai-7-8-trieu.html",
+      "domain": "clickbuy.com.vn",
+      "inspection_ms": 308.065
+    },
+    {
+      "url": "https://coin98.net/mua-btc-bang-vnd",
+      "domain": "coin98.net",
+      "inspection_ms": 727.934
+    },
+    {
+      "url": "https://dienmaycholon.com/dien-thoai-di-dong/vivo-v30e-12gb256gb",
+      "domain": "dienmaycholon.com",
+      "inspection_ms": 968.654
+    },
+    {
+      "url": "https://dienthoaivui.com.vn/dien-thoai-gia-re-cho-hoc-sinh",
+      "domain": "dienthoaivui.com.vn",
+      "inspection_ms": 369.284
+    },
+    {
+      "url": "https://news.samsung.com/vn/ra-mat-galaxy-a52-a52-5g-va-a72",
+      "domain": "news.samsung.com",
+      "inspection_ms": 1008.716
+    },
+    {
+      "url": "https://www.anhducdigital.vn/samsung-galaxy-a52-128gb-black-chinh-hang-p1254.html",
+      "domain": "www.anhducdigital.vn",
+      "inspection_ms": 980.042
+    },
+    {
+      "url": "https://www.didongmy.com/vivo-v30e-gia-bao-nhieu-lieu-co-dang-mua-",
+      "domain": "www.didongmy.com",
+      "inspection_ms": 309.243
+    },
+    {
+      "url": "https://www.duchuymobile.com/oppo-reno10-5g",
+      "domain": "www.duchuymobile.com",
+      "inspection_ms": 260.925
+    },
+    {
+      "url": "https://www.duchuymobile.com/samsung-galaxy-a52-tbh",
+      "domain": "www.duchuymobile.com",
+      "inspection_ms": 468.606
+    },
+    {
+      "url": "https://www.ericsson.com/en/5g",
+      "domain": "www.ericsson.com",
+      "inspection_ms": 165.016
+    },
+    {
+      "url": "https://www.mtcgame.com/vi/razer-gold/razer-gold-vietnam/razer-gold-vietnam-vnd-20000",
+      "domain": "www.mtcgame.com",
+      "inspection_ms": 197.336
+    },
+    {
+      "url": "https://www.mtcgame.com/vi/razer-gold/razer-gold-vietnam/razer-gold-vietnam-vnd-30000",
+      "domain": "www.mtcgame.com",
+      "inspection_ms": 201.027
+    },
+    {
+      "url": "https://www.nguyenkim.com/nen-mua-dien-thoai-nao-NKUQ2075.b",
+      "domain": "www.nguyenkim.com",
+      "inspection_ms": 420.974
+    },
+    {
+      "url": "https://www.oppo.com/vn/newsroom/press/ra-mat-reno10-series-5g",
+      "domain": "www.oppo.com",
+      "inspection_ms": 999.434
+    },
+    {
+      "url": "https://www.oppo.com/vn/newsroom/press/reno10-chinh-thuc-mo-ban",
+      "domain": "www.oppo.com",
+      "inspection_ms": 933.008
+    },
+    {
+      "url": "https://www.thegioididong.com/dtdd/oppo-reno10",
+      "domain": "www.thegioididong.com",
+      "inspection_ms": 864.644
+    },
+    {
+      "url": "https://www.thegioididong.com/dtdd/vivo-v30e-12gb",
+      "domain": "www.thegioididong.com",
+      "inspection_ms": 849.521
+    }
+  ],
+  "recommendations": [
+    {
+      "name": "Samsung Galaxy A52 (8GB | 128GB) Chính Hãng (Like New )",
+      "price": 2499000,
+      "merchant": "Đức Huy Mobile",
+      "product_url": "https://www.duchuymobile.com/samsung-galaxy-a52-tbh",
+      "availability": "in_stock",
+      "verification_level": "VERIFIED_CONTENT",
+      "specifications": {},
+      "score": {
+        "budget_score": 0.0,
+        "requirement_score": 0.0,
+        "purpose_score": 100.0,
+        "rating_score": 100.0,
+        "review_score": 20.0,
+        "source_score": 50.0,
+        "final_score": 36.0
+      },
+      "requirement_matches": [
+        {
+          "name": "camera",
+          "requested_value": "tốt",
+          "product_value": null,
+          "status": "unknown",
+          "reason": "Chưa đủ dữ liệu để đối chiếu giá trị yêu cầu."
+        },
+        {
+          "name": "pin",
+          "requested_value": "lâu",
+          "product_value": null,
+          "status": "unknown",
+          "reason": "Chưa đủ dữ liệu để đối chiếu giá trị yêu cầu."
+        }
+      ]
+    },
+    {
+      "name": "Samsung Galaxy A52 | 128GB | Black (Chính Hãng)",
+      "price": 8190000,
+      "merchant": "www.anhducdigital.vn",
+      "product_url": "https://www.anhducdigital.vn/samsung-galaxy-a52-128gb-black-chinh-hang-p1254.html",
+      "availability": "in_stock",
+      "verification_level": "VERIFIED_CONTENT",
+      "specifications": {},
+      "score": {
+        "budget_score": 24.58,
+        "requirement_score": 0.0,
+        "purpose_score": 100.0,
+        "rating_score": 0.0,
+        "review_score": 0.0,
+        "source_score": 50.0,
+        "final_score": 31.15
+      },
+      "requirement_matches": [
+        {
+          "name": "camera",
+          "requested_value": "tốt",
+          "product_value": null,
+          "status": "unknown",
+          "reason": "Chưa đủ dữ liệu để đối chiếu giá trị yêu cầu."
+        },
+        {
+          "name": "pin",
+          "requested_value": "lâu",
+          "product_value": null,
+          "status": "unknown",
+          "reason": "Chưa đủ dữ liệu để đối chiếu giá trị yêu cầu."
+        }
+      ]
+    }
+  ],
+  "last_model_progress": [
+    {
+      "model": "vivo V30e 5G 12GB/256GB",
+      "attempts": 2,
+      "state": "unavailable",
+      "failed_domains": [
+        "cellphones.com.vn"
+      ],
+      "attempted_domains": [
+        "cellphones.com.vn"
+      ],
+      "unscoped_exhausted": true,
+      "exhausted": true
+    },
+    {
+      "model": "Samsung Galaxy A52",
+      "attempts": 1,
+      "state": "fallback_or_rejected",
+      "failed_domains": [
+        "cellphones.com.vn"
+      ],
+      "attempted_domains": [],
+      "unscoped_exhausted": true,
+      "exhausted": false
+    },
+    {
+      "model": "OPPO Reno10 5G 8GB/256GB",
+      "attempts": 1,
+      "state": "evidence_missing",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": true,
+      "exhausted": false
+    },
+    {
+      "model": "OPPO A5",
+      "attempts": 1,
+      "state": "evidence_missing",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": true,
+      "exhausted": false
+    },
+    {
+      "model": "OPPO Reno 10",
+      "attempts": 1,
+      "state": "evidence_missing",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": true,
+      "exhausted": false
+    },
+    {
+      "model": "Redmi Note 12",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Samsung Galaxy A54",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Samsung Galaxy Z Flip 5",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "OPPO Find N2 Flip",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "POCO X8 Pro Max 12GB 256GB",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Samsung Galaxy A57 5G 8GB 128GB",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Samsung Galaxy S25 Plus 256GB",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Redmi Note 14 Pro Plus 5G 8GB 256GB",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Samsung Galaxy A07 4GB/64GB",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Samsung Galaxy A17 4GB/128GB",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "vivo Y02s",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Redmi 9A",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Redmi 9C",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "OPPO A15s",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Realme 7i",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Redmi Turbo 4 Pro",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Xiaomi 15T Pro",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Samsung Galaxy S24",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Redmi Note 14 Pro",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "OPPO Reno13 F 5G",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Redmi Note 15 5G",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Redmi A2",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "OPPO A5 Pro 5G",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Acer Nitro ANV16S-61-R0B8 R5 AI 340",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Asus ExpertBook B3405CCA Ultra 5 225H",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Samsung Galaxy A37 5G",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Redmi Note 14 5G",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "vivo Y200 GT",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Oppo K12s 5G",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Oppo K12x 5G",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Samsung Galaxy A16 4G",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    },
+    {
+      "model": "Redmi Note 13 Pro 5G",
+      "attempts": 0,
+      "state": "unsearched",
+      "failed_domains": [],
+      "attempted_domains": [],
+      "unscoped_exhausted": false,
+      "exhausted": false
+    }
+  ],
+  "fixture": {
+    "method": "Fixed batch of all 48 archived sources, frozen page proofs. Only relevance gate toggled. Not Live latency or a replay of unrecorded queries.",
+    "before": {
+      "page_attempts": 23,
+      "page_urls": [
+        "https://cellphones.com.vn/dien-thoai-vivo-v30e.html",
+        "https://www.thegioididong.com/dtdd/vivo-v30e-12gb",
+        "https://clickbuy.com.vn/dien-thoai-7-8-trieu.html",
+        "https://chuyenphanphoi.vn/san-pham/dien-thoai-vivo-v30e-5g-12gb-256gb-trang-8193.html",
+        "https://cellphones.com.vn/samsung-galaxy-a52.html",
+        "https://www.thegioididong.com/dtdd/oppo-reno10",
+        "https://chuyenphanphoi.vn/san-pham/dien-thoai-vivo-v30e-5g-12gb-256gb-nau-do-8194.html",
+        "https://news.samsung.com/vn/ra-mat-galaxy-a52-a52-5g-va-a72",
+        "https://cellphones.com.vn/oppo-reno10.html",
+        "https://www.didongmy.com/vivo-v30e-gia-bao-nhieu-lieu-co-dang-mua-",
+        "https://dienmaycholon.com/dien-thoai-di-dong/vivo-v30e-12gb256gb",
+        "https://www.mtcgame.com/vi/razer-gold/razer-gold-vietnam/razer-gold-vietnam-vnd-30000",
+        "https://www.mtcgame.com/vi/razer-gold/razer-gold-vietnam/razer-gold-vietnam-vnd-20000",
+        "https://www.oppo.com/vn/newsroom/press/reno10-chinh-thuc-mo-ban",
+        "https://www.anhducdigital.vn/samsung-galaxy-a52-128gb-black-chinh-hang-p1254.html",
+        "https://bachlongstore.vn/samsung-galaxy-a52-8gb-128gb-cu.html",
+        "https://www.duchuymobile.com/samsung-galaxy-a52-tbh",
+        "https://www.ericsson.com/en/5g",
+        "https://www.duchuymobile.com/oppo-reno10-5g",
+        "https://dienthoaivui.com.vn/dien-thoai-gia-re-cho-hoc-sinh",
+        "https://www.nguyenkim.com/nen-mua-dien-thoai-nao-NKUQ2075.b",
+        "https://coin98.net/mua-btc-bang-vnd",
+        "https://www.oppo.com/vn/newsroom/press/ra-mat-reno10-series-5g"
+      ],
+      "verified": 4,
+      "eligible_urls": [
+        "https://www.anhducdigital.vn/samsung-galaxy-a52-128gb-black-chinh-hang-p1254.html",
+        "https://www.duchuymobile.com/samsung-galaxy-a52-tbh"
+      ],
+      "source_count": 48,
+      "model_hints": [
+        "vivo V30E 12GB 256GB",
+        "Samsung Galaxy A52",
+        "OPPO Reno10 5G 8GB/256GB",
+        "Redmi Turbo 4 Pro",
+        "Xiaomi 15T Pro",
+        "Samsung Galaxy S24",
+        "Redmi Note 13 Pro 5G",
+        "OPPO A5",
+        "Redmi 9A",
+        "Redmi 9C",
+        "OPPO A15s",
+        "Realme 7i",
+        "Redmi Note 12",
+        "Samsung Galaxy A54",
+        "Samsung Galaxy Z Flip 5",
+        "OPPO Find N2 Flip",
+        "OPPO A5 Pro 5G",
+        "Acer Nitro ANV16S-61-R0B8 R5 AI 340",
+        "Asus ExpertBook B3405CCA Ultra 5 225H",
+        "Samsung Galaxy A37 5G",
+        "Redmi A2",
+        "Samsung Galaxy A07 4GB/64GB",
+        "Samsung Galaxy A17 4GB/128GB",
+        "vivo Y02s",
+        "POCO X8 Pro Max 12GB 256GB",
+        "Samsung Galaxy A57 5G 8GB 128GB",
+        "Samsung Galaxy S25 Plus 256GB",
+        "Redmi Note 14 Pro Plus 5G 8GB 256GB",
+        "Redmi Note 14 5G",
+        "vivo Y200 GT",
+        "Oppo K12s 5G",
+        "Oppo K12x 5G",
+        "Samsung Galaxy A16 4G",
+        "Redmi Note 14 Pro",
+        "OPPO Reno13 F 5G",
+        "Redmi Note 15 5G"
+      ],
+      "rounds": [
+        {
+          "round": 1,
+          "kind": "fixed_archived_batch",
+          "duration_ms": 775.433,
+          "new_verified_products": 4,
+          "no_progress_rounds": 0,
+          "new_model_hints": 36,
+          "new_merchant_domains": 5,
+          "new_direct_urls": 19,
+          "new_child_urls": 0,
+          "queries_generated": [
+            "offline fixture"
+          ],
+          "queries_executed": [
+            "offline fixture"
+          ],
+          "raw_search_results_per_query": {
+            "offline fixture": 48
+          },
+          "unique_search_results": 48,
+          "result_domains": [
+            "24hstore.vn",
+            "anhducdigital.vn",
+            "bachlongstore.vn",
+            "bloganchoi.com",
+            "cellphones.com.vn",
+            "chotot.com",
+            "chuyenphanphoi.vn",
+            "clickbuy.com.vn",
+            "coin98.net",
+            "didongmy.com",
+            "dienmaycholon.com",
+            "dienthoaivui.com.vn",
+            "duchuymobile.com",
+            "en.wikipedia.org",
+            "ericsson.com",
+            "fptshop.com.vn",
+            "hungmobile.vn",
+            "mobappy.co.jp",
+            "mtcgame.com",
+            "news.samsung.com",
+            "nguyenkim.com",
+            "oppo.com",
+            "phuongtung.vn",
+            "thegioididong.com",
+            "youtube.com"
+          ],
+          "conversion": {
+            "potential_product_urls": 24,
+            "direct_product_candidates": 4,
+            "evidence_only_results": 44,
+            "rejected_before_fetch": 25,
+            "pages_requested": 23,
+            "pages_fetched": 18,
+            "pages_verified": 4,
+            "verification_failed": 19,
+            "wrong_category": 0,
+            "non_product_page": 29,
+            "missing_price": 1,
+            "missing_identity": 0,
+            "out_of_stock": 2,
+            "duplicate": 0,
+            "http_network_failure": 4,
+            "other": 10,
+            "valid_candidates": 2,
+            "eligible_offers": 2,
+            "reused_pages": 0,
+            "reason_counts": {
+              "out_of_stock": 2,
+              "non_product_page": 29,
+              "other": 10,
+              "missing_price": 1,
+              "http_network_failure": 4
+            }
+          },
+          "cumulative_product_attempts": 18,
+          "cumulative_pages_requested": 23,
+          "cumulative_valid_offers": 2
+        }
+      ]
+    },
+    "after": {
+      "page_attempts": 19,
+      "page_urls": [
+        "https://cellphones.com.vn/dien-thoai-vivo-v30e.html",
+        "https://www.thegioididong.com/dtdd/vivo-v30e-12gb",
+        "https://clickbuy.com.vn/dien-thoai-7-8-trieu.html",
+        "https://chuyenphanphoi.vn/san-pham/dien-thoai-vivo-v30e-5g-12gb-256gb-trang-8193.html",
+        "https://cellphones.com.vn/samsung-galaxy-a52.html",
+        "https://www.thegioididong.com/dtdd/oppo-reno10",
+        "https://chuyenphanphoi.vn/san-pham/dien-thoai-vivo-v30e-5g-12gb-256gb-nau-do-8194.html",
+        "https://news.samsung.com/vn/ra-mat-galaxy-a52-a52-5g-va-a72",
+        "https://cellphones.com.vn/oppo-reno10.html",
+        "https://www.didongmy.com/vivo-v30e-gia-bao-nhieu-lieu-co-dang-mua-",
+        "https://dienmaycholon.com/dien-thoai-di-dong/vivo-v30e-12gb256gb",
+        "https://www.oppo.com/vn/newsroom/press/reno10-chinh-thuc-mo-ban",
+        "https://www.anhducdigital.vn/samsung-galaxy-a52-128gb-black-chinh-hang-p1254.html",
+        "https://www.duchuymobile.com/samsung-galaxy-a52-tbh",
+        "https://bachlongstore.vn/samsung-galaxy-a52-8gb-128gb-cu.html",
+        "https://www.duchuymobile.com/oppo-reno10-5g",
+        "https://dienthoaivui.com.vn/dien-thoai-gia-re-cho-hoc-sinh",
+        "https://www.nguyenkim.com/nen-mua-dien-thoai-nao-NKUQ2075.b",
+        "https://www.oppo.com/vn/newsroom/press/ra-mat-reno10-series-5g"
+      ],
+      "verified": 4,
+      "eligible_urls": [
+        "https://www.anhducdigital.vn/samsung-galaxy-a52-128gb-black-chinh-hang-p1254.html",
+        "https://www.duchuymobile.com/samsung-galaxy-a52-tbh"
+      ],
+      "source_count": 48,
+      "model_hints": [
+        "vivo V30E 12GB 256GB",
+        "Samsung Galaxy A52",
+        "OPPO Reno10 5G 8GB/256GB",
+        "Redmi Turbo 4 Pro",
+        "Xiaomi 15T Pro",
+        "Samsung Galaxy S24",
+        "Redmi Note 13 Pro 5G",
+        "OPPO A5",
+        "Redmi 9A",
+        "Redmi 9C",
+        "OPPO A15s",
+        "Realme 7i",
+        "Redmi Note 12",
+        "Samsung Galaxy A54",
+        "Samsung Galaxy Z Flip 5",
+        "OPPO Find N2 Flip",
+        "OPPO A5 Pro 5G",
+        "Acer Nitro ANV16S-61-R0B8 R5 AI 340",
+        "Asus ExpertBook B3405CCA Ultra 5 225H",
+        "Samsung Galaxy A37 5G",
+        "Redmi A2",
+        "Samsung Galaxy A07 4GB/64GB",
+        "Samsung Galaxy A17 4GB/128GB",
+        "vivo Y02s",
+        "POCO X8 Pro Max 12GB 256GB",
+        "Samsung Galaxy A57 5G 8GB 128GB",
+        "Samsung Galaxy S25 Plus 256GB",
+        "Redmi Note 14 Pro Plus 5G 8GB 256GB",
+        "Redmi Note 14 5G",
+        "vivo Y200 GT",
+        "Oppo K12s 5G",
+        "Oppo K12x 5G",
+        "Samsung Galaxy A16 4G",
+        "Redmi Note 14 Pro",
+        "OPPO Reno13 F 5G",
+        "Redmi Note 15 5G"
+      ],
+      "rounds": [
+        {
+          "round": 1,
+          "kind": "fixed_archived_batch",
+          "duration_ms": 846.143,
+          "new_verified_products": 4,
+          "no_progress_rounds": 0,
+          "new_model_hints": 36,
+          "new_merchant_domains": 4,
+          "new_direct_urls": 15,
+          "new_child_urls": 0,
+          "queries_generated": [
+            "offline fixture"
+          ],
+          "queries_executed": [
+            "offline fixture"
+          ],
+          "raw_search_results_per_query": {
+            "offline fixture": 48
+          },
+          "unique_search_results": 48,
+          "result_domains": [
+            "24hstore.vn",
+            "anhducdigital.vn",
+            "bachlongstore.vn",
+            "bloganchoi.com",
+            "cellphones.com.vn",
+            "chotot.com",
+            "chuyenphanphoi.vn",
+            "clickbuy.com.vn",
+            "coin98.net",
+            "didongmy.com",
+            "dienmaycholon.com",
+            "dienthoaivui.com.vn",
+            "duchuymobile.com",
+            "en.wikipedia.org",
+            "ericsson.com",
+            "fptshop.com.vn",
+            "hungmobile.vn",
+            "mobappy.co.jp",
+            "mtcgame.com",
+            "news.samsung.com",
+            "nguyenkim.com",
+            "oppo.com",
+            "phuongtung.vn",
+            "thegioididong.com",
+            "youtube.com"
+          ],
+          "conversion": {
+            "potential_product_urls": 19,
+            "direct_product_candidates": 4,
+            "evidence_only_results": 44,
+            "rejected_before_fetch": 29,
+            "pages_requested": 19,
+            "pages_fetched": 17,
+            "pages_verified": 4,
+            "verification_failed": 15,
+            "wrong_category": 0,
+            "non_product_page": 28,
+            "missing_price": 1,
+            "missing_identity": 0,
+            "out_of_stock": 2,
+            "duplicate": 0,
+            "http_network_failure": 1,
+            "other": 14,
+            "valid_candidates": 2,
+            "eligible_offers": 2,
+            "reused_pages": 0,
+            "reason_counts": {
+              "out_of_stock": 2,
+              "non_product_page": 28,
+              "other": 14,
+              "missing_price": 1,
+              "http_network_failure": 1
+            }
+          },
+          "cumulative_product_attempts": 14,
+          "cumulative_pages_requested": 19,
+          "cumulative_valid_offers": 2
+        }
+      ]
+    }
+  }
+}

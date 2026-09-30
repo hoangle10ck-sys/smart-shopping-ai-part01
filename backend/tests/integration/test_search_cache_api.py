@@ -28,6 +28,9 @@ def live(monkeypatch):
     monkeypatch.setattr(settings, "openai_api_key", "")
     monkeypatch.setattr(settings, "gemini_api_key", "")
     monkeypatch.setattr(settings, "cache_ttl_seconds", 123)
+    # These tests isolate cache/TTL behavior with one offer. Default target=5
+    # and adaptive retrieval are exercised by test_live_performance_api.
+    monkeypatch.setattr(settings, "live_search_target_products", 1)
     state = {"price": 15000000, "calls": 0, "fail": False, "during_search": None}
 
     class Provider:
@@ -150,7 +153,7 @@ def test_provider_failure_can_use_cache_published_during_request(live):
         body = response.json()
         assert body["recommendations"] == original["recommendations"]
         assert any("gặp lỗi" in text for text in body["warnings"])
-        assert any("Mock search failure" in text for text in body["warnings"])
+        assert any("unexpected_error" in text and "search provider unavailable" in text for text in body["warnings"])
         assert client.get(f"/api/search/{target}").json()["warnings"] == body["warnings"]
 
 

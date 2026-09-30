@@ -1,0 +1,450 @@
+{
+  "provenance": "Read-only persisted session; raw provider responses/round timing were not persisted.",
+  "session": {
+    "id": "2f94d0f4-3bb0-4153-8442-1b8de352f5c6",
+    "raw_query": "Tôi cần điện thoại khoảng 10 triệu, camera tốt, pin lâu",
+    "created_at": "2026-09-25 14:54:51.129174",
+    "processing_time_ms": 29295.94
+  },
+  "result": {
+    "requirement": {
+      "budget_mode": "FLEXIBLE_TARGET",
+      "budget_target": 10000000,
+      "preferred_min": 9400000,
+      "preferred_max": 10600000,
+      "category": "điện thoại",
+      "budget_min": null,
+      "budget_max": 10000000,
+      "currency": "VND",
+      "purpose": [],
+      "brands": [],
+      "requirements": [
+        {
+          "name": "battery",
+          "value": "pin lâu",
+          "priority": 4
+        },
+        {
+          "name": "camera",
+          "value": "tốt",
+          "priority": 4
+        }
+      ],
+      "excluded_requirements": [],
+      "sort_preference": "best_match",
+      "confidence": 0.75
+    },
+    "candidates": [
+      {
+        "product_id": 305,
+        "name": "vivo V30E 12GB 256GB",
+        "category": "điện thoại",
+        "brand": "Vivo",
+        "model": null,
+        "price": 10490000,
+        "currency": "VND",
+        "rating": null,
+        "review_count": null,
+        "availability": "out_of_stock",
+        "source_reliability": 90.0,
+        "specifications": {
+          "kích thước màn hình": "6.78 inches",
+          "công nghệ màn hình": "AMOLED",
+          "camera sau": "Camera góc rộng: 50 MP, f/1.8, 1/1.95&quot;, 0.8µm, PDAF, OIS Camera góc siêu rộng: 8 MP, f/2.2, 120˚, 1/4.0&quot;, 1.12µm",
+          "camera trước": "32 MP HD Selfie Camera f/2.0, 84º FoV, 5P lens",
+          "chipset": "Qualcomm SM6450 Snapdragon 6 Gen 1 (4 nm)",
+          "công nghệ nfc": "Có",
+          "dung lượng ram": "12 GB",
+          "bộ nhớ trong": "256 GB",
+          "pin": "5500 mAh",
+          "thẻ sim": "2 SIM (Nano-SIM)",
+          "hệ điều hành": "Android 14 OS",
+          "độ phân giải màn hình": "1080 x 2400 pixels (FullHD+)",
+          "tính năng màn hình": "395 PPI, 1 tỷ màu Tần số quét 120Hz, 1300 nits",
+          "loại cpu": "4x2.2 GHz Cortex-A78 &amp; 4x1.8 GHz Cortex-A55"
+        }
+      }
+    ],
+    "filter_decisions": [
+      {
+        "product_id": 305,
+        "accepted": false,
+        "rejection_stage": "availability",
+        "reasons": [
+          "Sản phẩm hiện không còn hàng."
+        ]
+      }
+    ],
+    "recommendations": [],
+    "total_found": 1,
+    "total_filtered": 0,
+    "data_semantics": "snapshot",
+    "data_mode": "live"
+  },
+  "observations": [
+    {
+      "query": "\"Vivo V30E 12GB 256GB\" mua",
+      "url": "https://cellphones.com.vn/dien-thoai-vivo-v30e.html",
+      "title": "vivo V30e (12/256GB) | Giá rẻ trả góp 0% - không trả trước",
+      "content": "10.490.000đ\n\nMàu sắc\n\n Flash Sale vivo V30E 12GB 256GB-Trắng\n\n  Trắng  10.490.000₫\n\nTẠM HẾT HÀNG(Vui lòng liên hệ 1800.2097);)\n\nĐăng ký nhận thông tin khi có hàng\n\n## Đặc điểm nổi bật của vivo V30E 12GB 256GB [...] > Điện thoại vivo V30E mạnh mẽ với chipset Snapdragon 6 Gen 1, kết hợp với 12GB RAM và 256GB bộ nhớ trong, đảm bảo hiệu suất ấn tượng cho mọi tác vụ. Màn hình AMOLED 6.68 inch của máy cung cấp trải nghiệm hình ảnh sắc nét đi kèm cụm camera kép ở mặt sau với camera chính lên đến 50MP. Vivo V30E còn sở hữu pin dung lượng 5.500 mAh, hỗ trợ sạc nhanh 44W, tối ưu hóa trải nghiệm sử dụng hàng ngày.\n\n## Vì sao nên mua điện thoại vivo V30E? [...] vivo V30E là mẫu điện thoại vivo V với được trình làng vào tháng 5 năm 2024. Vậy mẫu điện thoại này có gì đáng mua và trải nghiệm:\n\n-  Dung lượng pin 5500 mAh: Viên pin thoải mái sử dụng cùng công suất sạc đến 44W\n\n-  Chip Snapdragon 6 Gen 1 + RAM 12GB: Hoạt động ổn định trong nhiều tác vụ\n\n-  Kháng nước chuẩn IP64: Thoải mái sử dụng trong nhiều điều kiện môi trường\n\n-  m thanh HI-RES AUDIO: Nng cao trải nghiệm giải trí m thanh khi xem phim và chơi game",
+      "proof": {
+        "product_page_valid": true,
+        "name": "vivo V30E 12GB 256GB",
+        "brand": "Vivo",
+        "model": null,
+        "price": 10490000,
+        "category": "điện thoại",
+        "category_evidence": {
+          "category": "điện thoại",
+          "source": "breadcrumb",
+          "confidence": 90,
+          "conflict": false,
+          "reason": "Category observed on the verified main product page.",
+          "observations": {
+            "json_ld_category": null,
+            "json_ld_type": "Product",
+            "breadcrumbs": [
+              [
+                "CELLPHONES",
+                "Điện thoại",
+                "Chuẩn NFC",
+                "vivo V30E 12GB 256GB"
+              ],
+              [
+                "Trang chủ ",
+                " / ",
+                " vivo V30E 12GB 256GB"
+              ]
+            ],
+            "h1": "vivo V30E 12GB 256GB",
+            "title": "vivo V30e (12/256GB) | Giá rẻ trả góp 0% - không trả trước",
+            "url_path": "/dien-thoai-vivo-v30e.html"
+          }
+        },
+        "availability": "https://schema.org/OutOfStock",
+        "specifications": {
+          "kích thước màn hình": "6.78 inches",
+          "công nghệ màn hình": "AMOLED",
+          "camera sau": "Camera góc rộng: 50 MP, f/1.8, 1/1.95&quot;, 0.8µm, PDAF, OIS Camera góc siêu rộng: 8 MP, f/2.2, 120˚, 1/4.0&quot;, 1.12µm",
+          "camera trước": "32 MP HD Selfie Camera f/2.0, 84º FoV, 5P lens",
+          "chipset": "Qualcomm SM6450 Snapdragon 6 Gen 1 (4 nm)",
+          "công nghệ nfc": "Có",
+          "dung lượng ram": "12 GB",
+          "bộ nhớ trong": "256 GB",
+          "pin": "5500 mAh",
+          "thẻ sim": "2 SIM (Nano-SIM)",
+          "hệ điều hành": "Android 14 OS  ",
+          "độ phân giải màn hình": "1080 x 2400 pixels (FullHD+)",
+          "tính năng màn hình": "395 PPI, 1 tỷ màu Tần số quét 120Hz, 1300 nits  ",
+          "loại cpu": "4x2.2 GHz Cortex-A78 &amp; 4x1.8 GHz Cortex-A55"
+        },
+        "result_type": "DIRECT_PRODUCT",
+        "reason": "Trang chi tiết có identity và giá bán cụ thể cùng nguồn.",
+        "verification_level": "VERIFIED_CONTENT",
+        "fetch_blocked": false,
+        "product_page_confidence": 95,
+        "product_url": "https://cellphones.com.vn/dien-thoai-vivo-v30e.html",
+        "evidence_url": "https://cellphones.com.vn/dien-thoai-vivo-v30e.html",
+        "discovery": [
+          {
+            "name": "vivo V30E 12GB 256GB",
+            "brand": "Vivo",
+            "model": "V30E 12GB 256GB",
+            "variant": {
+              "sku": "dien-thoai-vivo-v30e"
+            },
+            "price_type": "DISCOVERY_ONLY"
+          }
+        ]
+      }
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND pin pin lâu camera tốt mua giá bán Việt Nam",
+      "url": "https://vietnamnet.vn/top-dien-thoai-duoi-10-trieu-dang-mua-thang-7-man-hinh-camera-dep-pin-khoe-2534592.html",
+      "title": "Top điện thoại dưới 10 triệu đáng mua tháng 7: Màn hình, camera đẹp, pin khoẻ",
+      "content": "icon\n\n## Điện thoại dưới 10 triệu đồng tháng 7/2026 được coi là phn khúc hấp dẫn nhất dành cho người dùng phổ thông với màn hình chất lượng cao và thời lượng pin ấn tượng.\n\nThị trường điện thoại tầm trung trong năm 2026 đang chứng kiến sự cạnh tranh rất quyết liệt khi hàng loạt hãng lớn như Xiaomi, Samsung, OPPO, HONOR, Nothing hay Nubia liên tục tung ra những sản phẩm có cấu hình mạnh, màn hình chất lượng cao và thời lượng pin ấn tượng nhưng vẫn giữ mức giá dưới 10 triệu đồng. [...] Top điện thoại giá 2-3 triệu đáng mua nhất tháng 7: Pin khỏe, dùng bềnPhn khúc điện thoại giá 2-3 triệu đồng vẫn giữ sức hút lớn đối với học sinh, sinh viên, người lao động và những ai cần một chiếc smartphone phục vụ các nhu cầu cơ bản.\n\n ### Top điện thoại 128GB giá rẻ dưới 3 triệu đáng mua nhất tháng 7/2026\n ### Điện thoại dòng ‘Pro’ phn khúc giá 25 triệu đồng, pin 7.000 mAh tại Việt Nam\n ### Apple đồng loạt tăng giá Mac, iPad và nhiều thiết bị khác, giá iPhone ra sao?\n\n.svg) [...] icon\n Công nghệ \n\n  + Chính trị\n  + Thời sự\n  + Kinh doanh\n  + Dn tộc và Tôn giáo\n  + Giáo dục\n  + Thế giới\n  + Thể thao\n  + Văn hóa - Giải trí\n  + Đời sống\n  + Sức khỏe\n  + Công nghệ\n  + Xe\n  + Bất động sản\n  + Du lịch\n  + Bạn đọc\n\nThứ Bảy, 11/07/2026 - 08:00\n\n# Top điện thoại dưới 10 triệu đáng mua tháng 7: Màn hình, camera đẹp, pin khoẻ\n\nHải Phong\n\n Xem các bài viết của tác giả\n\nSao chép liên kết; \"Sao chép liên kết\")   \n\n11/07/2026   08:00 (GMT+07:00)\n\n icon",
+      "proof": {
+        "product_page_valid": false,
+        "result_type": "NEWS",
+        "reason": "Trang không phải trang bán sản phẩm: NEWS",
+        "verification_level": "REJECTED",
+        "fetch_blocked": false,
+        "product_page_confidence": 0,
+        "evidence_url": "https://vietnamnet.vn/top-dien-thoai-duoi-10-trieu-dang-mua-thang-7-man-hinh-camera-dep-pin-khoe-2534592.html",
+        "discovery": []
+      }
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND pin pin lâu camera tốt mua giá bán Việt Nam",
+      "url": "https://cellphones.com.vn/sforum/dien-thoai-tam-trung-dang-mua-nhat",
+      "title": "Top 9 mẫu điện thoại tầm trung đáng mua nhất năm 2026",
+      "content": "### Vivo V30E 12GB 256GB\n\nVivo V30E là lựa chọn hợp lý cho người dùng đang tìm điện thoại ổn định, chụp ảnh tốt và pin lu. Máy sử dụng chip Snapdragon 6 Gen 1, RAM 12GB và bộ nhớ trong 256GB, đủ sức xử lý mượt mà các tác vụ đa nhiệm.\n\nVivo V30E 12GB 256GB \n\nVivo V30E 12GB 256GB\n\nCamera sau 50MP kết hợp ống kính góc siêu rộng 8MP, cho khả năng chụp linh hoạt. Camera trước 32MP cùng nhiều tính năng AI hỗ trợ selfie đẹp mắt, phù hợp với nhu cầu quay vlog, chụp ảnh đăng mạng xã hội. [...] Xiaomi Redmi Note 14 Pro Plus 5G 8GB 256GB\n\nCamera chính 200MP, kết hợp OIS và cảm biến lớn cho ảnh sắc nét và quay video chuyên nghiệp. Pin 5110mAh kèm sạc siêu nhanh 120W là điểm cộng lớn. Nếu bạn yêu thích nhiếp ảnh và muốn một chiếc điện thoại tầm trung có trải nghiệm cao cấp, đy là lựa chọn không thể bỏ qua.\n\n### OPPO Reno12 5G 12GB 256GB [...] Camera: Với nhu cầu chụp ảnh ngày càng phổ biến, các mẫu tầm trung giờ đy đã được trang bị cảm biến từ 50MP trở lên, đi kèm công nghệ AI, chống rung OIS cho hình ảnh sắc nét hơn.\n Pin và sạc: Pin từ 5000mAh đang là tiêu chuẩn mới. Sạc nhanh từ 25W trở lên sẽ giúp tiết kiệm thời gian đáng kể.\n Tính năng mở rộng: Một số tính năng như cảm biến vn tay dưới màn hình, kháng nước, hỗ trợ 5G,... đang dần phổ biến ở dòng tầm trung, tạo thêm giá trị cho người dùng.",
+      "proof": {
+        "product_page_valid": false,
+        "result_type": "ARTICLE",
+        "reason": "Trang không phải trang bán sản phẩm: ARTICLE",
+        "verification_level": "REJECTED",
+        "fetch_blocked": false,
+        "product_page_confidence": 0,
+        "evidence_url": "https://cellphones.com.vn/sforum/dien-thoai-tam-trung-dang-mua-nhat",
+        "discovery": []
+      }
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND pin pin lâu camera tốt mua giá bán Việt Nam",
+      "url": "https://hungmobile.vn/tin-tuc/top-dien-thoai-2-trieu-tot-nhat.html",
+      "title": "Top 12 điện thoại 2 triệu tốt nhất 2026: game khoẻ, pin trâu ngon nhất",
+      "content": "Redmi 13R 5G là lựa chọn tuyệt vời cho ai muốn trải nghiệm 5G với mức giá cực rẻ. Máy sở hữu màn hình 6.74 inch 90Hz, camera 50MP và pin 5000mAh cho thời gian sử dụng dài.  \n Điểm mạnh là con chip Dimensity 6100+ tiết kiệm pin nhưng vẫn đủ sức đáp ứng mọi tác vụ hằng ngày.\n\n Màn hình: 6.74 inch, IPS LCD, 90Hz, 600 nits\n Cấu hình: MediaTek Dimensity 6100+ (6nm), RAM 4GB, ROM 128GB\n Camera: Sau 50MP + 0.08MP | Trước 5MP\n Pin + sạc: 5000mAh, 18W (tặng kèm sạc 10W)\n Khác: Vn tay cạnh bên [...] Redmi 14C 4G\n\n### 4. Redmi Note 13 5G: Camera 100MP, màn AMOLED đẹp\n\nNếu bạn thích chụp ảnh, Redmi Note 13 5G sẽ khiến bạn hài lòng với camera chính 100MP và màn AMOLED 120Hz siêu sắc nét. Chip Dimensity 6080 đáp ứng tốt các tác vụ và chơi game nhẹ.\n\n Màn hình: 6.67 inch, AMOLED, 120Hz, 1000 nits\n Cấu hình: MediaTek Dimensity 6080, RAM 6GB, ROM 128GB\n Camera: Sau 100MP + 2MP | Trước 16MP\n Pin + sạc: 5000mAh, 33W\n Khác: Vn tay cạnh bên\n\nRedmi Note 13 5G \n\nRedmi Note 13 5G [...] Nếu bạn thích màn hình lớn, mượt để xem phim – chơi game nhẹ, thì Poco C85 4G là cái tên nổi bật nhất phn khúc. Máy được trang bị màn hình 6.9 inch IPS LCD, 120Hz, pin 6000mAh và sạc nhanh 33W, vượt trội hoàn toàn so với nhiều đối thủ cùng giá.\n\nThông số nổi bật:\n\n Màn hình: 6.9 inch, IPS LCD, 120Hz, 660 nits\n Camera sau: 50MP\n Camera trước: 8MP\n Chip xử lý: MediaTek Helio G81 Ultra (12nm)\n RAM: 6GB\n ROM: 128GB\n Pin: 6000mAh, sạc nhanh 33W\n Bảo mật: Vn tay cạnh bên\n\nPOCO C85 \n\nPOCO C85",
+      "proof": {
+        "product_page_valid": false,
+        "result_type": "NEWS",
+        "reason": "URL là trang chủ/danh mục/tìm kiếm/bài viết hoặc không an toàn.",
+        "verification_level": "REJECTED",
+        "fetch_blocked": false,
+        "product_page_confidence": 0,
+        "evidence_url": "https://hungmobile.vn/tin-tuc/top-dien-thoai-2-trieu-tot-nhat.html",
+        "discovery": []
+      }
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND pin pin lâu camera tốt mua giá bán Việt Nam",
+      "url": "https://mobappy.co.jp/top-dien-thoai-android-gia-re-dang-mua-nhat-2026-goi-y-dang-tien-cho-moi-nhu-cau",
+      "title": "Top điện thoại Android giá rẻ, đáng mua nhất 2026 – Gợi ý đáng tiền cho mọi nhu cầu",
+      "content": "Nếu ưu tiên thời lượng pin và hiệu năng tốt, Redmi 15 là một trong những lựa chọn sáng giá nhất.\n\n### Thông số nổi bật\n\n Màn hình IPS LCD 6.9 inch\n Độ phn giải FHD+\n Tần số quét 144Hz\n Snapdragon 685\n RAM 6GB/8GB\n Bộ nhớ 128GB/256GB\n Camera chính 50MP AI\n Pin 7.000mAh\n Sạc nhanh 33W\n\n### Ưu điểm\n\n✔ Pin cực lớn sử dụng đến 2 ngày.\n\n✔ Màn hình 144Hz mượt hiếm có trong tầm giá. [...] ✔ Snapdragon 685 đủ mạnh cho Facebook, TikTok, YouTube và các game phổ biến như Liên Qun Mobile, PUBG Mobile mức đồ họa trung bình.\n\n✔ Camera 50MP cho chất lượng ảnh khá tốt khi đủ sáng.\n\n## 2. OPPO A5 – Thiết kế đẹp, pin khỏe\n\n### Cấu hình\n\n Màn hình LCD 6.67 inch\n Tần số quét 90Hz\n Snapdragon 6s Gen 1 (tùy thị trường)\n RAM 6GB\n ROM 128GB\n Camera AI\n Pin 6.500mAh\n Sạc nhanh SuperVOOC\n\n### Điểm mạnh [...] ### Ưu điểm\n\n Máy bền.\n Dễ sửa chữa.\n Linh kiện phổ biến.\n Hệ điều hành One UI dễ dùng.\n Giá cực kỳ rẻ trên thị trường máy cũ\n\n## 4. Samsung Galaxy A52 – Vẫn rất đáng mua\n\n### Thông số nổi bật\n\n Super AMOLED 6.5 inch\n 90Hz\n Snapdragon 720G\n Camera chính 64MP OIS\n Camera góc rộng\n Camera macro\n Camera đo chiều su\n Pin 4.500mAh\n Sạc nhanh 25W\n Chuẩn kháng nước IP67\n\n### Điểm nổi bật\n\n Màn hình AMOLED hiển thị đẹp.\n Camera chống rung OIS.\n Chụp đêm tốt.\n Loa stereo.\n Chống nước IP67.",
+      "proof": {
+        "product_page_valid": false,
+        "result_type": "ARTICLE",
+        "reason": "Trang không phải trang bán sản phẩm: ARTICLE",
+        "verification_level": "REJECTED",
+        "fetch_blocked": false,
+        "product_page_confidence": 0,
+        "evidence_url": "https://mobappy.co.jp/top-dien-thoai-android-gia-re-dang-mua-nhat-2026-goi-y-dang-tien-cho-moi-nhu-cau/",
+        "discovery": []
+      }
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND pin pin lâu camera tốt mua giá bán Việt Nam",
+      "url": "https://www.youtube.com/watch?v=wfQnQON6VzU",
+      "title": "Phone Advice: What's the Best Phone Under 10 Million?",
+      "content": "[7:06] gen4 là mạnh hơn nhiều so 7S gen 3. Đấy tốc độ đọc ghi bộ như trong nó cũng sẽ nhanh nó sẽ tốt hơn nhiều đấy. Đấy là UFS 4.1 thay vì là 2.2. Về phần camera\n[7:15] thì khẩu độ mở camera của T4 Pro sẽ ngon hơn, thu sáng các thứ tốt hơn. Nhưng mà độ chi tiết thì con Redmi Note 4 Pro Plus sẽ ngon hơn. Loa thì là loa ké cả\n[7:24] hai con đều có nhưng mà nghe hay hơn thì sẽ là Redmi Note 4 Pro Plus nhá các bạn nhá. Pin thì rõ ràng rồi, Turbo 4 Pro là sẽ hơn hẳn rồi. Pin 700 cơ mà. Còn các [...] [7:59] anh? Thế thì cá nhân mình mình thấy là có hai cái chiếc điện thoại này khá ổn tại điện hay bạn có thể tham khảo đấy là IQ Z10 Turbo Pro với giá là 7.150\n[8:09] và IQ Neo 10 là 7,350. Thực ra là lệch nhau vài trăm ở trong tầm giá này thì cũng coi như là ngang giá nhá. Đấy đều hơn 7 triệu một chút thôi. Ram 12 bộ nhớ\n[8:17] trong 256 và hai con này thì cá nhân mình đánh giá là nó đều đáp ứng được các cái nhu cầu của bạn. Thứ nhất là camera đẹp thì hai con này đều có camera mình [...] [2:04] bản này là bản A5 thường thôi chứ không phải A5 Pro. A5 thì nó tầm khoảng 7.950.000đ 000đ tại điện thoại hay chúng ta vẫn thừa 2 triệu ra để mà làm việc\n[2:12] khác đúng không ạ? Thế thì OnePlus A5 chúng ta sẽ được cái gì ạ? Chúng ta sẽ được hẳn con chip là 83 luôn. 83 được\n[2:19] một cái viên pin là 6400 cộng với cả một cái sạc 80 W. Hộp phụ kiện cũng rất là đầy đủ, camera cũng đầy đủ, có cả góc rộng góc tiếc luôn. Kháng nước là IP65,",
+      "proof": {
+        "product_page_valid": false,
+        "result_type": "UNKNOWN",
+        "reason": "Editorial/multiple-product search metadata.",
+        "verification_level": "REJECTED",
+        "fetch_blocked": true,
+        "product_page_confidence": 0,
+        "evidence_url": "https://www.youtube.com/watch?v=wfQnQON6VzU",
+        "discovery": []
+      }
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND pin pin lâu camera tốt mua chính hãng",
+      "url": "https://dienthoaivui.com.vn/phu-kien/pin-sac-du-phong/sac-du-phong-belkin",
+      "title": "Pin sạc dự phòng Belkin chính hãng | Giá rẻ 01/2026",
+      "content": "Thay pin iPhone iPhoneThay màn hình MacBookThay màn hình iPhoneiPhone X Series CũMàn Gen A Samsung Note 20 UltraThay camera sau iPhoneÉp kính thay cho iPhone 12 Pro MaxRam laptop. * Pin sạc dự phòng Belkin. # Pin sạc dự phòng Belkin. Giá từ thấp đến cao. Giá từ cao đến thấp. Không có sản phẩm nào! ## **Bảng giá pin sạc dự phòng Belkin chính hãng tại Điện Thoại Vui**. Bảng giá phụ kiện **pin sạc dự phòng Belkin** chính hãng mới nhất Tháng 1/ 2026:. [seo\\_price\\_table category='phu-kien/pin-sac-du-phong/sac-du-phong-belkin']. ## **Mua pin sạc dự phòng Belkin giá rẻ, chính hãng tại TP.HCM và Hà Nội**. Hãy đến ngay Điện Thoại Vui để trải nghiệm và sở hữu **sạc dự phòng Belkin** với giá rẻ nhất thị trường. Bảo hành chính hãng lên đến 12 tháng và tặng kèm nhiều quà tặng hấp dẫn! ## **Pin sạc dự phòng Belkin chính hãng giá bao nhiêu tiền?**. Giá tham khảo phụ kiện **sạc dự phòng** chính hãng tại TPHCM, Hà Nội:. [seo\\_price\\_list category='phu-kien/pin-sac-du-phong/sac-du-phong-belkin']. Giá **pin sạc dự phòng Belkin** sẽ dao động trong **khoảng từ 200.000 - 500.000 VNĐ**. Để tham khảo thêm về bảng giá dịch vụ, phụ kiện sạc dự phòng chính hãng quý khách vui lòng liên hệ ngay 1800.2064 để nhận ưu đãi tốt nhất. > Tham khảo thêm giá **sạc dự phòng Mophie** chính hãng giá rẻ - Bảo hành 12 tháng mới nhất Tháng 1/ 2026. * **Phụ kiện mới chính hãng 100%**, chất lượng, có nguồn gốc rõ ràng. * Đa dạng sản phẩm phụ kiện cho các thiết bị như điện thoại, laptop, MacBook,... * Giá tốt, cạnh tranh nhất trên thị trường. * **Giá gồm VAT** (eVAT), xuất hóa đơn điện tử đúng tên sản phẩm. * Chính sách bảo hành lu dài, lên đến 12 - 24 tháng (tùy loại phụ kiện). * Đặt và mua sản phẩm phụ kiện an toàn, nhanh chóng trên website Điện Thoại Vui. * Mức giá ưu đãi, dịch vụ hậu mãi hấp dẫn. * **Giảm thêm lên tới 5% nếu là thành viên SMember**.",
+      "proof": {
+        "product_page_valid": false,
+        "result_type": "UNKNOWN",
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "verification_level": "UNVERIFIED",
+        "fetch_blocked": false,
+        "product_page_confidence": 0,
+        "evidence_url": "https://dienthoaivui.com.vn/phu-kien/pin-sac-du-phong/sac-du-phong-belkin",
+        "discovery": []
+      }
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND pin pin lâu camera tốt mua chính hãng",
+      "url": "https://bloganchoi.com/tag/dien-thoai-realme-9i/feed",
+      "title": "điện thoại realme 9i – BlogAnChoi",
+      "content": "Title: điện thoại realme 9i – BlogAnChoi\np=473101 **Khi mua **điện thoại** mới thì dung lượng pin luôn là một trong những vấn đề được quan tm hàng đầu, những chiếc điện thoại pin tru có thể sử dụng bền lu qua thời gian dài. Hãy xem qua top 10 điện thoại pin tru, cấu hình mạnh, giá rẻ đáng mua nhất năm 2022 mà BlogAnChoi gợi ý trong bài viết dưới đy nhé.**. Samsung Galaxy M62 – Giá khoảng 7.990.000 VNĐ**. Thiết kế của Samsung Galaxy M62. * **Dung lượng pin:** 7000 mAh. Màn hình Super AMOLED Plus cùng với độ phn giải Full HD+ giúp cho Samsung Galaxy M62 có thể hiển thị hình ảnh và ánh sáng vô cùng tốt, từ trong phòng tối đến nơi có ánh sáng và thậm chí là ở ngoài trời. Với dung lượng 7000 mAh, lớn hơn nhiều so với các dòng điện thoại khác cùng phn khúc, người dùng có thể sử dụng thoải mái từ 1-2 ngày mà không cần phải lo nghĩ về chuyện sạc pin. **Bạn có thể xem video đánh giá chi tiết Samsung Galaxy M62 dưới đy:**. ### **Mua Samsung Galaxy M62 ở đu? * **Mua Samsung Galaxy M62 trên Shopee với giá từ 7.790.000 VND tại đy**. * **Mua Samsung Galaxy M62 trên Lazada với giá từ 7.990.000 VND tại đy**. Vivo Y33S – Giá khoảng 6.990.000 VNĐ**. * **Dung lượng pin:** 5000 mAh. Vivo Y33S là chiếc điện thoại tầm trung của nhà Vivo với thiết kế mỏng, đẹp, bắt mắt và trẻ trung. Dung lượng pin của Vivo Y33S là 5000 mAh, một con số đủ “tru” để người dùng có thể sử dụng trong một khoảng thời gian dài mà không phải lo hết pin. **Bạn có thể xem video đánh giá chi tiết Vivo Y33S dưới đy:**. * **Mua Vivo Y33S trên Shopee với giá từ 6.950.000 VND tại đy**. * **Mua Vivo Y33S trên Thế Giới Di Động với giá từ 6.990.000 VND tại đy**. **Bạn có thể xem video đánh giá chi tiết Realme 9i dưới đy:**. * **Mua Realme 9i trên Shopee với giá từ 6.050.000 VND tại đy**. * **Mua Realme 9i trên Thế Giới Di Động với giá từ 6.490.000 VND tại đy**.",
+      "proof": {
+        "product_page_valid": false,
+        "reason": "Non-product URL cannot use metadata fallback.",
+        "verification_level": "REJECTED",
+        "fetch_blocked": true,
+        "product_page_confidence": 0,
+        "evidence_url": "https://bloganchoi.com/tag/dien-thoai-realme-9i/feed"
+      }
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND pin pin lâu camera tốt mua chính hãng",
+      "url": "https://bloganchoi.com/tag/dien-thoai-pin-trau-cau-hinh-manh/feed",
+      "title": "điện thoại pin trâu cấu hình mạnh – BlogAnChoi",
+      "content": "Title: điện thoại pin trâu cấu hình mạnh – BlogAnChoi\np=473101 **Khi mua **điện thoại** mới thì dung lượng pin luôn là một trong những vấn đề được quan tm hàng đầu, những chiếc điện thoại pin tru có thể sử dụng bền lu qua thời gian dài. Hãy xem qua top 10 điện thoại pin tru, cấu hình mạnh, giá rẻ đáng mua nhất năm 2022 mà BlogAnChoi gợi ý trong bài viết dưới đy nhé.**. Samsung Galaxy M62 – Giá khoảng 7.990.000 VNĐ**. Thiết kế của Samsung Galaxy M62. * **Dung lượng pin:** 7000 mAh. Màn hình Super AMOLED Plus cùng với độ phn giải Full HD+ giúp cho Samsung Galaxy M62 có thể hiển thị hình ảnh và ánh sáng vô cùng tốt, từ trong phòng tối đến nơi có ánh sáng và thậm chí là ở ngoài trời. Với dung lượng 7000 mAh, lớn hơn nhiều so với các dòng điện thoại khác cùng phn khúc, người dùng có thể sử dụng thoải mái từ 1-2 ngày mà không cần phải lo nghĩ về chuyện sạc pin. **Bạn có thể xem video đánh giá chi tiết Samsung Galaxy M62 dưới đy:**. ### **Mua Samsung Galaxy M62 ở đu? * **Mua Samsung Galaxy M62 trên Shopee với giá từ 7.790.000 VND tại đy**. * **Mua Samsung Galaxy M62 trên Lazada với giá từ 7.990.000 VND tại đy**. Vivo Y33S – Giá khoảng 6.990.000 VNĐ**. * **Dung lượng pin:** 5000 mAh. Vivo Y33S là chiếc điện thoại tầm trung của nhà Vivo với thiết kế mỏng, đẹp, bắt mắt và trẻ trung. Dung lượng pin của Vivo Y33S là 5000 mAh, một con số đủ “tru” để người dùng có thể sử dụng trong một khoảng thời gian dài mà không phải lo hết pin. **Bạn có thể xem video đánh giá chi tiết Vivo Y33S dưới đy:**. * **Mua Vivo Y33S trên Shopee với giá từ 6.950.000 VND tại đy**. * **Mua Vivo Y33S trên Thế Giới Di Động với giá từ 6.990.000 VND tại đy**. **Bạn có thể xem video đánh giá chi tiết Realme 9i dưới đy:**. * **Mua Realme 9i trên Shopee với giá từ 6.050.000 VND tại đy**.",
+      "proof": {
+        "product_page_valid": false,
+        "reason": "Non-product URL cannot use metadata fallback.",
+        "verification_level": "REJECTED",
+        "fetch_blocked": true,
+        "product_page_confidence": 0,
+        "evidence_url": "https://bloganchoi.com/tag/dien-thoai-pin-trau-cau-hinh-manh/feed"
+      }
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND pin pin lâu camera tốt mua chính hãng",
+      "url": "https://dienthoaivui.com.vn/phu-kien/pin-sac-du-phong/sac-du-phong-iwalk",
+      "title": "Pin sạc dự phòng iWalk chính hãng | Giá rẻ 01/2026",
+      "content": "* Pin sạc dự phòng iWalk. # Pin sạc dự phòng iWalk. ### Pin sạc dự phòng iWalk Link Me Watch 9000mAh Lightning. ### Pin dự phòng iWalk 10000mAh 18W tích hợp sạc không dy 5W (UBC10000A). ### Pin sạc dự phòng iWALK 6 in 1 12.000 mAh (UBA12000P). ### Pin sạc dự phòng iWalk Magnetic 6000mAh DBL6000M. ## **Bảng giá pin sạc dự phòng iWalk chính hãng tại Điện Thoại Vui**. Bảng giá phụ kiện **pin sạc dự phòng iWalk** chính hãng mới nhất Tháng 1/ 2026:. ## **Mua pin dự phòng iWalk giá rẻ, chính hãng tại TP.HCM và Hà Nội**. Sạc dự phòng iWalk mang đến sự tiện lợi cho người tiêu dùng trong trường hợp cần sạc nhanh. Hãy cùng nhau tìm hiểu về các sản phẩm **sạc dự phòng iWalk** ngay sau đy nhé! ## **Pin sạc dự phòng iWalk chính hãng giá bao nhiêu tiền?**. Giá tham khảo phụ kiện pin sạc dự phòng chính hãng tại TPHCM, Hà Nội:. [seo\\_price\\_list category='phu-kien/pin-sac-du-phong/sac-du-phong-iwalk']. Giá **pin sạc dự phòng iWalk** sẽ dao động trong **khoảng từ 200.000 - 500.000 VNĐ**. Để tham khảo thêm về bảng giá dịch vụ, phụ kiện **sạc dự phòng** chính hãng quý khách vui lòng liên hệ ngay 1800.2064 để nhận ưu đãi tốt nhất. ## **Địa điểm mua pin dự phòng iWalk chính hãng giá rẻ tại TpHCM và Hà Nội**. Hiện nay, hệ thống cửa hàng **Điện Thoại Vui** cung cấp đầy đủ các sản phẩm pin sạc dự phòng với chất lượng an toàn và giá cả hợp lý. Khách hàng có thể đến trực tiếp cửa hàng Điện Thoại Vui hoặc đặt hàng online để **mua pin sạc dự phòng iWalk** với giá ưu đãi. Hãy tận dụng sự tiện lợi của pin dự phòng để chúng có thể phục vụ nhu cầu sử dụng thiết bị điện tử một cách tối đa nhé! > **Sạc dự phòng Xiaomi** chính hãng giá cực sốc. * Đa dạng sản phẩm phụ kiện cho các thiết bị như điện thoại, laptop, MacBook,... * Đặt và mua sản phẩm phụ kiện an toàn, nhanh chóng trên website Điện Thoại Vui.",
+      "proof": {
+        "product_page_valid": false,
+        "result_type": "UNKNOWN",
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "verification_level": "UNVERIFIED",
+        "fetch_blocked": false,
+        "product_page_confidence": 0,
+        "evidence_url": "https://dienthoaivui.com.vn/phu-kien/pin-sac-du-phong/sac-du-phong-iwalk",
+        "discovery": []
+      }
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND pin pin lâu camera tốt mua chính hãng",
+      "url": "https://vietnamnet.vn/apple-tang-gia-thay-pin-iphone-chinh-hang-them-470-000-vnd-i5012255.html",
+      "title": "Apple tăng giá thay pin iPhone chính hãng thêm 470.000 VNĐ",
+      "content": "Title: Apple tăng giá thay pin iPhone chính hãng thêm 470.000 VNĐ\n* Dn tộc và Tôn giáo. * Dn tộc thiểu số và miền núi. * Cơ quan chủ quản: Bộ Dn tộc và Tôn giáo. * Chỉ được phát hành lại thông tin từ website này khi có sự đồng ý bằng văn bản của báo VietNamNet. # Apple tăng giá thay pin iPhone chính hãng thêm 470.000 VNĐ. ## Apple vừa thông báo trên website về việc tăng phí dịch vụ thay pin hết bảo hành áp dụng với tất cả các mẫu iPhone, ngoại trừ iPhone 14, thêm 20 USD (khoảng 470.000 VNĐ). Theo đó, giá thay pin chính hãng sẽ tăng từ 69 USD lên 89 USD, áp dụng kể từ tháng 3. Mẫu iPhone 14 không nằm trong danh sách thay đổi giá lần này khi chi phí thay pin cho thiết bị đã là 99 USD ngay từ ban đầu. Người dùng iPhone cũ hết bảo hành phải chi thêm 470.000 VNĐ để thay pin chính hãng. Apple đang tính phí 69 USD cho các dòng máy iPhone 13, iPhone 12, iPhone 11 và iPhone X. Riêng các mẫu iPhone SE, iPhone 8 và đời su hơn được tính phí 49 USD. Mức giá cũ vẫn duy trì từ giờ cho đến hết tháng 2 năm nay và tăng thêm 20 USD kể từ 1/3/2023. Các cửa hàng tự sửa chữa, ý tưởng được Apple áp dụng từ năm ngoái, cũng là một giải pháp thay thế cho việc thay pin chính hãng, chi phí tương đương với số tiền khách hàng phải bỏ ra qua hãng. Cách đy vài năm, vào năm 2018, Apple đã giảm mạnh chi phí thay pin xuống chỉ còn 29 USD trong bối cảnh iPhone dính bê bối bị làm chậm. Động thái đó được coi như lời xin lỗi cho việc phần mềm điện thoại của “Nhà Táo” điều chỉnh giảm hiệu suất CPU khi pin có dấu hiệu bị chai. Sau đó, giá thay pin chính hãng được Apple đưa về mức 69 USD, kể từ năm 2019 đến nay.",
+      "proof": {
+        "product_page_valid": false,
+        "result_type": "NEWS",
+        "reason": "Trang không phải trang bán sản phẩm: NEWS",
+        "verification_level": "REJECTED",
+        "fetch_blocked": false,
+        "product_page_confidence": 0,
+        "evidence_url": "https://vietnamnet.vn/apple-tang-gia-thay-pin-iphone-chinh-hang-them-470-000-vnd-i5012255.html",
+        "discovery": []
+      }
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND giá bán",
+      "url": "https://bloganchoi.com/tag/dien-thoai-realme-c25/feed",
+      "title": "điện thoại Realme C25 – BlogAnChoi",
+      "content": "Mua Samsung Galaxy M62 trên Shopee với giá từ 7.790.000 VND tại đy\n Mua Samsung Galaxy M62 trên Lazada với giá từ 7.990.000 VND tại đy\n\n## 9. Vivo Y33S – Giá khoảng 6.990.000 VNĐ\n\nVivo Y33S có thiết kế đẹp và bắt mắt. (nguồn: Internet)\")\n\nVivo Y33S có thiết kế đẹp và bắt mắt. (nguồn: Internet)\n\n### Thông số kỹ thuật [...] Mua Tecno POVA 2 trên Lazada với giá từ 4.090.000 VND tại đy\n\n## 2. Xiaomi Redmi 10 – Giá khoảng 3.990.000 VNĐ\n\nXiaomi Redmi 10 có mặt lưng và khung làm bằng nhựa nên có thể bị cộm và khó chịu khi cầm nếu không có ốp lưng (Nguồn: Internet)\")\n\nXiaomi Redmi 10 có mặt lưng và khung làm bằng nhựa nên có thể bị cộm và khó chịu khi cầm nếu không có ốp lưng (Nguồn: Internet)\n\n### Thông số kỹ thuật [...] Mua Realme Q3 Pro trên Lazada với giá từ 5.650.000 VND tại đy\n Mua Realme Q3 Pro trên Shopee với giá từ 5.959.000 VND tại đy\n\n## 6. Xiaomi POCO M3 Pro 5G – Giá khoảng 4.790.000 VNĐ\n\nXiaomi POCO M3 Pro 5G là một trong những chiếc điện thoại tốt nhất trong tầm giá. (Nguồn: Internet)\")\n\nXiaomi POCO M3 Pro 5G là một trong những chiếc điện thoại tốt nhất trong tầm giá. (Nguồn: Internet)\n\n### Thông số kỹ thuật",
+      "proof": {
+        "product_page_valid": false,
+        "reason": "Non-product URL cannot use metadata fallback.",
+        "verification_level": "REJECTED",
+        "fetch_blocked": true,
+        "product_page_confidence": 0,
+        "evidence_url": "https://bloganchoi.com/tag/dien-thoai-realme-c25/feed"
+      }
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND giá bán",
+      "url": "https://voz.vn/t/telegram-ban-%C4%91au-gia-so-%C4%91ien-thoai-ao-%C4%91e-%C4%91ang-ky-khong-can-sim.679682",
+      "title": "Telegram bán đấu giá số điện thoại ảo để đăng ký không cần SIM | VOZ",
+      "content": ">    \n>    \n>  Giống như cách thức mua đấu giá tên đăng nhập, người mua cần sử dụng ví điện tử TON để thực hiện thanh toán. Một số điện thoại ngẫu nhiên có giá chỉ từ 9 toncoin (khoảng 395.000 VNĐ), trong khi đó những số điện thoại đẹp, ví dụ như số +888-8-888 đang được bán đấu giá lên tới 31.500 toncoin (khoảng 1,382 tỷ VNĐ).  \n>    \n> [...] # Telegram bán đấu giá số điện thoại ảo để đăng ký không cần SIM\n\n Người tạo chủ đề NEV\n Ngày bắt đầu\n\nNEV\n\n#### NEV\n\n##### Senior Member\n\n #1\n\n> Có giá bán khởi điểm từ 9 toncoin (khoảng 395.000 VNĐ) những số điện thoại này không thể gọi, nhắn tin hay nhận cuộc gọi mà chỉ có thể sử dụng để lập tài khoản cũng như hiển thị số ảo bên trong ứng dụng Telegram.\n>\n> Nhấp để mở rộng... [...] Bạn phải đăng nhập hoặc đăng ký để trả lời tại đy.\n\nAD · 970×250\n\n### Chủ đề tương tự\n\ni5-4210u\n\nTừ tháng 9/2026: VNeID tự động khóa tài khoản định danh nếu số điện thoại đăng ký không chính chủ\n\n i5-4210u\n Điểm báo\n\n 7 8 9\n\nTrả lời\n:   166\n\nLượt xem\n:   18K\n\nhoamacco\n\nhoamacco\n\natomwaffen\n\nGiả doanh nhn thành đạt để kết bạn, lừa phụ nữ có tiền\n\n atomwaffen\n Điểm báo\n\nTrả lời\n:   1\n\nLượt xem\n:   396\n\nduythanhhht\n\nduythanhhht\n\nmanoao",
+      "proof": {
+        "product_page_valid": false,
+        "reason": "Title and direct URL must identify the same model/variant.",
+        "verification_level": "UNVERIFIED",
+        "fetch_blocked": true,
+        "product_page_confidence": 0,
+        "evidence_url": "https://voz.vn/t/telegram-ban-%C4%91au-gia-so-%C4%91ien-thoai-ao-%C4%91e-%C4%91ang-ky-khong-can-sim.679682"
+      }
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND giá bán",
+      "url": "https://genk.vn/venezuela-dien-thoai-iphone-co-gia-1-ty-vnd-20150622180029302.chn",
+      "title": "Venezuela: điện thoại iPhone có giá... 1 tỷ VND",
+      "content": "Title: Venezuela: điện thoại iPhone có giá... 1 tỷ VND\n# Venezuela: điện thoại iPhone có giá... **Do đó, người dn Venezuela thường chỉ sử dụng các điện thoại của Samsung, Huawei, Nokia... Maria Veronica Fernandez đã phải đến 8 cửa hàng ở Caracas (Venezuela) để tìm mua chiếc điện thoại chính cô cũng không thích. Sau khi bị mất chiếc Galaxy S4 trong một vụ cướp vào tháng 5, Fernandez lại rơi vào cảnh thiếu thốn hàng hóa tại đất nước có tỷ lệ lạm phát cao nhất thế giới (63%), lương thực thiếu thốn và tội phạm bùng phát. Sau vài tuần chờ đợi, cô đã mua một chiếc Samsung Galaxy Fame, đơn giản và ít chức năng hơn, *\"Ít ra nếu bị mất thì tôi cũng không tiếc lắm\"*. Một dự báo của Pyramid Research cho biết sẽ chỉ có 4,6 triệu chiếc điện thoại được bán ra tại nước này trong năm 2015. Con số này thấp hơn gần một nửa so với 9 triệu chiếc được bán ra trong năm 2012. Với người dn Venezuela, có nhiều thứ trong cuộc sống họ cần lo lắng hơn là một chiếc điện thoại di động. Với mức lạm phát cao nhất thế giới hiện nay, người dn nước này rơi vào tình trạng thiếu thốn lương thực và nhu yếu phẩm trong cuộc sống. Đồng Bolivar bị mất giá liên tục do ảnh hưởng của mức lạm phát cao nhất thế giới của nước này. Người dn nước này tìm đến đồng USD như một sự đảm bảo cho tài sản của họ khi đồng nội tệ bị mất giá nhanh chóng. Tỉ giá này hiện đang công bố là khoảng 6,89 Bolivar/1 USD, thế nhưng đó chỉ là tỷ giá ưu tiên được chính phủ sử dụng cho việc mua sắm các trang thiết bị y tế và thực phẩm. Với việc đồng tiền mất giá và nền kinh tế lạm phát, không quá khó hiểu khi việc mua những chiếc điện thoại ở nước này là một điều vô cùng khó khăn. Cô Maria Veronica Fernandez, người vừa bị mất chiếc Samsung Galaxy S4 của mình ở đy đã phải mua lại một chiếc Samsung Galaxy Fame với giá 17.000 Bolivar (khoảng 58 triệu VND).",
+      "proof": {
+        "product_page_valid": false,
+        "result_type": "NEWS",
+        "reason": "Trang không phải trang bán sản phẩm: NEWS",
+        "verification_level": "REJECTED",
+        "fetch_blocked": false,
+        "product_page_confidence": 0,
+        "evidence_url": "https://genk.vn/venezuela-dien-thoai-iphone-co-gia-1-ty-vnd-20150622180029302.chn",
+        "discovery": []
+      }
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND pin pin lâu camera tốt mua online",
+      "url": "https://mucsothi.vn/blogs/news/muc-so-thi-top-smartphone-sieu-ben-pin-khung-gia-re-dang-lam-mua-lam",
+      "title": "Mục sở thị TOP smartphone siêu bền pin khủng giá rẻ đang “làm mưa làm – Siêu Bền Pin Khủng",
+      "content": "Màn hình: 6.56 inch, tấm nền IPS LCD, độ phn giải HD+ (720 x 1612), tần số quét 120Hz và độ sáng tối đa 500 nits.\n Hiệu năng: Sử dụng vi xử lý Unisoc T7250 tám nhn, đi kèm RAM 8GB (có thể mở rộng thêm 8GB RAM ảo) và bộ nhớ trong 256GB UFS 2.2.\n Pin & Sạc: Dung lượng 10.200mAh, hỗ trợ sạc nhanh 18W và có khả năng sạc ngược 6W cho các thiết bị khác qua cáp.\n Camera: Camera chính 48MP (khẩu độ f/1.79) và camera macro 2MP; camera selfie 8MP. [...] Màn hình: 6.745 inch HD+, tần số quét 120Hz cho trải nghiệm vuốt chạm mượt mà.\n Hiệu năng: Vi xử lý Unisoc T620 tám nhn, đi kèm 8GB RAM (có thể mở rộng thêm 12GB RAM ảo thành 20GB) và bộ nhớ trong 256GB.\n Pin & Sạc: Dung lượng pin 10.200mAh, hỗ trợ sạc nhanh 33W.\n Camera: Camera chính 48MP, camera trước 16MP và camera macro 2MP có tích hợp vòng đèn trợ sáng độc đáo.\n Hệ điều hành: Chạy sẵn Android 16 ngay khi xuất xưởng.\n\n#### Độ bền và Thiết kế [...] ## Dưới đy chính là TOP 6 “quái vật” đang dẫn đầu cơn sốt này tại mucsothi.vn – sẵn sàng khiến bạn “phát cuồng” và muốn rinh về ngay lập tức:\n\n### 1. Ulefone Armor X16\n\nUlefone Armor X16 là dòng điện thoại thông minh \"nồi đồng cối đá\" (rugged phone) ra mắt vào tháng 7 năm 2025. Máy nổi bật với viên pin dung lượng lớn 10.360 mAh, thiết kế bền bỉ đạt chuẩn qun đội và tích hợp camera nhìn đêm (Night Vision).\n\n#### Độ bền và Tính năng đặc biệt",
+      "proof": {
+        "product_page_valid": false,
+        "result_type": "NEWS",
+        "reason": "URL là trang chủ/danh mục/tìm kiếm/bài viết hoặc không an toàn.",
+        "verification_level": "REJECTED",
+        "fetch_blocked": false,
+        "product_page_confidence": 0,
+        "evidence_url": "https://mucsothi.vn/blogs/news/muc-so-thi-top-smartphone-sieu-ben-pin-khung-gia-re-dang-lam-mua-lam",
+        "discovery": []
+      }
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND pin pin lâu camera tốt mua online",
+      "url": "https://bloganchoi.com/tag/dien-thoai-vivo-y33s/feed",
+      "title": "điện thoại Vivo Y33S – BlogAnChoi",
+      "content": "Title: điện thoại Vivo Y33S – BlogAnChoi\np=473101 **Khi mua **điện thoại** mới thì dung lượng pin luôn là một trong những vấn đề được quan tm hàng đầu, những chiếc điện thoại pin tru có thể sử dụng bền lu qua thời gian dài. Hãy xem qua top 10 điện thoại pin tru, cấu hình mạnh, giá rẻ đáng mua nhất năm 2022 mà BlogAnChoi gợi ý trong bài viết dưới đy nhé.**. Samsung Galaxy M62 – Giá khoảng 7.990.000 VNĐ**. Thiết kế của Samsung Galaxy M62. * **Dung lượng pin:** 7000 mAh. Màn hình Super AMOLED Plus cùng với độ phn giải Full HD+ giúp cho Samsung Galaxy M62 có thể hiển thị hình ảnh và ánh sáng vô cùng tốt, từ trong phòng tối đến nơi có ánh sáng và thậm chí là ở ngoài trời. Với dung lượng 7000 mAh, lớn hơn nhiều so với các dòng điện thoại khác cùng phn khúc, người dùng có thể sử dụng thoải mái từ 1-2 ngày mà không cần phải lo nghĩ về chuyện sạc pin. **Bạn có thể xem video đánh giá chi tiết Samsung Galaxy M62 dưới đy:**. ### **Mua Samsung Galaxy M62 ở đu? * **Mua Samsung Galaxy M62 trên Shopee với giá từ 7.790.000 VND tại đy**. * **Mua Samsung Galaxy M62 trên Lazada với giá từ 7.990.000 VND tại đy**. Vivo Y33S – Giá khoảng 6.990.000 VNĐ**. * **Dung lượng pin:** 5000 mAh. Vivo Y33S là chiếc điện thoại tầm trung của nhà Vivo với thiết kế mỏng, đẹp, bắt mắt và trẻ trung. Dung lượng pin của Vivo Y33S là 5000 mAh, một con số đủ “tru” để người dùng có thể sử dụng trong một khoảng thời gian dài mà không phải lo hết pin. **Bạn có thể xem video đánh giá chi tiết Vivo Y33S dưới đy:**. * **Mua Vivo Y33S trên Shopee với giá từ 6.950.000 VND tại đy**. * **Mua Vivo Y33S trên Thế Giới Di Động với giá từ 6.990.000 VND tại đy**. **Bạn có thể xem video đánh giá chi tiết Realme 9i dưới đy:**. * **Mua Realme 9i trên Shopee với giá từ 6.050.000 VND tại đy**.",
+      "proof": {
+        "product_page_valid": false,
+        "reason": "Non-product URL cannot use metadata fallback.",
+        "verification_level": "REJECTED",
+        "fetch_blocked": true,
+        "product_page_confidence": 0,
+        "evidence_url": "https://bloganchoi.com/tag/dien-thoai-vivo-y33s/feed"
+      }
+    },
+    {
+      "query": "\"Samsung Note 20 UltraThay\" mua",
+      "url": "https://www.phukiensamsung.com/huong-dan-thay-the-phu-kien-samsung-galaxy-note-20-ultra-chinh-hang.html",
+      "title": "Hướng dẫn thay thế phụ kiện Samsung Galaxy Note 20 ...",
+      "content": "1.I. Dụng cụ chuẩn bị: · 2.II. Các bước thay phụ kiện Samsung Galaxy Note 20 Ultra chính hãng: · 3.III - Địa chỉ mua, thay linh phụ kiện Samsung Note 20 Ultra",
+      "proof": {
+        "product_page_valid": false,
+        "result_type": "NEWS",
+        "reason": "Trang không phải trang bán sản phẩm: NEWS",
+        "verification_level": "REJECTED",
+        "fetch_blocked": false,
+        "product_page_confidence": 0,
+        "evidence_url": "https://www.phukiensamsung.com/huong-dan-thay-the-phu-kien-samsung-galaxy-note-20-ultra-chinh-hang.html",
+        "discovery": []
+      }
+    },
+    {
+      "query": "\"Samsung Note 20 UltraThay\" mua",
+      "url": "https://www.thegioididong.com/dtdd/samsung-galaxy-note-20-ultra-5g",
+      "title": "Samsung Galaxy Note 20 Ultra 5G - Cập nhật thông tin ...",
+      "content": "Điện thoại Samsung Galaxy Note 20 Ultra 5G | Cập nhật thông tin, hình ảnh và đánh giá chi tiết nhanh, chính xác. Hỗ trợ giải đáp thắc mắc khách hàng.",
+      "proof": {
+        "product_page_valid": false,
+        "result_type": "UNKNOWN",
+        "reason": "Editorial/multiple-product search metadata.",
+        "verification_level": "REJECTED",
+        "fetch_blocked": true,
+        "product_page_confidence": 0,
+        "evidence_url": "https://www.thegioididong.com/dtdd/samsung-galaxy-note-20-ultra-5g",
+        "discovery": [
+          {
+            "name": "Điện thoại Samsung Galaxy Note 20 Ultra 5G",
+            "brand": "Samsung",
+            "model": "Điện thoại Samsung Galaxy Note 20 Ultra 5G",
+            "variant": {
+              "sku": "225063"
+            },
+            "price_type": "DISCOVERY_ONLY"
+          }
+        ]
+      }
+    },
+    {
+      "query": "\"Samsung Note 20 UltraThay\" mua",
+      "url": "https://www.samsung.com/vn/support/mobile-devices/ub-repair",
+      "title": "Chương trình Sửa Chữa Màn Hình Điện Thoại",
+      "content": "Galaxy A34 | A54\n Galaxy S10 | S10+\n Galaxy S20+ | S20 Ultra\n Galaxy S21 | S21+ | S21 Ultra\n Galaxy S22 | S22+ | S22 Ultra\n Galaxy S23 | S23+ | S23 Ultra\n Galaxy Note10 | Note10 5G | Note10+ | Note10+ 5G\n Galaxy Note20 | Note20 5G |Note20 Ultra | Note20 Ultra 5G\n Galaxy Z Flip3 I Z Flip4\n Galaxy Z Fold3 I Z Fold4\n\nLưu ý: Trong quá trình sửa chữa màn hình, nếu phát hiện có lỗi khác ngoài lỗi màn hình thì TTBH sẽ thông báo đến khách hàng tình trạng và chi phí phát sinh, nếu có. [...] TTBHUQ của Samsung sẽ cung cấp dịch vụ sửa chữa và/hoặc thay thế linh kiện nếu linh kiện có sẵn và sản phẩm có hư hỏng thực tế. Samsung có quyền từ chối cung cấp dịch vụ ngoài bảo hành nếu sản phẩm không thực hỏng; hoặc không còn đầy đủ linh kiện; hoặc đã được can thiệp bởi một bên khác không phải Samsung hay TTBHUQ. [...] - Trường hợp tại thời điểm sửa chữa thay thế mà thời hạn bảo hành còn lại của sản phẩm nhiều hơn ba (03) tháng, thời hạn bảo hành của linh kiện thay thế được tính theo thời hạn bảo hành còn lại của sản phẩm;\n\n- Tại thời điểm sửa chữa thay thế mà thời hạn bảo hành còn lại của sản phẩm ít hơn ba (03) tháng, thời hạn bảo hành của linh kiện thay thế được áp dụng là ba (03) tháng.",
+      "proof": {
+        "product_page_valid": false,
+        "result_type": "UNKNOWN",
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "verification_level": "UNVERIFIED",
+        "fetch_blocked": false,
+        "product_page_confidence": 0,
+        "evidence_url": "https://www.samsung.com/vn/support/mobile-devices/ub-repair/",
+        "discovery": []
+      }
+    }
+  ]
+}

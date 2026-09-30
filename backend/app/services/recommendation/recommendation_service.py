@@ -1,7 +1,9 @@
 """Deterministic recommendation orchestration."""
 
 from dataclasses import dataclass
+from app.services.performance import measure, current_trace
 from app.services.budget import stored_budget
+from app.services.llm.explanation_batch import ExplanationBatch
 from datetime import datetime, timezone
 
 from pydantic import TypeAdapter
@@ -200,22 +202,24 @@ class RecommendationService:
             for context in contexts
         ]
 
-        accepted, decisions = (
-            self.hard_filter.filter(
-                candidates,
-                requirement,
+        with measure("filtering_ms"):
+            accepted, decisions = (
+                self.hard_filter.filter(
+                    candidates,
+                    requirement,
+                )
             )
-        )
 
-        ranked = (
-            self.ranking_service.rank(
-                accepted,
-                requirement,
-                top_k=(
-                    self.settings.top_k
-                ),
+        with measure("scoring_ms"):
+            ranked = (
+                self.ranking_service.rank(
+                    accepted,
+                    requirement,
+                    top_k=(
+                        self.settings.top_k
+                    ),
+                )
             )
-        )
 
         context_by_product = {
             context.candidate.product_id:
@@ -223,6 +227,23 @@ class RecommendationService:
             for context
             in contexts
         }
+
+        # Prepare ORM-backed evidence before independent I/O. Workers receive
+        # only Pydantic facts; persistence and ranking remain on this thread.
+        evidence_by_product = {}
+        jobs = []
+        for ranked_item in ranked:
+            candidate = ranked_item.candidate
+            context = context_by_product[candidate.product_id]
+            evidence = self.evidence_validator.validate(context)
+            evidence.fields = build_field_evidence(db, session_id, context)
+            evidence_by_product[candidate.product_id] = evidence
+            jobs.append(dict(candidate=candidate,requirement=requirement,
+                             score=ranked_item.score,evidence=evidence))
+        if persist:
+            explanations = ExplanationBatch(self.explanation_service).run(jobs)
+        else:
+            explanations = [self.explanation_service.build_deterministic(**job) for job in jobs]
 
         if persist:
             db.execute(
@@ -238,7 +259,7 @@ class RecommendationService:
             RecommendationItem
         ] = []
 
-        for ranked_item in ranked:
+        for ranked_item, explanation in zip(ranked, explanations):
             candidate = (
                 ranked_item.candidate
             )
@@ -251,23 +272,7 @@ class RecommendationService:
                 ]
             )
 
-            evidence = (
-                self.evidence_validator.validate(
-                    context
-                )
-            )
-
-            evidence.fields = build_field_evidence(db, session_id, context)
-
-            explanation = (
-                (self.explanation_service.explain if persist
-                 else self.explanation_service.build_deterministic)(
-                    candidate=candidate,
-                    requirement=requirement,
-                    score=score,
-                    evidence=evidence,
-                )
-            )
+            evidence = evidence_by_product[candidate.product_id]
 
             if not persist:
                 explanation.generation_mode = "fallback"
@@ -338,6 +343,16 @@ class RecommendationService:
             )
 
             items[-1].requirement_matches = ScoringEngine().requirement_matches(candidate, requirement)
+
+        trace = current_trace.get()
+        if trace is not None:
+            trace.diagnostics.update(final_recommendations=len(items), scoring_candidates=len(candidates), hard_filtered=len(candidates)-len(accepted))
+            from collections import Counter
+            trace.diagnostics.update(valid_candidates=len(candidates), eligible_offers=len(accepted),
+                filter_reason_counts=dict(Counter(d.rejection_stage for d in decisions if not d.accepted)),
+                filter_rejections=[dict(**d.model_dump(), name=c.name, price=c.price,
+                    category=c.category, availability=c.availability)
+                    for c, d in zip(candidates, decisions) if not d.accepted])
 
         result = RecommendationRunResult(
             requirement=requirement,

@@ -1,0 +1,82 @@
+{
+  "method": "Offline stored-proof replay: all 39 observations returned on every provider call, not original Tavily ordering/HTML. No network/database writes.",
+  "pages_requested": 13,
+  "provider_calls": 8,
+  "stop_reason": "no_progress",
+  "direct_candidates": 2,
+  "eligible_offers": 0,
+  "hints_after": [
+    "Samsung Galaxy S24 Ultra 12GB 512GB",
+    "Vivo V30E 12GB 256GB",
+    "Redmi Note 13 5G",
+    "Samsung S24 FE",
+    "Samsung S25 Ultra",
+    "Samsung Galaxy S24",
+    "Samsung S24 Plus",
+    "Oppo A5 5G 4GB/128GB",
+    "Samsung Galaxy A37 5G 8GB/128GB",
+    "Samsung Galaxy A27 5G 6GB/128GB",
+    "Redmi Note 15 5G 6GB/128GB",
+    "Samsung Galaxy A26",
+    "Samsung Galaxy A56 5G 8GB 128GB",
+    "Samsung Galaxy S26 Plus",
+    "Samsung Galaxy S26 Ultra 5G 12GB",
+    "Samsung Galaxy S26 5G 12GB 256GB",
+    "Samsung Galaxy S25 256GB",
+    "Samsung Galaxy S25 Plus 256GB",
+    "OPPO Reno8 T 5G",
+    "OPPO Reno8 Z 5G",
+    "Samsung Galaxy A35 5G",
+    "Oppo Find X8s",
+    "Oppo Find X8s Plus",
+    "Oppo X8s Plus",
+    "Redmi K80 5G",
+    "Redmi Turbo 5 Max",
+    "Redmi Turbo 4 Pro",
+    "Samsung Galaxy A52",
+    "OPPO Reno13 F 5G",
+    "Redmi Note 14 Pro 5G"
+  ],
+  "queries": [
+    "recorded observations điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu",
+    "\"Samsung Galaxy S24 Ultra 12GB 512GB\" mua Việt Nam VND",
+    "\"Vivo V30E 12GB 256GB\" mua Việt Nam VND",
+    "điện thoại giá khoảng 10000000 VND giá bán",
+    "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua online",
+    "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu đại lý",
+    "site:chuyensidienthoai.vn \"Samsung Galaxy S24 Ultra 12GB 512GB\" giá bán Việt Nam VND",
+    "site:thegioididong.com điện thoại giá khoảng 10000000 VND giá bán"
+  ],
+  "rounds": [
+    {
+      "kind": "requirement",
+      "new_verified_products": 2,
+      "no_progress_rounds": 0
+    },
+    {
+      "kind": "model_discovery",
+      "new_verified_products": 0,
+      "no_progress_rounds": 1
+    },
+    {
+      "kind": "commercial",
+      "new_verified_products": 0,
+      "no_progress_rounds": 2
+    },
+    {
+      "kind": "merchant_discovery",
+      "new_verified_products": 0,
+      "no_progress_rounds": 3
+    },
+    {
+      "kind": "merchant_products",
+      "new_verified_products": 0,
+      "no_progress_rounds": 4
+    },
+    {
+      "kind": "merchant_products",
+      "new_verified_products": 0,
+      "no_progress_rounds": 5
+    }
+  ]
+}

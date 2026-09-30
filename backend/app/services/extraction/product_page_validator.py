@@ -121,10 +121,14 @@ class PageParser(HTMLParser):
         self.breadcrumbs = []
         self.breadcrumb_capture = None
         self.breadcrumb_depth = 0
+        self.product_links = []
+        self.product_link = None
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
         css = a.get('class', '').lower()
+        if tag == 'a' and a.get('href') and ('product' in css or a.get('itemprop') == 'url'):
+            self.product_link = {'href': a['href'], 'text': []}
         void = tag in {'meta','img','br','hr','input','link','source','wbr'}
         if self.breadcrumb_capture is not None and not void:
             self.breadcrumb_depth += 1
@@ -161,6 +165,7 @@ class PageParser(HTMLParser):
     def handle_data(self, data):
         if isinstance(self.script, list): self.script.append(data)
         if self.script is not None: return
+        if self.product_link is not None: self.product_link['text'].append(data)
         if self.breadcrumb_capture is not None: self.breadcrumb_capture.append(data)
         if self.discovery_capture: self.discovery_capture[2].append(data)
         if self.in_title: self.title.append(data)
@@ -171,6 +176,9 @@ class PageParser(HTMLParser):
         self.text.append(data)
 
     def handle_endtag(self, tag):
+        if tag == 'a' and self.product_link is not None:
+            if len(self.product_links) < 30: self.product_links.append(self.product_link)
+            self.product_link = None
         if self.breadcrumb_capture is not None and tag not in {'meta','img','br','hr','input','link','source','wbr'}:
             self.breadcrumb_depth -= 1
             if self.breadcrumb_depth <= 0:
@@ -274,6 +282,10 @@ def inspect_page(url, html, expected_name=''):
     result['page_heading'] = parser.heading
     from app.services.extraction.product_discovery import discover_products
     result['discovery'] = discover_products(parser, url)
+    kind = classify_source(url, parser=parser)
+    if kind in {'CATEGORY', 'SEARCH_PAGE', 'HOMEPAGE'}:
+        from app.services.extraction.product_discovery import discover_child_products
+        result['child_products'] = discover_child_products(parser, url)
     if not possible_product_url(url):
         result['verification_level'] = 'REJECTED'
         result['reason'] = 'URL là trang chủ/danh mục/tìm kiếm/bài viết hoặc không an toàn.'
@@ -346,6 +358,7 @@ def inspect_page(url, html, expected_name=''):
                       reason='Verified explicit variants; no single price is assigned to the base model.')
         return result
     if not name or (expected_name and not same_identity(name, expected_name)):
+        result['rejection_code'] = 'missing_identity'
         return result
     offer = None
     if product:
@@ -369,6 +382,11 @@ def inspect_page(url, html, expected_name=''):
     if price is None and og_product and buy and parser.meta.get('product:price:currency', '').upper() == 'VND':
         price = structured_price(parser.meta.get('product:price:amount', ''))
     if not price or not (offer or ((og_product or explicit_html_price) and buy)) or len(identity_tokens(name)) < 2:
+        if not price and product and buy and len(identity_tokens(name)) >= 2:
+            # Diagnostics only; keep the same rejection gate and evidence.
+            result['rejection_code'] = 'missing_price'
+        elif len(identity_tokens(name)) < 2:
+            result['rejection_code'] = 'missing_identity'
         return result
     if not product and nodes: return result
     seller = offer.get('seller') if offer else None
@@ -403,29 +421,8 @@ def inspect_page(url, html, expected_name=''):
                   rating=aggregate.get('ratingValue'), review_count=aggregate.get('reviewCount'),
                   availability=offer.get('availability') if offer else None,
                   reason='Trang chi tiết có identity và giá bán cụ thể cùng nguồn.')
-    candidates = []
-    if product:
-        candidates.extend((v, 'json_ld_product') for v in image_values(product.get('image')))
-    for key in ('og:image:secure_url', 'og:image', 'twitter:image', 'twitter:image:src'):
-        if parser.meta.get(key): candidates.append((parser.meta[key], key))
-    for img in parser.images:
-        if same_identity(name, img.get('alt', '')):
-            candidates.append((img.get('data-src') or img.get('src'), 'html_product_image'))
-    safe = []
-    for value, origin in candidates:
-        image = http_url(value, url)
-        if not image or BAD_IMAGES.search(image) or urlsplit(image).path.lower().endswith('.svg'): continue
-        # Explicit image model identifiers must not contradict the page model.
-        filename = unquote(urlsplit(image).path.rsplit('/', 1)[-1]).rsplit('.', 1)[0]
-        from app.services.extraction.product_extraction_service import infer_brand
-        image_brand = infer_brand(filename.replace('-', ' '))
-        if image_brand and normalize_product_text(image_brand) not in (normalize_product_text(name + ' ' + (brand or '')) or ''):
-            continue
-        page_ids = {t for t in identity_tokens(name) if any(c.isdigit() for c in t)}
-        filename_ids = {t for t in identity_tokens(filename) if any(c.isdigit() for c in t)}
-        descriptive = bool(identity_tokens(filename) & identity_tokens(name))
-        if descriptive and filename_ids and page_ids and not filename_ids <= page_ids: continue
-        if (identity_tokens(filename) & VARIANTS) - (identity_tokens(name) & VARIANTS): continue
-        safe.append((image, origin))
-    result['image_candidates'] = list(dict.fromkeys(safe))[:5]
+    from app.services.extraction.product_image_candidates import collect_product_images
+    result['image_diagnostics'] = {}
+    result['image_candidates'] = collect_product_images(parser, product, url=url, name=name, brand=brand,
+                                                       html=html, diagnostics=result['image_diagnostics'])
     return result

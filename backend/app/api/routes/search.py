@@ -1,6 +1,8 @@
 """Search API endpoints."""
 
 import time
+from app.services.performance import profile_request, current_trace
+from copy import deepcopy
 
 from fastapi import (
     APIRouter,
@@ -17,6 +19,7 @@ from app.models.raw_product_candidate import (
     RawProductCandidate,
 )
 from app.models.search_execution_state import SearchExecutionState
+from app.models.recommendation_snapshot import RecommendationSnapshot
 from app.models.search_query import (
     SearchQuery,
 )
@@ -150,6 +153,7 @@ def load_raw_search_result(
 
     execution_state = db.get(SearchExecutionState, session_id)
     search_session = db.get(SearchSession, session_id)
+    snapshot = db.get(RecommendationSnapshot, session_id)
 
     return SearchExecutionResponse(
         session_id=session_id,
@@ -170,6 +174,7 @@ def load_raw_search_result(
             raw_products
         ),
         warnings=list(execution_state.warnings) if execution_state is not None else [],
+        retrieval_diagnostics=deepcopy(snapshot.payload.get('retrieval_diagnostics', [])) if snapshot else [],
         demo_mode=settings.demo_mode,
         processing_time_ms=0.0,
     )
@@ -179,6 +184,7 @@ def load_raw_search_result(
     "",
     response_model=SearchPipelineResponse,
 )
+@profile_request('total_search_ms')
 async def execute_search(
     payload: SearchRequest,
     db: Session = Depends(get_db),
@@ -271,6 +277,17 @@ async def execute_search(
             )
 
         save_search_warnings(db, payload.session_id, raw_result.warnings)
+        # Persist this execution's diagnostics alongside its immutable result.
+        # Optional JSON metadata: old snapshots need no migration/backfill.
+        snapshot = db.get(RecommendationSnapshot, payload.session_id)
+        trace = current_trace.get()
+        if snapshot is not None and trace is not None:
+            trace.diagnostics['session_id'] = payload.session_id
+            performance = deepcopy(trace.snapshot())
+            performance['timings']['total_search_ms'] = round(duration_ms, 3)
+            snapshot.payload = {**snapshot.payload, 'retrieval_diagnostics': [
+                *deepcopy(raw_result.retrieval_diagnostics), {'performance': performance},
+            ]}
         db.commit()
         raw_result.status = "COMPLETED"
 

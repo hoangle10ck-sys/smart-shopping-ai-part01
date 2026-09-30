@@ -1,0 +1,46 @@
+{
+  "session_id": "8a713af2-4217-4c00-aeaa-ca6dbd18bf48",
+  "provenance": "Read-only persisted data. No original HTML, extracted candidate list or per-image probe logs available. No network.",
+  "recommendations": [
+    {
+      "name": "OPPO Reno14 5G 12GB 256GB",
+      "merchant": "CELLPHONES",
+      "product_url": "https://cellphones.com.vn/dien-thoai-oppo-reno14.html",
+      "image_url": null,
+      "image_source": null,
+      "product_page_valid": true,
+      "verification_level": "VERIFIED_CONTENT",
+      "product_page_confidence": 95.0,
+      "price": 15500000
+    },
+    {
+      "name": "POCO X8 Pro Max 12GB 256GB",
+      "merchant": "CELLPHONES",
+      "product_url": "https://cellphones.com.vn/dien-thoai-xiaomi-poco-x8-pro-max.html",
+      "image_url": null,
+      "image_source": null,
+      "product_page_valid": true,
+      "verification_level": "VERIFIED_CONTENT",
+      "product_page_confidence": 95.0,
+      "price": 13990000
+    },
+    {
+      "name": "Samsung Galaxy S25 Ultra 12GB 256GB",
+      "merchant": "CELLPHONES",
+      "product_url": "https://cellphones.com.vn/dien-thoai-samsung-galaxy-s25-ultra.html",
+      "image_url": null,
+      "image_source": null,
+      "product_page_valid": true,
+      "verification_level": "VERIFIED_CONTENT",
+      "product_page_confidence": 95.0,
+      "price": 25990000
+    }
+  ],
+  "total_search_ms": 18199.245,
+  "retrieval_counts": {
+    "provider_calls": 5,
+    "round_count": 3,
+    "page_attempts": 13,
+    "eligible_offers": 3
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "method": "Same three synthetic inputs and 1-second async mock responses; single worker models previous sequential execution. No network.",
+  "trials": [
+    {
+      "sequential": {
+        "wall_seconds": 3.0302,
+        "concurrency_limit": 1,
+        "peak_active": 1,
+        "calls": [
+          1,
+          2,
+          3
+        ],
+        "output_order": [
+          1,
+          2,
+          3
+        ],
+        "modes": [
+          "gemini",
+          "gemini",
+          "gemini"
+        ]
+      },
+      "concurrent": {
+        "wall_seconds": 1.0154,
+        "concurrency_limit": 3,
+        "peak_active": 3,
+        "calls": [
+          1,
+          2,
+          3
+        ],
+        "output_order": [
+          1,
+          2,
+          3
+        ],
+        "modes": [
+          "gemini",
+          "gemini",
+          "gemini"
+        ]
+      }
+    },
+    {
+      "sequential": {
+        "wall_seconds": 3.018,
+        "concurrency_limit": 1,
+        "peak_active": 1,
+        "calls": [
+          1,
+          2,
+          3
+        ],
+        "output_order": [
+          1,
+          2,
+          3
+        ],
+        "modes": [
+          "gemini",
+          "gemini",
+          "gemini"
+        ]
+      },
+      "concurrent": {
+        "wall_seconds": 1.0172,
+        "concurrency_limit": 3,
+        "peak_active": 3,
+        "calls": [
+          1,
+          2,
+          3
+        ],
+        "output_order": [
+          1,
+          2,
+          3
+        ],
+        "modes": [
+          "gemini",
+          "gemini",
+          "gemini"
+        ]
+      }
+    }
+  ],
+  "before_median_seconds": 3.0241,
+  "after_median_seconds": 1.0163,
+  "reduction_percent": 66.39,
+  "concurrency": 3,
+  "isolated_timeout": {
+    "product_id": 2,
+    "modes": [
+      "gemini",
+      "fallback",
+      "gemini"
+    ],
+    "output_order": [
+      1,
+      2,
+      3
+    ],
+    "calls": [
+      1,
+      2,
+      3
+    ]
+  },
+  "limitations": "Not a Live benchmark or prediction of provider latency. Remaining search/verification time is unchanged."
+}

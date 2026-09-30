@@ -1,0 +1,362 @@
+{
+  "baseline_ref": "v1.2.0",
+  "baseline_commit": "b2d9ebc8b7b4c8ac2357f9a84153e1dab7467c4a",
+  "repeats": 3,
+  "method": "median wall-clock; fixed local delays; no DB/network; actual Python ranking",
+  "limitations": [
+    "Does not model real provider latency, SDK-internal retry time, browser/human clarification, database persistence, image downloads or explanation generation.",
+    "Only baseline retriever/LLM classes loaded from Git; unchanged dependencies use current tree.",
+    "Synthetic overall duration is the sum of separate overload and retrieval measurements."
+  ],
+  "configured_delays_ms": {
+    "provider": 20.0,
+    "page": 40.0,
+    "llm": 20.0
+  },
+  "runs": {
+    "before_default_target_1": [
+      {
+        "duration_ms": 110.2886999999555,
+        "provider_calls": 2,
+        "page_fetches": 4,
+        "duplicate_fetches": 2,
+        "final_valid_offers": 2,
+        "final_recommendations": 2,
+        "ranked": [
+          {
+            "name": "Samsung Galaxy A50 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A51 128GB",
+            "price": 9000000,
+            "score": 79.25
+          }
+        ]
+      },
+      {
+        "duration_ms": 94.86119999996845,
+        "provider_calls": 2,
+        "page_fetches": 4,
+        "duplicate_fetches": 2,
+        "final_valid_offers": 2,
+        "final_recommendations": 2,
+        "ranked": [
+          {
+            "name": "Samsung Galaxy A50 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A51 128GB",
+            "price": 9000000,
+            "score": 79.25
+          }
+        ]
+      },
+      {
+        "duration_ms": 91.83969999992314,
+        "provider_calls": 2,
+        "page_fetches": 4,
+        "duplicate_fetches": 2,
+        "final_valid_offers": 2,
+        "final_recommendations": 2,
+        "ranked": [
+          {
+            "name": "Samsung Galaxy A50 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A51 128GB",
+            "price": 9000000,
+            "score": 79.25
+          }
+        ]
+      }
+    ],
+    "before_equal_target_5": [
+      {
+        "duration_ms": 279.7663999999713,
+        "provider_calls": 4,
+        "page_fetches": 10,
+        "duplicate_fetches": 5,
+        "final_valid_offers": 5,
+        "final_recommendations": 5,
+        "ranked": [
+          {
+            "name": "Samsung Galaxy A50 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A51 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A52 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A53 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A54 128GB",
+            "price": 9000000,
+            "score": 79.25
+          }
+        ]
+      },
+      {
+        "duration_ms": 257.55850000007285,
+        "provider_calls": 4,
+        "page_fetches": 10,
+        "duplicate_fetches": 5,
+        "final_valid_offers": 5,
+        "final_recommendations": 5,
+        "ranked": [
+          {
+            "name": "Samsung Galaxy A50 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A51 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A52 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A53 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A54 128GB",
+            "price": 9000000,
+            "score": 79.25
+          }
+        ]
+      },
+      {
+        "duration_ms": 268.00630000002457,
+        "provider_calls": 4,
+        "page_fetches": 10,
+        "duplicate_fetches": 5,
+        "final_valid_offers": 5,
+        "final_recommendations": 5,
+        "ranked": [
+          {
+            "name": "Samsung Galaxy A50 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A51 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A52 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A53 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A54 128GB",
+            "price": 9000000,
+            "score": 79.25
+          }
+        ]
+      }
+    ],
+    "after_target_5": [
+      {
+        "duration_ms": 207.0742999999311,
+        "provider_calls": 4,
+        "page_fetches": 5,
+        "duplicate_fetches": 0,
+        "final_valid_offers": 5,
+        "final_recommendations": 5,
+        "ranked": [
+          {
+            "name": "Samsung Galaxy A50 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A51 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A52 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A53 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A54 128GB",
+            "price": 9000000,
+            "score": 79.25
+          }
+        ]
+      },
+      {
+        "duration_ms": 250.4610999999386,
+        "provider_calls": 4,
+        "page_fetches": 5,
+        "duplicate_fetches": 0,
+        "final_valid_offers": 5,
+        "final_recommendations": 5,
+        "ranked": [
+          {
+            "name": "Samsung Galaxy A50 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A51 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A52 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A53 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A54 128GB",
+            "price": 9000000,
+            "score": 79.25
+          }
+        ]
+      },
+      {
+        "duration_ms": 199.38569999999345,
+        "provider_calls": 4,
+        "page_fetches": 5,
+        "duplicate_fetches": 0,
+        "final_valid_offers": 5,
+        "final_recommendations": 5,
+        "ranked": [
+          {
+            "name": "Samsung Galaxy A50 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A51 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A52 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A53 128GB",
+            "price": 9000000,
+            "score": 79.25
+          },
+          {
+            "name": "Samsung Galaxy A54 128GB",
+            "price": 9000000,
+            "score": 79.25
+          }
+        ]
+      }
+    ],
+    "gemini_before": [
+      {
+        "duration_ms": 1592.9529999999659,
+        "attempts": 3
+      },
+      {
+        "duration_ms": 1575.895599999967,
+        "attempts": 3
+      },
+      {
+        "duration_ms": 1587.4456000000237,
+        "attempts": 3
+      }
+    ],
+    "gemini_after": [
+      {
+        "duration_ms": 21.80169999996906,
+        "attempts": 1
+      },
+      {
+        "duration_ms": 21.588199999996505,
+        "attempts": 1
+      },
+      {
+        "duration_ms": 21.529900000018642,
+        "attempts": 1
+      }
+    ]
+  },
+  "medians": {
+    "before_default_target_1": {
+      "duration_ms": 94.861,
+      "provider_calls": 2,
+      "page_fetches": 4,
+      "duplicate_fetches": 2,
+      "final_valid_offers": 2,
+      "final_recommendations": 2
+    },
+    "before_equal_target_5": {
+      "duration_ms": 268.006,
+      "provider_calls": 4,
+      "page_fetches": 10,
+      "duplicate_fetches": 5,
+      "final_valid_offers": 5,
+      "final_recommendations": 5
+    },
+    "after_target_5": {
+      "duration_ms": 207.074,
+      "provider_calls": 4,
+      "page_fetches": 5,
+      "duplicate_fetches": 0,
+      "final_valid_offers": 5,
+      "final_recommendations": 5
+    },
+    "gemini_before": {
+      "duration_ms": 1587.446,
+      "attempts": 3
+    },
+    "gemini_after": {
+      "duration_ms": 21.588,
+      "attempts": 1
+    },
+    "synthetic_before": {
+      "duration_ms": 1682.307
+    },
+    "synthetic_after": {
+      "duration_ms": 228.662
+    }
+  }
+}

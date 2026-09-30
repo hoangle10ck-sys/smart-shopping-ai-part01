@@ -1,4 +1,5 @@
 """Universal deterministic search-query generator."""
+from app.services.performance import timed
 
 from app.core.config import (
     get_settings,
@@ -95,7 +96,7 @@ class QueryGenerator:
 
             if name and value:
                 parts.append(
-                    f"{name} {value}"
+                    value if value.casefold().startswith(name.casefold() + ' ') else f"{name} {value}"
                 )
 
         return " ".join(
@@ -116,6 +117,7 @@ class QueryGenerator:
         )
 
 
+    @timed('query_generation_ms')
     def generate(
         self,
         requirement: RequirementData,

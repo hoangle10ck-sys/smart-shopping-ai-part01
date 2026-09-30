@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import time
+from app.services.performance import current_trace
 
 from sqlalchemy import (
     delete,
@@ -334,6 +335,7 @@ class SearchService:
             if not any((source.page_validation or {}).get('product_page_valid') for source in all_sources):
                 warnings.append('Không tìm được trang bán sản phẩm đủ tin cậy trong giới hạn tìm kiếm.')
 
+        extraction_started = time.perf_counter()
         candidate_entries: list[
             tuple[
                 str,
@@ -433,6 +435,10 @@ class SearchService:
         #
         # All slow external HTTP work is finished before here.
         # =====================================================
+
+        trace = current_trace.get()
+        if trace is not None:
+            trace.timings["extraction_ms"] += (time.perf_counter() - extraction_started) * 1000
 
         db.execute(
             delete(

@@ -168,7 +168,7 @@ def test_live_uses_configured_secondary_provider(monkeypatch):
         calls.append(provider)
         if provider == "openai":
             raise RuntimeError("Mock provider failure")
-        return RecommendationExplanation(summary="Secondary provider explanation")
+        return self.build_deterministic(**kwargs)
 
     monkeypatch.setattr(ExplanationService, "_generate_with_provider", generate)
     result = ExplanationService().explain(
