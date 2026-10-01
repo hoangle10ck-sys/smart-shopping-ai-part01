@@ -1,0 +1,2351 @@
+{
+  "session_id": "05479307-6d2d-4c17-b445-8719d935aa3c",
+  "provenance": "Read-only SQLite export; no original HTML/HAR or response for the unrequested A56. No credentials or user identity exported.",
+  "requirement": {
+    "budget_mode": "FLEXIBLE_TARGET",
+    "budget_target": 10000000,
+    "preferred_min": 9400000,
+    "preferred_max": 10600000,
+    "category": "điện thoại",
+    "budget_min": null,
+    "budget_max": 10000000,
+    "currency": "VND",
+    "purpose": [],
+    "brands": [],
+    "requirements": [
+      {
+        "name": "camera",
+        "value": "tốt",
+        "priority": 4
+      },
+      {
+        "name": "pin",
+        "value": "lâu",
+        "priority": 4
+      }
+    ],
+    "excluded_requirements": [],
+    "sort_preference": "best_match",
+    "confidence": 0.95
+  },
+  "historical_performance": {
+    "timings": {
+      "requirement_analysis_ms": 0.0,
+      "clarification_ms": 0.0,
+      "query_generation_ms": 0.0,
+      "search_provider_ms": 24261.765,
+      "product_discovery_ms": 4343.482,
+      "product_verification_ms": 14860.15,
+      "page_fetch_ms": 20165.638,
+      "verification_ms": 2605.489,
+      "extraction_ms": 316.81,
+      "filtering_ms": 0.127,
+      "scoring_ms": 0.01,
+      "explanation_ms": 3.141,
+      "total_search_ms": 48483.431
+    },
+    "diagnostics": {
+      "candidates_found": 49,
+      "pages_verified": 24,
+      "rejected_wrong_category": 0,
+      "rejected_non_product_page": 28,
+      "rejected_missing_price": 2,
+      "rejected_out_of_stock": 2,
+      "rejected_duplicate": 1,
+      "rejected_other": 13,
+      "valid_offers": 0,
+      "final_recommendations": 0,
+      "valid_candidates": 2,
+      "eligible_offers": 0,
+      "generated_queries": [
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+        "\"Apple A13 Bionic\" mua Việt Nam VND",
+        "\"OPPO Reno8 T 5G\" mua Việt Nam VND",
+        "site:thegioididong.com \"OPPO Reno8 T 5G\" giá bán Việt Nam VND",
+        "site:fptshop.com.vn điện thoại giá khoảng 10000000 VND giá bán",
+        "\"OPPO Reno8 Z 5G\" giá Việt Nam VND",
+        "site:oppo.com \"OPPO Reno8 Z\" giá bán Việt Nam VND",
+        "\"Vivo V50 Lite 5G 12GB 256GB\" giá Việt Nam VND",
+        "\"Samsung Galaxy A56 5G 8GB 128GB\" giá Việt Nam VND"
+      ],
+      "unique_candidate_urls": [
+        "https://24hstore.vn/review-san-pham/dien-thoai-duoi-10-trieu-n8676",
+        "https://bachlongmobile.com/products/samsung-galaxy-a56-5g-8gb128gb",
+        "https://bantragopdienthoai.com/product/oppo-reno-8z-5g",
+        "https://cellphones.com.vn/dien-thoai-samsung-galaxy-a56.html",
+        "https://cellphones.com.vn/oppo-reno-8t.html",
+        "https://cellphones.com.vn/oppo-reno8-z.html",
+        "https://cellphones.com.vn/sforum/chip-a13-bionic",
+        "https://cellphones.com.vn/sforum/dien-thoai-tam-trung-dang-mua-nhat",
+        "https://cellphones.com.vn/vivo-v50-lite-5g-cu-da-kich-hoat.html",
+        "https://chuyenphanphoi.vn/san-pham/dien-thoai-vivo-v50-lite-5g-12gb-256gb-den-9960.html",
+        "https://clickbuy.com.vn/dien-thoai-7-8-trieu.html",
+        "https://clickbuy.com.vn/dien-thoai-pin-trau-duoi-10-trieu.html",
+        "https://dienmaycholon.com/dien-thoai-di-dong/samsung-galaxy-a56-8gb128gb",
+        "https://dienmaycholon.com/kinh-nghiem-mua-sam/oppo-reno8-t-5g-giam-soc-cuoi-nam-tai-sieu-thi-dien-may-noi-that-cho-lon",
+        "https://en.wikipedia.org/wiki/Apple_A13",
+        "https://fptshop.com.vn/dien-thoai",
+        "https://fptshop.com.vn/dien-thoai/tu-2-4-trieu",
+        "https://fptshop.com.vn/tin-tuc/danh-gia/dien-thoai-tam-gia-4-trieu-180386",
+        "https://fptshop.com.vn/tin-tuc/danh-gia/dien-thoai-trung-quoc-177429",
+        "https://fptshop.com.vn/tin-tuc/danh-gia/tam-10-trieu-nen-mua-dien-thoai-nao-2026-198636",
+        "https://hungmobile.vn/tin-tuc/top-dien-thoai-2-trieu-tot-nhat.html",
+        "https://hungmobile.vn/tin-tuc/top-dien-thoai-duoi-10-trieu-dang-mua-nhat.html",
+        "https://mobappy.co.jp/top-dien-thoai-android-gia-re-dang-mua-nhat-2026-goi-y-dang-tien-cho-moi-nhu-cau",
+        "https://shopee.vn/%C4%90i%E1%BB%87n-tho%E1%BA%A1i-Vivo-V50-Lite-5G-12GB-256GB-(V2440)-V%C3%A0ng-i.706762797.40117502174",
+        "https://vietnamnet.vn/top-dien-thoai-duoi-10-trieu-dang-mua-thang-7-man-hinh-camera-dep-pin-khoe-2534592.html",
+        "https://viettelstore.vn/dien-thoai/vivo-v50-lite-5g-12gb-256gb-pid349200.html",
+        "https://viettelstore.vn/tin-tuc/dien-thoai-chup-anh-dep-duoi-10-trieu",
+        "https://www.dienmayxanh.com/kinh-nghiem-hay/chi-tiet-ve-vi-xu-ly-apple-a13-bionic-moi-nhat-duo-1197314",
+        "https://www.duchuymobile.com/oppo-reno8-z-5g",
+        "https://www.homecredit.vn/blog/review-samsung-a56-5g-gia-tinh-nang-noi-bat-cd",
+        "https://www.oppo.com/vn/events",
+        "https://www.oppo.com/vn/newsroom/press/oppo-a91-chinh-thuc-len-ke-tai-viet-nam",
+        "https://www.oppo.com/vn/newsroom/press/oppo-ra-mat-chuyen-gia-chan-dung-reno8-pro-5g",
+        "https://www.oppo.com/vn/newsroom/press/oppo-ra-mat-chuyen-gia-chan-dung-reno8-series",
+        "https://www.oppo.com/vn/newsroom/press/oppo-ra-mat-dien-thoai-tam-trung-moi-nhat-reno8t",
+        "https://www.oppo.com/vn/smartphones/series-reno/reno8-t-5g/specs",
+        "https://www.oppo.com/vn/store",
+        "https://www.thegioididong.com/dtdd/oppo-reno8-t-5g-256gb",
+        "https://www.thegioididong.com/dtdd/oppo-reno8-z-5g",
+        "https://www.thegioididong.com/dtdd/vivo-v50-lite-5g",
+        "https://www.thegioididong.com/hoi-dap/co-gi-dang-mong-cho-ve-hieu-nang-cau-hinh-oppo-1509531",
+        "https://www.thegioididong.com/hoi-dap/danh-gia-cau-hinh-hieu-nang-dien-thoai-oppo-reno-1510720",
+        "https://www.thegioididong.com/hoi-dap/so-sanh-oppo-reno8-5g-va-reno-8-z-5g-hai-sieu-1480144",
+        "https://www.thegioididong.com/hoi-dap/tim-hieu-ve-chip-apple-a13-bionic-tren-iphone-11-n-1197492",
+        "https://www.thegioididong.com/hoi-dap/tong-hop-bang-gia-dien-thoai-oppo-2022-moi-nhat-1503184",
+        "https://www.thegioididong.com/tin-tuc/oppo-reno8-t-5g-gia-bao-nhieu-1502536",
+        "https://www.youtube.com/watch?v=Bu68LGPGxtA",
+        "https://www.youtube.com/watch?v=P22mdEkXmzc",
+        "https://www.youtube.com/watch?v=ZqdKlgp6NtI"
+      ],
+      "rounds": [
+        {
+          "round": 1,
+          "kind": "requirement",
+          "duration_ms": 4629.691,
+          "new_verified_products": 0,
+          "no_progress_rounds": 0,
+          "new_model_hints": 22,
+          "new_merchant_domains": 0,
+          "new_direct_urls": 2,
+          "new_child_urls": 0,
+          "queries_generated": [
+            "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+            "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng"
+          ],
+          "queries_executed": [
+            "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+            "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng"
+          ],
+          "raw_search_results_per_query": {
+            "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam": 5,
+            "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng": 5
+          },
+          "unique_search_results": 9,
+          "result_domains": [
+            "24hstore.vn",
+            "cellphones.com.vn",
+            "clickbuy.com.vn",
+            "hungmobile.vn",
+            "mobappy.co.jp",
+            "vietnamnet.vn",
+            "viettelstore.vn"
+          ],
+          "conversion": {
+            "potential_product_urls": 2,
+            "direct_product_candidates": 0,
+            "evidence_only_results": 9,
+            "rejected_before_fetch": 7,
+            "pages_requested": 2,
+            "pages_fetched": 2,
+            "pages_verified": 0,
+            "verification_failed": 2,
+            "wrong_category": 0,
+            "non_product_page": 9,
+            "missing_price": 0,
+            "missing_identity": 0,
+            "out_of_stock": 0,
+            "duplicate": 0,
+            "http_network_failure": 0,
+            "other": 0,
+            "valid_candidates": 0,
+            "eligible_offers": 0,
+            "reused_pages": 0,
+            "reason_counts": {
+              "non_product_page": 9
+            }
+          },
+          "cumulative_product_attempts": 0,
+          "cumulative_pages_requested": 2,
+          "cumulative_valid_offers": 0
+        },
+        {
+          "round": 2,
+          "kind": "model_discovery",
+          "duration_ms": 5824.695,
+          "new_verified_products": 1,
+          "no_progress_rounds": 0,
+          "new_model_hints": 1,
+          "new_merchant_domains": 2,
+          "new_direct_urls": 3,
+          "new_child_urls": 0,
+          "queries_generated": [
+            "\"Apple A13 Bionic\" mua Việt Nam VND",
+            "\"OPPO Reno8 T 5G\" mua Việt Nam VND"
+          ],
+          "queries_executed": [
+            "\"Apple A13 Bionic\" mua Việt Nam VND",
+            "\"OPPO Reno8 T 5G\" mua Việt Nam VND"
+          ],
+          "raw_search_results_per_query": {
+            "\"Apple A13 Bionic\" mua Việt Nam VND": 5,
+            "\"OPPO Reno8 T 5G\" mua Việt Nam VND": 5
+          },
+          "unique_search_results": 10,
+          "result_domains": [
+            "cellphones.com.vn",
+            "dienmaycholon.com",
+            "dienmayxanh.com",
+            "en.wikipedia.org",
+            "oppo.com",
+            "thegioididong.com",
+            "youtube.com"
+          ],
+          "conversion": {
+            "potential_product_urls": 3,
+            "direct_product_candidates": 1,
+            "evidence_only_results": 9,
+            "rejected_before_fetch": 7,
+            "pages_requested": 3,
+            "pages_fetched": 3,
+            "pages_verified": 1,
+            "verification_failed": 2,
+            "wrong_category": 0,
+            "non_product_page": 7,
+            "missing_price": 0,
+            "missing_identity": 0,
+            "out_of_stock": 1,
+            "duplicate": 0,
+            "http_network_failure": 0,
+            "other": 2,
+            "valid_candidates": 0,
+            "eligible_offers": 0,
+            "reused_pages": 0,
+            "reason_counts": {
+              "non_product_page": 7,
+              "other": 2,
+              "out_of_stock": 1
+            }
+          },
+          "cumulative_product_attempts": 3,
+          "cumulative_pages_requested": 5,
+          "cumulative_valid_offers": 0
+        },
+        {
+          "round": 3,
+          "kind": "merchant_products",
+          "duration_ms": 2831.506,
+          "new_verified_products": 0,
+          "no_progress_rounds": 0,
+          "new_model_hints": 3,
+          "new_merchant_domains": 0,
+          "new_direct_urls": 0,
+          "new_child_urls": 0,
+          "queries_generated": [
+            "site:thegioididong.com \"OPPO Reno8 T 5G\" giá bán Việt Nam VND"
+          ],
+          "queries_executed": [
+            "site:thegioididong.com \"OPPO Reno8 T 5G\" giá bán Việt Nam VND"
+          ],
+          "raw_search_results_per_query": {
+            "site:thegioididong.com \"OPPO Reno8 T 5G\" giá bán Việt Nam VND": 5
+          },
+          "unique_search_results": 5,
+          "result_domains": [
+            "thegioididong.com"
+          ],
+          "conversion": {
+            "potential_product_urls": 0,
+            "direct_product_candidates": 0,
+            "evidence_only_results": 5,
+            "rejected_before_fetch": 5,
+            "pages_requested": 0,
+            "pages_fetched": 0,
+            "pages_verified": 0,
+            "verification_failed": 0,
+            "wrong_category": 0,
+            "non_product_page": 5,
+            "missing_price": 0,
+            "missing_identity": 0,
+            "out_of_stock": 0,
+            "duplicate": 0,
+            "http_network_failure": 0,
+            "other": 0,
+            "valid_candidates": 0,
+            "eligible_offers": 0,
+            "reused_pages": 0,
+            "reason_counts": {
+              "non_product_page": 5
+            }
+          },
+          "cumulative_product_attempts": 3,
+          "cumulative_pages_requested": 5,
+          "cumulative_valid_offers": 0
+        },
+        {
+          "round": 4,
+          "kind": "merchant_products",
+          "duration_ms": 6248.304,
+          "new_verified_products": 0,
+          "no_progress_rounds": 0,
+          "new_model_hints": 11,
+          "new_merchant_domains": 1,
+          "new_direct_urls": 1,
+          "new_child_urls": 0,
+          "queries_generated": [
+            "site:fptshop.com.vn điện thoại giá khoảng 10000000 VND giá bán"
+          ],
+          "queries_executed": [
+            "site:fptshop.com.vn điện thoại giá khoảng 10000000 VND giá bán"
+          ],
+          "raw_search_results_per_query": {
+            "site:fptshop.com.vn điện thoại giá khoảng 10000000 VND giá bán": 5
+          },
+          "unique_search_results": 5,
+          "result_domains": [
+            "fptshop.com.vn"
+          ],
+          "conversion": {
+            "potential_product_urls": 1,
+            "direct_product_candidates": 0,
+            "evidence_only_results": 5,
+            "rejected_before_fetch": 3,
+            "pages_requested": 2,
+            "pages_fetched": 0,
+            "pages_verified": 0,
+            "verification_failed": 2,
+            "wrong_category": 0,
+            "non_product_page": 3,
+            "missing_price": 0,
+            "missing_identity": 0,
+            "out_of_stock": 0,
+            "duplicate": 0,
+            "http_network_failure": 2,
+            "other": 0,
+            "valid_candidates": 0,
+            "eligible_offers": 0,
+            "reused_pages": 0,
+            "reason_counts": {
+              "non_product_page": 3,
+              "http_network_failure": 2
+            }
+          },
+          "cumulative_product_attempts": 4,
+          "cumulative_pages_requested": 7,
+          "cumulative_valid_offers": 0
+        },
+        {
+          "round": 5,
+          "kind": "alternative_model",
+          "duration_ms": 7199.682,
+          "new_verified_products": 1,
+          "no_progress_rounds": 0,
+          "new_model_hints": 1,
+          "new_merchant_domains": 1,
+          "new_direct_urls": 5,
+          "new_child_urls": 0,
+          "queries_generated": [
+            "\"OPPO Reno8 Z 5G\" giá Việt Nam VND"
+          ],
+          "queries_executed": [
+            "\"OPPO Reno8 Z 5G\" giá Việt Nam VND"
+          ],
+          "raw_search_results_per_query": {
+            "\"OPPO Reno8 Z 5G\" giá Việt Nam VND": 5
+          },
+          "unique_search_results": 5,
+          "result_domains": [
+            "bantragopdienthoai.com",
+            "cellphones.com.vn",
+            "duchuymobile.com",
+            "oppo.com",
+            "thegioididong.com"
+          ],
+          "conversion": {
+            "potential_product_urls": 5,
+            "direct_product_candidates": 1,
+            "evidence_only_results": 4,
+            "rejected_before_fetch": 0,
+            "pages_requested": 5,
+            "pages_fetched": 5,
+            "pages_verified": 1,
+            "verification_failed": 4,
+            "wrong_category": 0,
+            "non_product_page": 1,
+            "missing_price": 1,
+            "missing_identity": 0,
+            "out_of_stock": 1,
+            "duplicate": 0,
+            "http_network_failure": 0,
+            "other": 2,
+            "valid_candidates": 0,
+            "eligible_offers": 0,
+            "reused_pages": 0,
+            "reason_counts": {
+              "other": 2,
+              "non_product_page": 1,
+              "out_of_stock": 1,
+              "missing_price": 1
+            }
+          },
+          "cumulative_product_attempts": 8,
+          "cumulative_pages_requested": 12,
+          "cumulative_valid_offers": 0
+        },
+        {
+          "round": 6,
+          "kind": "merchant_products",
+          "duration_ms": 4738.862,
+          "new_verified_products": 0,
+          "no_progress_rounds": 0,
+          "new_model_hints": 2,
+          "new_merchant_domains": 0,
+          "new_direct_urls": 2,
+          "new_child_urls": 0,
+          "queries_generated": [
+            "site:oppo.com \"OPPO Reno8 Z\" giá bán Việt Nam VND"
+          ],
+          "queries_executed": [
+            "site:oppo.com \"OPPO Reno8 Z\" giá bán Việt Nam VND"
+          ],
+          "raw_search_results_per_query": {
+            "site:oppo.com \"OPPO Reno8 Z\" giá bán Việt Nam VND": 5
+          },
+          "unique_search_results": 5,
+          "result_domains": [
+            "oppo.com"
+          ],
+          "conversion": {
+            "potential_product_urls": 5,
+            "direct_product_candidates": 0,
+            "evidence_only_results": 5,
+            "rejected_before_fetch": 0,
+            "pages_requested": 5,
+            "pages_fetched": 5,
+            "pages_verified": 0,
+            "verification_failed": 5,
+            "wrong_category": 0,
+            "non_product_page": 0,
+            "missing_price": 0,
+            "missing_identity": 0,
+            "out_of_stock": 0,
+            "duplicate": 0,
+            "http_network_failure": 0,
+            "other": 5,
+            "valid_candidates": 0,
+            "eligible_offers": 0,
+            "reused_pages": 0,
+            "reason_counts": {
+              "other": 5
+            }
+          },
+          "cumulative_product_attempts": 13,
+          "cumulative_pages_requested": 17,
+          "cumulative_valid_offers": 0
+        },
+        {
+          "round": 7,
+          "kind": "alternative_model",
+          "duration_ms": 6159.533,
+          "new_verified_products": 0,
+          "no_progress_rounds": 0,
+          "new_model_hints": 0,
+          "new_merchant_domains": 1,
+          "new_direct_urls": 5,
+          "new_child_urls": 0,
+          "queries_generated": [
+            "\"Vivo V50 Lite 5G 12GB 256GB\" giá Việt Nam VND"
+          ],
+          "queries_executed": [
+            "\"Vivo V50 Lite 5G 12GB 256GB\" giá Việt Nam VND"
+          ],
+          "raw_search_results_per_query": {
+            "\"Vivo V50 Lite 5G 12GB 256GB\" giá Việt Nam VND": 5
+          },
+          "unique_search_results": 5,
+          "result_domains": [
+            "cellphones.com.vn",
+            "chuyenphanphoi.vn",
+            "shopee.vn",
+            "thegioididong.com",
+            "viettelstore.vn"
+          ],
+          "conversion": {
+            "potential_product_urls": 5,
+            "direct_product_candidates": 0,
+            "evidence_only_results": 5,
+            "rejected_before_fetch": 0,
+            "pages_requested": 5,
+            "pages_fetched": 4,
+            "pages_verified": 0,
+            "verification_failed": 5,
+            "wrong_category": 0,
+            "non_product_page": 0,
+            "missing_price": 1,
+            "missing_identity": 1,
+            "out_of_stock": 0,
+            "duplicate": 0,
+            "http_network_failure": 1,
+            "other": 2,
+            "valid_candidates": 0,
+            "eligible_offers": 0,
+            "reused_pages": 0,
+            "reason_counts": {
+              "other": 2,
+              "http_network_failure": 1,
+              "missing_identity": 1,
+              "missing_price": 1
+            }
+          },
+          "cumulative_product_attempts": 18,
+          "cumulative_pages_requested": 22,
+          "cumulative_valid_offers": 0
+        },
+        {
+          "round": 8,
+          "kind": "alternative_model",
+          "duration_ms": 4697.945,
+          "new_verified_products": 0,
+          "no_progress_rounds": 0,
+          "new_model_hints": 4,
+          "new_merchant_domains": 0,
+          "new_direct_urls": 3,
+          "new_child_urls": 0,
+          "queries_generated": [
+            "\"Samsung Galaxy A56 5G 8GB 128GB\" giá Việt Nam VND"
+          ],
+          "queries_executed": [
+            "\"Samsung Galaxy A56 5G 8GB 128GB\" giá Việt Nam VND"
+          ],
+          "raw_search_results_per_query": {
+            "\"Samsung Galaxy A56 5G 8GB 128GB\" giá Việt Nam VND": 5
+          },
+          "unique_search_results": 5,
+          "result_domains": [
+            "bachlongmobile.com",
+            "cellphones.com.vn",
+            "dienmaycholon.com",
+            "homecredit.vn",
+            "youtube.com"
+          ],
+          "conversion": {
+            "potential_product_urls": 3,
+            "direct_product_candidates": 0,
+            "evidence_only_results": 5,
+            "rejected_before_fetch": 3,
+            "pages_requested": 2,
+            "pages_fetched": 2,
+            "pages_verified": 0,
+            "verification_failed": 2,
+            "wrong_category": 0,
+            "non_product_page": 3,
+            "missing_price": 0,
+            "missing_identity": 0,
+            "out_of_stock": 0,
+            "duplicate": 0,
+            "http_network_failure": 0,
+            "other": 2,
+            "valid_candidates": 0,
+            "eligible_offers": 0,
+            "reused_pages": 0,
+            "reason_counts": {
+              "other": 2,
+              "non_product_page": 3
+            }
+          },
+          "cumulative_product_attempts": 19,
+          "cumulative_pages_requested": 24,
+          "cumulative_valid_offers": 0
+        }
+      ],
+      "cache_hit": false,
+      "rejected_missing_identity": 1,
+      "rejected_http_network_failure": 3,
+      "candidate_cap": 20,
+      "unverified_candidates": 0,
+      "product_attempts": 19,
+      "discovery_attempts": 5,
+      "max_page_requests": 24,
+      "page_timings": [
+        {
+          "url": "https://bachlongmobile.com/products/samsung-galaxy-a56-5g-8gb128gb",
+          "domain": "bachlongmobile.com",
+          "inspection_ms": 658.111
+        },
+        {
+          "url": "https://bantragopdienthoai.com/product/oppo-reno-8z-5g",
+          "domain": "bantragopdienthoai.com",
+          "inspection_ms": 833.057
+        },
+        {
+          "url": "https://cellphones.com.vn/oppo-reno-8t.html",
+          "domain": "cellphones.com.vn",
+          "inspection_ms": 1661.178
+        },
+        {
+          "url": "https://cellphones.com.vn/oppo-reno8-z.html",
+          "domain": "cellphones.com.vn",
+          "inspection_ms": 3458.52
+        },
+        {
+          "url": "https://cellphones.com.vn/vivo-v50-lite-5g-cu-da-kich-hoat.html",
+          "domain": "cellphones.com.vn",
+          "inspection_ms": 1088.69
+        },
+        {
+          "url": "https://chuyenphanphoi.vn/san-pham/dien-thoai-vivo-v50-lite-5g-12gb-256gb-den-9960.html",
+          "domain": "chuyenphanphoi.vn",
+          "inspection_ms": 652.95
+        },
+        {
+          "url": "https://clickbuy.com.vn/dien-thoai-7-8-trieu.html",
+          "domain": "clickbuy.com.vn",
+          "inspection_ms": 316.943
+        },
+        {
+          "url": "https://clickbuy.com.vn/dien-thoai-pin-trau-duoi-10-trieu.html",
+          "domain": "clickbuy.com.vn",
+          "inspection_ms": 361.322
+        },
+        {
+          "url": "https://dienmaycholon.com/dien-thoai-di-dong/samsung-galaxy-a56-8gb128gb",
+          "domain": "dienmaycholon.com",
+          "inspection_ms": 1029.508
+        },
+        {
+          "url": "https://fptshop.com.vn/dien-thoai",
+          "domain": "fptshop.com.vn",
+          "inspection_ms": 333.837
+        },
+        {
+          "url": "https://fptshop.com.vn/dien-thoai/tu-2-4-trieu",
+          "domain": "fptshop.com.vn",
+          "inspection_ms": 1665.86
+        },
+        {
+          "url": "https://shopee.vn/%C4%90i%E1%BB%87n-tho%E1%BA%A1i-Vivo-V50-Lite-5G-12GB-256GB-(V2440)-V%C3%A0ng-i.706762797.40117502174",
+          "domain": "shopee.vn",
+          "inspection_ms": 389.946
+        },
+        {
+          "url": "https://viettelstore.vn/dien-thoai/vivo-v50-lite-5g-12gb-256gb-pid349200.html",
+          "domain": "viettelstore.vn",
+          "inspection_ms": 921.345
+        },
+        {
+          "url": "https://www.duchuymobile.com/oppo-reno8-z-5g",
+          "domain": "www.duchuymobile.com",
+          "inspection_ms": 939.788
+        },
+        {
+          "url": "https://www.oppo.com/vn/events",
+          "domain": "www.oppo.com",
+          "inspection_ms": 416.408
+        },
+        {
+          "url": "https://www.oppo.com/vn/newsroom/press/oppo-a91-chinh-thuc-len-ke-tai-viet-nam",
+          "domain": "www.oppo.com",
+          "inspection_ms": 1061.251
+        },
+        {
+          "url": "https://www.oppo.com/vn/newsroom/press/oppo-ra-mat-chuyen-gia-chan-dung-reno8-pro-5g",
+          "domain": "www.oppo.com",
+          "inspection_ms": 989.187
+        },
+        {
+          "url": "https://www.oppo.com/vn/newsroom/press/oppo-ra-mat-chuyen-gia-chan-dung-reno8-series",
+          "domain": "www.oppo.com",
+          "inspection_ms": 734.633
+        },
+        {
+          "url": "https://www.oppo.com/vn/newsroom/press/oppo-ra-mat-dien-thoai-tam-trung-moi-nhat-reno8t",
+          "domain": "www.oppo.com",
+          "inspection_ms": 574.677
+        },
+        {
+          "url": "https://www.oppo.com/vn/smartphones/series-reno/reno8-t-5g/specs",
+          "domain": "www.oppo.com",
+          "inspection_ms": 566.766
+        },
+        {
+          "url": "https://www.oppo.com/vn/store",
+          "domain": "www.oppo.com",
+          "inspection_ms": 153.0
+        },
+        {
+          "url": "https://www.thegioididong.com/dtdd/oppo-reno8-t-5g-256gb",
+          "domain": "www.thegioididong.com",
+          "inspection_ms": 875.383
+        },
+        {
+          "url": "https://www.thegioididong.com/dtdd/oppo-reno8-z-5g",
+          "domain": "www.thegioididong.com",
+          "inspection_ms": 1999.91
+        },
+        {
+          "url": "https://www.thegioididong.com/dtdd/vivo-v50-lite-5g",
+          "domain": "www.thegioididong.com",
+          "inspection_ms": 1086.98
+        }
+      ],
+      "provider_calls": 10,
+      "page_attempts": 24,
+      "round_count": 8,
+      "domain_budgets": {
+        "bachlongmobile.com": {
+          "attempts": 1,
+          "failures": 0,
+          "skipped": 0,
+          "active_ms": 658.334,
+          "budget_ms": 6000.0
+        },
+        "bantragopdienthoai.com": {
+          "attempts": 1,
+          "failures": 0,
+          "skipped": 0,
+          "active_ms": 833.232,
+          "budget_ms": 6000.0
+        },
+        "cellphones.com.vn": {
+          "attempts": 3,
+          "failures": 1,
+          "skipped": 1,
+          "active_ms": 6208.989,
+          "budget_ms": 6000.0
+        },
+        "chuyenphanphoi.vn": {
+          "attempts": 1,
+          "failures": 0,
+          "skipped": 0,
+          "active_ms": 653.134,
+          "budget_ms": 6000.0
+        },
+        "clickbuy.com.vn": {
+          "attempts": 2,
+          "failures": 0,
+          "skipped": 0,
+          "active_ms": 362.795,
+          "budget_ms": 6000.0
+        },
+        "dienmaycholon.com": {
+          "attempts": 1,
+          "failures": 0,
+          "skipped": 0,
+          "active_ms": 1030.555,
+          "budget_ms": 6000.0
+        },
+        "duchuymobile.com": {
+          "attempts": 1,
+          "failures": 0,
+          "skipped": 0,
+          "active_ms": 940.051,
+          "budget_ms": 6000.0
+        },
+        "fptshop.com.vn": {
+          "attempts": 2,
+          "failures": 2,
+          "skipped": 0,
+          "active_ms": 2000.109,
+          "budget_ms": 6000.0
+        },
+        "oppo.com": {
+          "attempts": 7,
+          "failures": 0,
+          "skipped": 0,
+          "active_ms": 3093.539,
+          "budget_ms": 6000.0
+        },
+        "shopee.vn": {
+          "attempts": 1,
+          "failures": 0,
+          "skipped": 0,
+          "active_ms": 390.141,
+          "budget_ms": 6000.0
+        },
+        "thegioididong.com": {
+          "attempts": 3,
+          "failures": 0,
+          "skipped": 0,
+          "active_ms": 3962.729,
+          "budget_ms": 6000.0
+        },
+        "viettelstore.vn": {
+          "attempts": 1,
+          "failures": 0,
+          "skipped": 0,
+          "active_ms": 921.516,
+          "budget_ms": 6000.0
+        }
+      },
+      "child_product_urls": [],
+      "search_satisfaction": {
+        "eligible_offers": 0,
+        "strong_models": 0,
+        "target_reached": false
+      },
+      "conversion": {
+        "potential_product_urls": 24,
+        "direct_product_candidates": 2,
+        "evidence_only_results": 47,
+        "rejected_before_fetch": 25,
+        "pages_requested": 24,
+        "pages_fetched": 21,
+        "pages_verified": 2,
+        "verification_failed": 22,
+        "wrong_category": 0,
+        "non_product_page": 28,
+        "missing_price": 2,
+        "missing_identity": 1,
+        "out_of_stock": 2,
+        "duplicate": 0,
+        "http_network_failure": 3,
+        "other": 13,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 0,
+        "reason_counts": {
+          "non_product_page": 28,
+          "other": 13,
+          "out_of_stock": 2,
+          "http_network_failure": 3,
+          "missing_price": 2,
+          "missing_identity": 1
+        }
+      },
+      "stop_reason": "page_budget",
+      "explanations": {
+        "concurrency_limit": 3,
+        "peak_active": 0,
+        "item_timeout_seconds": 8.0,
+        "items": [],
+        "wall_ms": 0.023
+      },
+      "scoring_candidates": 2,
+      "hard_filtered": 2,
+      "filter_reason_counts": {
+        "availability": 2
+      },
+      "filter_rejections": [
+        {
+          "product_id": 476,
+          "accepted": false,
+          "rejection_stage": "availability",
+          "reasons": [
+            "Sản phẩm hiện không còn hàng."
+          ],
+          "name": "OPPO Reno8 T 5G (8GB - 128GB)",
+          "price": 7890000,
+          "category": "điện thoại",
+          "availability": "out_of_stock"
+        },
+        {
+          "product_id": 477,
+          "accepted": false,
+          "rejection_stage": "availability",
+          "reasons": [
+            "Sản phẩm hiện không còn hàng."
+          ],
+          "name": "OPPO Reno8 Z",
+          "price": 10490000,
+          "category": "điện thoại",
+          "availability": "out_of_stock"
+        }
+      ],
+      "session_id": "05479307-6d2d-4c17-b445-8719d935aa3c"
+    }
+  },
+  "queries": [
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "kind": "requirement",
+      "result_count": 5,
+      "urls": [
+        "https://vietnamnet.vn/top-dien-thoai-duoi-10-trieu-dang-mua-thang-7-man-hinh-camera-dep-pin-khoe-2534592.html",
+        "https://clickbuy.com.vn/dien-thoai-7-8-trieu.html",
+        "https://cellphones.com.vn/sforum/dien-thoai-tam-trung-dang-mua-nhat",
+        "https://hungmobile.vn/tin-tuc/top-dien-thoai-2-trieu-tot-nhat.html",
+        "https://mobappy.co.jp/top-dien-thoai-android-gia-re-dang-mua-nhat-2026-goi-y-dang-tien-cho-moi-nhu-cau"
+      ]
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "kind": "requirement",
+      "result_count": 5,
+      "urls": [
+        "https://clickbuy.com.vn/dien-thoai-pin-trau-duoi-10-trieu.html",
+        "https://24hstore.vn/review-san-pham/dien-thoai-duoi-10-trieu-n8676",
+        "https://viettelstore.vn/tin-tuc/dien-thoai-chup-anh-dep-duoi-10-trieu",
+        "https://hungmobile.vn/tin-tuc/top-dien-thoai-duoi-10-trieu-dang-mua-nhat.html",
+        "https://vietnamnet.vn/top-dien-thoai-duoi-10-trieu-dang-mua-thang-7-man-hinh-camera-dep-pin-khoe-2534592.html"
+      ]
+    },
+    {
+      "query": "\"Apple A13 Bionic\" mua Việt Nam VND",
+      "kind": "model_discovery",
+      "result_count": 5,
+      "urls": [
+        "https://en.wikipedia.org/wiki/Apple_A13",
+        "https://www.youtube.com/watch?v=Bu68LGPGxtA",
+        "https://www.dienmayxanh.com/kinh-nghiem-hay/chi-tiet-ve-vi-xu-ly-apple-a13-bionic-moi-nhat-duo-1197314",
+        "https://cellphones.com.vn/sforum/chip-a13-bionic",
+        "https://www.thegioididong.com/hoi-dap/tim-hieu-ve-chip-apple-a13-bionic-tren-iphone-11-n-1197492"
+      ]
+    },
+    {
+      "query": "\"OPPO Reno8 T 5G\" mua Việt Nam VND",
+      "kind": "model_discovery",
+      "result_count": 5,
+      "urls": [
+        "https://dienmaycholon.com/kinh-nghiem-mua-sam/oppo-reno8-t-5g-giam-soc-cuoi-nam-tai-sieu-thi-dien-may-noi-that-cho-lon",
+        "https://www.youtube.com/watch?v=ZqdKlgp6NtI",
+        "https://www.thegioididong.com/dtdd/oppo-reno8-t-5g-256gb",
+        "https://cellphones.com.vn/oppo-reno-8t.html",
+        "https://www.oppo.com/vn/smartphones/series-reno/reno8-t-5g/specs"
+      ]
+    },
+    {
+      "query": "site:thegioididong.com \"OPPO Reno8 T 5G\" giá bán Việt Nam VND",
+      "kind": "merchant_products",
+      "result_count": 5,
+      "urls": [
+        "https://www.thegioididong.com/hoi-dap/danh-gia-cau-hinh-hieu-nang-dien-thoai-oppo-reno-1510720",
+        "https://www.thegioididong.com/hoi-dap/co-gi-dang-mong-cho-ve-hieu-nang-cau-hinh-oppo-1509531",
+        "https://www.thegioididong.com/tin-tuc/oppo-reno8-t-5g-gia-bao-nhieu-1502536",
+        "https://www.thegioididong.com/hoi-dap/tong-hop-bang-gia-dien-thoai-oppo-2022-moi-nhat-1503184",
+        "https://www.thegioididong.com/hoi-dap/so-sanh-oppo-reno8-5g-va-reno-8-z-5g-hai-sieu-1480144"
+      ]
+    },
+    {
+      "query": "site:fptshop.com.vn điện thoại giá khoảng 10000000 VND giá bán",
+      "kind": "merchant_products",
+      "result_count": 5,
+      "urls": [
+        "https://fptshop.com.vn/tin-tuc/danh-gia/tam-10-trieu-nen-mua-dien-thoai-nao-2026-198636",
+        "https://fptshop.com.vn/dien-thoai/tu-2-4-trieu",
+        "https://fptshop.com.vn/dien-thoai",
+        "https://fptshop.com.vn/tin-tuc/danh-gia/dien-thoai-tam-gia-4-trieu-180386",
+        "https://fptshop.com.vn/tin-tuc/danh-gia/dien-thoai-trung-quoc-177429"
+      ]
+    },
+    {
+      "query": "\"OPPO Reno8 Z 5G\" giá Việt Nam VND",
+      "kind": "alternative_model",
+      "result_count": 5,
+      "urls": [
+        "https://www.oppo.com/vn/newsroom/press/oppo-ra-mat-chuyen-gia-chan-dung-reno8-series",
+        "https://www.duchuymobile.com/oppo-reno8-z-5g",
+        "https://bantragopdienthoai.com/product/oppo-reno-8z-5g",
+        "https://cellphones.com.vn/oppo-reno8-z.html",
+        "https://www.thegioididong.com/dtdd/oppo-reno8-z-5g"
+      ]
+    },
+    {
+      "query": "site:oppo.com \"OPPO Reno8 Z\" giá bán Việt Nam VND",
+      "kind": "merchant_products",
+      "result_count": 5,
+      "urls": [
+        "https://www.oppo.com/vn/newsroom/press/oppo-ra-mat-chuyen-gia-chan-dung-reno8-pro-5g",
+        "https://www.oppo.com/vn/store",
+        "https://www.oppo.com/vn/newsroom/press/oppo-a91-chinh-thuc-len-ke-tai-viet-nam",
+        "https://www.oppo.com/vn/newsroom/press/oppo-ra-mat-dien-thoai-tam-trung-moi-nhat-reno8t",
+        "https://www.oppo.com/vn/events"
+      ]
+    },
+    {
+      "query": "\"Vivo V50 Lite 5G 12GB 256GB\" giá Việt Nam VND",
+      "kind": "alternative_model",
+      "result_count": 5,
+      "urls": [
+        "https://chuyenphanphoi.vn/san-pham/dien-thoai-vivo-v50-lite-5g-12gb-256gb-den-9960.html",
+        "https://viettelstore.vn/dien-thoai/vivo-v50-lite-5g-12gb-256gb-pid349200.html",
+        "https://cellphones.com.vn/vivo-v50-lite-5g-cu-da-kich-hoat.html",
+        "https://shopee.vn/%C4%90i%E1%BB%87n-tho%E1%BA%A1i-Vivo-V50-Lite-5G-12GB-256GB-(V2440)-V%C3%A0ng-i.706762797.40117502174",
+        "https://www.thegioididong.com/dtdd/vivo-v50-lite-5g"
+      ]
+    },
+    {
+      "query": "\"Samsung Galaxy A56 5G 8GB 128GB\" giá Việt Nam VND",
+      "kind": "alternative_model",
+      "result_count": 5,
+      "urls": [
+        "https://cellphones.com.vn/dien-thoai-samsung-galaxy-a56.html",
+        "https://bachlongmobile.com/products/samsung-galaxy-a56-5g-8gb128gb",
+        "https://www.homecredit.vn/blog/review-samsung-a56-5g-gia-tinh-nang-noi-bat-cd",
+        "https://dienmaycholon.com/dien-thoai-di-dong/samsung-galaxy-a56-8gb128gb",
+        "https://www.youtube.com/watch?v=P22mdEkXmzc"
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "url": "https://cellphones.com.vn/oppo-reno-8t.html",
+      "title": "OPPO Reno8 T 5G | Giá rẻ, tặng bảo hành VIP 12 tháng",
+      "content": "Mua OPPO Reno8 T 5G chính hãng, thiết kế thời thượng, màn hình 1 tỉ màu ấn tượng - Giá rẻ, giao hàng tận nơi toàn quốc, tặng dịch vụ bảo hành VIp 12 tháng.",
+      "query": "\"OPPO Reno8 T 5G\" mua Việt Nam VND",
+      "proof": {
+        "product_page_valid": true,
+        "evidence_url": "https://cellphones.com.vn/oppo-reno-8t.html",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "VERIFIED_CONTENT",
+        "product_page_confidence": 95,
+        "fetch_blocked": false,
+        "reason": "Trang chi tiết có identity và giá bán cụ thể cùng nguồn.",
+        "result_type": "DIRECT_PRODUCT",
+        "page_heading": "OPPO Reno8 T 5G (8GB - 128GB)",
+        "discovery": [
+          {
+            "name": "OPPO Reno8 T 5G (8GB - 128GB)",
+            "brand": "OPPO",
+            "model": "Reno8 T 5G (8GB - 128GB)",
+            "variant": {
+              "sku": "oppo-reno-8t"
+            },
+            "price_type": "DISCOVERY_ONLY"
+          }
+        ],
+        "product_url": "https://cellphones.com.vn/oppo-reno-8t.html",
+        "name": "OPPO Reno8 T 5G (8GB - 128GB)",
+        "brand": "OPPO",
+        "price_type": "CONCRETE",
+        "variant": {
+          "sku": "oppo-reno-8t"
+        },
+        "category": "điện thoại",
+        "category_evidence": {
+          "category": "điện thoại",
+          "source": "breadcrumb",
+          "confidence": 90,
+          "conflict": false,
+          "reason": "Category observed on the verified main product page.",
+          "observations": {
+            "json_ld_category": null,
+            "json_ld_type": "Product",
+            "breadcrumbs": [
+              [
+                "CELLPHONES",
+                "Điện thoại",
+                "Tin đồn - Mới ra",
+                "OPPO",
+                "OPPO Reno8 T 5G (8GB - 128GB)"
+              ],
+              [
+                "Trang chủ ",
+                " / ",
+                " OPPO Reno8 T 5G (8GB - 128GB)"
+              ]
+            ],
+            "h1": "OPPO Reno8 T 5G (8GB - 128GB)",
+            "title": "OPPO Reno8 T 5G | Giá rẻ, tặng bảo hành VIP 12 tháng",
+            "url_path": "/oppo-reno-8t.html"
+          }
+        },
+        "confidence_signals": {
+          "page_identity": 30,
+          "same_page_price": 25,
+          "product_metadata_or_buy_action": 30,
+          "direct_path": 10
+        },
+        "model": null,
+        "price": 7890000,
+        "merchant": "CELLPHONES",
+        "specifications": {
+          "kích thước màn hình": "6.7 inches",
+          "công nghệ màn hình": "AMOLED",
+          "camera sau": "Chính 108 MP &amp; Phụ 2 MP, 2 MP",
+          "camera trước": "32 MP",
+          "chipset": "Snapdragon 695 5G 8 nhân",
+          "dung lượng ram": "8GB + Mở rộng 8GB",
+          "bộ nhớ trong": "128 GB",
+          "pin": "4800 mAh",
+          "thẻ sim": "2 SIM (Nano-SIM)",
+          "hệ điều hành": "Coloros 13",
+          "độ phân giải màn hình": "1080 x 2412 pixels",
+          "tính năng màn hình": "Tần số quét 120Hz, 10.7 tỷ màu, Độ sáng tối đa: 800 nits, Kính cường lực AGC DT-Star2",
+          "loại cpu": "Tốc độ CPU: 2.2 GHz"
+        },
+        "rating": "5",
+        "review_count": "5",
+        "availability": "https://schema.org/OutOfStock",
+        "image_diagnostics": {
+          "accepted_count": 0,
+          "rejections": [
+            {
+              "source": "html_product_image",
+              "reason": "unrelated_gallery"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "unrelated_gallery"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "unrelated_gallery"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "unbound_gallery"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            }
+          ],
+          "candidate_count": 5,
+          "has_product_image": true,
+          "has_social_image": true,
+          "html_image_count": 107
+        },
+        "image_candidates": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://cellphones.com.vn/oppo-reno8-z.html",
+      "title": "Điện thoại OPPO Reno8 Z giá tốt, ưu đãi khủng, trả góp 0%",
+      "content": "... Giá bán tham khảo. OPPO Reno8 Z 5G mở bán. 10.490.000đ. OPPO Reno8 Z 5G hiện tại. Chỉ từ 7.890.000đ. Điện thoại OPPO Reno 8z giá bao nhiêu tiền, khi nào ra mắt?",
+      "query": "\"OPPO Reno8 Z 5G\" giá Việt Nam VND",
+      "proof": {
+        "product_page_valid": true,
+        "evidence_url": "https://cellphones.com.vn/oppo-reno8-z.html",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "VERIFIED_CONTENT",
+        "product_page_confidence": 95,
+        "fetch_blocked": false,
+        "reason": "Trang chi tiết có identity và giá bán cụ thể cùng nguồn.",
+        "result_type": "DIRECT_PRODUCT",
+        "page_heading": "OPPO Reno8 Z",
+        "discovery": [
+          {
+            "name": "OPPO Reno8 Z",
+            "brand": "OPPO",
+            "model": "Reno8 Z",
+            "variant": {
+              "sku": "oppo-reno8-z"
+            },
+            "price_type": "DISCOVERY_ONLY"
+          }
+        ],
+        "product_url": "https://cellphones.com.vn/oppo-reno8-z.html",
+        "name": "OPPO Reno8 Z",
+        "brand": "OPPO",
+        "price_type": "CONCRETE",
+        "variant": {
+          "sku": "oppo-reno8-z"
+        },
+        "category": "điện thoại",
+        "category_evidence": {
+          "category": "điện thoại",
+          "source": "breadcrumb",
+          "confidence": 90,
+          "conflict": false,
+          "reason": "Category observed on the verified main product page.",
+          "observations": {
+            "json_ld_category": null,
+            "json_ld_type": "Product",
+            "breadcrumbs": [
+              [
+                "CELLPHONES",
+                "Điện thoại",
+                "Tin đồn - Mới ra",
+                "OPPO",
+                "OPPO Reno8 Z"
+              ],
+              [
+                "Trang chủ ",
+                " / ",
+                " OPPO Reno8 Z"
+              ]
+            ],
+            "h1": "OPPO Reno8 Z",
+            "title": "Điện thoại OPPO Reno8 Z giá tốt, ưu đãi khủng, trả góp 0%",
+            "url_path": "/oppo-reno8-z.html"
+          }
+        },
+        "confidence_signals": {
+          "page_identity": 30,
+          "same_page_price": 25,
+          "product_metadata_or_buy_action": 30,
+          "direct_path": 10
+        },
+        "model": null,
+        "price": 10490000,
+        "merchant": "CELLPHONES",
+        "specifications": {
+          "kích thước màn hình": "6.43 inches",
+          "công nghệ màn hình": "AMOLED",
+          "camera sau": "Camera chính: 64MP, f/1.7  Camera Mono+Depth: 2MP , f/2.4  Camera Marco: 2MP , f/2.4",
+          "camera trước": "16MP; f/2.4; FOV 79°;ống kính: 5P",
+          "chipset": "Qualcomm Snapdragon 695 5G",
+          "công nghệ nfc": "Có",
+          "dung lượng ram": "8 GB",
+          "bộ nhớ trong": "256 GB",
+          "pin": "LiPo 4500 mAh",
+          "thẻ sim": "2 SIM (Nano-SIM)",
+          "hệ điều hành": "Android 12",
+          "độ phân giải màn hình": "1080 x 2400 pixels (FullHD+)",
+          "tính năng màn hình": " Kính cường lực Schott Xensation UP, Tần số quét 60 Hz, Độ sáng tối đa: 600 nits,  16.7 triệu màu",
+          "loại cpu": "8 nhân, lên đến 2.2GHz"
+        },
+        "rating": null,
+        "review_count": null,
+        "availability": "https://schema.org/OutOfStock",
+        "image_diagnostics": {
+          "accepted_count": 4,
+          "rejections": [
+            {
+              "source": "html_product_image",
+              "reason": "unrelated_gallery"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "unrelated_gallery"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "unrelated_gallery"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "unbound_gallery"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            }
+          ],
+          "candidate_count": 8,
+          "has_product_image": true,
+          "has_social_image": true,
+          "html_image_count": 96
+        },
+        "image_candidates": [
+          [
+            "https://cdn2.cellphones.com.vn/200x/media/catalog/product/p/h/photo_2022-08-05_09-40-15.jpg",
+            "json_ld_product"
+          ],
+          [
+            "https://cdn2.cellphones.com.vn/insecure/rs:fill:50:50/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/d/vdfv.png",
+            "html_product_image"
+          ],
+          [
+            "https://cdn2.cellphones.com.vn/insecure/rs:fill:50:50/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/d/adsx_en_2.png",
+            "html_product_image"
+          ],
+          [
+            "https://cdn2.cellphones.com.vn/insecure/rs:fill:56:56/q:90/plain/https://cellphones.com.vn/media/catalog/product/p/h/photo_2022-08-05_09-40-15.jpg",
+            "html_product_image"
+          ]
+        ],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://vietnamnet.vn/top-dien-thoai-duoi-10-trieu-dang-mua-thang-7-man-hinh-camera-dep-pin-khoe-2534592.html",
+      "title": "Top điện thoại dưới 10 triệu đáng mua tháng 7: Màn hình, camera đẹp, pin khoẻ",
+      "content": "icon\n\n## Điện thoại dưới 10 triệu đồng tháng 7/2026 được coi là phn khúc hấp dẫn nhất dành cho người dùng phổ thông với màn hình chất lượng cao và thời lượng pin ấn tượng.\n\nThị trường điện thoại tầm trung trong năm 2026 đang chứng kiến sự cạnh tranh rất quyết liệt khi hàng loạt hãng lớn như Xiaomi, Samsung, OPPO, HONOR, Nothing hay Nubia liên tục tung ra những sản phẩm có cấu hình mạnh, màn hình chất lượng cao và thời lượng pin ấn tượng nhưng vẫn giữ mức giá dưới 10 triệu đồng. [...] Top điện thoại giá 2-3 triệu đáng mua nhất tháng 7: Pin khỏe, dùng bềnPhn khúc điện thoại giá 2-3 triệu đồng vẫn giữ sức hút lớn đối với học sinh, sinh viên, người lao động và những ai cần một chiếc smartphone phục vụ các nhu cầu cơ bản.\n\n ### Top điện thoại 128GB giá rẻ dưới 3 triệu đáng mua nhất tháng 7/2026\n ### Điện thoại dòng ‘Pro’ phn khúc giá 25 triệu đồng, pin 7.000 mAh tại Việt Nam\n ### Apple đồng loạt tăng giá Mac, iPad và nhiều thiết bị khác, giá iPhone ra sao?\n\n.svg) [...] icon\n Công nghệ \n\n  + Chính trị\n  + Thời sự\n  + Kinh doanh\n  + Dn tộc và Tôn giáo\n  + Giáo dục\n  + Thế giới\n  + Thể thao\n  + Văn hóa - Giải trí\n  + Đời sống\n  + Sức khỏe\n  + Công nghệ\n  + Xe\n  + Bất động sản\n  + Du lịch\n  + Bạn đọc\n\nThứ Bảy, 11/07/2026 - 08:00\n\n# Top điện thoại dưới 10 triệu đáng mua tháng 7: Màn hình, camera đẹp, pin khoẻ\n\nHải Phong\n\n Xem các bài viết của tác giả\n\nSao chép liên kết; \"Sao chép liên kết\")   \n\n11/07/2026   08:00 (GMT+07:00)\n\n icon",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://vietnamnet.vn/top-dien-thoai-duoi-10-trieu-dang-mua-thang-7-man-hinh-camera-dep-pin-khoe-2534592.html",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://clickbuy.com.vn/dien-thoai-7-8-trieu.html",
+      "title": "Top 5 điện thoại 7-8 triệu đáng tiền nhất 2026",
+      "content": "Chuyên gia công nghệ với 12+ năm kinh nghiệm trong ngành bán lẻ điện thoại di động. Đánh giá khách quan dựa trên trải nghiệm thực tế và phn tích chuyên su về thị trường smartphone Việt Nam.\n\n📅 19/01/2026 🔄 Cập nhật liên tục\n\n### Có thể bạn sẽ thích\n\nXiaomi Redmi Note 14 Pro (5G) 8GB 256GB - 1 Đổi 1 12 Tháng\n\n1 đổi 1 12 Tháng\n\nXiaomi Redmi Note 14 Pro (5G) 8GB 256GB - 1 Đổi 1 12 Tháng\n\n7,390,000 ₫ ~~9,490,000 ₫~~\n\n(13 đánh giá)\n\nƯu đãi Edu  7,190,000 ₫\n\nKhách hàng thn thiết  7,331,000 ₫ [...] Điện thoại 7-8 triệu chụp ảnh đẹp: Nếu ưu tiên camera, OPPO Reno13 F 5G và Redmi Note 14 Pro 5G là hai lựa chọn nổi bật. Cả hai đều có thuật toán xử lý ảnh tốt, phù hợp chụp chn dung, du lịch và mạng xã hội.\n Điện thoại 7 8 triệu chơi game tốt: Xiaomi Redmi Note 15 5G là lựa chọn tối ưu cho game thủ. Chip mạnh, màn hình mượt và pin lớn giúp chơi game ổn định trong thời gian dài. [...] Camera và pin: Nếu bạn quan tm đến điện thoại 7 8 triệu chụp ảnh đẹp, hãy ưu tiên máy có camera chính độ phn giải cao, hỗ trợ AI. Bên cạnh đó, pin từ 5.000 mAh trở lên sẽ giúp bạn yên tm sử dụng cả ngày dài",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://clickbuy.com.vn/dien-thoai-7-8-trieu.html",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Trang không phải trang bán sản phẩm: ARTICLE",
+        "result_type": "ARTICLE",
+        "page_heading": "Top 5 điện thoại 7-8 triệu đáng mua nhất 2026",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://cellphones.com.vn/sforum/dien-thoai-tam-trung-dang-mua-nhat",
+      "title": "Top 9 mẫu điện thoại tầm trung đáng mua nhất năm 2026",
+      "content": "### Vivo V30E 12GB 256GB\n\nVivo V30E là lựa chọn hợp lý cho người dùng đang tìm điện thoại ổn định, chụp ảnh tốt và pin lu. Máy sử dụng chip Snapdragon 6 Gen 1, RAM 12GB và bộ nhớ trong 256GB, đủ sức xử lý mượt mà các tác vụ đa nhiệm.\n\nVivo V30E 12GB 256GB \n\nVivo V30E 12GB 256GB\n\nCamera sau 50MP kết hợp ống kính góc siêu rộng 8MP, cho khả năng chụp linh hoạt. Camera trước 32MP cùng nhiều tính năng AI hỗ trợ selfie đẹp mắt, phù hợp với nhu cầu quay vlog, chụp ảnh đăng mạng xã hội. [...] Camera: Với nhu cầu chụp ảnh ngày càng phổ biến, các mẫu tầm trung giờ đy đã được trang bị cảm biến từ 50MP trở lên, đi kèm công nghệ AI, chống rung OIS cho hình ảnh sắc nét hơn.\n Pin và sạc: Pin từ 5000mAh đang là tiêu chuẩn mới. Sạc nhanh từ 25W trở lên sẽ giúp tiết kiệm thời gian đáng kể.\n Tính năng mở rộng: Một số tính năng như cảm biến vn tay dưới màn hình, kháng nước, hỗ trợ 5G,... đang dần phổ biến ở dòng tầm trung, tạo thêm giá trị cho người dùng. [...] ### Realme 13 Plus 5G 8GB 256GB\n\nRealme 13 Plus 5G gy ấn tượng với chip Dimensity 7300 Energy, RAM 8GB và màn hình OLED 6.67 inch hỗ trợ tần số quét 120Hz. Đy là mẫu điện thoại sinh ra để chơi game, đa nhiệm và giải trí.\n\nCamera chính 50MP sử dụng cảm biến Sony LYT-600, kết hợp camera góc rộng 8MP giúp tạo ra những bức ảnh sắc nét. Hệ thống làm mát bằng buồng hơi giúp máy hoạt động ổn định trong thời gian dài.\n\nRealme 13 Plus 5G 8GB 256GB \n\nRealme 13 Plus 5G 8GB 256GB",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://cellphones.com.vn/sforum/dien-thoai-tam-trung-dang-mua-nhat",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://hungmobile.vn/tin-tuc/top-dien-thoai-2-trieu-tot-nhat.html",
+      "title": "Top 12 điện thoại 2 triệu tốt nhất 2026: game khoẻ, pin trâu ngon nhất",
+      "content": "Redmi 13R 5G là lựa chọn tuyệt vời cho ai muốn trải nghiệm 5G với mức giá cực rẻ. Máy sở hữu màn hình 6.74 inch 90Hz, camera 50MP và pin 5000mAh cho thời gian sử dụng dài.  \n Điểm mạnh là con chip Dimensity 6100+ tiết kiệm pin nhưng vẫn đủ sức đáp ứng mọi tác vụ hằng ngày.\n\n Màn hình: 6.74 inch, IPS LCD, 90Hz, 600 nits\n Cấu hình: MediaTek Dimensity 6100+ (6nm), RAM 4GB, ROM 128GB\n Camera: Sau 50MP + 0.08MP | Trước 5MP\n Pin + sạc: 5000mAh, 18W (tặng kèm sạc 10W)\n Khác: Vn tay cạnh bên [...] Redmi 14C 4G\n\n### 4. Redmi Note 13 5G: Camera 100MP, màn AMOLED đẹp\n\nNếu bạn thích chụp ảnh, Redmi Note 13 5G sẽ khiến bạn hài lòng với camera chính 100MP và màn AMOLED 120Hz siêu sắc nét. Chip Dimensity 6080 đáp ứng tốt các tác vụ và chơi game nhẹ.\n\n Màn hình: 6.67 inch, AMOLED, 120Hz, 1000 nits\n Cấu hình: MediaTek Dimensity 6080, RAM 6GB, ROM 128GB\n Camera: Sau 100MP + 2MP | Trước 16MP\n Pin + sạc: 5000mAh, 33W\n Khác: Vn tay cạnh bên\n\nRedmi Note 13 5G \n\nRedmi Note 13 5G [...] Redmi 14C 4G là mẫu điện thoại mới với camera 50MP, pin 5160mAh và màn hình 6.88 inch 120Hz. Máy phù hợp cho người dùng cần điện thoại cơ bản, bền bỉ và pin lu.\n\n Màn hình: 6.88 inch, IPS LCD, 120Hz, 600 nits\n Cấu hình: MediaTek Helio G81 Ultra, RAM 4GB, ROM 128GB\n Camera: Sau 50MP + 2MP + 0.08MP | Trước 13MP\n Pin + sạc: 5160mAh, 18W\n Khác: Vn tay cạnh bên\n\nXiaomi Redmi 14C \n\nXiaomi Redmi 14C\n\n \n\nBạn có thể tham khảo điện thoại dưới đy:\n\n Redmi 14C 4G",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "NEWS",
+        "evidence_url": "https://hungmobile.vn/tin-tuc/top-dien-thoai-2-trieu-tot-nhat.html",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://mobappy.co.jp/top-dien-thoai-android-gia-re-dang-mua-nhat-2026-goi-y-dang-tien-cho-moi-nhu-cau",
+      "title": "Top điện thoại Android giá rẻ, đáng mua nhất 2026 – Gợi ý đáng tiền cho mọi nhu cầu",
+      "content": "Nếu ưu tiên thời lượng pin và hiệu năng tốt, Redmi 15 là một trong những lựa chọn sáng giá nhất.\n\n### Thông số nổi bật\n\n Màn hình IPS LCD 6.9 inch\n Độ phn giải FHD+\n Tần số quét 144Hz\n Snapdragon 685\n RAM 6GB/8GB\n Bộ nhớ 128GB/256GB\n Camera chính 50MP AI\n Pin 7.000mAh\n Sạc nhanh 33W\n\n### Ưu điểm\n\n✔ Pin cực lớn sử dụng đến 2 ngày.\n\n✔ Màn hình 144Hz mượt hiếm có trong tầm giá. [...] ✔ Snapdragon 685 đủ mạnh cho Facebook, TikTok, YouTube và các game phổ biến như Liên Qun Mobile, PUBG Mobile mức đồ họa trung bình.\n\n✔ Camera 50MP cho chất lượng ảnh khá tốt khi đủ sáng.\n\n## 2. OPPO A5 – Thiết kế đẹp, pin khỏe\n\n### Cấu hình\n\n Màn hình LCD 6.67 inch\n Tần số quét 90Hz\n Snapdragon 6s Gen 1 (tùy thị trường)\n RAM 6GB\n ROM 128GB\n Camera AI\n Pin 6.500mAh\n Sạc nhanh SuperVOOC\n\n### Điểm mạnh [...] ### Ưu điểm\n\n Máy bền.\n Dễ sửa chữa.\n Linh kiện phổ biến.\n Hệ điều hành One UI dễ dùng.\n Giá cực kỳ rẻ trên thị trường máy cũ\n\n## 4. Samsung Galaxy A52 – Vẫn rất đáng mua\n\n### Thông số nổi bật\n\n Super AMOLED 6.5 inch\n 90Hz\n Snapdragon 720G\n Camera chính 64MP OIS\n Camera góc rộng\n Camera macro\n Camera đo chiều su\n Pin 4.500mAh\n Sạc nhanh 25W\n Chuẩn kháng nước IP67\n\n### Điểm nổi bật\n\n Màn hình AMOLED hiển thị đẹp.\n Camera chống rung OIS.\n Chụp đêm tốt.\n Loa stereo.\n Chống nước IP67.",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://mobappy.co.jp/top-dien-thoai-android-gia-re-dang-mua-nhat-2026-goi-y-dang-tien-cho-moi-nhu-cau",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://clickbuy.com.vn/dien-thoai-pin-trau-duoi-10-trieu.html",
+      "title": "Top 3 điện thoại pin trâu dưới 10 triệu đáng mua nhất 2025",
+      "content": "Màn hình AMOLED 1.5K, 120Hz, độ sáng tối đa 3000 nits\n Bộ ba camera sau: 200MP chính, 8MP góc rộng, 2MP macro\n Camera selfie 20MP\n Chip Snapdragon 7s Gen 3, RAM 8GB, ROM 256GB\n Chuẩn kháng nước IP68\n\nKhông chỉ pin tốt, đy còn là chiếc máy hoàn hảo cho ai yêu thích chụp ảnh, giải trí, game đồ họa và cần sạc nhanh siêu tốc.\n\nGiá tham khảo tại Clickbuy: 8.990.000đ\n\n## Vivo V30E – Viên pin 5500mAh, dùng suốt ngày dài không lo gián đoạn [...] (62 đánh giá)\n\nƯu đãi Edu  8,290,000 ₫\n\nKhách hàng thn thiết  8,422,000 ₫\n\nTặng gói bảo hành 1 đổi 1 365 ngày trị giá 2.000.000đ ( máy lỗi đổi sang máy mới nguyên hộp trong 12 tháng)\n\n+ 2 Khuyến mãi khác 8GB 256GB- 1 Đổi 1 12 Tháng\")\n\nOppo Reno14 F (5G) 8GB 256GB - 1 Đổi 1 12 Tháng\n\n1 đổi 1 12 Tháng\n\nOppo Reno14 F (5G) 8GB 256GB - 1 Đổi 1 12 Tháng\n\n9,190,000 ₫ ~~10,300,000 ₫~~\n\n(5 đánh giá)\n\nƯu đãi Edu  8,990,000 ₫\n\nKhách hàng thn thiết  9,116,000 ₫ [...] Giá tham khảo tại Clickbuy: 9.590.000đ\n\n## Xiaomi Redmi Note 14 Pro Plus – “Cỗ máy pin tru” với sạc siêu tốc 120W\n\nĐược mệnh danh là “quái vật hiệu năng tầm trung”, Xiaomi Redmi Note 14 Pro Plus còn gy sốt với pin lớn 5110mAh, kết hợp công nghệ sạc nhanh HyperCharge 120W – giúp sạc đầy 100% chỉ trong 20 phút. Đy là tốc độ sạc nhanh nhất trong phn khúc dưới 10-11 triệu, giúp bạn tiết kiệm tối đa thời gian chờ đợi.\n\nNgoài thời lượng pin xuất sắc, Redmi Note 14 Pro+ còn sở hữu:",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://clickbuy.com.vn/dien-thoai-pin-trau-duoi-10-trieu.html",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Trang không phải trang bán sản phẩm: ARTICLE",
+        "result_type": "ARTICLE",
+        "page_heading": "Điện thoại pin trâu dưới 10 triệu: 3 gợi ý đáng giá nhất 2025",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://24hstore.vn/review-san-pham/dien-thoai-duoi-10-trieu-n8676",
+      "title": "TOP 11+ Điện thoại dưới 10 triệu cực tốt ĐÁNG MUA nhất 2026",
+      "content": "iPhone 11 Pro Max 512GB Cũ 98% cực sang trọng và đẳng cấp tại 24hStore hiện nay có giá là 9.990.000đ. Còn đối với máy tình trạng máy 99% và Máy đẹp Like New sẽ có giá chỉ nhỉnh hơn vài trăm nghìn đồng, không quá mắc, cụ thể dao động từ 10.190.000đ đến 10.690.000đ tùy theo màu. [...] Thông số kỹ thuật:\n\n Màn hình: OLED Multi-Touch, HDR, XDR Super Retina.\n Hệ điều hành: iOS 13\n Màn hình rộng: 5.8 inch Super retina XDR.\n Ram: 4GB\n CPU: Apple A13 Bionic.\n Camera sau: 3 Camera (12MP + 12MP + 16MP), góc rộng, tele, góc siêu rộng.\n Camera trước: 12 MP\n Thẻ sim: SIM kép.\n\nHiện nay, phiên bản dung lượng cao nhất iPhone 11 Pro 512GB cũ chính hãng chính hãng tại 24hStore có giá cực tốt, dao động từ 8.890.000đ đến 9.690.000đ túy theo tình trạng máy và màu sắc. [...] Thông số kỹ thuật:\n\n Màn hình: AMOLED6.7\"Full HD+.\n Màn hình rộng: 6.4 inch (hình chữ nhật hoàn chỉnh) / 6.3 inch (tính đến các góc tròn).\n Ram: 8GB\n Chip: Snapdragon 695 5G, hiệu suất tối đa là 2.2 GHz.\n Camera sau: Chính 108 MP & Phụ 2 MP, 2 MP.\n Camera trước: 32 MP.\n Dung lượng pin: 4800 mAh 67W.\n Dung lượng lưu trữ: 128 GB.\n\nOPPO Reno8 T 5G tại 24hStore có giá 8.790.000đ đầy đủ phụ kiện và bảo hành, quý bạn đọc có thể tham khảo.\n\n### OPPO Reno8 Z 5G - OPPO dưới 10 triệu thỏa sức chơi game",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "REVIEW",
+        "evidence_url": "https://24hstore.vn/review-san-pham/dien-thoai-duoi-10-trieu-n8676",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://viettelstore.vn/tin-tuc/dien-thoai-chup-anh-dep-duoi-10-trieu",
+      "title": "TOP điện thoại chụp ảnh đẹp dưới 10 triệu đáng mua nhất hiện nay",
+      "content": "Chip Dimensity 7025 Ultra đảm bảo máy chạy mượt, tối ưu xử lý đa tác vụ. Viên pin 5110mAh đáp ứng trọn ngày dài. Đy là một trong những mẫu điện thoại chụp ảnh đẹp dưới 10 triệu được nhiều người dùng săn đón.\n\n### 5. Vivo V50 Lite 5G 12GB 256GB\n\nVivo V50 Lite 5G thu hút với camera chính sử dụng cảm biến Sony IMX882 50MP, cho màu sắc dịu mắt, chi tiết nổi bật và khả năng cn sáng tốt. Bộ xử lý Dimensity 6300 kết hợp RAM 12GB mang đến tốc độ xử lý đáng tin cậy cho mọi nhu cầu.\n\nVivo V50 Lite 5G [...] Vivo V50 Lite 5G\n\nVivo V50 Lite 5G\n\nPin 6500mAh hỗ trợ thời lượng cực dài, phù hợp cho những chuyến du lịch dài ngày. Đy là chiếc máy lý tưởng cho ai cần điện thoại chụp ảnh đẹp dưới 10 triệu bền bỉ, ổn định.\n\n### 6. HONOR 400 Lite 12GB 256GB\n\nHONOR 400 Lite sở hữu thiết kế thanh lịch, camera 108MP cho chất lượng ảnh sắc nét và khả năng chụp chn dung nổi bật. Chip Dimensity 7025-Ultra giúp tối ưu hiệu năng khi quay video hoặc xử lý ảnh nặng.\n\nHONOR 400 Lite\n\nHONOR 400 Lite [...] HONOR X9c nổi bật nhờ thiết kế siêu bền bỉ, chống sốc và kháng nước ấn tượng. Camera 108MP mang lại độ chi tiết cao, rất phù hợp chụp trong điều kiện chuyển động hoặc ánh sáng yếu.\n\nHONOR X9c\n\nHONOR X9c\n\nMàn hình AMOLED 6.78 inch tích hợp Eye Comfort giúp bảo vệ mắt khi dùng lu. Pin 6600mAh cho phép chụp ảnh liên tục cả ngày dài mà không sợ hết pin. Đy là mẫu máy mạnh mẽ dành cho người ưa di chuyển.\n\n### 9. Samsung Galaxy A56 5G 8GB 128GB",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "NEWS",
+        "evidence_url": "https://viettelstore.vn/tin-tuc/dien-thoai-chup-anh-dep-duoi-10-trieu",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://hungmobile.vn/tin-tuc/top-dien-thoai-duoi-10-trieu-dang-mua-nhat.html",
+      "title": "TOP 20 điện thoại DUỚI 10 TRIỆU tốt nhất, chụp ảnh đẹp nhất 2026",
+      "content": "Oppo Find X8s\n\n### 5. Oppo Find X8s Plus: Màn lớn hơn, pin 6000mAh, camera flagship\n\nOppo Find X8s Plus là bản phù hợp hơn cho người thích màn lớn và pin tốt hơn so với X8s. Máy vẫn giữ chip Dimensity 9400+, cụm 3 camera 50MP và pin 6000mAh, rất đáng cn nhắc dưới 10 triệu.\n\nCấu hình:\n\n Màn hình: 6.59 inch AMOLED, 120Hz, 4500 nits\n Chip: Dimensity 9400+\n RAM/ROM: 12GB/256GB\n Camera: 50MP + 50MP + 50MP | 32MP\n Pin: 6000mAh, sạc 80W\n\nOppo X8s Plus \n\nOppo X8s Plus [...] Gửi bình luận\n\nVui lòng để lại thông tin để gửi bình luận !\n\nSản phẩm bán chạy\n\nRedmi K80 5G Mới 100% (Sẵn TV)\n\n### Redmi K80 5G Mới 100% (Sẵn TV)\n\n10.190.000 ₫\n\nvivo iQOO Z10 Turbo Nguyên Seal Xịn\n\n### vivo iQOO Z10 Turbo Nguyên Seal Xịn\n\n9.190.000 ₫\n\nOppo Find X8s Plus Mới (ĐBH)\n\n### Oppo Find X8s Plus Mới (ĐBH)\n\n10.590.000 ₫\n\nOppo Find X8s Mới (ĐBH)\n\n### Oppo Find X8s Mới (ĐBH)\n\n10.690.000 ₫\n\nRedmi Turbo 5 Max Nguyên Seal Xịn\n\n### Redmi Turbo 5 Max Nguyên Seal Xịn\n\n10.690.000 ₫ [...] ## I. TOP điện thoại dưới 10 triệu của Xiaomi\n\n### 1. Redmi Turbo 4 Pro: Snapdragon 8s Gen 4, pin 7550mAh cực tru\n\nRedmi Turbo 4 Pro nổi bật trong tầm giá dưới 10 triệu nhờ chip Snapdragon 8s Gen 4, RAM 12GB và pin 7550mAh rất ấn tượng. Máy phù hợp với người dùng cần hiệu năng mạnh, màn đẹp và thời lượng pin cực tốt.\n\nCấu hình:\n\n Màn hình: 6.83 inch AMOLED, 120Hz, 3200 nits\n Chip: Snapdragon 8s Gen 4\n RAM/ROM: 12GB/256GB\n Camera: 50MP + 8MP | 20MP\n Pin: 7550mAh, sạc 90W\n\nRedmi Turbo 4 Pro",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "NEWS",
+        "evidence_url": "https://hungmobile.vn/tin-tuc/top-dien-thoai-duoi-10-trieu-dang-mua-nhat.html",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Apple_A13",
+      "title": "Apple A13 - Wikipedia",
+      "content": "The Apple A13 Bionic is a 64-bit ARM-based system on a chip (SoC), designed by Apple Inc., part of the Apple silicon series. It appears in the iPhone 11, 11 Pro/Pro Max, the iPad (9th generation) \"IPad (9th generation)\"), the iPhone SE (2nd generation) \"IPhone SE (2nd generation)\") and the Studio Display. Apple states that the two high performance cores are 20% faster with 30% lower power consumption than the Apple A12's, and the four high efficiency cores are 20% faster with 30% lower power [...] |  v  t  e  Apple silicon | |\n --- |\n| A series | |  |  |  --- | | Current |  A15  A16  A17  A18  A19  A20 | | Discontinued |  A4  A5  A5X  A6  A6X  A7  A8  A8X  A9  A9X  A10  A10X  A11  A12  A12X  A12Z  A13  A14 | |\n| M series | |  |  |  --- | | Current |  M4  M5  M6 | | Discontinued |  M1  M2  M3 | |\n| S series |  S1  S1P  S2  S3  S4  S5  S6  S7  S8  S9  S10 |\n| T series |  T1  T2 | [...] Wikipedia\nThe Free Encyclopedia\n\n## Contents\n\n# Apple A13\n\nApple A13 Bionic",
+      "query": "\"Apple A13 Bionic\" mua Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://en.wikipedia.org/wiki/Apple_A13",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Bu68LGPGxtA",
+      "title": "Are Apple A13 and A14 Bionic chips degrading this fast?",
+      "content": "Sắm điện thoại Phụ Kiện - Nhận Ngày đến 220 triệu tại Didongviet: https://didongviet.vn/khuyen-mai/mua-hang-hieu-nhan-bo-qua-tang-den-220",
+      "query": "\"Apple A13 Bionic\" mua Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://www.youtube.com/watch?v=Bu68LGPGxtA",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://www.dienmayxanh.com/kinh-nghiem-hay/chi-tiet-ve-vi-xu-ly-apple-a13-bionic-moi-nhat-duo-1197314",
+      "title": "Chi tiết về chip Apple A13 Bionic mới nhất trên các dòng ...",
+      "content": "Apple A13 Bionic là con chip mới nhất của Apple (tháng 9/2019) ra mắt kèm với bộ 3 iPhone: iPhone 11, iPhone 11 Pro và iPhone 11 Pro Max.",
+      "query": "\"Apple A13 Bionic\" mua Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "ARTICLE",
+        "evidence_url": "https://www.dienmayxanh.com/kinh-nghiem-hay/chi-tiet-ve-vi-xu-ly-apple-a13-bionic-moi-nhat-duo-1197314",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://cellphones.com.vn/sforum/chip-a13-bionic",
+      "title": "Chip A13 Bionic là gì? Ưu điểm nổi bật của Apple ...",
+      "content": "Apple A13 Bionic là con chip siêu mạnh mẽ với công nghệ bóng bán dẫn giúp tiết kiệm năng lượng, tăng hiệu năng lên ít nhất 20%",
+      "query": "\"Apple A13 Bionic\" mua Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://cellphones.com.vn/sforum/chip-a13-bionic",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://www.thegioididong.com/hoi-dap/tim-hieu-ve-chip-apple-a13-bionic-tren-iphone-11-n-1197492",
+      "title": "Tìm hiểu về chip Apple A13 Bionic - Có thực sự mạnh mẽ ...",
+      "content": "Apple A13 Bionic sở hữu 2 nhân Lightning với hiệu năng cao trong CPU, cho sức mạnh nhanh hơn đến 20%, tiết kiệm điện 30% và 4 nhân Thunder tiết",
+      "query": "\"Apple A13 Bionic\" mua Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://www.thegioididong.com/hoi-dap/tim-hieu-ve-chip-apple-a13-bionic-tren-iphone-11-n-1197492",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://dienmaycholon.com/kinh-nghiem-mua-sam/oppo-reno8-t-5g-giam-soc-cuoi-nam-tai-sieu-thi-dien-may-noi-that-cho-lon",
+      "title": "OPPO Reno8 T 5G giảm sốc cuối năm gần 26%",
+      "content": "Cụ thể, OPPO Reno8 T 5G với mức dung lượng RAM 8GB và ROM 128GB đang được bán tại Siêu Thị Điện Máy - Nội Thất Chợ Lớn với giá chỉ 7.390.000 VNĐ",
+      "query": "\"OPPO Reno8 T 5G\" mua Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://dienmaycholon.com/kinh-nghiem-mua-sam/oppo-reno8-t-5g-giam-soc-cuoi-nam-tai-sieu-thi-dien-may-noi-that-cho-lon",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=ZqdKlgp6NtI",
+      "title": "Đánh giá OPPO Reno8 T 5G sau 1 tháng: Thế này bảo sao bán ...",
+      "content": "OPPO Reno8 T 5G đang là mẫu smartphone cận cao cấp nhật được ... Mua OPPO Reno8 T 5G giá 8.19 triệu tại Di Động Việt: https://tinyurl",
+      "query": "\"OPPO Reno8 T 5G\" mua Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://www.youtube.com/watch?v=ZqdKlgp6NtI",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://www.thegioididong.com/dtdd/oppo-reno8-t-5g-256gb",
+      "title": "Mua OPPO Reno8 T 5g 256GB giá rẻ ...",
+      "content": "Mua điện thoại OPPO Reno8 T 5g 256GB tại Thế Giới Di Động giá rẻ, chính hãng, có mua trả chậm 0% lãi suất. Bảo hành toàn quốc. Giao máy tận nơi, cà thẻ tại",
+      "query": "\"OPPO Reno8 T 5G\" mua Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.thegioididong.com/dtdd/oppo-reno8-t-5g-256gb",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": true,
+        "reason": "Exact product identity is missing from snippet.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Điện thoại OPPO Reno8 T 5G 256GB",
+        "discovery": [
+          {
+            "name": "Điện thoại OPPO Reno8 T 5G 256GB",
+            "brand": "OPPO",
+            "model": "Điện thoại OPPO Reno8 T 5G 256GB",
+            "variant": {
+              "sku": "301642"
+            },
+            "price_type": "DISCOVERY_ONLY"
+          }
+        ],
+        "page_fetched": true,
+        "identity_match": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.oppo.com/vn/smartphones/series-reno/reno8-t-5g/specs",
+      "title": "OPPO Reno8 T 5G - Thông số kỹ thuật",
+      "content": "Khám phá toàn bộ các tính năng của Reno8 T 5G vừa ra mắt với màn hình cong 3D 120Hz đi cùng camera chân dung 108MP và siêu sạc nhanh SUPERVOOC 67W.",
+      "query": "\"OPPO Reno8 T 5G\" mua Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.oppo.com/vn/smartphones/series-reno/reno8-t-5g/specs/",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Reno8 T 5G",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.thegioididong.com/hoi-dap/danh-gia-cau-hinh-hieu-nang-dien-thoai-oppo-reno-1510720",
+      "title": "Đánh giá cấu hình, hiệu năng điện thoại Oppo Reno 8T chi ...",
+      "content": "8.490.000 VNĐ. OPPO Reno8 T 5G 128GB. Điện thoại OPPO Reno8 T 5G 128GB. 9.990.000 VNĐ. Hiện tại, OPPO Reno8 T 5G đã ngừng kinh doanh tại TGDĐ.",
+      "query": "site:thegioididong.com \"OPPO Reno8 T 5G\" giá bán Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://www.thegioididong.com/hoi-dap/danh-gia-cau-hinh-hieu-nang-dien-thoai-oppo-reno-1510720",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://www.thegioididong.com/hoi-dap/co-gi-dang-mong-cho-ve-hieu-nang-cau-hinh-oppo-1509531",
+      "title": "Có gì đáng mong chờ về hiệu năng, cấu hình Oppo Reno8 T 5G ...",
+      "content": "3. Giá bán điện thoại Oppo Reno8 T 5G tại TGDĐ ; Hình ảnh. Tên sản phẩm. Giá sau khuyến mãi ; OPPO Reno8 T · Điện thoại OPPO Reno8 T · 8.490.000 VNĐ ; OPPO Reno8 T",
+      "query": "site:thegioididong.com \"OPPO Reno8 T 5G\" giá bán Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://www.thegioididong.com/hoi-dap/co-gi-dang-mong-cho-ve-hieu-nang-cau-hinh-oppo-1509531",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://www.thegioididong.com/tin-tuc/oppo-reno8-t-5g-gia-bao-nhieu-1502536",
+      "title": "Sở hữu camera 108MP, màn hình OLED, OPPO Reno8 T ...",
+      "content": "OPPO Reno8 T 5G giá bao nhiêu · RAM 8 GB + bộ nhớ trong 128 GB: 1.799 Yuan (khoảng 6.300.000 VND). · RAM 8 GB + bộ nhớ trong 256 GB: 1.999 Yuan (",
+      "query": "site:thegioididong.com \"OPPO Reno8 T 5G\" giá bán Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "NEWS",
+        "evidence_url": "https://www.thegioididong.com/tin-tuc/oppo-reno8-t-5g-gia-bao-nhieu-1502536",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://www.thegioididong.com/hoi-dap/tong-hop-bang-gia-dien-thoai-oppo-2022-moi-nhat-1503184",
+      "title": "Bảng giá điện thoại OPPO 2026 mới nhất hiện nay tại ...",
+      "content": "Giá sản phẩm. OPPO Reno8 5G đã sử dụng. Từ 5.040.000 VNĐ. Tiết kiệm 64%. TẠI ĐÂY · OPPO Reno10 Pro+",
+      "query": "site:thegioididong.com \"OPPO Reno8 T 5G\" giá bán Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://www.thegioididong.com/hoi-dap/tong-hop-bang-gia-dien-thoai-oppo-2022-moi-nhat-1503184",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://www.thegioididong.com/hoi-dap/so-sanh-oppo-reno8-5g-va-reno-8-z-5g-hai-sieu-1480144",
+      "title": "So sánh OPPO Reno8 5G và Reno 8 Z 5G: Hai siêu phẩm ...",
+      "content": "- Tiện ích: mở khoá vân tay dưới màn hình, mở khoá khuôn mặt. - Giá bán: 13.990.000 VNĐ. Reno luôn là dòng smartphone được OPPO tích hợp nhiều",
+      "query": "site:thegioididong.com \"OPPO Reno8 T 5G\" giá bán Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://www.thegioididong.com/hoi-dap/so-sanh-oppo-reno8-5g-va-reno-8-z-5g-hai-sieu-1480144",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://fptshop.com.vn/tin-tuc/danh-gia/tam-10-trieu-nen-mua-dien-thoai-nao-2026-198636",
+      "title": "Tầm 10 triệu nên mua điện thoại nào 2026? Gợi ý lựa chọn ...",
+      "content": "1. OPPO Reno14 F 5G · 2. Xiaomi Redmi Note 15 Pro · 3. OPPO Reno13 F 5G · 4. Honor X9d 5G · 5. Samsung Galaxy A56 5G · 6. Honor 200 5G.",
+      "query": "site:fptshop.com.vn điện thoại giá khoảng 10000000 VND giá bán",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "NEWS",
+        "evidence_url": "https://fptshop.com.vn/tin-tuc/danh-gia/tam-10-trieu-nen-mua-dien-thoai-nao-2026-198636",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://fptshop.com.vn/dien-thoai/tu-2-4-trieu",
+      "title": "Điện thoại từ 2 - 4 triệu chính hãng, giá rẻ",
+      "content": "Phổ thông 4G. · Nubia A76 4GB 128GB (NFC) · Tecno Spark 40C 8GB 256GB · Xiaomi POCO C81 Pro 4GB 128GB · Xiaomi Poco M8 Pro 5G 8GB 256GB · Honor X9d 5G 8GB 256GB.",
+      "query": "site:fptshop.com.vn điện thoại giá khoảng 10000000 VND giá bán",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://fptshop.com.vn/dien-thoai/tu-2-4-trieu",
+        "page_fetched": false,
+        "fetch_failure": "http_or_network",
+        "fetch_blocked": true,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "reason": "Title and direct URL must identify the same model/variant.",
+        "image_url": null,
+        "image_source": null,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://fptshop.com.vn/dien-thoai",
+      "title": "Điện thoại, Smartphone chính hãng, giảm đến 4 triệu, góp ...",
+      "content": "Phổ thông 4G. · Nubia A76 4GB 128GB (NFC) · Tecno Spark 40C 8GB 256GB · Xiaomi POCO C81 Pro 4GB 128GB · Xiaomi Poco M8 Pro 5G 8GB 256GB · Honor X9d 5G 8GB 256GB.",
+      "query": "site:fptshop.com.vn điện thoại giá khoảng 10000000 VND giá bán",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://fptshop.com.vn/dien-thoai",
+        "page_fetched": false,
+        "fetch_failure": "http_or_network",
+        "fetch_blocked": true,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "reason": "Non-product URL cannot use metadata fallback.",
+        "image_url": null,
+        "image_source": null,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://fptshop.com.vn/tin-tuc/danh-gia/dien-thoai-tam-gia-4-trieu-180386",
+      "title": "Giới thiệu top 10+ điện thoại tầm giá 4 triệu đáng mua nhất",
+      "content": "1. OPPO A18 · 2. Samsung Galaxy A05s · 3. Samsung Galaxy A14 4G · 4. Realme C51 · 5. Realme C55 · 6. Vivo Y35 · 7. Honor X8A · 8. Xiaomi Redmi Note 12.",
+      "query": "site:fptshop.com.vn điện thoại giá khoảng 10000000 VND giá bán",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "NEWS",
+        "evidence_url": "https://fptshop.com.vn/tin-tuc/danh-gia/dien-thoai-tam-gia-4-trieu-180386",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://fptshop.com.vn/tin-tuc/danh-gia/dien-thoai-trung-quoc-177429",
+      "title": "Top 10 chiếc điện thoại Trung Quốc giá siêu rẻ không nên ...",
+      "content": "Điện thoại Realme C30s (3GB/64GB). - Chip: Unisoc SC9863A1 8 nhân. - RAM: 3 GB. - ROM: 64 GB. - Pin và sạc: 5000 mAh và 10 W · 2.690.000 VNĐ.",
+      "query": "site:fptshop.com.vn điện thoại giá khoảng 10000000 VND giá bán",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "NEWS",
+        "evidence_url": "https://fptshop.com.vn/tin-tuc/danh-gia/dien-thoai-trung-quoc-177429",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://www.oppo.com/vn/newsroom/press/oppo-ra-mat-chuyen-gia-chan-dung-reno8-series",
+      "title": "OPPO chính thức giới thiệu Chuyên Gia Chân Dung thế hệ thứ 8 OPPO Reno8 Series | OPPO Việt Nam",
+      "content": "Thông tin bán hàng  \n Bộ ba sản phẩm Reno8 5G, Reno8 Z 5G và Reno8 sẽ chính thức mở bán từ ngày 27/08/2022 tại tất cả các hệ thống bán lẻ trên toàn quốc. Sản phẩm có giá bán lẻ là:  \n    -    OPPO Reno8 5G: 13.990.000 đồng  \n    -    OPPO Reno8 Z 5G: 10.490.000 đồng  \n    -    OPPO Reno8: 8.990.000 đồng  \n Đặc biệt, khi đặt trước sản phẩm từ ngày 18/8 đến hết ngày 26/8/2022, khách hàng sẽ nhận được nhiều quà tặng giá trị:\n\n●     Chương trình đặt trước OPPO Reno8 5G và OPPO Reno8 Z 5G: [...] Ngoài những lợi thế về thiết kế và camera, Reno8 5G còn được chú trọng về mặt hiệu năng và trải nghiệm sử dụng với một loạt những nng cấp công nghệ. OPPO Reno8 5G là smartphone đầu tiên tại thị trường Việt Nam trang bị vi xử lý cao cấp MediaTek Dimensity 1300 hỗ trợ kết nối 5G mạnh mẽ, là bản nng cấp so với thế hệ tiền nhiệm Dimensity 1200-MAX, được trang bị trên Reno7 Pro 5G ở phn khúc cao hơn. Dimensity 1300 được sản xuất trên tiến trình 6nm, với 8 lõi có tốc độ xử lý lên đến 3Ghz, tích hợp [...] Hiệu năng ổn định toàn diện  \n Reno8 Z 5G được trang bị vi xử lý Qualcomm® Snapdragon™ 695 5G4 cùng với dung lượng bộ nhớ gấp đôi: RAM 8GB + ROM 256GB, hỗ trợ Mở rộng RAM lên đến 5GB. OPPO Reno8 Z 5G trang bị viên pin 4500mAh đi kèm sạc siêu nhanh SUPERVOOC™ 33W, với chỉ 5 phút sạc là đủ cho 3 giờ gọi thoại hoặc hơn 2 giờ xem video YouTube5.",
+      "query": "\"OPPO Reno8 Z 5G\" giá Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.oppo.com/vn/newsroom/press/oppo-ra-mat-chuyen-gia-chan-dung-reno8-series/",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "OPPO chính thức giới thiệu Chuyên Gia Chân Dung thế hệ thứ 8\nOPPO Reno8 Series",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.duchuymobile.com/oppo-reno8-z-5g",
+      "title": "OPPO Reno8 Z 5G Chính Hãng Giá Rẻ, Trả Góp 0%",
+      "content": "OPPO Reno8 Z 5G (8GB | 256GB) Chính Hãng · Reno8 Z 5G 5.399.000 đ · Reno8 4G 6.399.000 đ · Reno8 5G 7.999.000 đ · Reno8 Pro 5G 10.999.000 đ.",
+      "query": "\"OPPO Reno8 Z 5G\" giá Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.duchuymobile.com/oppo-reno8-z-5g",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "OPPO Reno8 Z 5G (8GB | 256GB) Chính Hãng  Mới 100% Nguyên Seal",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://bantragopdienthoai.com/product/oppo-reno-8z-5g",
+      "title": "OPPO RENO 8Z 5G",
+      "content": "8,990,000₫ Giá hiện tại là: 8,990,000₫. Thu cũ đổi mới. Bán trả góp trả trước 0 đ. Giá luôn rẻ hơn thị trường 1000000. Bảo hành",
+      "query": "\"OPPO Reno8 Z 5G\" giá Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://bantragopdienthoai.com/product/oppo-reno-8z-5g/",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Trang không phải trang bán sản phẩm: ARTICLE",
+        "result_type": "ARTICLE",
+        "page_heading": "OPPO RENO 8Z 5G",
+        "discovery": [
+          {
+            "name": "OPPO RENO 8Z 5G",
+            "brand": "OPPO",
+            "model": "RENO 8Z 5G",
+            "variant": {},
+            "price_type": "DISCOVERY_ONLY"
+          }
+        ],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.thegioididong.com/dtdd/oppo-reno8-z-5g",
+      "title": "OPPO Reno8 Z 5G chính hãng giảm 2.5 triệu",
+      "content": "OPPO Reno8 Z 5G chính hãng, giá tốt, giảm ngay 2.5 triệu. OPPO Reno8 Z 5G Đã bán 2,5k 4.9 So. OPPO Reno8 Z 5G đã được giới thiệu tại thị trường Việt Nam vào th",
+      "query": "\"OPPO Reno8 Z 5G\" giá Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.thegioididong.com/dtdd/oppo-reno8-z-5g",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": true,
+        "reason": "Need one unambiguous same-source price and commercial merchant signals.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Điện thoại OPPO Reno8 Z 5G",
+        "discovery": [
+          {
+            "name": "Điện thoại OPPO Reno8 Z 5G",
+            "brand": "OPPO",
+            "model": "Điện thoại OPPO Reno8 Z 5G",
+            "variant": {
+              "sku": "282901"
+            },
+            "price_type": "DISCOVERY_ONLY"
+          }
+        ],
+        "page_fetched": true,
+        "identity_match": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.oppo.com/vn/newsroom/press/oppo-ra-mat-chuyen-gia-chan-dung-reno8-pro-5g",
+      "title": "RENO8 PRO 5G CHÍNH THỨC RA MẮT “CHUYÊN GIA ...",
+      "content": "Reno8 Pro 5G - có giá bán lẻ chính thức là 18,990,000 VNĐ. Sản phẩm sẽ được mở bán chính thức từ ngày 15/10/2022 tại tất cả các hệ thống bán lẻ toàn quốc.",
+      "query": "site:oppo.com \"OPPO Reno8 Z\" giá bán Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.oppo.com/vn/newsroom/press/oppo-ra-mat-chuyen-gia-chan-dung-reno8-pro-5g/",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "RENO8 PRO 5G CHÍNH THỨC RA MẮT “CHUYÊN GIA CHÂN DUNG ĐẲNG CẤP PRO” ĐƯỢC HỖ TRỢ BỞI CÔNG NGHỆ SIÊU CHIP KÉP",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.oppo.com/vn/store",
+      "title": "Cửa hàng trực tuyến OPPO | OPPO Store Vietnam",
+      "content": "OPPO Store Việt Nam nơi ・ 11.840.000 ₫ 14.990.000 ₫ OPPO Reno16 Pro 5G ・ 20.390.000 ₫ 25.990.000. OPPO Bubble 20% OFF 1.990.000",
+      "query": "site:oppo.com \"OPPO Reno8 Z\" giá bán Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.oppo.com/vn/store",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "OPPO - OPPO Store (Global)",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.oppo.com/vn/newsroom/press/oppo-a91-chinh-thuc-len-ke-tai-viet-nam",
+      "title": "OPPO A91 chính thức lên kệ tại Việt Nam: Tốc độ thách ...",
+      "content": "OPPO A91 với 2 màu sắc Trắng Sành Điệu và Đen Mạnh Mẽ trang bị 8GB RAM 128GB ROM có giá chính thức là: 6,990,000VND. Sản phẩm sẽ được bán ra từ",
+      "query": "site:oppo.com \"OPPO Reno8 Z\" giá bán Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.oppo.com/vn/newsroom/press/oppo-a91-chinh-thuc-len-ke-tai-viet-nam/",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "OPPO A91 chính thức lên kệ tại Việt Nam: Tốc độ thách thức giới hạn",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.oppo.com/vn/newsroom/press/oppo-ra-mat-dien-thoai-tam-trung-moi-nhat-reno8t",
+      "title": "OPPO ra mắt Reno8 T Series, thế hệ Reno mới nhất tái ...",
+      "content": "Reno8 T 5G là chiếc Reno đầu tiên trên thị trường được ra mắt đi kèm hàng loạt nâng cấp chuẩn flagship với camera 108MP, màn hình cong 3D",
+      "query": "site:oppo.com \"OPPO Reno8 Z\" giá bán Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.oppo.com/vn/newsroom/press/oppo-ra-mat-dien-thoai-tam-trung-moi-nhat-reno8t/",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "OPPO ra mắt Reno8 T Series, thế hệ Reno mới nhất\ntái định vị smartphone trong phân khúc tầm trung",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.oppo.com/vn/events",
+      "title": "Cập nhật sự kiện ưu đãi lớn nhất, điện thoại giảm giá",
+      "content": "Mua điện thoại giảm giá, smartphone OPPO chính hãng. Nhiều chương trình khuyến mãi hấp dẫn cùng sự kiện hàng tháng cho các sản phẩm và dịch vụ của OPPO.",
+      "query": "site:oppo.com \"OPPO Reno8 Z\" giá bán Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.oppo.com/vn/events/",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Cập nhật sự kiện ưu đãi lớn nhất, điện thoại giảm giá  | OPPO Việt Nam",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://chuyenphanphoi.vn/san-pham/dien-thoai-vivo-v50-lite-5g-12gb-256gb-den-9960.html",
+      "title": "Điện thoại Vivo V50 Lite 5G chính hãng giá sỉ ...",
+      "content": "Điện thoại Vivo V50 Lite 5G 12gb 256gb đen. Giá: 6.190.000 VNĐ. Giá sỉ: Liên hệ. Mã sản phẩm: DTVIVOV50LITE12GBDEN. Dòng sản phẩm: Điện thoại Vivo V50 Lite 5G",
+      "query": "\"Vivo V50 Lite 5G 12GB 256GB\" giá Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://chuyenphanphoi.vn/san-pham/dien-thoai-vivo-v50-lite-5g-12gb-256gb-den-9960.html",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "SVC chuyên phân phối sỉ điện thoại",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://viettelstore.vn/dien-thoai/vivo-v50-lite-5g-12gb-256gb-pid349200.html",
+      "title": "Vivo V50 Lite 5G | Giá rẻ, Trả góp 0%",
+      "content": "vivo V50 LITE 5G 12GB 256GB giá rẻ, chỉ có hàng 7.090.000 ₫ 10.800.000 ₫ … 1080 Camera sau 50MP 8MP Camera trước 32MP CPU",
+      "query": "\"Vivo V50 Lite 5G 12GB 256GB\" giá Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://viettelstore.vn/dien-thoai/vivo-v50-lite-5g-12gb-256gb-pid349200.html",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Vivo V50 Lite 5G | Giá rẻ, Trả góp 0%",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://cellphones.com.vn/vivo-v50-lite-5g-cu-da-kich-hoat.html",
+      "title": "vivo V50 LITE 5G 12GB 256GB - Đã Kích Hoạt | Giá rẻ",
+      "content": "... VIVO V50 LITE 5G 12GB 256GB ĐEN TÍM - ĐÃ KÍCH HOẠT giá khuyến mãi hiện tại 5.990.000 ( khu vưc miền Nam ). Sản phẩm thu lại từ khách hàng không còn nhu cầu",
+      "query": "\"Vivo V50 Lite 5G 12GB 256GB\" giá Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "fetch_blocked": true,
+        "page_fetched": false,
+        "fetch_failure": "timeout",
+        "reason": "Title and direct URL must identify the same model/variant.",
+        "evidence_url": "https://cellphones.com.vn/vivo-v50-lite-5g-cu-da-kich-hoat.html",
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "image_url": null,
+        "image_source": null,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://shopee.vn/%C4%90i%E1%BB%87n-tho%E1%BA%A1i-Vivo-V50-Lite-5G-12GB-256GB-(V2440)-V%C3%A0ng-i.706762797.40117502174",
+      "title": "Điện thoại Vivo V50 Lite 5G 12GB/256GB (V2440) Vàng",
+      "content": "Vivo V50 Lite 5G 12GB/256GB (V2440) Vàng giá … 10.790.000₫ mall inline badge. Đánh giá 91% Phản. Thoại & Phụ",
+      "query": "\"Vivo V50 Lite 5G 12GB 256GB\" giá Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://shopee.vn/%C4%90i%E1%BB%87n-tho%E1%BA%A1i-Vivo-V50-Lite-5G-12GB-256GB-(V2440)-V%C3%A0ng-i.706762797.40117502174",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "",
+        "discovery": [],
+        "rejection_code": "missing_identity",
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.thegioididong.com/dtdd/vivo-v50-lite-5g",
+      "title": "Điện thoại vivo V50 Lite 5G 8GB/256GB",
+      "content": "vivo V50 Lite 5G 8GB/256GB chính hãng, giá tốt, 300K hoặc tặng PMH iện, bảo hành 24 tháng. ảm giá 1,000,000đ % 4.9 • Đã bán 221,6k",
+      "query": "\"Vivo V50 Lite 5G 12GB 256GB\" giá Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.thegioididong.com/dtdd/vivo-v50-lite-5g",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": true,
+        "reason": "Need one unambiguous same-source price and commercial merchant signals.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Điện thoại vivo V50 Lite 5G 8GB/256GB",
+        "discovery": [
+          {
+            "name": "Điện thoại vivo V50 Lite 5G 8GB/256GB",
+            "brand": "Vivo",
+            "model": "Điện thoại vivo V50 Lite 5G 8GB/256GB",
+            "variant": {
+              "sku": "336408"
+            },
+            "price_type": "DISCOVERY_ONLY"
+          }
+        ],
+        "page_fetched": true,
+        "identity_match": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://cellphones.com.vn/dien-thoai-samsung-galaxy-a56.html",
+      "title": "Samsung Galaxy A56 5G 128GB góp 0%, lên đời từ 7tr4",
+      "content": "Tại thị trường Việt Nam, Samsung A56 5G hiện có giá dao động từ 7.19 triệu đến 9.6 triệu đồng, tùy thuộc vào phiên bản bộ nhớ và đại lý phn phối. Cụ thể, ở phiên bản 8GB/128GB, máy có giá dao động từ 7.19 triệu đến 8.99 triệu đồng (Giá gốc niêm yết là 9.99 triệu đồng).\n\n|  |  |  |\n --- \n| Tên sản phẩm | Giá bán | Giá thu cũ lên đời |\n| Samsung Galaxy A56 5G 8GB 128GB | 8.990.000đ | 8.490.000đ |\n\nLưu ý: Giá còn thay đổi tùy vào từng thời điểm. Theo dõi CellphoneS để cập nhật mức giá hiện nay. [...] CellphoneS sẽ phản hồi trong vòng 1 giờ. Nếu Quý khách gửi cu hỏi sau 22h, chúng tôi sẽ trả lời vào sáng hôm sau.  \n Thông tin có thể thay đổi theo thời gian, vui lòng đặt cu hỏi để nhận được cập nhật mới nhất!\n\nTHÔNG BÁO\n\nSản phẩm bạn quan tm:\n\nSố lượng:\n\nNhận thông tin khuyến mãi\n\nBằng việc đăng ký nhận tin, bạn đồng ý với Chính sách bảo mật của CellphoneS.\n\nSamsung Galaxy A56 5G 8GB 128GB\n\nSamsung Galaxy A56 5G 8GB 128GB\n\nGiá cho bạn:\n\n~~9.810.000đ~~ \n\n8.990.000đ\n\n8.990.000đ [...] 8.990.000đ\n\n~~9.810.000đ~~\n\nPhiên bản\n\nA36A56\n\nMàu sắc\n\n Flash Sale Samsung Galaxy A56 5G 8GB 128GB-Hồng\n\n  Hồng  8.990.000₫\n Flash Sale Samsung Galaxy A56 8GB 12GB-Xám\n\n  Xám  8.990.000₫\n Flash Sale Samsung Galaxy A56 8GB 12GB-Đen\n\n  Đen  8.990.000₫\n Flash Sale Samsung Galaxy A56 8GB 12GB-Xanh\n\n  Xanh  8.990.000₫\n\n## Đặc điểm nổi bật của Samsung Galaxy A56 5G 8GB 128GB",
+      "query": "\"Samsung Galaxy A56 5G 8GB 128GB\" giá Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "evidence_url": "https://cellphones.com.vn/dien-thoai-samsung-galaxy-a56.html",
+        "rejection_code": "resource_budget",
+        "reason": "Per-domain time/failure budget exhausted; source remains unverified.",
+        "image_url": null
+      }
+    },
+    {
+      "url": "https://bachlongmobile.com/products/samsung-galaxy-a56-5g-8gb128gb",
+      "title": "Samsung Galaxy A56 5G (8GB/128GB)",
+      "content": "Samsung Galaxy A56 5G (8Gb/128Gb) - Awesome Olive. Awesome Olive 8.990.000 VNĐ · Samsung Galaxy A56 5G (8Gb/128Gb) - Awesome Lightgray. Awesome Gray 8.990.000",
+      "query": "\"Samsung Galaxy A56 5G 8GB 128GB\" giá Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://bachlongmobile.com/products/samsung-galaxy-a56-5g-8gb128gb/",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Trang không phải trang bán sản phẩm: ARTICLE",
+        "result_type": "ARTICLE",
+        "page_heading": "Bạch Long Mobile",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.homecredit.vn/blog/review-samsung-a56-5g-gia-tinh-nang-noi-bat-cd",
+      "title": "Samsung A56 5G giá bao nhiêu, khi nào ra mắt, có gì nổi bật | Home Credit",
+      "content": "|  |  |\n --- |\n| Phiên bản | Giá Samsung A56 (tham khảo) |\n| Samsung Galaxy A56 (8GB - 128GB) | 9.990.000 VNĐ |\n| Samsung Galaxy A56 (8GB - 256GB) | 10.990.000 VNĐ |\n| Samsung Galaxy A56 (12GB - 256GB) | 11.990.000 VNĐ |\n\n## 3. So sánh Samsung A56 5G và Samsung A55 5G [...] Samsung Galaxy 56 có mức giá khởi điểm tại Việt Nam thấp nhất là 9.99 triệu VNĐ, cao nhất 11.99 triệu VNĐ. Đy là mức giá tương đương với dòng Samsung Galaxy A55 khi ra mắt, cho thấy Samsung tiếp tục duy trì định giá hợp lý mặc dù đã có cải tiến đáng kể về thiết kế, chip và camera.\n\nVới mức giá này, Samsung A56 được đánh giá là dòng điện thoại thông minh hiện đại, phù hợp cho những bạn thích trải nghiệm các công nghệ mới mà không phải chi trả quá nhiều. [...] Thủ tục đơn giản:Không chứng minh thu nhập và thẩm định người thn, chỉ cần CCCD/Thẻ Căn cước chính chủ còn hiệu lực là đã có thể đăng ký mua vay trả góp\n Xét duyệt nhanh chóng: Trả kết quả xét duyệt chỉ trong 3 phút mà không phải chờ đợi quá lu\n Thanh toán linh hoạt: Thời hạn trả góp lên đến 12 tháng, mỗi ngày chỉ từ 12.000 VNĐ.\n\n>> Xem thêm: Samsung Galaxy S26 Series: Điểm mới nổi bật, giá bán và cách trả góp 0% lãi suất",
+      "query": "\"Samsung Galaxy A56 5G 8GB 128GB\" giá Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "REVIEW",
+        "evidence_url": "https://www.homecredit.vn/blog/review-samsung-a56-5g-gia-tinh-nang-noi-bat-cd",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://dienmaycholon.com/dien-thoai-di-dong/samsung-galaxy-a56-8gb128gb",
+      "title": "Samsung Galaxy A56",
+      "content": "Khách hàng\n\n### 4.9 / 5\n\n78 đánh giá\n\n1\n\n0\n\n2\n\n0\n\n3\n\n1\n\n3\n\nViết đánh giá / hỏi đáp ngay  Xem thêm những đánh giá / hỏi đáp khác\n\n## Kinh nghiệm khi mua Điện Thoại Di Động\n\nSamsung Galaxy A56 ra mắt: nng cấp mạnh mẽ về thiết kế và cấu hình\n\n### Samsung Galaxy A56 ra mắt: nng cấp mạnh mẽ về thiết kế và cấu hình\n\nXem thêm bài viết\n\n### DỊCH VỤ HỖ TRỢ \"TƯ VẤN MIỄN PHÍ\"\n\nĐóng x\n\n## Samsung Galaxy A56 (8GB+128GB)\n\nGiá bán7.990.000đ [...] ## Giảm thêm khi mua kèm:\n\nTạm tính:  0đ\n\nGiá hãng:  0đ\n\nMUA 1 SẢN PHẨM\n\nTiết kiệm 0đ\n\napp\n\n# Samsung Galaxy A56 (8GB+128GB) (Sản phẩm trưng bày)\n\nThương hiệu: Samsung\n\nMã sản phẩm : 166664\n\n4.9 (78)\n\nXem 0 siêu thị còn hàng\n\nGiá hãng : 9.990.000đ\n\nGIÁ SỐC ONLINE\n\n-20% GIẢM CÒN 7.990.000đ\n\nTrả góp 0%\n\nQuà tặng kèm \n\n Giảm 2 triệu (Đã trừ vào giá)\n\n  Giảm 2 triệu (Đã trừ vào giá)\n Mua kèm Tai nghe Buds Core giá 799.000đ\n\n  Mua kèm Tai nghe Buds Core giá 799.000đ\n Đổi trả 7 ngày lỗi kỹ thuật [...] 6.67\"  1.5K\n\n Note 14 6GB+128GB\n Note 14 Pro+ 8GB+256GB\n Note 14 8GB+128GB\n\n Giá khuyến mãi: \n\n8.490.000 đ\n\n10.800.000đ -21%\n\nQuà tặng trị giá 12.000.000đ\n\nĐánh giá 4.9/5 (9)\n\nĐóng\n\nSamsung Galaxy A56 (8GB+128GB)\n\nSamsung Galaxy A56 (8GB+128GB)\n\nSamsung Galaxy A56 (8GB+128GB) 0\n\nSamsung Galaxy A56 (8GB+128GB) 1\n\nSamsung Galaxy A56 (8GB+128GB) 2\n\nSamsung Galaxy A56 (8GB+128GB) 3\n\nSamsung Galaxy A56 (8GB+128GB) 4\n\nSamsung Galaxy A56 (8GB+128GB) 5\n\nSamsung Galaxy A56 (8GB+128GB) 6",
+      "query": "\"Samsung Galaxy A56 5G 8GB 128GB\" giá Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://dienmaycholon.com/dien-thoai-di-dong/samsung-galaxy-a56-8gb128gb",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Samsung Galaxy A56 (8GB+128GB)   (Sản phẩm trưng bày)",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=P22mdEkXmzc",
+      "title": "[2026] Review of the genuine Samsung Galaxy A56 5G ...",
+      "content": "Comprehensive Galaxy A56 5G Review (7 Million VND) 1:00 Price 1:27 ... Galaxy A56 GIÁ QUÁ TỐT, đáng mua hơn Galaxy A37 và Galaxy A57?",
+      "query": "\"Samsung Galaxy A56 5G 8GB 128GB\" giá Việt Nam VND",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://www.youtube.com/watch?v=P22mdEkXmzc",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    }
+  ]
+}

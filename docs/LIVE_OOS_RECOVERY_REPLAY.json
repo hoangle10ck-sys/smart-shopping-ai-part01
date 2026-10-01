@@ -1,0 +1,117 @@
+{
+  "session_id": "05479307-6d2d-4c17-b445-8719d935aa3c",
+  "baseline": "v1.2.1",
+  "method": "Fixed archived query rounds, source snippets and proofs. Serial virtual recorded inspection costs. No original HTML, real HTTP, query reordering simulation or concurrency/Live latency claim.",
+  "historical": {
+    "provider_calls": 10,
+    "round_count": 8,
+    "page_attempts": 24,
+    "product_attempts": 19,
+    "stop_reason": "page_budget"
+  },
+  "before": {
+    "provider_rounds": 8,
+    "provider_calls": 10,
+    "page_attempts": 24,
+    "direct_product_attempts": 19,
+    "evidence_only_attempts": 22,
+    "evidence_definition": "Requested URLs without a recorded valid offer, including unknown and failed pages.",
+    "explicit_editorial_attempts": 5,
+    "oos_verified": 2,
+    "eligible_verified": 0,
+    "resource_budget_rejections": 1,
+    "stop_reason": "page_budget",
+    "attempted_urls": [
+      "https://clickbuy.com.vn/dien-thoai-7-8-trieu.html",
+      "https://clickbuy.com.vn/dien-thoai-pin-trau-duoi-10-trieu.html",
+      "https://www.thegioididong.com/dtdd/oppo-reno8-t-5g-256gb",
+      "https://cellphones.com.vn/oppo-reno-8t.html",
+      "https://www.oppo.com/vn/smartphones/series-reno/reno8-t-5g/specs",
+      "https://fptshop.com.vn/dien-thoai/tu-2-4-trieu",
+      "https://fptshop.com.vn/dien-thoai",
+      "https://cellphones.com.vn/oppo-reno8-z.html",
+      "https://www.oppo.com/vn/newsroom/press/oppo-ra-mat-chuyen-gia-chan-dung-reno8-series",
+      "https://www.thegioididong.com/dtdd/oppo-reno8-z-5g",
+      "https://bantragopdienthoai.com/product/oppo-reno-8z-5g",
+      "https://www.duchuymobile.com/oppo-reno8-z-5g",
+      "https://www.oppo.com/vn/newsroom/press/oppo-ra-mat-chuyen-gia-chan-dung-reno8-pro-5g",
+      "https://www.oppo.com/vn/newsroom/press/oppo-a91-chinh-thuc-len-ke-tai-viet-nam",
+      "https://www.oppo.com/vn/events",
+      "https://www.oppo.com/vn/store",
+      "https://www.oppo.com/vn/newsroom/press/oppo-ra-mat-dien-thoai-tam-trung-moi-nhat-reno8t",
+      "https://www.thegioididong.com/dtdd/vivo-v50-lite-5g",
+      "https://shopee.vn/%C4%90i%E1%BB%87n-tho%E1%BA%A1i-Vivo-V50-Lite-5G-12GB-256GB-(V2440)-V%C3%A0ng-i.706762797.40117502174",
+      "https://chuyenphanphoi.vn/san-pham/dien-thoai-vivo-v50-lite-5g-12gb-256gb-den-9960.html",
+      "https://cellphones.com.vn/vivo-v50-lite-5g-cu-da-kich-hoat.html",
+      "https://viettelstore.vn/dien-thoai/vivo-v50-lite-5g-12gb-256gb-pid349200.html",
+      "https://dienmaycholon.com/dien-thoai-di-dong/samsung-galaxy-a56-8gb128gb",
+      "https://bachlongmobile.com/products/samsung-galaxy-a56-5g-8gb128gb"
+    ],
+    "unrecorded_response_urls": [],
+    "recovery": null,
+    "cellphones_attempts": [
+      "https://cellphones.com.vn/oppo-reno-8t.html",
+      "https://cellphones.com.vn/oppo-reno8-z.html",
+      "https://cellphones.com.vn/vivo-v50-lite-5g-cu-da-kich-hoat.html"
+    ]
+  },
+  "after": {
+    "provider_rounds": 8,
+    "provider_calls": 10,
+    "page_attempts": 20,
+    "direct_product_attempts": 15,
+    "evidence_only_attempts": 18,
+    "evidence_definition": "Requested URLs without a recorded valid offer, including unknown and failed pages.",
+    "explicit_editorial_attempts": 0,
+    "oos_verified": 2,
+    "eligible_verified": 0,
+    "resource_budget_rejections": 0,
+    "stop_reason": "recovery_opportunities_exhausted",
+    "attempted_urls": [
+      "https://clickbuy.com.vn/dien-thoai-7-8-trieu.html",
+      "https://clickbuy.com.vn/dien-thoai-pin-trau-duoi-10-trieu.html",
+      "https://www.thegioididong.com/dtdd/oppo-reno8-t-5g-256gb",
+      "https://cellphones.com.vn/oppo-reno-8t.html",
+      "https://www.oppo.com/vn/smartphones/series-reno/reno8-t-5g/specs",
+      "https://fptshop.com.vn/dien-thoai/tu-2-4-trieu",
+      "https://fptshop.com.vn/dien-thoai",
+      "https://cellphones.com.vn/oppo-reno8-z.html",
+      "https://www.thegioididong.com/dtdd/oppo-reno8-z-5g",
+      "https://bantragopdienthoai.com/product/oppo-reno-8z-5g",
+      "https://www.duchuymobile.com/oppo-reno8-z-5g",
+      "https://www.oppo.com/vn/store",
+      "https://www.thegioididong.com/dtdd/vivo-v50-lite-5g",
+      "https://shopee.vn/%C4%90i%E1%BB%87n-tho%E1%BA%A1i-Vivo-V50-Lite-5G-12GB-256GB-(V2440)-V%C3%A0ng-i.706762797.40117502174",
+      "https://chuyenphanphoi.vn/san-pham/dien-thoai-vivo-v50-lite-5g-12gb-256gb-den-9960.html",
+      "https://cellphones.com.vn/vivo-v50-lite-5g-cu-da-kich-hoat.html",
+      "https://viettelstore.vn/dien-thoai/vivo-v50-lite-5g-12gb-256gb-pid349200.html",
+      "https://dienmaycholon.com/dien-thoai-di-dong/samsung-galaxy-a56-8gb128gb",
+      "https://bachlongmobile.com/products/samsung-galaxy-a56-5g-8gb128gb",
+      "https://cellphones.com.vn/dien-thoai-samsung-galaxy-a56.html"
+    ],
+    "unrecorded_response_urls": [
+      "https://cellphones.com.vn/dien-thoai-samsung-galaxy-a56.html"
+    ],
+    "recovery": {
+      "limit": 2,
+      "timeout_seconds": 2.0,
+      "attempted_urls": [
+        "https://cellphones.com.vn/dien-thoai-samsung-galaxy-a56.html"
+      ],
+      "domains": {
+        "cellphones.com.vn": {
+          "attempts": 1,
+          "active_ms": 0.0
+        }
+      }
+    },
+    "cellphones_attempts": [
+      "https://cellphones.com.vn/oppo-reno-8t.html",
+      "https://cellphones.com.vn/oppo-reno8-z.html",
+      "https://cellphones.com.vn/vivo-v50-lite-5g-cu-da-kich-hoat.html",
+      "https://cellphones.com.vn/dien-thoai-samsung-galaxy-a56.html"
+    ]
+  },
+  "live_success_claimed": false,
+  "network_calls": 0
+}

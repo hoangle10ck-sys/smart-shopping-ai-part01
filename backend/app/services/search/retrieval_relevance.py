@@ -1,10 +1,48 @@
 """Conservative retrieval hints, never product evidence or hard-filter policy."""
 import re
+from urllib.parse import unquote, urlsplit
 
 from app.services.budget import bounds
 from app.services.normalization.product_normalizer import infer_product_category
 from app.services.search.model_hints import observed_models
 from app.services.scoring.scoring_engine import normalized
+from app.services.filter.hard_filter import category_matches
+
+
+def hint_category(name, explicit=None):
+    """Scheduling evidence only; never assign this category to an offer."""
+    category = infer_product_category(name, explicit)
+    if category and (explicit or category not in {'máy ảnh', 'màn hình'}):
+        return category
+    text = normalized(name or '')
+    families = {
+        'máy tính bảng': r'\b(?:galaxy tab|(?:redmi|xiaomi|oppo|oneplus|honor) pad|lenovo tab)\b',
+        'điện thoại': r'\b(?:galaxy (?:[asmf]\d|z (?:fold|flip))|redmi note \d)\w*',
+        'tai nghe': r'\b(?:airpods|galaxy buds)\b',
+    }
+    # A known device family may describe its camera/screen; these feature words
+    # do not turn it into a standalone camera/monitor. Explicit taxonomy wins.
+    return next((c for c, pattern in families.items() if re.search(pattern, text)), category)
+
+
+def category_compatible(name, requirement, explicit=None):
+    if requirement is None or not requirement.category:
+        return True
+    required = infer_product_category('', requirement.category)
+    observed = hint_category(name, explicit)
+    # Unknown remains discoverable; only positive conflicting evidence rejects.
+    return observed is None or category_matches(required, observed)
+
+
+def source_category(source):
+    proof = source.page_validation or {}
+    explicit = proof.get('category') if proof.get('product_page_valid') else None
+    return (hint_category(source.title, explicit)
+            or hint_category(unquote(urlsplit(source.url).path).rsplit('/', 1)[-1]))
+
+
+def source_category_compatible(source, requirement):
+    return category_compatible('', requirement, source_category(source))
 
 
 def irrelevant_reason(source, requirement):

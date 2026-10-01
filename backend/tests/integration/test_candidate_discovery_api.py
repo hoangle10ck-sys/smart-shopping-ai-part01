@@ -89,7 +89,7 @@ def test_saved_trace_survives_failed_refresh_without_replacing_snapshot(live, mo
         assert again['retrieval_diagnostics'] == saved['retrieval_diagnostics']
 
 
-@pytest.mark.parametrize('old_scope', ['target_1', 'retrieval_version_2', 'retrieval_version_5', 'retrieval_version_6', 'retrieval_version_7'])
+@pytest.mark.parametrize('old_scope', ['target_1', 'retrieval_version_2', 'retrieval_version_5', 'retrieval_version_6', 'retrieval_version_7', 'retrieval_version_8', 'retrieval_version_9'])
 def test_old_small_or_legacy_cache_cannot_mask_target_five(live, monkeypatch, old_scope):
     provider, pages = live
     # Healthy one-offer result without editorial warnings is genuinely cached.

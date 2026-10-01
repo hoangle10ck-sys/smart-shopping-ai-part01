@@ -50,9 +50,11 @@ async def test_unknown_urls_that_turn_out_editorial_have_bounded_http_budget():
             return {'product_page_valid':False, 'result_type':'ARTICLE', 'page_fetched':True}
     r = ProgressiveRetriever(Provider(), Resolver(), Settings(_env_file=None, demo_mode=False))
     await r.run(['first', 'second'], phone_requirement())
-    assert len(r.inspected_urls) == r.max_page_requests == 24
+    assert r.max_page_requests == 24
+    assert len(r.inspected_urls) == r.max_page_requests - r.recovery_limit == 22
+    assert not r.recovery_urls  # Unknown editorial URLs cannot spend the reserve.
     assert not r.product_attempts and not r.enough()
-    assert r.stop_reason == 'page_budget' and len(calls) <= 12
+    assert r.stop_reason == 'query_budget' and len(calls) == 12
 
 
 def test_recorded_live_candidate_was_filtered_for_stock_not_budget():

@@ -1,0 +1,2151 @@
+{
+  "session_id": "ab719401-e035-4c5b-add6-5ce11a01cdad",
+  "provenance": "Read-only SQLite snapshot export; source title, persisted raw snippet and page proof, not original HTML.",
+  "requirement": {
+    "budget_mode": "FLEXIBLE_TARGET",
+    "budget_target": 10000000,
+    "preferred_min": 9400000,
+    "preferred_max": 10600000,
+    "category": "điện thoại",
+    "budget_min": null,
+    "budget_max": 10000000,
+    "currency": "VND",
+    "purpose": [],
+    "brands": [],
+    "requirements": [
+      {
+        "name": "camera",
+        "value": "tốt",
+        "priority": 4
+      },
+      {
+        "name": "pin",
+        "value": "lâu",
+        "priority": 4
+      }
+    ],
+    "excluded_requirements": [],
+    "sort_preference": "best_match",
+    "confidence": 0.95
+  },
+  "historical_performance": {
+    "timings": {
+      "requirement_analysis_ms": 0.0,
+      "clarification_ms": 0.0,
+      "query_generation_ms": 0.0,
+      "search_provider_ms": 19543.415,
+      "product_discovery_ms": 6091.873,
+      "product_verification_ms": 12479.925,
+      "page_fetch_ms": 12876.195,
+      "verification_ms": 2378.22,
+      "extraction_ms": 308.95,
+      "filtering_ms": 0.105,
+      "scoring_ms": 0.01,
+      "explanation_ms": 3.5,
+      "total_search_ms": 40568.874
+    },
+    "diagnostics": {
+      "candidates_found": 42,
+      "pages_verified": 23,
+      "rejected_wrong_category": 2,
+      "rejected_non_product_page": 18,
+      "rejected_missing_price": 0,
+      "rejected_out_of_stock": 0,
+      "rejected_duplicate": 2,
+      "rejected_other": 19,
+      "valid_offers": 0,
+      "final_recommendations": 0,
+      "valid_candidates": 2,
+      "eligible_offers": 0,
+      "generated_queries": [
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+        "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+        "\"Oppo Find X8s\" mua Việt Nam VND",
+        "\"Oppo Find X8s Plus\" mua Việt Nam VND",
+        "site:cellphones.com.vn \"OPPO Find X8S Plus\" giá bán Việt Nam VND",
+        "\"Samsung Galaxy Tab S10 Ultra 5G\" giá Việt Nam VND",
+        "site:cuahangsamsung.vn \"Samsung Galaxy Tab S10 Ultra 5G\" giá bán Việt Nam VND",
+        "site:duchuymobile.com điện thoại giá khoảng 10000000 VND giá bán",
+        "\"Samsung Galaxy Tab S9 FE WIFI 6GB 128GB\" giá Việt Nam VND"
+      ],
+      "unique_candidate_urls": [
+        "https://cellphones.com.vn/may-tinh-bang-samsung-galaxy-tab-s10-ultra-5g.html",
+        "https://cellphones.com.vn/phu-kien/dan-man-hinh.html",
+        "https://cellphones.com.vn/samsung-galaxy-tab-s9-fe.html",
+        "https://cellphones.com.vn/sforum/danh-gia-hieu-nang-oppo-reno11-f-5g-dimensity-7050-khong-moi-lieu-oppo-co-lam-no-khac-biet",
+        "https://cellphones.com.vn/sforum/dien-thoai-tam-trung-dang-mua-nhat",
+        "https://cellphones.com.vn/sforum/oppo-find-n5-ra-mat-tai-viet-nam",
+        "https://cellphones.com.vn/thu-cu-doi-moi/trade-in-oppo",
+        "https://clickbuy.com.vn/dien-thoai-7-8-trieu.html",
+        "https://cuahangsamsung.vn",
+        "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s10-fe-wifi-8gb-128gb",
+        "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s10-ultra-5g-16gb-1tb",
+        "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s9-fe-wifi-6gb-128gb",
+        "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s9-ultra-5g-16g-1tb",
+        "https://hungmobile.vn/dien-thoai/oppo-find-x8s-5g-gia-re.html",
+        "https://hungmobile.vn/dien-thoai/oppo-find-x8s-plus.html",
+        "https://hungmobile.vn/tin-tuc/top-dien-thoai-2-trieu-tot-nhat.html",
+        "https://hungmobile.vn/tin-tuc/top-dien-thoai-duoi-10-trieu-dang-mua-nhat.html",
+        "https://mobappy.co.jp/top-dien-thoai-android-gia-re-dang-mua-nhat-2026-goi-y-dang-tien-cho-moi-nhu-cau",
+        "https://mobilecity.vn/dien-thoai/oppo-find-x8s-plus-cao-cap.html",
+        "https://vietnamnet.vn/top-dien-thoai-duoi-10-trieu-dang-mua-thang-7-man-hinh-camera-dep-pin-khoe-2534592.html",
+        "https://www.chotot.com/mua-ban-dien-thoai-oppo-find-x8s-plus-gia-tu-10-trieu-den-15-trieu-sfhXLm1VLcWiO0",
+        "https://www.duchuymobile.com",
+        "https://www.duchuymobile.com/nothing-phone-4a",
+        "https://www.duchuymobile.com/oppo-find-n3",
+        "https://www.duchuymobile.com/oppo-find-x8s-plus",
+        "https://www.duchuymobile.com/realme-p4-lite",
+        "https://www.duchuymobile.com/samsung-galaxy-s25-ultra-5g",
+        "https://www.duchuymobile.com/samsung-galaxy-tab-s10-ultra-5g",
+        "https://www.duchuymobile.com/samsung-galaxy-tab-s9-fe-wifi",
+        "https://www.facebook.com/SamsungVietnam/posts/th%E1%BB%8Fa-s%E1%BB%A9c-s%C3%A1ng-t%E1%BA%A1o-tr%C3%AAn-b%E1%BB%99-%C4%91%C3%B4i-galaxy-tab-s9-fe-v%C3%A0-galaxy-tab-s9-fe-m%C3%A0n-h%C3%ACnh-l%E1%BB%9Bn-/357932919921034",
+        "https://www.mobile57.com/vn/phones/oppo-find-x8s-15040",
+        "https://www.nguyenkim.com/nen-mua-dien-thoai-nao-NKUQ2075.b",
+        "https://www.oppo.com/vn/smartphones/series-find-x/find-x8",
+        "https://www.viettablet.com/may-tinh-bang/may-tinh-bang-samsung/tab-s10-series",
+        "https://www.viettablet.com/samsung-galaxy-tab-s9-fe",
+        "https://www.youtube.com/watch?v=9XvzyxPeUyU&xstg=CAMSBhUD-7L2Hw%3D%3D",
+        "https://www.youtube.com/watch?v=Szc_fyO0Uq8",
+        "https://www.youtube.com/watch?v=_FdTMV4Th2Y",
+        "https://www.youtube.com/watch?v=dNiZomgZQ8E",
+        "https://www.youtube.com/watch?v=etGY7JVoUDw",
+        "https://www.youtube.com/watch?v=jw78r-l6U2c",
+        "https://www.youtube.com/watch?v=sbPRprYOxdg&xstg=CAMSBhUD-7L2Hw%3D%3D"
+      ],
+      "rounds": [
+        {
+          "round": 1,
+          "kind": "requirement",
+          "duration_ms": 4972.367,
+          "new_verified_products": 0,
+          "no_progress_rounds": 0,
+          "new_model_hints": 29,
+          "new_merchant_domains": 0,
+          "new_direct_urls": 1,
+          "new_child_urls": 0,
+          "queries_generated": [
+            "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+            "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng"
+          ],
+          "queries_executed": [
+            "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+            "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng"
+          ],
+          "raw_search_results_per_query": {
+            "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam": 5,
+            "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng": 5
+          },
+          "unique_search_results": 10,
+          "result_domains": [
+            "cellphones.com.vn",
+            "clickbuy.com.vn",
+            "hungmobile.vn",
+            "mobappy.co.jp",
+            "nguyenkim.com",
+            "vietnamnet.vn",
+            "youtube.com"
+          ],
+          "conversion": {
+            "potential_product_urls": 2,
+            "direct_product_candidates": 0,
+            "evidence_only_results": 10,
+            "rejected_before_fetch": 8,
+            "pages_requested": 2,
+            "pages_fetched": 2,
+            "pages_verified": 0,
+            "verification_failed": 2,
+            "wrong_category": 0,
+            "non_product_page": 9,
+            "missing_price": 0,
+            "missing_identity": 0,
+            "out_of_stock": 0,
+            "duplicate": 0,
+            "http_network_failure": 0,
+            "other": 1,
+            "valid_candidates": 0,
+            "eligible_offers": 0,
+            "reused_pages": 0,
+            "reason_counts": {
+              "non_product_page": 9,
+              "other": 1
+            }
+          },
+          "cumulative_product_attempts": 1,
+          "cumulative_pages_requested": 2,
+          "cumulative_valid_offers": 0
+        },
+        {
+          "round": 2,
+          "kind": "model_discovery",
+          "duration_ms": 5437.233,
+          "new_verified_products": 0,
+          "no_progress_rounds": 0,
+          "new_model_hints": 16,
+          "new_merchant_domains": 3,
+          "new_direct_urls": 7,
+          "new_child_urls": 0,
+          "queries_generated": [
+            "\"Oppo Find X8s\" mua Việt Nam VND",
+            "\"Oppo Find X8s Plus\" mua Việt Nam VND"
+          ],
+          "queries_executed": [
+            "\"Oppo Find X8s\" mua Việt Nam VND",
+            "\"Oppo Find X8s Plus\" mua Việt Nam VND"
+          ],
+          "raw_search_results_per_query": {
+            "\"Oppo Find X8s\" mua Việt Nam VND": 5,
+            "\"Oppo Find X8s Plus\" mua Việt Nam VND": 5
+          },
+          "unique_search_results": 9,
+          "result_domains": [
+            "chotot.com",
+            "duchuymobile.com",
+            "hungmobile.vn",
+            "mobile57.com",
+            "mobilecity.vn",
+            "oppo.com",
+            "youtube.com"
+          ],
+          "conversion": {
+            "potential_product_urls": 7,
+            "direct_product_candidates": 0,
+            "evidence_only_results": 9,
+            "rejected_before_fetch": 2,
+            "pages_requested": 7,
+            "pages_fetched": 6,
+            "pages_verified": 0,
+            "verification_failed": 7,
+            "wrong_category": 0,
+            "non_product_page": 3,
+            "missing_price": 0,
+            "missing_identity": 0,
+            "out_of_stock": 0,
+            "duplicate": 0,
+            "http_network_failure": 1,
+            "other": 5,
+            "valid_candidates": 0,
+            "eligible_offers": 0,
+            "reused_pages": 0,
+            "reason_counts": {
+              "other": 5,
+              "http_network_failure": 1,
+              "non_product_page": 3
+            }
+          },
+          "cumulative_product_attempts": 7,
+          "cumulative_pages_requested": 9,
+          "cumulative_valid_offers": 0
+        },
+        {
+          "round": 3,
+          "kind": "merchant_products",
+          "duration_ms": 3937.779,
+          "new_verified_products": 0,
+          "no_progress_rounds": 0,
+          "new_model_hints": 2,
+          "new_merchant_domains": 1,
+          "new_direct_urls": 0,
+          "new_child_urls": 0,
+          "queries_generated": [
+            "site:cellphones.com.vn \"OPPO Find X8S Plus\" giá bán Việt Nam VND"
+          ],
+          "queries_executed": [
+            "site:cellphones.com.vn \"OPPO Find X8S Plus\" giá bán Việt Nam VND"
+          ],
+          "raw_search_results_per_query": {
+            "site:cellphones.com.vn \"OPPO Find X8S Plus\" giá bán Việt Nam VND": 4
+          },
+          "unique_search_results": 4,
+          "result_domains": [
+            "cellphones.com.vn"
+          ],
+          "conversion": {
+            "potential_product_urls": 2,
+            "direct_product_candidates": 0,
+            "evidence_only_results": 4,
+            "rejected_before_fetch": 2,
+            "pages_requested": 2,
+            "pages_fetched": 2,
+            "pages_verified": 0,
+            "verification_failed": 2,
+            "wrong_category": 0,
+            "non_product_page": 2,
+            "missing_price": 0,
+            "missing_identity": 0,
+            "out_of_stock": 0,
+            "duplicate": 0,
+            "http_network_failure": 0,
+            "other": 2,
+            "valid_candidates": 0,
+            "eligible_offers": 0,
+            "reused_pages": 0,
+            "reason_counts": {
+              "other": 2,
+              "non_product_page": 2
+            }
+          },
+          "cumulative_product_attempts": 9,
+          "cumulative_pages_requested": 11,
+          "cumulative_valid_offers": 0
+        },
+        {
+          "round": 4,
+          "kind": "merchant_products",
+          "duration_ms": 5709.157,
+          "new_verified_products": 1,
+          "no_progress_rounds": 0,
+          "new_model_hints": 1,
+          "new_merchant_domains": 0,
+          "new_direct_urls": 4,
+          "new_child_urls": 0,
+          "queries_generated": [
+            "\"Samsung Galaxy Tab S10 Ultra 5G\" giá Việt Nam VND"
+          ],
+          "queries_executed": [
+            "\"Samsung Galaxy Tab S10 Ultra 5G\" giá Việt Nam VND"
+          ],
+          "raw_search_results_per_query": {
+            "\"Samsung Galaxy Tab S10 Ultra 5G\" giá Việt Nam VND": 5
+          },
+          "unique_search_results": 5,
+          "result_domains": [
+            "cellphones.com.vn",
+            "cuahangsamsung.vn",
+            "duchuymobile.com",
+            "viettablet.com",
+            "youtube.com"
+          ],
+          "conversion": {
+            "potential_product_urls": 4,
+            "direct_product_candidates": 1,
+            "evidence_only_results": 4,
+            "rejected_before_fetch": 1,
+            "pages_requested": 4,
+            "pages_fetched": 4,
+            "pages_verified": 1,
+            "verification_failed": 3,
+            "wrong_category": 1,
+            "non_product_page": 1,
+            "missing_price": 0,
+            "missing_identity": 0,
+            "out_of_stock": 0,
+            "duplicate": 0,
+            "http_network_failure": 0,
+            "other": 3,
+            "valid_candidates": 0,
+            "eligible_offers": 0,
+            "reused_pages": 0,
+            "reason_counts": {
+              "other": 3,
+              "wrong_category": 1,
+              "non_product_page": 1
+            }
+          },
+          "cumulative_product_attempts": 13,
+          "cumulative_pages_requested": 15,
+          "cumulative_valid_offers": 0
+        },
+        {
+          "round": 5,
+          "kind": "merchant_products",
+          "duration_ms": 4955.18,
+          "new_verified_products": 0,
+          "no_progress_rounds": 0,
+          "new_model_hints": 3,
+          "new_merchant_domains": 0,
+          "new_direct_urls": 3,
+          "new_child_urls": 0,
+          "queries_generated": [
+            "site:cuahangsamsung.vn \"Samsung Galaxy Tab S10 Ultra 5G\" giá bán Việt Nam VND"
+          ],
+          "queries_executed": [
+            "site:cuahangsamsung.vn \"Samsung Galaxy Tab S10 Ultra 5G\" giá bán Việt Nam VND"
+          ],
+          "raw_search_results_per_query": {
+            "site:cuahangsamsung.vn \"Samsung Galaxy Tab S10 Ultra 5G\" giá bán Việt Nam VND": 5
+          },
+          "unique_search_results": 5,
+          "result_domains": [
+            "cuahangsamsung.vn"
+          ],
+          "conversion": {
+            "potential_product_urls": 4,
+            "direct_product_candidates": 0,
+            "evidence_only_results": 5,
+            "rejected_before_fetch": 0,
+            "pages_requested": 4,
+            "pages_fetched": 4,
+            "pages_verified": 0,
+            "verification_failed": 4,
+            "wrong_category": 0,
+            "non_product_page": 1,
+            "missing_price": 0,
+            "missing_identity": 0,
+            "out_of_stock": 0,
+            "duplicate": 0,
+            "http_network_failure": 0,
+            "other": 4,
+            "valid_candidates": 0,
+            "eligible_offers": 0,
+            "reused_pages": 1,
+            "reason_counts": {
+              "non_product_page": 1,
+              "other": 4
+            }
+          },
+          "cumulative_product_attempts": 16,
+          "cumulative_pages_requested": 19,
+          "cumulative_valid_offers": 0
+        },
+        {
+          "round": 6,
+          "kind": "merchant_products",
+          "duration_ms": 4907.031,
+          "new_verified_products": 0,
+          "no_progress_rounds": 0,
+          "new_model_hints": 4,
+          "new_merchant_domains": 0,
+          "new_direct_urls": 4,
+          "new_child_urls": 0,
+          "queries_generated": [
+            "site:duchuymobile.com điện thoại giá khoảng 10000000 VND giá bán"
+          ],
+          "queries_executed": [
+            "site:duchuymobile.com điện thoại giá khoảng 10000000 VND giá bán"
+          ],
+          "raw_search_results_per_query": {
+            "site:duchuymobile.com điện thoại giá khoảng 10000000 VND giá bán": 5
+          },
+          "unique_search_results": 5,
+          "result_domains": [
+            "duchuymobile.com"
+          ],
+          "conversion": {
+            "potential_product_urls": 4,
+            "direct_product_candidates": 0,
+            "evidence_only_results": 5,
+            "rejected_before_fetch": 2,
+            "pages_requested": 3,
+            "pages_fetched": 3,
+            "pages_verified": 0,
+            "verification_failed": 3,
+            "wrong_category": 0,
+            "non_product_page": 0,
+            "missing_price": 0,
+            "missing_identity": 0,
+            "out_of_stock": 0,
+            "duplicate": 0,
+            "http_network_failure": 0,
+            "other": 5,
+            "valid_candidates": 0,
+            "eligible_offers": 0,
+            "reused_pages": 0,
+            "reason_counts": {
+              "other": 5
+            }
+          },
+          "cumulative_product_attempts": 19,
+          "cumulative_pages_requested": 22,
+          "cumulative_valid_offers": 0
+        },
+        {
+          "round": 7,
+          "kind": "alternative_model",
+          "duration_ms": 5167.121,
+          "new_verified_products": 1,
+          "no_progress_rounds": 0,
+          "new_model_hints": 1,
+          "new_merchant_domains": 0,
+          "new_direct_urls": 0,
+          "new_child_urls": 0,
+          "queries_generated": [
+            "\"Samsung Galaxy Tab S9 FE WIFI 6GB 128GB\" giá Việt Nam VND"
+          ],
+          "queries_executed": [
+            "\"Samsung Galaxy Tab S9 FE WIFI 6GB 128GB\" giá Việt Nam VND"
+          ],
+          "raw_search_results_per_query": {
+            "\"Samsung Galaxy Tab S9 FE WIFI 6GB 128GB\" giá Việt Nam VND": 5
+          },
+          "unique_search_results": 5,
+          "result_domains": [
+            "cellphones.com.vn",
+            "duchuymobile.com",
+            "facebook.com",
+            "viettablet.com",
+            "youtube.com"
+          ],
+          "conversion": {
+            "potential_product_urls": 3,
+            "direct_product_candidates": 1,
+            "evidence_only_results": 2,
+            "rejected_before_fetch": 2,
+            "pages_requested": 1,
+            "pages_fetched": 1,
+            "pages_verified": 1,
+            "verification_failed": 0,
+            "wrong_category": 1,
+            "non_product_page": 2,
+            "missing_price": 0,
+            "missing_identity": 0,
+            "out_of_stock": 0,
+            "duplicate": 0,
+            "http_network_failure": 0,
+            "other": 0,
+            "valid_candidates": 0,
+            "eligible_offers": 0,
+            "reused_pages": 0,
+            "reason_counts": {
+              "wrong_category": 1,
+              "non_product_page": 2
+            }
+          },
+          "cumulative_product_attempts": 20,
+          "cumulative_pages_requested": 23,
+          "cumulative_valid_offers": 0
+        }
+      ],
+      "cache_hit": false,
+      "rejected_missing_identity": 0,
+      "rejected_http_network_failure": 1,
+      "candidate_cap": 20,
+      "unverified_candidates": 2,
+      "product_attempts": 20,
+      "discovery_attempts": 3,
+      "max_page_requests": 24,
+      "page_timings": [
+        {
+          "url": "https://cellphones.com.vn/may-tinh-bang-samsung-galaxy-tab-s10-ultra-5g.html",
+          "domain": "cellphones.com.vn",
+          "inspection_ms": 2379.042
+        },
+        {
+          "url": "https://cellphones.com.vn/phu-kien/dan-man-hinh.html",
+          "domain": "cellphones.com.vn",
+          "inspection_ms": 212.52
+        },
+        {
+          "url": "https://cellphones.com.vn/samsung-galaxy-tab-s9-fe.html",
+          "domain": "cellphones.com.vn",
+          "inspection_ms": 2285.948
+        },
+        {
+          "url": "https://cellphones.com.vn/thu-cu-doi-moi/trade-in-oppo",
+          "domain": "cellphones.com.vn",
+          "inspection_ms": 333.124
+        },
+        {
+          "url": "https://clickbuy.com.vn/dien-thoai-7-8-trieu.html",
+          "domain": "clickbuy.com.vn",
+          "inspection_ms": 320.489
+        },
+        {
+          "url": "https://cuahangsamsung.vn",
+          "domain": "cuahangsamsung.vn",
+          "inspection_ms": 562.202
+        },
+        {
+          "url": "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s10-fe-wifi-8gb-128gb",
+          "domain": "cuahangsamsung.vn",
+          "inspection_ms": 675.267
+        },
+        {
+          "url": "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s10-ultra-5g-16gb-1tb",
+          "domain": "cuahangsamsung.vn",
+          "inspection_ms": 741.772
+        },
+        {
+          "url": "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s9-fe-wifi-6gb-128gb",
+          "domain": "cuahangsamsung.vn",
+          "inspection_ms": 450.587
+        },
+        {
+          "url": "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s9-ultra-5g-16g-1tb",
+          "domain": "cuahangsamsung.vn",
+          "inspection_ms": 440.67
+        },
+        {
+          "url": "https://hungmobile.vn/dien-thoai/oppo-find-x8s-5g-gia-re.html",
+          "domain": "hungmobile.vn",
+          "inspection_ms": 266.716
+        },
+        {
+          "url": "https://hungmobile.vn/dien-thoai/oppo-find-x8s-plus.html",
+          "domain": "hungmobile.vn",
+          "inspection_ms": 995.975
+        },
+        {
+          "url": "https://mobilecity.vn/dien-thoai/oppo-find-x8s-plus-cao-cap.html",
+          "domain": "mobilecity.vn",
+          "inspection_ms": 173.898
+        },
+        {
+          "url": "https://www.chotot.com/mua-ban-dien-thoai-oppo-find-x8s-plus-gia-tu-10-trieu-den-15-trieu-sfhXLm1VLcWiO0",
+          "domain": "www.chotot.com",
+          "inspection_ms": 1138.824
+        },
+        {
+          "url": "https://www.duchuymobile.com/oppo-find-n3",
+          "domain": "www.duchuymobile.com",
+          "inspection_ms": 473.035
+        },
+        {
+          "url": "https://www.duchuymobile.com/oppo-find-x8s-plus",
+          "domain": "www.duchuymobile.com",
+          "inspection_ms": 336.421
+        },
+        {
+          "url": "https://www.duchuymobile.com/realme-p4-lite",
+          "domain": "www.duchuymobile.com",
+          "inspection_ms": 343.432
+        },
+        {
+          "url": "https://www.duchuymobile.com/samsung-galaxy-s25-ultra-5g",
+          "domain": "www.duchuymobile.com",
+          "inspection_ms": 325.4
+        },
+        {
+          "url": "https://www.duchuymobile.com/samsung-galaxy-tab-s10-ultra-5g",
+          "domain": "www.duchuymobile.com",
+          "inspection_ms": 284.923
+        },
+        {
+          "url": "https://www.mobile57.com/vn/phones/oppo-find-x8s-15040",
+          "domain": "www.mobile57.com",
+          "inspection_ms": 610.311
+        },
+        {
+          "url": "https://www.nguyenkim.com/nen-mua-dien-thoai-nao-NKUQ2075.b",
+          "domain": "www.nguyenkim.com",
+          "inspection_ms": 387.914
+        },
+        {
+          "url": "https://www.oppo.com/vn/smartphones/series-find-x/find-x8",
+          "domain": "www.oppo.com",
+          "inspection_ms": 1064.037
+        },
+        {
+          "url": "https://www.viettablet.com/may-tinh-bang/may-tinh-bang-samsung/tab-s10-series",
+          "domain": "www.viettablet.com",
+          "inspection_ms": 455.653
+        }
+      ],
+      "provider_calls": 9,
+      "page_attempts": 23,
+      "round_count": 7,
+      "domain_budgets": {
+        "cellphones.com.vn": {
+          "attempts": 4,
+          "failures": 0,
+          "skipped": 0,
+          "active_ms": 4998.919,
+          "budget_ms": 6000.0
+        },
+        "chotot.com": {
+          "attempts": 1,
+          "failures": 0,
+          "skipped": 0,
+          "active_ms": 1139.561,
+          "budget_ms": 6000.0
+        },
+        "clickbuy.com.vn": {
+          "attempts": 1,
+          "failures": 0,
+          "skipped": 0,
+          "active_ms": 320.999,
+          "budget_ms": 6000.0
+        },
+        "cuahangsamsung.vn": {
+          "attempts": 5,
+          "failures": 0,
+          "skipped": 0,
+          "active_ms": 2198.577,
+          "budget_ms": 6000.0
+        },
+        "duchuymobile.com": {
+          "attempts": 5,
+          "failures": 0,
+          "skipped": 0,
+          "active_ms": 1296.066,
+          "budget_ms": 6000.0
+        },
+        "hungmobile.vn": {
+          "attempts": 2,
+          "failures": 0,
+          "skipped": 0,
+          "active_ms": 996.748,
+          "budget_ms": 6000.0
+        },
+        "mobile57.com": {
+          "attempts": 1,
+          "failures": 0,
+          "skipped": 0,
+          "active_ms": 610.767,
+          "budget_ms": 6000.0
+        },
+        "mobilecity.vn": {
+          "attempts": 1,
+          "failures": 1,
+          "skipped": 0,
+          "active_ms": 174.584,
+          "budget_ms": 6000.0
+        },
+        "nguyenkim.com": {
+          "attempts": 1,
+          "failures": 0,
+          "skipped": 0,
+          "active_ms": 388.942,
+          "budget_ms": 6000.0
+        },
+        "oppo.com": {
+          "attempts": 1,
+          "failures": 0,
+          "skipped": 0,
+          "active_ms": 1064.861,
+          "budget_ms": 6000.0
+        },
+        "viettablet.com": {
+          "attempts": 1,
+          "failures": 0,
+          "skipped": 0,
+          "active_ms": 455.829,
+          "budget_ms": 6000.0
+        }
+      },
+      "child_product_urls": [],
+      "direct_recovery": {
+        "limit": 2,
+        "timeout_seconds": 2.0,
+        "attempted_urls": [],
+        "domains": {}
+      },
+      "search_satisfaction": {
+        "eligible_offers": 0,
+        "strong_models": 0,
+        "target_reached": false
+      },
+      "conversion": {
+        "potential_product_urls": 23,
+        "direct_product_candidates": 2,
+        "evidence_only_results": 38,
+        "rejected_before_fetch": 17,
+        "pages_requested": 23,
+        "pages_fetched": 22,
+        "pages_verified": 2,
+        "verification_failed": 21,
+        "wrong_category": 2,
+        "non_product_page": 18,
+        "missing_price": 0,
+        "missing_identity": 0,
+        "out_of_stock": 0,
+        "duplicate": 0,
+        "http_network_failure": 1,
+        "other": 19,
+        "valid_candidates": 0,
+        "eligible_offers": 0,
+        "reused_pages": 0,
+        "reason_counts": {
+          "non_product_page": 18,
+          "other": 19,
+          "http_network_failure": 1,
+          "wrong_category": 2
+        }
+      },
+      "stop_reason": "candidate_budget",
+      "explanations": {
+        "concurrency_limit": 3,
+        "peak_active": 0,
+        "item_timeout_seconds": 8.0,
+        "items": [],
+        "wall_ms": 0.025
+      },
+      "scoring_candidates": 2,
+      "hard_filtered": 2,
+      "filter_reason_counts": {
+        "category": 2
+      },
+      "filter_rejections": [
+        {
+          "product_id": 517,
+          "accepted": false,
+          "rejection_stage": "category",
+          "reasons": [
+            "Sản phẩm không đúng danh mục yêu cầu."
+          ],
+          "name": "Samsung Galaxy Tab S10 Ultra 5G 12GB 256GB",
+          "price": 21990000,
+          "category": "máy tính bảng",
+          "availability": "out_of_stock"
+        },
+        {
+          "product_id": 518,
+          "accepted": false,
+          "rejection_stage": "category",
+          "reasons": [
+            "Sản phẩm không đúng danh mục yêu cầu."
+          ],
+          "name": "Samsung Galaxy Tab S9 FE 5G 6GB 128GB",
+          "price": 9990000,
+          "category": "máy tính bảng",
+          "availability": "out_of_stock"
+        }
+      ],
+      "session_id": "ab719401-e035-4c5b-add6-5ce11a01cdad"
+    }
+  },
+  "queries": [
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "urls": [
+        "https://vietnamnet.vn/top-dien-thoai-duoi-10-trieu-dang-mua-thang-7-man-hinh-camera-dep-pin-khoe-2534592.html",
+        "https://cellphones.com.vn/sforum/dien-thoai-tam-trung-dang-mua-nhat",
+        "https://hungmobile.vn/tin-tuc/top-dien-thoai-2-trieu-tot-nhat.html",
+        "https://mobappy.co.jp/top-dien-thoai-android-gia-re-dang-mua-nhat-2026-goi-y-dang-tien-cho-moi-nhu-cau",
+        "https://www.youtube.com/watch?v=etGY7JVoUDw"
+      ]
+    },
+    {
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "urls": [
+        "https://hungmobile.vn/tin-tuc/top-dien-thoai-duoi-10-trieu-dang-mua-nhat.html",
+        "https://www.youtube.com/watch?v=9XvzyxPeUyU&xstg=CAMSBhUD-7L2Hw%3D%3D",
+        "https://www.youtube.com/watch?v=sbPRprYOxdg&xstg=CAMSBhUD-7L2Hw%3D%3D",
+        "https://www.nguyenkim.com/nen-mua-dien-thoai-nao-NKUQ2075.b",
+        "https://clickbuy.com.vn/dien-thoai-7-8-trieu.html"
+      ]
+    },
+    {
+      "query": "\"Oppo Find X8s\" mua Việt Nam VND",
+      "urls": [
+        "https://www.mobile57.com/vn/phones/oppo-find-x8s-15040",
+        "https://hungmobile.vn/dien-thoai/oppo-find-x8s-5g-gia-re.html",
+        "https://mobilecity.vn/dien-thoai/oppo-find-x8s-plus-cao-cap.html",
+        "https://www.youtube.com/watch?v=_FdTMV4Th2Y",
+        "https://www.oppo.com/vn/smartphones/series-find-x/find-x8"
+      ]
+    },
+    {
+      "query": "\"Oppo Find X8s Plus\" mua Việt Nam VND",
+      "urls": [
+        "https://mobilecity.vn/dien-thoai/oppo-find-x8s-plus-cao-cap.html",
+        "https://hungmobile.vn/dien-thoai/oppo-find-x8s-plus.html",
+        "https://www.duchuymobile.com/oppo-find-x8s-plus",
+        "https://www.chotot.com/mua-ban-dien-thoai-oppo-find-x8s-plus-gia-tu-10-trieu-den-15-trieu-sfhXLm1VLcWiO0",
+        "https://www.youtube.com/watch?v=jw78r-l6U2c"
+      ]
+    },
+    {
+      "query": "site:cellphones.com.vn \"OPPO Find X8S Plus\" giá bán Việt Nam VND",
+      "urls": [
+        "https://cellphones.com.vn/thu-cu-doi-moi/trade-in-oppo",
+        "https://cellphones.com.vn/sforum/oppo-find-n5-ra-mat-tai-viet-nam",
+        "https://cellphones.com.vn/sforum/danh-gia-hieu-nang-oppo-reno11-f-5g-dimensity-7050-khong-moi-lieu-oppo-co-lam-no-khac-biet",
+        "https://cellphones.com.vn/phu-kien/dan-man-hinh.html"
+      ]
+    },
+    {
+      "query": "\"Samsung Galaxy Tab S10 Ultra 5G\" giá Việt Nam VND",
+      "urls": [
+        "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s10-ultra-5g-16gb-1tb",
+        "https://www.viettablet.com/may-tinh-bang/may-tinh-bang-samsung/tab-s10-series",
+        "https://www.duchuymobile.com/samsung-galaxy-tab-s10-ultra-5g",
+        "https://cellphones.com.vn/may-tinh-bang-samsung-galaxy-tab-s10-ultra-5g.html",
+        "https://www.youtube.com/watch?v=Szc_fyO0Uq8"
+      ]
+    },
+    {
+      "query": "site:cuahangsamsung.vn \"Samsung Galaxy Tab S10 Ultra 5G\" giá bán Việt Nam VND",
+      "urls": [
+        "https://cuahangsamsung.vn",
+        "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s9-fe-wifi-6gb-128gb",
+        "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s10-fe-wifi-8gb-128gb",
+        "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s9-ultra-5g-16g-1tb",
+        "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s10-ultra-5g-16gb-1tb"
+      ]
+    },
+    {
+      "query": "site:duchuymobile.com điện thoại giá khoảng 10000000 VND giá bán",
+      "urls": [
+        "https://www.duchuymobile.com",
+        "https://www.duchuymobile.com/samsung-galaxy-s25-ultra-5g",
+        "https://www.duchuymobile.com/oppo-find-n3",
+        "https://www.duchuymobile.com/realme-p4-lite",
+        "https://www.duchuymobile.com/nothing-phone-4a"
+      ]
+    },
+    {
+      "query": "\"Samsung Galaxy Tab S9 FE WIFI 6GB 128GB\" giá Việt Nam VND",
+      "urls": [
+        "https://cellphones.com.vn/samsung-galaxy-tab-s9-fe.html",
+        "https://www.facebook.com/SamsungVietnam/posts/th%E1%BB%8Fa-s%E1%BB%A9c-s%C3%A1ng-t%E1%BA%A1o-tr%C3%AAn-b%E1%BB%99-%C4%91%C3%B4i-galaxy-tab-s9-fe-v%C3%A0-galaxy-tab-s9-fe-m%C3%A0n-h%C3%ACnh-l%E1%BB%9Bn-/357932919921034",
+        "https://www.youtube.com/watch?v=dNiZomgZQ8E"
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "url": "https://cellphones.com.vn/may-tinh-bang-samsung-galaxy-tab-s10-ultra-5g.html",
+      "title": "Samsung Galaxy Tab S10 Ultra 5G chính hãng, giá giảm sốc",
+      "query": "\"Samsung Galaxy Tab S10 Ultra 5G\" giá Việt Nam VND",
+      "content": "Samsung Galaxy Tab S10 Ultra 5G 12GB 256GB ; Giá sản phẩm. 33.380.000đ 21.990.000đ ; Danh sách Cookies. Việc từ chối một số loại cookie sẽ có thể ảnh hưởng đến",
+      "proof": {
+        "product_page_valid": true,
+        "evidence_url": "https://cellphones.com.vn/may-tinh-bang-samsung-galaxy-tab-s10-ultra-5g.html",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "VERIFIED_CONTENT",
+        "product_page_confidence": 95,
+        "fetch_blocked": false,
+        "reason": "Trang chi tiết có identity và giá bán cụ thể cùng nguồn.",
+        "result_type": "DIRECT_PRODUCT",
+        "page_heading": "Samsung Galaxy Tab S10 Ultra 5G 12GB 256GB",
+        "discovery": [
+          {
+            "name": "Samsung Galaxy Tab S10 Ultra 5G 12GB 256GB",
+            "brand": "Samsung",
+            "model": "Galaxy Tab S10 Ultra 5G 12GB 256GB",
+            "variant": {
+              "sku": "may-tinh-bang-samsung-galaxy-tab-s10-ultra-5g"
+            },
+            "price_type": "DISCOVERY_ONLY"
+          }
+        ],
+        "product_url": "https://cellphones.com.vn/may-tinh-bang-samsung-galaxy-tab-s10-ultra-5g.html",
+        "name": "Samsung Galaxy Tab S10 Ultra 5G 12GB 256GB",
+        "brand": "Samsung",
+        "price_type": "CONCRETE",
+        "variant": {
+          "sku": "may-tinh-bang-samsung-galaxy-tab-s10-ultra-5g"
+        },
+        "category": "máy tính bảng",
+        "category_evidence": {
+          "category": "máy tính bảng",
+          "source": "breadcrumb",
+          "confidence": 90,
+          "conflict": false,
+          "reason": "Category observed on the verified main product page.",
+          "observations": {
+            "json_ld_category": null,
+            "json_ld_type": "Product",
+            "breadcrumbs": [
+              [
+                "CELLPHONES",
+                "Máy tính bảng",
+                "Samsung",
+                "Tab S10 Series",
+                "Samsung Galaxy Tab S10 Ultra 5G 12GB 256GB"
+              ],
+              [
+                "Trang chủ ",
+                " / ",
+                " Samsung Galaxy Tab S10 Ultra 5G 12GB 256GB"
+              ]
+            ],
+            "h1": "Samsung Galaxy Tab S10 Ultra 5G 12GB 256GB",
+            "title": "Samsung Galaxy Tab S10 Ultra 5G chính hãng, giá giảm sốc",
+            "url_path": "/may-tinh-bang-samsung-galaxy-tab-s10-ultra-5g.html"
+          }
+        },
+        "confidence_signals": {
+          "page_identity": 30,
+          "same_page_price": 25,
+          "product_metadata_or_buy_action": 30,
+          "direct_path": 10
+        },
+        "model": null,
+        "price": 21990000,
+        "merchant": "CELLPHONES",
+        "specifications": {
+          "kích thước màn hình": "14.6 inches",
+          "công nghệ màn hình": "Dynamic AMOLED 2X",
+          "camera sau": "13.0 MP + 8.0 MP",
+          "camera trước": "12.0 MP + 12.0 MP",
+          "chipset": "MediaTek Dimensity 9300+",
+          "công nghệ nfc": "Không",
+          "dung lượng ram": "12 GB",
+          "bộ nhớ trong": "256 GB",
+          "pin": "11,200mAh",
+          "thẻ sim": "2 SIM (nano‑SIM và eSIM)",
+          "hệ điều hành": "Android 14, One UI 6.1.1",
+          "độ phân giải màn hình": "1848 x 2960 Pixels",
+          "tính năng màn hình": "120 Hz, 930 nitsKính cường lực Corning Gorilla GlassLớp phủ chống chói (mới)Độ sâu màu sắc 16M",
+          "loại cpu": "8 nhân, 3.4GHz,2.8GHz,2GHz",
+          "tương thích": "Bút S Pen"
+        },
+        "rating": null,
+        "review_count": null,
+        "availability": "https://schema.org/OutOfStock",
+        "image_diagnostics": {
+          "accepted_count": 0,
+          "rejections": [
+            {
+              "source": "html_product_image",
+              "reason": "unrelated_gallery"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "unrelated_gallery"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "unrelated_gallery"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            }
+          ],
+          "candidate_count": 6,
+          "has_product_image": true,
+          "has_social_image": true,
+          "html_image_count": 86
+        },
+        "image_candidates": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://cellphones.com.vn/samsung-galaxy-tab-s9-fe.html",
+      "title": "Samsung Galaxy Tab S9 FE 5G 6GB 128GB",
+      "query": "\"Samsung Galaxy Tab S9 FE WIFI 6GB 128GB\" giá Việt Nam VND",
+      "content": "Samsung Galaxy Tab S9 FE (6/128GB) chính hãng m ngay 1 triệu giá siêu. WIFI 6GB 128GB. Việt Nam. Điện thoại: 028.7108.9666.",
+      "proof": {
+        "product_page_valid": true,
+        "evidence_url": "https://cellphones.com.vn/samsung-galaxy-tab-s9-fe.html",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "VERIFIED_CONTENT",
+        "product_page_confidence": 95,
+        "fetch_blocked": false,
+        "reason": "Trang chi tiết có identity và giá bán cụ thể cùng nguồn.",
+        "result_type": "DIRECT_PRODUCT",
+        "page_heading": "Samsung Galaxy Tab S9 FE 5G 6GB 128GB",
+        "discovery": [
+          {
+            "name": "Samsung Galaxy Tab S9 FE 5G 6GB 128GB",
+            "brand": "Samsung",
+            "model": "Galaxy Tab S9 FE 5G 6GB 128GB",
+            "variant": {
+              "sku": "samsung-galaxy-tab-s9-fe"
+            },
+            "price_type": "DISCOVERY_ONLY"
+          }
+        ],
+        "product_url": "https://cellphones.com.vn/samsung-galaxy-tab-s9-fe.html",
+        "name": "Samsung Galaxy Tab S9 FE 5G 6GB 128GB",
+        "brand": "Samsung",
+        "price_type": "CONCRETE",
+        "variant": {
+          "sku": "samsung-galaxy-tab-s9-fe"
+        },
+        "category": "máy tính bảng",
+        "category_evidence": {
+          "category": "máy tính bảng",
+          "source": "breadcrumb",
+          "confidence": 90,
+          "conflict": false,
+          "reason": "Category observed on the verified main product page.",
+          "observations": {
+            "json_ld_category": null,
+            "json_ld_type": "Product",
+            "breadcrumbs": [
+              [
+                "CELLPHONES",
+                "Máy tính bảng",
+                "Samsung",
+                "Tab S9 series",
+                "Samsung Galaxy Tab S9 FE 5G 6GB 128GB "
+              ],
+              [
+                "Trang chủ ",
+                " / ",
+                " Samsung Galaxy Tab S9 FE 5G 6GB 128GB"
+              ]
+            ],
+            "h1": "Samsung Galaxy Tab S9 FE 5G 6GB 128GB",
+            "title": "Samsung Galaxy Tab S9 FE (6/128GB) | Giá rẻ giảm ngay 1 triệu",
+            "url_path": "/samsung-galaxy-tab-s9-fe.html"
+          }
+        },
+        "confidence_signals": {
+          "page_identity": 30,
+          "same_page_price": 25,
+          "product_metadata_or_buy_action": 30,
+          "direct_path": 10
+        },
+        "model": null,
+        "price": 9990000,
+        "merchant": "CELLPHONES",
+        "specifications": {
+          "kích thước màn hình": "10.9 inches",
+          "công nghệ màn hình": "TFT LCD",
+          "camera sau": "8 MP",
+          "camera trước": "12 MP",
+          "chipset": "Exynos 1380",
+          "công nghệ nfc": "Không",
+          "dung lượng ram": "6 GB",
+          "bộ nhớ trong": "128 GB",
+          "pin": "8.000mAh",
+          "thẻ sim": "Nano-SIM + eSIM",
+          "hệ điều hành": " Android 13 ",
+          "độ phân giải màn hình": "2304 x 1440 pixels",
+          "tính năng màn hình": "Tần số quét 90Hz, DCI-P3, 16 triệu màu, Vision Booster, Hạn chế ánh sáng xanh",
+          "loại cpu": "8 nhân, 2.4GHz, 2GHz",
+          "tương thích": "S Pen (đi kèm trong hộp)"
+        },
+        "rating": "5",
+        "review_count": "73",
+        "availability": "https://schema.org/OutOfStock",
+        "image_diagnostics": {
+          "accepted_count": 0,
+          "rejections": [
+            {
+              "source": "html_product_image",
+              "reason": "unrelated_gallery"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "unrelated_gallery"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "unrelated_gallery"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "unbound_gallery"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            },
+            {
+              "source": "html_product_image",
+              "reason": "identity_conflict"
+            }
+          ],
+          "candidate_count": 6,
+          "has_product_image": true,
+          "has_social_image": true,
+          "html_image_count": 118
+        },
+        "image_candidates": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://vietnamnet.vn/top-dien-thoai-duoi-10-trieu-dang-mua-thang-7-man-hinh-camera-dep-pin-khoe-2534592.html",
+      "title": "Top điện thoại dưới 10 triệu đáng mua tháng 7: Màn hình, camera đẹp, pin khoẻ",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "content": "icon\n\n## Điện thoại dưới 10 triệu đồng tháng 7/2026 được coi là phn khúc hấp dẫn nhất dành cho người dùng phổ thông với màn hình chất lượng cao và thời lượng pin ấn tượng.\n\nThị trường điện thoại tầm trung trong năm 2026 đang chứng kiến sự cạnh tranh rất quyết liệt khi hàng loạt hãng lớn như Xiaomi, Samsung, OPPO, HONOR, Nothing hay Nubia liên tục tung ra những sản phẩm có cấu hình mạnh, màn hình chất lượng cao và thời lượng pin ấn tượng nhưng vẫn giữ mức giá dưới 10 triệu đồng. [...] Top điện thoại giá 2-3 triệu đáng mua nhất tháng 7: Pin khỏe, dùng bềnPhn khúc điện thoại giá 2-3 triệu đồng vẫn giữ sức hút lớn đối với học sinh, sinh viên, người lao động và những ai cần một chiếc smartphone phục vụ các nhu cầu cơ bản.\n\n ### Top điện thoại 128GB giá rẻ dưới 3 triệu đáng mua nhất tháng 7/2026\n ### Điện thoại dòng ‘Pro’ phn khúc giá 25 triệu đồng, pin 7.000 mAh tại Việt Nam\n ### Apple đồng loạt tăng giá Mac, iPad và nhiều thiết bị khác, giá iPhone ra sao?\n\n.svg) [...] icon\n Công nghệ \n\n  + Chính trị\n  + Thời sự\n  + Kinh doanh\n  + Dn tộc và Tôn giáo\n  + Giáo dục\n  + Thế giới\n  + Thể thao\n  + Văn hóa - Giải trí\n  + Đời sống\n  + Sức khỏe\n  + Công nghệ\n  + Xe\n  + Bất động sản\n  + Du lịch\n  + Bạn đọc\n\nThứ Bảy, 11/07/2026 - 08:00\n\n# Top điện thoại dưới 10 triệu đáng mua tháng 7: Màn hình, camera đẹp, pin khoẻ\n\nHải Phong\n\n Xem các bài viết của tác giả\n\nSao chép liên kết; \"Sao chép liên kết\")   \n\n11/07/2026   08:00 (GMT+07:00)\n\n icon",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://vietnamnet.vn/top-dien-thoai-duoi-10-trieu-dang-mua-thang-7-man-hinh-camera-dep-pin-khoe-2534592.html",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://cellphones.com.vn/sforum/dien-thoai-tam-trung-dang-mua-nhat",
+      "title": "Top 9 mẫu điện thoại tầm trung đáng mua nhất năm 2026",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "content": "### Vivo V30E 12GB 256GB\n\nVivo V30E là lựa chọn hợp lý cho người dùng đang tìm điện thoại ổn định, chụp ảnh tốt và pin lu. Máy sử dụng chip Snapdragon 6 Gen 1, RAM 12GB và bộ nhớ trong 256GB, đủ sức xử lý mượt mà các tác vụ đa nhiệm.\n\nVivo V30E 12GB 256GB \n\nVivo V30E 12GB 256GB\n\nCamera sau 50MP kết hợp ống kính góc siêu rộng 8MP, cho khả năng chụp linh hoạt. Camera trước 32MP cùng nhiều tính năng AI hỗ trợ selfie đẹp mắt, phù hợp với nhu cầu quay vlog, chụp ảnh đăng mạng xã hội. [...] Camera: Với nhu cầu chụp ảnh ngày càng phổ biến, các mẫu tầm trung giờ đy đã được trang bị cảm biến từ 50MP trở lên, đi kèm công nghệ AI, chống rung OIS cho hình ảnh sắc nét hơn.\n Pin và sạc: Pin từ 5000mAh đang là tiêu chuẩn mới. Sạc nhanh từ 25W trở lên sẽ giúp tiết kiệm thời gian đáng kể.\n Tính năng mở rộng: Một số tính năng như cảm biến vn tay dưới màn hình, kháng nước, hỗ trợ 5G,... đang dần phổ biến ở dòng tầm trung, tạo thêm giá trị cho người dùng. [...] ### Realme 13 Plus 5G 8GB 256GB\n\nRealme 13 Plus 5G gy ấn tượng với chip Dimensity 7300 Energy, RAM 8GB và màn hình OLED 6.67 inch hỗ trợ tần số quét 120Hz. Đy là mẫu điện thoại sinh ra để chơi game, đa nhiệm và giải trí.\n\nCamera chính 50MP sử dụng cảm biến Sony LYT-600, kết hợp camera góc rộng 8MP giúp tạo ra những bức ảnh sắc nét. Hệ thống làm mát bằng buồng hơi giúp máy hoạt động ổn định trong thời gian dài.\n\nRealme 13 Plus 5G 8GB 256GB \n\nRealme 13 Plus 5G 8GB 256GB",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://cellphones.com.vn/sforum/dien-thoai-tam-trung-dang-mua-nhat",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://hungmobile.vn/tin-tuc/top-dien-thoai-2-trieu-tot-nhat.html",
+      "title": "Top 12 điện thoại 2 triệu tốt nhất 2026: game khoẻ, pin trâu ngon nhất",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "content": "Redmi 13R 5G là lựa chọn tuyệt vời cho ai muốn trải nghiệm 5G với mức giá cực rẻ. Máy sở hữu màn hình 6.74 inch 90Hz, camera 50MP và pin 5000mAh cho thời gian sử dụng dài.  \n Điểm mạnh là con chip Dimensity 6100+ tiết kiệm pin nhưng vẫn đủ sức đáp ứng mọi tác vụ hằng ngày.\n\n Màn hình: 6.74 inch, IPS LCD, 90Hz, 600 nits\n Cấu hình: MediaTek Dimensity 6100+ (6nm), RAM 4GB, ROM 128GB\n Camera: Sau 50MP + 0.08MP | Trước 5MP\n Pin + sạc: 5000mAh, 18W (tặng kèm sạc 10W)\n Khác: Vn tay cạnh bên [...] Redmi 14C 4G\n\n### 4. Redmi Note 13 5G: Camera 100MP, màn AMOLED đẹp\n\nNếu bạn thích chụp ảnh, Redmi Note 13 5G sẽ khiến bạn hài lòng với camera chính 100MP và màn AMOLED 120Hz siêu sắc nét. Chip Dimensity 6080 đáp ứng tốt các tác vụ và chơi game nhẹ.\n\n Màn hình: 6.67 inch, AMOLED, 120Hz, 1000 nits\n Cấu hình: MediaTek Dimensity 6080, RAM 6GB, ROM 128GB\n Camera: Sau 100MP + 2MP | Trước 16MP\n Pin + sạc: 5000mAh, 33W\n Khác: Vn tay cạnh bên\n\nRedmi Note 13 5G \n\nRedmi Note 13 5G [...] Redmi 14C 4G là mẫu điện thoại mới với camera 50MP, pin 5160mAh và màn hình 6.88 inch 120Hz. Máy phù hợp cho người dùng cần điện thoại cơ bản, bền bỉ và pin lu.\n\n Màn hình: 6.88 inch, IPS LCD, 120Hz, 600 nits\n Cấu hình: MediaTek Helio G81 Ultra, RAM 4GB, ROM 128GB\n Camera: Sau 50MP + 2MP + 0.08MP | Trước 13MP\n Pin + sạc: 5160mAh, 18W\n Khác: Vn tay cạnh bên\n\nXiaomi Redmi 14C \n\nXiaomi Redmi 14C\n\n \n\nBạn có thể tham khảo điện thoại dưới đy:\n\n Redmi 14C 4G",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "NEWS",
+        "evidence_url": "https://hungmobile.vn/tin-tuc/top-dien-thoai-2-trieu-tot-nhat.html",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://mobappy.co.jp/top-dien-thoai-android-gia-re-dang-mua-nhat-2026-goi-y-dang-tien-cho-moi-nhu-cau",
+      "title": "Top điện thoại Android giá rẻ, đáng mua nhất 2026 – Gợi ý đáng tiền cho mọi nhu cầu",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "content": "Nếu ưu tiên thời lượng pin và hiệu năng tốt, Redmi 15 là một trong những lựa chọn sáng giá nhất.\n\n### Thông số nổi bật\n\n Màn hình IPS LCD 6.9 inch\n Độ phn giải FHD+\n Tần số quét 144Hz\n Snapdragon 685\n RAM 6GB/8GB\n Bộ nhớ 128GB/256GB\n Camera chính 50MP AI\n Pin 7.000mAh\n Sạc nhanh 33W\n\n### Ưu điểm\n\n✔ Pin cực lớn sử dụng đến 2 ngày.\n\n✔ Màn hình 144Hz mượt hiếm có trong tầm giá. [...] ✔ Snapdragon 685 đủ mạnh cho Facebook, TikTok, YouTube và các game phổ biến như Liên Qun Mobile, PUBG Mobile mức đồ họa trung bình.\n\n✔ Camera 50MP cho chất lượng ảnh khá tốt khi đủ sáng.\n\n## 2. OPPO A5 – Thiết kế đẹp, pin khỏe\n\n### Cấu hình\n\n Màn hình LCD 6.67 inch\n Tần số quét 90Hz\n Snapdragon 6s Gen 1 (tùy thị trường)\n RAM 6GB\n ROM 128GB\n Camera AI\n Pin 6.500mAh\n Sạc nhanh SuperVOOC\n\n### Điểm mạnh [...] ### Ưu điểm\n\n Máy bền.\n Dễ sửa chữa.\n Linh kiện phổ biến.\n Hệ điều hành One UI dễ dùng.\n Giá cực kỳ rẻ trên thị trường máy cũ\n\n## 4. Samsung Galaxy A52 – Vẫn rất đáng mua\n\n### Thông số nổi bật\n\n Super AMOLED 6.5 inch\n 90Hz\n Snapdragon 720G\n Camera chính 64MP OIS\n Camera góc rộng\n Camera macro\n Camera đo chiều su\n Pin 4.500mAh\n Sạc nhanh 25W\n Chuẩn kháng nước IP67\n\n### Điểm nổi bật\n\n Màn hình AMOLED hiển thị đẹp.\n Camera chống rung OIS.\n Chụp đêm tốt.\n Loa stereo.\n Chống nước IP67.",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://mobappy.co.jp/top-dien-thoai-android-gia-re-dang-mua-nhat-2026-goi-y-dang-tien-cho-moi-nhu-cau",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=etGY7JVoUDw",
+      "title": "Phone Consultation: Which Flagship Can You Buy for Under 10 Million?",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua giá bán Việt Nam",
+      "content": "[1:13] Plus nhá các bạn nhá. Tại sao mình lại lựa chọn cái chiếc điện thoại này? Thì thứ nhất là cái camera của nó nó không phải là quá đẹp nhưng nó thuộc dạng chụp\n[1:20] ảnh khá đấy. Có đầy đủ cả camera góp rộng các thứ nữa. Về phần hiệu năng thì đây là chiếc điện thoại có hiệu năng tốt nhất ở trong tầm giá. Với con chip DMJ\n[1:29] 9400 Plus mạnh nhất ở trong cái tầm giá này không có con nào mạnh hơn. Về pin thì nó có viên pin lên tới là 8000 mAh,",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://www.youtube.com/watch?v=etGY7JVoUDw",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://hungmobile.vn/tin-tuc/top-dien-thoai-duoi-10-trieu-dang-mua-nhat.html",
+      "title": "TOP 20 điện thoại DUỚI 10 TRIỆU tốt nhất, chụp ảnh đẹp nhất 2026",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "content": "Oppo Find X8s\n\n### 5. Oppo Find X8s Plus: Màn lớn hơn, pin 6000mAh, camera flagship\n\nOppo Find X8s Plus là bản phù hợp hơn cho người thích màn lớn và pin tốt hơn so với X8s. Máy vẫn giữ chip Dimensity 9400+, cụm 3 camera 50MP và pin 6000mAh, rất đáng cn nhắc dưới 10 triệu.\n\nCấu hình:\n\n Màn hình: 6.59 inch AMOLED, 120Hz, 4500 nits\n Chip: Dimensity 9400+\n RAM/ROM: 12GB/256GB\n Camera: 50MP + 50MP + 50MP | 32MP\n Pin: 6000mAh, sạc 80W\n\nOppo X8s Plus \n\nOppo X8s Plus [...] Gửi bình luận\n\nVui lòng để lại thông tin để gửi bình luận !\n\nSản phẩm bán chạy\n\nRedmi K80 5G Mới 100% (Sẵn TV)\n\n### Redmi K80 5G Mới 100% (Sẵn TV)\n\n10.190.000 ₫\n\nvivo iQOO Z10 Turbo Nguyên Seal Xịn\n\n### vivo iQOO Z10 Turbo Nguyên Seal Xịn\n\n9.190.000 ₫\n\nOppo Find X8s Plus Mới (ĐBH)\n\n### Oppo Find X8s Plus Mới (ĐBH)\n\n10.590.000 ₫\n\nOppo Find X8s Mới (ĐBH)\n\n### Oppo Find X8s Mới (ĐBH)\n\n10.690.000 ₫\n\nRedmi Turbo 5 Max Nguyên Seal Xịn\n\n### Redmi Turbo 5 Max Nguyên Seal Xịn\n\n10.690.000 ₫ [...] ## I. TOP điện thoại dưới 10 triệu của Xiaomi\n\n### 1. Redmi Turbo 4 Pro: Snapdragon 8s Gen 4, pin 7550mAh cực tru\n\nRedmi Turbo 4 Pro nổi bật trong tầm giá dưới 10 triệu nhờ chip Snapdragon 8s Gen 4, RAM 12GB và pin 7550mAh rất ấn tượng. Máy phù hợp với người dùng cần hiệu năng mạnh, màn đẹp và thời lượng pin cực tốt.\n\nCấu hình:\n\n Màn hình: 6.83 inch AMOLED, 120Hz, 3200 nits\n Chip: Snapdragon 8s Gen 4\n RAM/ROM: 12GB/256GB\n Camera: 50MP + 8MP | 20MP\n Pin: 7550mAh, sạc 90W\n\nRedmi Turbo 4 Pro",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "NEWS",
+        "evidence_url": "https://hungmobile.vn/tin-tuc/top-dien-thoai-duoi-10-trieu-dang-mua-nhat.html",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=9XvzyxPeUyU&xstg=CAMSBhUD-7L2Hw%3D%3D",
+      "title": "Ranking All Official 10 Million VND Smartphones: Choose Samsung for SAFETY or Go With BETTER Chin...",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "content": "The genuine smartphone segment in the 10 million VND price range is currently the most fiercely contested market with the intersection of major players. Consumers are always faced with the age-old dilemma: Should they choose a Samsung phone like the Galaxy A37 for safety, good warranty, and long-term updates, or invest in Chinese brands like the Redmi Note 15 Pro+, POCO X8 Pro, realme P4 Power, Vivo V70 FE, HONOR 600 Lite, or OPPO Reno15 F for powerful specs, long-lasting battery, and [...] [5:54] này từ màn hình 6,83 inch này, viên pin 7000 đi kèm sạc nhanh 90 W này đến những màn hình được trang bị phần viền của nó cũng khá mỏng rồi nhá các bạn. Sử dụng\n[6:02] nó gần như là flagship rồi. Đến những cái như kiểu con chip Dimens City 7036 Turbo thì mình thấy nó dừng lại ở mức vừa đủ ở trong tầm giá này. Nhưng cái\n[6:10] Vivo làm được hay nhất ở trong tầm giá đấy là camera của nó. Nó sẽ có những công nghệ độc quyền ví dụ như vòng sáng Aura Light này để chị em gọi là chụp ảnh [...] ### Transcript\n[0:00] Đây sẽ là tất cả những mẫu máy trong tầm giá 10 triệu đồng các bạn mua được hàng chính hãng Việt Nam. Và hôm nay mình sẽ ranking tất cả những con đấy cho anh em\n[0:06] xem. On 600 Lite, Vivo V70 FE, Galaxy A37, Oppo Reno 15S, Redmi Note 15 Pro Plus và cuối cùng là Realme P4 Power.",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://www.youtube.com/watch?v=9XvzyxPeUyU&xstg=CAMSBhUD-7L2Hw%3D%3D",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=sbPRprYOxdg&xstg=CAMSBhUD-7L2Hw%3D%3D",
+      "title": "Phone Consultation: Are there any good, reliable, and affordable phones under 10 million?",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "content": "[8:50] tiên là pin tốt, camera đẹp. Em đang dùng Galaxy S23 nhưng mà muốn đổi máy ạ.\n[8:56] Thế thì theo cá nhân mình nhá thì mình nghĩ là nếu mà hàng chính hãng ấy bạn có thể ưu tiên chiếc Xiaomi 15T Pro đang được bán tại Clickby với mức giá là 15.7\n[9:04] triệu90. Đấy thì cái chiếc điện thoại này mình đánh giá là có nó có camera ở mức độ khá đấy nhá. Đầy đủ luôn. Camera chính này, camera tele cũng có này, [...] [1:55] Samsung Galaxy S24. Galaxy S24 ấy thì nếu mà so với cả iPhone 14 thì được cái là nó sẽ có thêm cả camera tele các bạn\n[2:02] ạ. Và nó có cái màn hình tấn số quét nó sẽ mượt mà hơn. Mức giá thì nó sẽ rơi vào tầm khoảng 95 triệu tại Clickby.\n[2:10] Đấy, giá các bạn cũng có thể nhìn thấy trên hình. Thì hai con này thì mình đánh giá là về khả năng quay video với cả chụp ảnh đều ở mức độ đủ tốt. Nếu như [...] [9:12] camera góc siêu rộng cũng có này. Thậm chí là camera TL của nó là T5X. Con này chụp ảnh được đây nhá. Đấy, pin thì nó ở mức độ 500 thì mình đánh giá là pin 500\n[9:19] là ở mức độ đủ tốt rồi. Nó không phải là pin silicon cacbon nó không trâu như những viên pin 6000 hay 7000. Nhưng 500 cá nhân mình đánh giá là đủ tốt rồi đấy.\n[9:27] Hỗ trợ sạc 90 W là sạc siêu nhanh rồi.\n[9:29] Giờ lại còn màn hình 1,5K 120 Hz 6,83 inch AMOLED là đủ lớn rồi. Có vân tay",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://www.youtube.com/watch?v=sbPRprYOxdg&xstg=CAMSBhUD-7L2Hw%3D%3D",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://www.nguyenkim.com/nen-mua-dien-thoai-nao-NKUQ2075.b",
+      "title": "Nên mua điện thoại nào? 10 điện thoại smartphone tốt, bền đáng mua | Nguyễn Kim",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "content": "Hiệu năng ổn định: Chip MediaTek Dimensity 7050 giúp máy hoạt động mượt mà, tối ưu điện năng, xử lý nhanh chóng mọi tác vụ có cấu hình cao.\n\n- Giá tham khảo tại Nguyễn Kim: 8.890.000đ\n\nĐiện thoại OPPO Reno 10 (Nguồn: Internet)\n\n### 9. Điện thoại Xiaomi Redmi Note 12\n\n- Thông số kỹ thuật Xiaomi Redmi Note 12:\n\nMàn hình: AMOLED 6.67\"Full HD+\n\nHệ điều hành: Android 13\n\nCamera sau: Chính 50MP & Phụ 8MP, 2 MP\n\nCamera trước: 13 MP\n\nChip: Snapdragon 685 8 nhn\n\nRAM: 8GB\n\nDung lượng lưu trữ: 256GB [...] Bộ nhớ RAM: Dung lượng RAM 8GB và được tích hợp với hệ điều hành Android 13, đảm bảo mọi thao tác đa nhiệm đều được vận hành một cách trơn tru và mượt mà.\n\n- Giá tham khảo tại Nguyễn Kim: 9.490.000đ\n\nĐiện thoại Samsung Galaxy A54 (Nguồn: Internet)\n\n## Mua điện thoại chính hãng, ưu đãi trả góp 0% tại Nguyễn Kim [...] Điện thoại Samsung Galaxy Z Flip 5 (Nguồn: Internet)\n\n### 7. Điện thoại OPPO Find N2 Flip\n\n- Thông số kỹ thuật OPPO Find N2 Flip:\n\nMàn hình: AMOLED Chính 6.8\" & Phụ 3.26\"Full HD+\n\nHệ điều hành: Android 13\n\nCamera sau: Chính 50 MP & Phụ 8 MP\n\nCamera trước: 32 MP\n\nChip: MediaTek Dimensity 9000+ 8 nhn\n\nRAM: 8GB\n\nDung lượng lưu trữ: 256 GB\n\nSIM: 2 Nano SIM (hỗ trợ 5G)\n\nPin, Sạc: 4300 mAh, 44W\n\n- Đặc điểm nổi bật:",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.nguyenkim.com/nen-mua-dien-thoai-nao-NKUQ2075.b",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Nên mua điện thoại nào? 10 điện thoại smartphone tốt, bền đáng mua",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://clickbuy.com.vn/dien-thoai-7-8-trieu.html",
+      "title": "Top 5 điện thoại 7-8 triệu đáng tiền nhất 2026",
+      "query": "điện thoại giá khoảng 10000000 VND từ 9400000 đến 10600000 VND camera tốt pin lâu mua chính hãng",
+      "content": "Điện thoại 7-8 triệu chụp ảnh đẹp: Nếu ưu tiên camera, OPPO Reno13 F 5G và Redmi Note 14 Pro 5G là hai lựa chọn nổi bật. Cả hai đều có thuật toán xử lý ảnh tốt, phù hợp chụp chn dung, du lịch và mạng xã hội.\n Điện thoại 7 8 triệu chơi game tốt: Xiaomi Redmi Note 15 5G là lựa chọn tối ưu cho game thủ. Chip mạnh, màn hình mượt và pin lớn giúp chơi game ổn định trong thời gian dài. [...] Camera và pin: Nếu bạn quan tm đến điện thoại 7 8 triệu chụp ảnh đẹp, hãy ưu tiên máy có camera chính độ phn giải cao, hỗ trợ AI. Bên cạnh đó, pin từ 5.000 mAh trở lên sẽ giúp bạn yên tm sử dụng cả ngày dài [...] Chuyên gia công nghệ với 12+ năm kinh nghiệm trong ngành bán lẻ điện thoại di động. Đánh giá khách quan dựa trên trải nghiệm thực tế và phn tích chuyên su về thị trường smartphone Việt Nam.\n\n📅 19/01/2026 🔄 Cập nhật liên tục\n\n### Có thể bạn sẽ thích\n\nXiaomi Redmi Note 14 Pro (5G) 8GB 256GB - 1 Đổi 1 12 Tháng\n\n1 đổi 1 12 Tháng\n\nXiaomi Redmi Note 14 Pro (5G) 8GB 256GB - 1 Đổi 1 12 Tháng\n\n7,390,000 ₫ ~~9,490,000 ₫~~\n\n(13 đánh giá)\n\nƯu đãi Edu  7,190,000 ₫\n\nKhách hàng thn thiết  7,331,000 ₫",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://clickbuy.com.vn/dien-thoai-7-8-trieu.html",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Trang không phải trang bán sản phẩm: ARTICLE",
+        "result_type": "ARTICLE",
+        "page_heading": "Top 5 điện thoại 7-8 triệu đáng mua nhất 2026",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.mobile57.com/vn/phones/oppo-find-x8s-15040",
+      "title": "Oppo Find X8s Price in Vietnam (VND) – September 2026",
+      "query": "\"Oppo Find X8s\" mua Việt Nam VND",
+      "content": "Mobile57 logo\n\nVietnamChange  Compare\n\n# Oppo Find X8s Price in Vietnam – Features & Full Specifications\n\n## Oppo Find X8s Price in Vietnam\n\n15,362,000 VND (US$: 570.00)\n\nOppo Find X8s Price Vietnam\n\nViews: 12,599 |        Votes: 1/5 - 1\n\nHow would you rate Oppo Find X8s?\n\n★ ★ ★ ★ ★\n\nThank you for your rating!\n\n## Oppo Find X8s Best Features & Full Specs [...] Oppo Find X7\n\nVND 13,325,525\n\nOppo Ace2 EVA Edition\n\nOppo Ace2 EVA Edition\n\nVND 13,207,600 [...] Oppo Reno10 Pro Plus\n\nVND 13,773,640\n\nOppo Reno 15 Pro (China)\n\nOppo Reno 15\n\nVND 13,891,565\n\n## New Released Oppo Phones\n\nOppo K14 Lite\n\nOppo K14 Lite\n\nVND 4,009,450\n\nOppo Find X10 Pro Max\n\nOppo Find X10 Pro Max\n\nVND 24,764,250\n\nOppo Find X10  E\n\nOppo Find X10 E\n\nVND 16,485,915\n\nOppo A7 Pro\n\nOppo A7 Pro\n\nVND 8,018,900\n\n## Popular Oppo Phones\n\nOppo A7 Pro\n\nOppo A7 Pro\n\nVND 8,018,900\n\nOppo Pad Mini\n\nOppo Pad Mini\n\nVND 15,330,250\n\nOppo Find X10 Pro Max\n\nOppo Find X10 Pro Max\n\nVND 24,764,250",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.mobile57.com/vn/phones/oppo-find-x8s-15040",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": true,
+        "reason": "Title and direct URL must identify the same model/variant.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Oppo Find X8s Price in Vietnam – Features & Full Specifications",
+        "discovery": [
+          {
+            "name": "Oppo Find X8s Price in Vietnam – Features & Full Specifications",
+            "brand": "Oppo",
+            "model": "Find X8s Price in Vietnam – Features & Full Specifications",
+            "variant": {
+              "sku": "15885"
+            },
+            "price_type": "DISCOVERY_ONLY"
+          }
+        ],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://hungmobile.vn/dien-thoai/oppo-find-x8s-5g-gia-re.html",
+      "title": "Oppo Find X8s Mới (ĐBH)",
+      "query": "\"Oppo Find X8s\" mua Việt Nam VND",
+      "content": "Oppo Find X8S. Giá Oppo Find X8s tại Việt Nam mới nhất: HOTLINE 090 154 8866 để được tư vấn mua máy hoặc giữ máy. Máy có độ mỏng chỉ 7.7mm và trọng lượng 179g,",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://hungmobile.vn/dien-thoai/oppo-find-x8s-5g-gia-re.html",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Oppo Find X8s Mới (ĐBH)",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://mobilecity.vn/dien-thoai/oppo-find-x8s-plus-cao-cap.html",
+      "title": "OPPO Find X8S Plus 5G (Dimensity 9400 Plus) giá rẻ, BH 12 tháng",
+      "query": "\"Oppo Find X8s\" mua Việt Nam VND",
+      "content": "OPPO Find X8s Plus hiện đã có mặt tại MobileCity được bán với mức giá thấp nhất và chất lượng tốt nhất Việt Nam. Khi đến với MobileCity, bạn còn nhận được sự hỗ trợ và tư vấn từ đội ngũ chuyên gia giàu kinh nghiệm.\n\nĐịa chỉ mua OPPO Find X8s Plus tại Hà Nội, Đà Nẵng, Tp.HCM \n\nHệ thống MobileCity toàn quốc - Nơi bán OPPO Find X8 uy tín, chất lượng\n\n \n\nĐừng bỏ lỡ cơ hội trải nghiệm và sở hữu OPPO Find X8 tại MobileCity!\n\nĐịa chỉ mua OPPO Find X8s Plus tại Hà Nội, Đà Nẵng, Tp.HCM: [...] Với các đặc điểm nổi bật như vậy, chiếc điện thoại này có giá bao nhiêu? Cu trả lời sẽ có ngay sau đy.\n\n## OPPO Find X8s Plus giá bao nhiêu?\n\nHiện tại, OPPO Find X8s Plus giá 13.050.000 ₫ được MobileCity bán ra với cam kết rẻ nhất đi kèm chế độ bảo hành tốt nhất thị trường. Điều này giúp mang đến sự yên tm cho người mua.\n\nChiếc điện thoại OPPO mới này có tới 4 phiên bản bộ nhớ để lựa chọn. Mời bạn cùng tham khảo và lựa chọn thông qua bảng giá bên dưới. [...] |  |  |\n --- |\n| Sản phẩm | Giá bán |\n| OPPO Find X8S Plus | 13.050.000 ₫ |\n| REDMI Turbo 4 | 8.150.000 ₫ |\n| Realme Neo7 SE | 5.850.000 ₫ |\n| Realme Neo7 | 7.150.000 ₫ |\n| OPPO Find X8 | 12.250.000 ₫ |\n\noppo-find-x8s-plus-camera-chinh \n\nCamera chính 50MP; Quay phim 4K\n\n \n\nCamera góc siêu rộng 120° lý tưởng cho ảnh phong cảnh hoặc chụp nhóm, hạn chế méo hình. Quay video chất lượng 4K@60fps với hỗ trợ Dolby Vision, HDR và video 10-bit cho màu sắc sống động, mượt mà.",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://mobilecity.vn/dien-thoai/oppo-find-x8s-plus-cao-cap.html",
+        "page_fetched": false,
+        "fetch_failure": "http_or_network",
+        "fetch_blocked": true,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "reason": "Editorial/multiple-product search metadata.",
+        "image_url": null,
+        "image_source": null,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=_FdTMV4Th2Y",
+      "title": "Review OPPO Find X8s - too good for around 12 million but you should consider before buying !!!",
+      "query": "\"Oppo Find X8s\" mua Việt Nam VND",
+      "content": "### Transcript\n[0:07] Đẹp không các bạn? Trời ơi cưng không?\n[0:10] Quá cưng luôn. Đây là một cái điện thoại đến từ nhà Oppo mà mình khá tiếc khi mà Oppo đã không mang con này về bán chính hãng ở Việt Nam. Chứ con này về Việt Nam\n[0:19] bán chính hãng thì thôi xác định luôn chắc nhiều đối thủ khác không thể nào có cửa được các bạn ạ. Đây là Oppo F8 nhưng mà nó có chữ S phía đằng sau đấy. F X8S. [...] [6:07] qua chuyển lại giữa những ứng dụng và tất cả những phản hồi một cách cực kỳ nhanh chóng như thế này thì nói thẳng luôn ra iOS bây giờ đôi khi nó còn delay\n[6:17] nó còn chưa chắc đã mượt bằng con Oppo Fx8s này với Coloros và cụ thể ở đây là Coloros 15. Các bạn dùng những cái điện\n[6:25] thoại đến từ OPPO thời điểm bây giờ, cho dù là máy chính hãng ở Việt Nam, cho dù là máy nội địa Trung Quốc, thậm chí cho dù các bạn sử dụng những cái mẫu máy tầm [...] [13:15] thậm chí hàng loạt những cái tính năng liên quan đến cái AI các kiểu này, trợ lý cuộc của AI, tóm tắt này, dịch cuộc\n[13:21] gọi các kiểu này. Thế nhưng mà nói chung là không phải cái nào cũng dùng được đâu. Đấy các bạn thấy không? Toàn tiếng Trung thì mình bó tay. Còn những cái\n[13:29] liên quan đến cái Brino Memory tức là cái gì nhỉ? Nó gọi là tiếng Việt nó là cái gì ạ? trung tâm",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://www.youtube.com/watch?v=_FdTMV4Th2Y",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://www.oppo.com/vn/smartphones/series-find-x/find-x8",
+      "title": "OPPO Find X8 | OPPO Việt Nam",
+      "query": "\"Oppo Find X8s\" mua Việt Nam VND",
+      "content": "Find X8 sử dụng công nghệ LinkBoost và hệ thống ăng-ten vòm 360° để cung cấp khả năng truyền và nhận tín hiệu mạnh mẽ.\n\nĐiều này giúp loại bỏ các điểm chết và đảm bảo kết nối ổn định ngay cả ở những khu vực có tín hiệu yếu, chẳng hạn như thang máy hoặc các buổi hòa nhạc đông đúc.\n\nMáy cũng được trang bị hệ thống Wi-Fi ba ăng-ten cho kết nối cực kỳ ổn định.\n\n### Tại sao tôi nên chọn Find X8?\n\nFind X8 là sự kết hợp hoàn hảo giữa sức mạnh và vẻ đẹp thanh lịch. [...] Thoải mái ghi lại những đoạn video đạt chất lượng Dolby Vision HDR 10-bit chuyên nghiệp mà không bị gián đoạn hay mất khung hình, cho dù bạn đang khám phá thế giới trong những điều kiện khắc nghiệt. Hệ thống 4 mic mới được phát triển để mang lại m thanh sống động và chn thực hơn. Không chỉ có thế, Find X8 còn tái hiện màu sắc rực rỡ, phn lớp tối ưu và chất lượng hình ảnh đạt mức siêu thực khi bạn quay chụp trên mọi camera. Hơn cả thế, là khả năng dễ dàng chỉnh sửa trực tiếp ngay trên điện [...] Máy sở hữu hệ thống camera chuyên nghiệp được đồng phát triển với Hasselblad, hiệu năng đáng kinh ngạc từ chip Dimensity 9400, pin dung lượng lớn 5630mAh với sạc nhanh 80W và bộ công cụ AI mạnh mẽ, tất cả được gói gọn trong một thn máy mỏng nhẹ, bền bỉ.\n\nXem thêm\n\nThu gọn\n\nLưu Ý:",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.oppo.com/vn/smartphones/series-find-x/find-x8/",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Find X8",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://hungmobile.vn/dien-thoai/oppo-find-x8s-plus.html",
+      "title": "Có sẵn Oppo Find X8S Plus 5G giá rẻ nhất HN, sẵn tiếng Việt, mới 100%",
+      "query": "\"Oppo Find X8s Plus\" mua Việt Nam VND",
+      "content": "oppo-find-x8s-plus\n\nĐặt hàng: Oppo Find X8s Plus Mới (ĐBH)\n\nTrả góp từ: 2.118.000 ₫\n\n10.590.000 ₫\n\nĐể đặt hàng, Quý khách vui lòng điền đầy đủ các thông tin dưới đy. HungMobile sẽ liên hệ xác nhận trong vòng 15 phút\n\nĐặt hàng\n\noppo-find-x8s-plus\n\nMua trả góp: Oppo Find X8s Plus Mới (ĐBH)\n\nTrả góp từ: 2.118.000 ₫\n\n10.590.000 ₫\n\nĐể đăng ký mua trả góp, Quý khách vui lòng điền đẩy đủ các thông tin dưới đy. HungMobile sẽ liên hệ xác nhận trong vòng 15 phút\n\nĐăng ký mua trả góp\n\nkho-ng-ta-ng-gia [...] oppo-find-x8s-plus\n\nBảo hành 15 tháng phần cứng cơ bản (loa, mic,...), 1 đổi 1 trong 15 ngày đầu với mọi lỗi từ nhà sản xuất. Hỗ trợ phần mềm miễn phí trọn đời máy.\n\n10.590.000 ₫\n\nTrả góp chỉ từ:\n\n2.118.000 ₫\n\nChọn màu:\n\nĐen   Trắng   Xanh   Hồng\n\nChọn phiên bản:\n\n10,590,000 ₫\n\n11,290,000 ₫\n\nChọn tình trạng sản phẩm:\n\nX8 (ĐBH)\n\n9.990.000 ₫\n\nX8s Plus (ĐBH)\n\n10.590.000 ₫\n\nKhuyến mãi:\n\n♦ Sản phẩm CHƯA CÓ LỊCH VỀ HÀNG, giá mang tính chất tham khảo. [...] 180 bình luận & đánh giá\n\n10.590.000 ₫\n\nKhuyến mãi:\n\n♦ Sản phẩm CHƯA CÓ LỊCH VỀ HÀNG, giá mang tính chất tham khảo.\n\n♦ Chỉ bán hàng mới nguyên Seal xịn, khách tự tay bóc máy\n\n♦ Bạn theo dõi HungMobile để cập nhật giá chính xác nhấy.\n\nDịch vụ thay màn hình chính hãng giá tốt nhất Hà Nội: XEM NGAY\n\nĐặt Mua ngay\n\nMua trực tiếp & Giao hàng COD toàn quốc\n\nĐăng ký trả góp\n\nThủ tục đơn giản, Lãi suất 0%\n\n|  |",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://hungmobile.vn/dien-thoai/oppo-find-x8s-plus.html",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Oppo Find X8s Plus Mới (ĐBH)",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.duchuymobile.com/oppo-find-x8s-plus",
+      "title": "OPPO Find X8S Plus Chính Hãng Mới, Giá Giảm 10 Triệu",
+      "query": "\"Oppo Find X8s Plus\" mua Việt Nam VND",
+      "content": "OPPO Find X8S Plus là chiếc điện thoại flagship cao cấp mới nhất của thương hiệu OPPO được ra mắt trong tháng 4/2025 tại thị trường nội địa Trung Quốc. Mẫu smartphone mới sở hữu cấu hình cực ấn tượng với Mediatek Dimensity 9400+, bộ ba camera Hasselblad 50MP và dung lượng pin 6000mAh.\n\n  Hiện tại, OPPO Find X8S Plus có giá từ 14.719.000 ₫ cho phiên bản cấu hình 12GB RAM và 256GB ROM tại Đức Huy Mobile.\n\n  Mục lục [...] Điện thoại OPPO Find X8S Plus có giá là 14.719.000 ₫ cho phiên bản bộ nhớ 256GB đi kèm 12GB RAM tại Đức Huy Mobile. Ngoài ra, bạn có thể tham khảo thêm các biến thể cấu hình khác trong bảng giá chi tiết dưới đy.\n\n  Bảng giá OPPO Find X8S Plus mới nhất 2025\n\n  |  |  |\n   --- |\n  | Dung lượng | Giá bán |\n  | OPPO Find X8S Plus 12GB 256GB | 14.719.000 ₫ |\n  | OPPO Find X8S Plus 12GB 512GB | Liên hệ |\n  | OPPO Find X8S Plus 16GB 512GB | Liên hệ |\n  | OPPO Find X8S Plus 16GB 1TB | Liên hệ | [...] 11.599.000 đ 19.990.000 đ iPad Gen 10 2022 64GB Wifi Chính Hãng Apple Việt Nam\n\n    iPad Gen 10 2022 64GB Wifi Chính Hãng Apple Việt Nam\n\n    6.599.000 đ 12.990.000 đ Samsung Galaxy Tab S10 Ultra 5G (12GB | 256GB) Chính Hãng\n\n    Samsung Galaxy Tab S10 Ultra 5G (12GB | 256GB) Chính Hãng\n\n    18.499.000 đ 33.990.000 đ\n\n     + Thương hiệu\n      + Macbook\n      + HP\n      + Asus\n      + Acer\n      + Dell\n      + MSI\n      + Dòng sản phẩm HOT\n      + MacBook Pro M4\n      + MacBook Air 15 inch",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.duchuymobile.com/oppo-find-x8s-plus",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "OPPO Find X8S Plus (12GB | 256GB)  Mới 100% Fullbox",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.chotot.com/mua-ban-dien-thoai-oppo-find-x8s-plus-gia-tu-10-trieu-den-15-trieu-sfhXLm1VLcWiO0",
+      "title": "Mua bán Oppo Find X8s Plus giá 10 - 15 triệu ở Toàn quốc máy đẹp 09/2026",
+      "query": "\"Oppo Find X8s Plus\" mua Việt Nam VND",
+      "content": "Oppo Find X8s Plus 16/512 Dimen 9400 Plus Có Góp. Mua bán Điện thoại tại Quận Nam Từ Liêm Hà Nội được đăng bởi MPhones Mỹ Đình\n\n  4 giờ trước\n\n  ## Oppo Find X8s Plus 16/512 Dimen 9400 Plus Có Góp\n\n  Find X8s+256 GB>12 tháng\n\n  13.000.000 đ\n\n  Hà Nội\n\n  M-Phones Cầu Giấy\n\n  M-Phones Cầu Giấy\n\n  4.8\n\n  7 đã bán\n\n OPPO Find X8s+ Đen 12GB/256GB. Mua bán Điện thoại tại Quận Đống Đa Hà Nội được đăng bởi Ducnm\n\n  3 ngày trước\n\n  5\n\n  ## OPPO Find X8s+ Đen 12GB/256GB\n\n  Find X8s+256 GB [...] Find X8s+256 GB\n\n  11.400.000 đ\n\n  Tp Hồ Chí Minh\n\n  Kiên Android Shop\n\n  Kiên Android Shop\n\n  4.9\n\n  3685 đã bán\n\n Tin hết hạn\n\n  🔥 Oppo Find X8s Plus / Pin 100%. Mua bán Điện thoại tại Quận Cẩm Lệ Đà Nẵng được đăng bởi Good Phone\n\n  2 tháng trước\n\n  4\n\n  ## 🔥 Oppo Find X8s Plus / Pin 100%\n\n  Find X8s+256 GBCòn bảo hành\n\n  10.200.000 đ\n\n  Đà Nẵng\n\n  Good Phone\n\n  Good Phone\n\n  5.0\n\n  2442 đã bán\n\n Tin hết hạn [...] Tin hết hạn\n\n  🔥 Oppo Find X8s Plus 12/256 sạc cáp pin 100% - gl. Mua bán Điện thoại tại Quận Tn Phú Tp Hồ Chí Minh được đăng bởi Trọng\n\n  2 tháng trước\n\n  6\n\n  ## 🔥 Oppo Find X8s Plus 12/256 sạc cáp pin 100% - gl\n\n  Find X8s+256 GB1 tháng\n\n  10.790.000 đ\n\n  Tp Hồ Chí Minh\n\n  Trọng\n\n  Trọng\n\n  4.8\n\n  386 đã bán\n\n Tin hết hạn\n\n  Oppo Find X8s Plus 16GB 512GB Trắng 99% nguyên zin. Mua bán Điện thoại tại Quận 6 Tp Hồ Chí Minh được đăng bởi Chuyên mua bán điện thoại laptop\n\n  2 tháng trước\n\n  6",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.chotot.com/mua-ban-dien-thoai-oppo-find-x8s-plus-gia-tu-10-trieu-den-15-trieu-sfhXLm1VLcWiO0",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Trang không phải trang bán sản phẩm: CATEGORY",
+        "result_type": "CATEGORY",
+        "page_heading": "Điện thoại Oppo Find X8s Plus giá 10 - 15 triệu ở Toàn quốc máy bền đẹp",
+        "discovery": [],
+        "child_products": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=jw78r-l6U2c",
+      "title": "Used as main device to review OPPO Find X8S Plus",
+      "query": "\"Oppo Find X8s Plus\" mua Việt Nam VND",
+      "content": "Dùng làm máy chính đánh giá OPPO Find X8S Plus: Camera Tele kém! PIN trâu, Dimensity 9400 mượt! Link check giá: -OPPO Find X8s Plus:",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://www.youtube.com/watch?v=jw78r-l6U2c",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://cellphones.com.vn/thu-cu-doi-moi/trade-in-oppo",
+      "title": "Thu cũ đổi mới OPPO | Lên đời điện thoại trợ giá hấp dẫn",
+      "query": "site:cellphones.com.vn \"OPPO Find X8S Plus\" giá bán Việt Nam VND",
+      "content": "Giá thu đến: 52.581.500đ. Oppo Find X8 2,000,000. Thành phố Hồ Chí Minh, Việt Nam. Điện thoại: 028.7108.9666.",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://cellphones.com.vn/thu-cu-doi-moi/trade-in-oppo",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Thu cũ đổi mới OPPO | Lên đời điện thoại trợ giá hấp dẫn",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://cellphones.com.vn/sforum/oppo-find-n5-ra-mat-tai-viet-nam",
+      "title": "OPPO Find N5 chính thức ra mắt VN: Smartphone gập ...",
+      "query": "site:cellphones.com.vn \"OPPO Find X8S Plus\" giá bán Việt Nam VND",
+      "content": "Giá bán. OPPO Find N5 chính thức được mở bán tại tất cả các hệ thống bán lẻ trên toàn quốc từ ngày 12/04/2025 với giá bán lẻ chính thức là 44,990,000 VNĐ.",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://cellphones.com.vn/sforum/oppo-find-n5-ra-mat-tai-viet-nam",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://cellphones.com.vn/sforum/danh-gia-hieu-nang-oppo-reno11-f-5g-dimensity-7050-khong-moi-lieu-oppo-co-lam-no-khac-biet",
+      "title": "Đánh giá hiệu năng OPPO Reno11 F 5G",
+      "query": "site:cellphones.com.vn \"OPPO Find X8S Plus\" giá bán Việt Nam VND",
+      "content": "Bởi lẽ dù sao đây là chiếc smartphone nhấn mạnh vào thiết kế, camera là chính chứ không phải là máy chuyên game. Với mức giá tầm 9 triệu người dùng có thể tìm",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://cellphones.com.vn/sforum/danh-gia-hieu-nang-oppo-reno11-f-5g-dimensity-7050-khong-moi-lieu-oppo-co-lam-no-khac-biet",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://cellphones.com.vn/phu-kien/dan-man-hinh.html",
+      "title": "Dán màn hình điện thoại, kính cường lực giá rẻ 09/2026",
+      "query": "site:cellphones.com.vn \"OPPO Find X8S Plus\" giá bán Việt Nam VND",
+      "content": "Dán màn hình, kính cường lực điện thoại iPhone, Samsung,... mỏng nhẹ chống va đập, giá rẻ. Dán màn hình điện thoại bảo hành 1 đổi 1 tại cửa hàng CellphoneS",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://cellphones.com.vn/phu-kien/dan-man-hinh.html",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Dán màn hình điện thoại",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s10-ultra-5g-16gb-1tb",
+      "title": "Samsung Galaxy Tab S10 Ultra 5G 16GB/1TB",
+      "query": "\"Samsung Galaxy Tab S10 Ultra 5G\" giá Việt Nam VND",
+      "content": "Samsung Galaxy Tab S10 Ultra 5G 16GB/1TB. 39,990,000VNĐ 36,490,000VNĐ. Màu sắc. Xám Moonstone 36,490,000VNĐ.",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s10-ultra-5g-16gb-1tb",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Samsung Galaxy Tab S10 Ultra 5G 16GB/1TB",
+        "discovery": [
+          {
+            "name": "Samsung Samsung Galaxy Tab S10 Ultra 5G 16GB/1TB",
+            "brand": "Samsung",
+            "model": "Samsung Galaxy Tab S10 Ultra 5G 16GB/1TB",
+            "variant": {},
+            "price_type": "SUGGESTED_RANGE",
+            "price_min": null,
+            "price_max": null
+          }
+        ],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.viettablet.com/may-tinh-bang/may-tinh-bang-samsung/tab-s10-series",
+      "title": "Samsung Galaxy Tab S10 (Plus | Ultra | FE) Cấu Hình",
+      "query": "\"Samsung Galaxy Tab S10 Ultra 5G\" giá Việt Nam VND",
+      "content": "Samsung Galaxy Tab S10 Ultra 5G 12GB/256GB. 20.999.000 ₫. Samsung ... Sau khi chính thức ra bán, máy sẽ được bán chính hãng tại Việt Nam với mức giá hấp dẫn.",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.viettablet.com/may-tinh-bang/may-tinh-bang-samsung/tab-s10-series",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Tab S10 series",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.duchuymobile.com/samsung-galaxy-tab-s10-ultra-5g",
+      "title": "Samsung Galaxy Tab S10 Ultra 5G | Giá Giảm Ngay 30%",
+      "query": "\"Samsung Galaxy Tab S10 Ultra 5G\" giá Việt Nam VND",
+      "content": "Samsung Galaxy Tab S10 Ultra 5G (12GB | 256GB) Chính Hãng · Nobox 18.499.000 đ · Bạc Platinum 21.999.000 đ · Xám Moonstone 21.999.000 đ.",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.duchuymobile.com/samsung-galaxy-tab-s10-ultra-5g",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Samsung Galaxy Tab S10 Ultra 5G (12GB | 256GB) Chính Hãng  Mới 100% Nguyên Seal",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Szc_fyO0Uq8",
+      "title": "Samsung Galaxy Tab S10 Ultra Review",
+      "query": "\"Samsung Galaxy Tab S10 Ultra 5G\" giá Việt Nam VND",
+      "content": "Đánh giá Galaxy Tab S10 Ultra: 31 TRIỆU cho tablet xịn nhất của Samsung, và ai sẽ mua? | Vật Vờ Studio ▻ Lên đời Tab S10 Ultra giảm đến 3",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://www.youtube.com/watch?v=Szc_fyO0Uq8",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://cuahangsamsung.vn",
+      "title": "Cửa Hàng Trải Nghiệm SAMSUNG: Trang chủ",
+      "query": "site:cuahangsamsung.vn \"Samsung Galaxy Tab S10 Ultra 5G\" giá bán Việt Nam VND",
+      "content": "9,390,000VNĐ 7,990,000VNĐ. Mua hàng · Samsung Galaxy Tab S10 Ultra 5G 16GB/1TB. -9%. Hot. New. Samsung Galaxy Tab S10 Ultra 5G 16GB/1TB. 39,990,000VNĐ",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://cuahangsamsung.vn",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "URL là trang chủ/danh mục/tìm kiếm/bài viết hoặc không an toàn.",
+        "result_type": "HOMEPAGE",
+        "page_heading": "Trang chủ | Cửa Hàng Trải Nghiệm SAMSUNG",
+        "discovery": [],
+        "child_products": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s9-fe-wifi-6gb-128gb",
+      "title": "Samsung Galaxy Tab S9 FE WIFI 6GB 128GB",
+      "query": "site:cuahangsamsung.vn \"Samsung Galaxy Tab S10 Ultra 5G\" giá bán Việt Nam VND",
+      "content": "Samsung Galaxy Tab S10 Ultra 5G 16GB/1TB. 39,990,000VNĐ 36,490,000VNĐ. Sản phẩm bán chạy. Ốp lưng bảo vệ linh hoạt S23",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s9-fe-wifi-6gb-128gb",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Samsung Galaxy Tab S9 FE WIFI 6GB 128GB",
+        "discovery": [
+          {
+            "name": "Samsung Samsung Galaxy Tab S9 FE WIFI 6GB 128GB",
+            "brand": "Samsung",
+            "model": "Samsung Galaxy Tab S9 FE WIFI 6GB 128GB",
+            "variant": {},
+            "price_type": "SUGGESTED_RANGE",
+            "price_min": null,
+            "price_max": null
+          }
+        ],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s10-fe-wifi-8gb-128gb",
+      "title": "Samsung Galaxy Tab S10 FE+ WIFI 8GB/128GB",
+      "query": "site:cuahangsamsung.vn \"Samsung Galaxy Tab S10 Ultra 5G\" giá bán Việt Nam VND",
+      "content": "Samsung Galaxy Tab S10 FE+ WIFI 8GB/128GB · Xanh Sky 12,490,000VNĐ · Xám 12,490,000VNĐ · Bạc 12,490,000VNĐ.",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s10-fe-wifi-8gb-128gb",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Samsung Galaxy Tab S10 FE+ WIFI 8GB/128GB",
+        "discovery": [
+          {
+            "name": "Samsung Samsung Galaxy Tab S10 FE+ WIFI 8GB/128GB",
+            "brand": "Samsung",
+            "model": "Samsung Galaxy Tab S10 FE+ WIFI 8GB/128GB",
+            "variant": {},
+            "price_type": "SUGGESTED_RANGE",
+            "price_min": null,
+            "price_max": null
+          }
+        ],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s9-ultra-5g-16g-1tb",
+      "title": "Samsung Galaxy Tab S9 Ultra 5G 16G|1TB",
+      "query": "site:cuahangsamsung.vn \"Samsung Galaxy Tab S10 Ultra 5G\" giá bán Việt Nam VND",
+      "content": "Samsung Galaxy Tab S9 Ultra 5G 16G|1TB. 38,990,000VNĐ. Mua hàng",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://cuahangsamsung.vn/shop/product/samsung-galaxy-tab-s9-ultra-5g-16g-1tb",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Samsung Galaxy Tab S9 Ultra 5G 16G|1TB",
+        "discovery": [
+          {
+            "name": "Samsung Samsung Galaxy Tab S9 Ultra 5G 16G|1TB",
+            "brand": "Samsung",
+            "model": "Samsung Galaxy Tab S9 Ultra 5G 16G|1TB",
+            "variant": {},
+            "price_type": "SUGGESTED_RANGE",
+            "price_min": null,
+            "price_max": null
+          }
+        ],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.duchuymobile.com",
+      "title": "Đức Huy Mobile - Điện thoại, Tablet, Đồng hồ, Phụ kiện Giá Rẻ",
+      "query": "site:duchuymobile.com điện thoại giá khoảng 10000000 VND giá bán",
+      "content": "Bán chạy nhất\n\n      Macbook Pro 16 inch M5 Max 36GB/2TB Chính Hãng\n\n      Macbook Pro 16 inch M5 Max 36GB/2TB Chính Hãng\n\n      93.449.000 đ 104.990.000 đ MacBook Pro 14 inch M5 Max 36GB/2TB Chính Hãng\n\n      MacBook Pro 14 inch M5 Max 36GB/2TB Chính Hãng\n\n      88.199.000 đ 97.990.000 đ HUAWEI MateBook Fold Ultimate (32GB | 1TB)\n\n      HUAWEI MateBook Fold Ultimate (32GB | 1TB)\n\n      84.999.000 đ Mac mini M5 Pro 64GB/1TB Chính Hãng\n\n      Mac mini M5 Pro 64GB/1TB Chính Hãng [...] Trả góp 0%  26%\n\n  Siêu giảm giá HONOR X9d 5G Chính Hãng\")\n\n  ### HONOR X9d 5G (8GB | 256GB) Chính Hãng\n\n  7.399.000 đ   9.990.000 đ\n\n  Trả trước: 2.219.700 đ\n\n  GIẢM 10%\n\n  iPhone 17 Series\n\n  Siêu giảm giá cực đã\n\n  iPhone 17 Series\n\n  GIẢM 30%\n\n  Galaxy Z Fold7\n\n  Siêu giảm giá cuối năm\n\n  Galaxy Z Fold7\n\n  GIẢM 30%\n\n  Xiaomi 15T Series\n\n  Siêu giảm giá\n\n  Xiaomi 15T Series\n\n  ## MÁY TÍNH BẢNG\n\n  + iPad Gen 9\n  + iPad Pro M1\n  + Galaxy Tab\n  + Tab S8 Ultra\n  + Tab S7\n  + Tab S6 Lite [...] icon flashsale   Còn 7/10 suất\n\n  Chính hãng Siêu giảm giá Điện thoại Samsung Galaxy A57 5G Chính Hãng\")  24%\n\n  ### Samsung Galaxy A57 5G (12GB | 256GB) Chính Hãng\n\n  Full HD+ 6.7\"\n\n  10.999.000 đ   14.490.000 đ\n\n  Trả trước: 3.299.700 đ\n\n  icon flashsale   Còn 6/10 suất\n\n  Chính hãng Hot OPPO Find X9s Chính Hãng\")  32%\n\n  ### OPPO Find X9s (12GB | 256GB) Chính Hãng\n\n  1.5K+ 6.59\"\n\n  16.999.000 đ   24.990.000 đ\n\n  Trả trước: 5.099.700 đ\n\n  icon flashsale   Còn 5/10 suất",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "evidence_url": "https://www.duchuymobile.com",
+        "rejection_code": "resource_budget",
+        "reason": "Remaining page slots reserved for direct product recovery.",
+        "image_url": null
+      }
+    },
+    {
+      "url": "https://www.duchuymobile.com/samsung-galaxy-s25-ultra-5g",
+      "title": "Samsung Galaxy S25 Ultra 5G (12GB | 256GB) Chính Hãng",
+      "query": "site:duchuymobile.com điện thoại giá khoảng 10000000 VND giá bán",
+      "content": "Bán chạy nhất\n\n      Macbook Pro 16 inch M5 Max 36GB/2TB Chính Hãng\n\n      Macbook Pro 16 inch M5 Max 36GB/2TB Chính Hãng\n\n      93.449.000 đ 104.990.000 đ MacBook Pro 14 inch M5 Max 36GB/2TB Chính Hãng\n\n      MacBook Pro 14 inch M5 Max 36GB/2TB Chính Hãng\n\n      88.199.000 đ 97.990.000 đ HUAWEI MateBook Fold Ultimate (32GB | 1TB)\n\n      HUAWEI MateBook Fold Ultimate (32GB | 1TB)\n\n      84.999.000 đ Mac mini M5 Pro 64GB/1TB Chính Hãng\n\n      Mac mini M5 Pro 64GB/1TB Chính Hãng [...] 83.699.000 đ\n\n       m thanh\n\n        + Hãng tai nghe\n        + Apple\n        + Tai nghe Samsung\n        + Tai nghe OPPO\n        + Chọn loại tai nghe\n        + Tai Nghe Bluetooth\n        + Tai Nghe Có Dy\n        + Tai Nghe Chụp Tai\n        + Tai Nghe In Ear (Nhét Tai)\")\n        + Tai Nghe Chống Ồn\n\n        Bán chạy nhất\n\n        Tai nghe Apple AirPods 4 - Chính Hãng Apple Việt Nam\n\n        Tai nghe Apple AirPods 4 - Chính Hãng Apple Việt Nam [...] + Bảo hành 12 tháng chính hãng.\n  + Giao hàng C.O.D trên toàn quốc\n  + Tình trạng: Cáp Type C, Cy lấy sim, Hộp, Sách hướng dẫn\n  + Trả trước 30% qua Công ty tài chính. Thủ tục chỉ cần CCCD + GPLX;\n  + Bao test 1 đổi 1 trong 7 Ngày bao gồm nguồn và màn hình\n  + Hoặc trả góp lãi suất 0% qua thẻ tín dụng Visa, Master, JCB.\n\n  Màn hình\n\n  Kính cường lực Corning Gorilla Armor 2\n\n  2K+ (1440 x 3120 Pixels)\n\n  Dynamic AMOLED 2X, 120 Hz, HDR10+, 2600 nits\n\n  6.9\"\n\n  Camera sau",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.duchuymobile.com/samsung-galaxy-s25-ultra-5g",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Samsung Galaxy S25 Ultra 5G (12GB | 256GB) Chính Hãng  Mới 100% Nguyên Seal  (Full VAT)",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.duchuymobile.com/oppo-find-n3",
+      "title": "Oppo Find N3 5G (16GB | 512GB) Chính Hãng",
+      "query": "site:duchuymobile.com điện thoại giá khoảng 10000000 VND giá bán",
+      "content": "OPPO Find N3 là mẫu điện thoại màn hình gập cao cấp và mạnh mẽ nhờ chip Snapdragon 8 Gen 2 cùng hệ thống camera Hasselblad đầy ấn tượng, cực kỳ đáng mua ở phân",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.duchuymobile.com/oppo-find-n3",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Oppo Find N3 5G (16GB | 512GB) Chính Hãng  Mới 100% Nguyên Seal",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.duchuymobile.com/realme-p4-lite",
+      "title": "Realme P4 Lite (4GB | 64GB) Mới 100%, Giá Giảm 10%",
+      "query": "site:duchuymobile.com điện thoại giá khoảng 10000000 VND giá bán",
+      "content": "Realme P4 Lite chip Unisoc T7250, màn hình 90Hz, pin 6300 mAh, sạc 15W. Địa chỉ mua Realme P4 Lite mới giá rẻ, trả góp 0%, thu cũ đổi mới.",
+      "proof": {
+        "product_page_valid": false,
+        "evidence_url": "https://www.duchuymobile.com/realme-p4-lite",
+        "image_url": null,
+        "image_source": null,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "fetch_blocked": false,
+        "reason": "Chưa xác minh được trang bán sản phẩm cụ thể.",
+        "result_type": "UNKNOWN",
+        "page_heading": "Realme P4 Lite (4GB | 64GB)  Mới 100% Fullbox",
+        "discovery": [],
+        "page_fetched": true,
+        "page_requested": true
+      }
+    },
+    {
+      "url": "https://www.duchuymobile.com/nothing-phone-4a",
+      "title": "Nothing Phone 4a (8GB | 128GB) Mới Giá Giảm 10%",
+      "query": "site:duchuymobile.com điện thoại giá khoảng 10000000 VND giá bán",
+      "content": "Nothing Phone 4a chính hãng chip Snapdragon 7s Gen 4, pin 5080 mAh, camera 50MP. Địa chỉ mua trả góp 0% Nothing Phone 4a mới giá rẻ tại Đức Huy Mobile.",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "UNVERIFIED",
+        "product_page_confidence": 0,
+        "evidence_url": "https://www.duchuymobile.com/nothing-phone-4a",
+        "rejection_code": "resource_budget",
+        "reason": "Remaining page slots reserved for direct product recovery.",
+        "image_url": null
+      }
+    },
+    {
+      "url": "https://www.facebook.com/SamsungVietnam/posts/th%E1%BB%8Fa-s%E1%BB%A9c-s%C3%A1ng-t%E1%BA%A1o-tr%C3%AAn-b%E1%BB%99-%C4%91%C3%B4i-galaxy-tab-s9-fe-v%C3%A0-galaxy-tab-s9-fe-m%C3%A0n-h%C3%ACnh-l%E1%BB%9Bn-/357932919921034",
+      "title": "Thỏa sức sáng tạo trên bộ đôi Galaxy Tab S9 FE và ...",
+      "query": "\"Samsung Galaxy Tab S9 FE WIFI 6GB 128GB\" giá Việt Nam VND",
+      "content": "Galaxy Tab S9 FE Series với giá chỉ từ 9,990,000 VNĐ … giá chỉ từ 13,890,000 VNĐ",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://www.facebook.com/SamsungVietnam/posts/th%E1%BB%8Fa-s%E1%BB%A9c-s%C3%A1ng-t%E1%BA%A1o-tr%C3%AAn-b%E1%BB%99-%C4%91%C3%B4i-galaxy-tab-s9-fe-v%C3%A0-galaxy-tab-s9-fe-m%C3%A0n-h%C3%ACnh-l%E1%BB%9Bn-/357932919921034",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=dNiZomgZQ8E",
+      "title": "Trải nghiệm Galaxy Tab S9 FE: VÔ ĐỐI trong tầm giá !!!",
+      "query": "\"Samsung Galaxy Tab S9 FE WIFI 6GB 128GB\" giá Việt Nam VND",
+      "content": "Trải nghiệm Galaxy Tab S9 FE: VÔ ĐỐI trong tầm giá !!! ❤️ Đặt hàng ngay tại #CellphoneS để có giá tốt nha anh em: https://cellphones.com.",
+      "proof": {
+        "product_page_valid": false,
+        "page_requested": false,
+        "page_fetched": false,
+        "fetch_blocked": false,
+        "verification_level": "REJECTED",
+        "product_page_confidence": 0,
+        "result_type": "UNKNOWN",
+        "evidence_url": "https://www.youtube.com/watch?v=dNiZomgZQ8E",
+        "image_url": null,
+        "rejection_code": "non_product_page",
+        "reason": "Non-product source retained for model/merchant discovery."
+      }
+    }
+  ],
+  "historical_candidates": [
+    {
+      "product_id": 517,
+      "name": "Samsung Galaxy Tab S10 Ultra 5G 12GB 256GB",
+      "category": "máy tính bảng",
+      "brand": "Samsung",
+      "model": null,
+      "price": 21990000,
+      "currency": "VND",
+      "rating": null,
+      "review_count": null,
+      "availability": "out_of_stock",
+      "source_reliability": 90.0,
+      "specifications": {
+        "kích thước màn hình": "14.6 inches",
+        "công nghệ màn hình": "Dynamic AMOLED 2X",
+        "camera sau": "13.0 MP + 8.0 MP",
+        "camera trước": "12.0 MP + 12.0 MP",
+        "chipset": "MediaTek Dimensity 9300+",
+        "công nghệ nfc": "Không",
+        "dung lượng ram": "12 GB",
+        "bộ nhớ trong": "256 GB",
+        "pin": "11,200mAh",
+        "thẻ sim": "2 SIM (nano‑SIM và eSIM)",
+        "hệ điều hành": "Android 14, One UI 6.1.1",
+        "độ phân giải màn hình": "1848 x 2960 Pixels",
+        "tính năng màn hình": "120 Hz, 930 nitsKính cường lực Corning Gorilla GlassLớp phủ chống chói (mới)Độ sâu màu sắc 16M",
+        "loại cpu": "8 nhân, 3.4GHz,2.8GHz,2GHz",
+        "tương thích": "Bút S Pen"
+      }
+    },
+    {
+      "product_id": 518,
+      "name": "Samsung Galaxy Tab S9 FE 5G 6GB 128GB",
+      "category": "máy tính bảng",
+      "brand": "Samsung",
+      "model": null,
+      "price": 9990000,
+      "currency": "VND",
+      "rating": 5.0,
+      "review_count": 73,
+      "availability": "out_of_stock",
+      "source_reliability": 90.0,
+      "specifications": {
+        "kích thước màn hình": "10.9 inches",
+        "công nghệ màn hình": "TFT LCD",
+        "camera sau": "8 MP",
+        "camera trước": "12 MP",
+        "chipset": "Exynos 1380",
+        "công nghệ nfc": "Không",
+        "dung lượng ram": "6 GB",
+        "bộ nhớ trong": "128 GB",
+        "pin": "8.000mAh",
+        "thẻ sim": "Nano-SIM + eSIM",
+        "hệ điều hành": "Android 13",
+        "độ phân giải màn hình": "2304 x 1440 pixels",
+        "tính năng màn hình": "Tần số quét 90Hz, DCI-P3, 16 triệu màu, Vision Booster, Hạn chế ánh sáng xanh",
+        "loại cpu": "8 nhân, 2.4GHz, 2GHz",
+        "tương thích": "S Pen (đi kèm trong hộp)"
+      }
+    }
+  ],
+  "historical_filter_decisions": [
+    {
+      "product_id": 517,
+      "accepted": false,
+      "rejection_stage": "category",
+      "reasons": [
+        "Sản phẩm không đúng danh mục yêu cầu."
+      ]
+    },
+    {
+      "product_id": 518,
+      "accepted": false,
+      "rejection_stage": "category",
+      "reasons": [
+        "Sản phẩm không đúng danh mục yêu cầu."
+      ]
+    }
+  ]
+}

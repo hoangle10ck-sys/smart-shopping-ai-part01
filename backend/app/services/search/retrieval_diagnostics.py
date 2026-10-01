@@ -27,7 +27,7 @@ def source_plan(source):
     kind = classify_source(source.url)
     path = urlsplit(source.url).path.lower()
     if (kind in {'ARTICLE', 'NEWS', 'REVIEW'}
-            or re.search(r'/(?:tags?|feed|support|sforum|forums?|thread|hoi-dap|kinh-nghiem-mua-sam)(?:/|$)', path)
+            or re.search(r'/(?:tags?|feed|support|sforum|forums?|thread|hoi-dap|kinh-nghiem-mua-sam|newsroom|press|events?)(?:/|$)', path)
             or re.search(r'/(?:top-|so-sanh-|danh-gia-)|_vs_',path)
             or (urlsplit(source.url).hostname or '').removeprefix('www.') == 'devicespecifications.com'
             or MerchantQualityService().assess(source)['kind'] == 'editorial_news'):
