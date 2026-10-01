@@ -38,7 +38,7 @@ class CachedSearchService:
         requirement = requirement_to_schema(model)
         enabled = not self.settings.demo_mode and self.settings.cache_ttl_seconds > 0
         key = make_cache_key(requirement, scope={
-            'retrieval_version': 8,
+            'retrieval_version': 10,
             'live_search_page_budget_seconds': self.settings.live_search_page_budget_seconds,
             'live_search_domain_budget_seconds': self.settings.live_search_domain_budget_seconds,
             'live_search_target_products': self.settings.live_search_target_products,
