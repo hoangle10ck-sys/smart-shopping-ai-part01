@@ -331,6 +331,7 @@ class RecommendationService:
             items.append(
                 self._build_item(
                     context=context,
+                    requirement=requirement,
                     rank=(
                         ranked_item.rank
                     ),
@@ -416,6 +417,7 @@ class RecommendationService:
         self,
         *,
         context: CandidateContext,
+        requirement: RequirementData,
         rank: int,
         score: ScoreBreakdown,
         evidence: EvidenceReport,
@@ -431,10 +433,36 @@ class RecommendationService:
 
         offer = context.offer
 
+        from app.services.scoring.two_level import SCORE_VERSION, offer_quality, offer_sort_key, product_suitability
+        product_level = product_suitability(candidate, requirement)
+        scored_offers = [(item, offer_quality(item, budget_max=requirement.budget_max,
+                          preference=requirement.sort_preference)) for item in context.offers]
+        scored_offers.sort(key=lambda pair: offer_sort_key(pair[1], pair[0]))
+        selected_offer_level = next((value for item, value in scored_offers if offer and item.id == offer.id), None)
+        alternate_offers = [{
+            "purchase_rank": purchase_rank,
+            "offer_id": item.id, "variant_id": item.variant_id, "platform": item.platform,
+            "merchant": item.merchant, "price": item.price, "currency": item.currency,
+            "availability": item.availability, "product_url": item.product_url,
+            "shipping_fee": item.shipping_fee, "voucher": item.voucher, "warranty": item.warranty,
+            "last_verified_at": item.last_verified_at, "freshness_status": item.freshness_status,
+            "offer_quality": level.model_dump(mode="json"),
+        } for purchase_rank, (item, level) in enumerate(scored_offers, start=1)]
+        if offer is not None and offer.freshness_status == "STALE":
+            evidence.warnings.append("STALE_DATA: offer observation is outside the configured freshness TTL; verify before buying.")
+
         return RecommendationItem(
             product_id=(
                 candidate.product_id
             ),
+            variant_id=offer.variant_id if offer is not None else None,
+            offer_id=offer.id if offer is not None else None,
+            platform=offer.platform if offer is not None else None,
+            freshness_status=offer.freshness_status if offer is not None else None,
+            score_version=SCORE_VERSION,
+            product_suitability=product_level.model_dump(mode="json"),
+            offer_quality=selected_offer_level.model_dump(mode="json") if selected_offer_level else None,
+            alternate_offers=alternate_offers,
             rank=rank,
             name=candidate.name,
             category=(
@@ -444,6 +472,7 @@ class RecommendationService:
             model=candidate.model,
             image_url=(context.page_validation.get("image_url") if context.page_validation is not None else context.product.image_url),
             product_page_valid=context.page_validation.get("product_page_valid") if context.page_validation is not None else None,
+            source_observation_valid=context.page_validation.get("source_observation_valid") if context.page_validation is not None else None,
             price_type=context.page_validation.get('price_type') if context.page_validation is not None else None,
             variant=context.page_validation.get('variant') if context.page_validation is not None else None,
             verification_level=context.page_validation.get("verification_level") if context.page_validation is not None else None,

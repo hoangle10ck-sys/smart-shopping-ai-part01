@@ -1,0 +1,17 @@
+{
+  "dataset": "synthetic-offline-v1",
+  "kind": "FIXTURE_TESTED_ONLY",
+  "generated_at": "2026-10-15T00:00:00Z",
+  "samples": [
+    {"id":"shopee-product","platform":"shopee","url":"https://shopee.vn/demo-i.1.2","expected_status":"SUCCESS","expected_name":"Demo Phone","expected_price":1990000,"expected_sku":"sku-256","html":"<script type=\"application/ld+json\">{\"@type\":\"Product\",\"name\":\"Demo Phone\",\"offers\":{\"@type\":\"Offer\",\"price\":\"1990000\",\"priceCurrency\":\"VND\",\"sku\":\"sku-256\"}}</script>"},
+    {"id":"lazada-range","platform":"lazada","url":"https://www.lazada.vn/products/demo-i123.html","expected_status":"SUCCESS","expected_name":"Demo Laptop","expected_price":null,"expected_sku":null,"html":"<script type=\"application/ld+json\">{\"@type\":\"Product\",\"name\":\"Demo Laptop\",\"offers\":{\"@type\":\"AggregateOffer\",\"lowPrice\":\"10000000\",\"highPrice\":\"15000000\",\"priceCurrency\":\"VND\"}}</script>"},
+    {"id":"not-product","platform":"shopee","url":"https://shopee.vn/category","expected_status":"NOT_PRODUCT_PAGE","expected_name":null,"expected_price":null,"expected_sku":null,"html":"<html><title>Category</title></html>"}
+  ],
+  "recommendation_cases": [{
+    "requirement": {"category":"laptop","budget_max":20000000,"purpose":["học lập trình"],"requirements":[{"name":"RAM","value":"16GB","priority":5}]},
+    "candidates": [
+      {"product_id":1,"name":"Laptop coding 16GB","category":"laptop","price":15000000,"specifications":{"ram":"16GB","purpose":"học lập trình"},"relevance":2},
+      {"product_id":2,"name":"Laptop basic 8GB","category":"laptop","price":12000000,"specifications":{"ram":"8GB"},"relevance":0}
+    ]
+  }]
+}

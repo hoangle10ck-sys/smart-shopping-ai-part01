@@ -36,6 +36,7 @@ class ProgressiveRetriever:
         self.batches = []
         self.queries = set()
         self.deadline = 0.0
+        self.deadline_exhausted = False
         self.requirement = None
         self.pending = {}
         self.source_queries = {}
@@ -73,6 +74,8 @@ class ProgressiveRetriever:
         self.recovery_work = {}
 
     def remaining(self):
+        if self.deadline_exhausted:
+            return 0
         return max(0, self.deadline - time.monotonic())
 
     def enough(self):
@@ -175,12 +178,15 @@ class ProgressiveRetriever:
             if domain in self.recovery_work or normal.get('direct_failures', 0) >= 2:
                 continue
             self.pending.pop(source.url, None)
+            timeout = asyncio.timeout(max(.001, self.remaining()))
             try:
-                async with asyncio.timeout(max(.001, self.remaining())):
+                async with timeout:
                     async with self.domain_slot(source.url), self.page_slots:
                         self.recovery_urls.append(source.url)
                         await self.verify(source, recovery=True)
             except TimeoutError:
+                if timeout.expired():
+                    self.deadline_exhausted = True
                 self.stop_reason = 'time_budget'
                 break
 
@@ -450,10 +456,16 @@ class ProgressiveRetriever:
         plan = self.plans.get(source.url, source_plan(source))
         started = time.perf_counter()
         (self.product_attempts if plan == 'product' else self.discovery_attempts).add(source.url)
+        remaining = self.remaining()
+        timeout_seconds = max(.001, min(remaining, self.page_budget, allowance))
+        deadline_limited = remaining <= self.page_budget and remaining <= allowance
+        timeout = asyncio.timeout(timeout_seconds)
         try:
-            async with asyncio.timeout(max(.001, min(self.remaining(), self.page_budget, allowance))):
+            async with timeout:
                 proof = await self.resolver.inspect(source.url, resolve_images=False)
         except TimeoutError:
+            if timeout.expired() and deadline_limited:
+                self.deadline_exhausted = True
             proof = {'product_page_valid': False, 'fetch_blocked': True,
                      'page_fetched': False, 'fetch_failure': 'timeout',
                      'reason': 'Page/domain/retrieval time budget reached.', 'evidence_url': source.url}
@@ -577,8 +589,9 @@ class ProgressiveRetriever:
             query_started = time.perf_counter()
             diagnostic = {'pass': label, 'query': query, 'result_count': 0, 'source_filter_rejected': 0,
                           'requirement_context':self.requirement.model_dump() if self.requirement else None}
+            timeout = asyncio.timeout(max(.001, self.remaining()))
             try:
-                async with asyncio.timeout(max(.001, self.remaining())):
+                async with timeout:
                     async with self.query_slots:
                         rows = await self.provider.search(query, self.settings.max_results_per_query)
                 filtered = SourceFilter().filter(rows)
@@ -586,6 +599,8 @@ class ProgressiveRetriever:
                 diagnostic['result_domains'] = sorted({domain for row in rows if (domain := normalize_domain(row.url))})
                 diagnostic['source_filter_reason_counts'] = source_filter_reasons(rows)
             except Exception as exc:
+                if isinstance(exc, TimeoutError) and timeout.expired():
+                    self.deadline_exhausted = True
                 kind = getattr(exc, 'kind', 'timeout' if isinstance(exc, TimeoutError) else 'unexpected_error')
                 diagnostic['error_kind'] = kind
                 return query, [], f"Query '{query}' [{kind}]: search provider unavailable", diagnostic
@@ -623,11 +638,14 @@ class ProgressiveRetriever:
 
         async def inspect(source):
             async with AsyncExitStack() as slots:
+                timeout = asyncio.timeout(max(.001, self.remaining()))
                 try:
-                    async with asyncio.timeout(max(.001, self.remaining())):
+                    async with timeout:
                         await slots.enter_async_context(self.domain_slot(source.url))
                         await slots.enter_async_context(self.page_slots)
                 except TimeoutError:
+                    if timeout.expired():
+                        self.deadline_exhausted = True
                     return self.skip_page(source, 'Retrieval deadline reached while waiting for page slots.')
                 return await self.verify(source)
 
@@ -775,6 +793,7 @@ class ProgressiveRetriever:
             return await self._run(queries, requirement)
 
     async def _run(self, queries, requirement):
+        self.deadline_exhausted = False
         self.deadline = time.monotonic() + min(180, max(.01, self.settings.live_search_budget_seconds))
         category = (requirement.category or '').strip() if requirement else ''
         if requirement:

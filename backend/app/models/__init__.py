@@ -20,9 +20,14 @@ from app.models.feedback import Feedback
 from app.models.raw_product_candidate import RawProductCandidate
 from app.models.search_execution_state import SearchExecutionState
 from app.models.search_cache import SearchCacheEntry
+from app.models.product_variant import ProductVariant
+from app.models.price_observation import PriceObservation
+from app.models.crawl_run import CrawlRun
+from app.models.research import ResearchProduct, HistoricalPriceReference, ResearchImportRun
 
 
 __all__ = [
+    "ResearchProduct", "HistoricalPriceReference", "ResearchImportRun",
     "User",
     "SearchSession",
     "SearchSessionStatus",
@@ -39,4 +44,7 @@ __all__ = [
     "RawProductCandidate",
     "SearchExecutionState",
     "SearchCacheEntry",
+    "ProductVariant",
+    "PriceObservation",
+    "CrawlRun",
 ]

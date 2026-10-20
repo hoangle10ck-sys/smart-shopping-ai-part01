@@ -8,6 +8,25 @@
 
 ## Tính năng
 
+### Research Catalog — Mục tiêu A
+
+Đã tích hợp Amazon Reviews 2023 **lịch sử**, không phải Live: SQLite local có
+150 sản phẩm thật, 70 giá tham khảo USD, **0 ProductOffer tạo từ dataset**.
+Chọn **Research Catalog** ở trang chủ để tìm catalog, xem thông số/điểm phù hợp,
+so sánh và lịch sử. Ví dụ: “phụ kiện điện thoại dưới 50 USD”, “điện tử”.
+Ngân sách VND không so với USD; RAM/storage bắt buộc thiếu chứng cứ không được
+coi là đạt. Không cần LLM/Tavily key, không fine-tune mô hình.
+
+Phạm vi dữ liệu: nghiên cứu phi thương mại cục bộ, không tái phân phối raw/DB;
+dataset không có giấy phép mở rõ ràng. [Đánh giá nguồn](docs/RESEARCH_DATA_SOURCE_ASSESSMENT.md),
+[tiến độ R00–R09](docs/RESEARCH_DATA_PROGRESS.md),
+[báo cáo và lệnh tái lập](docs/RESEARCH_DATA_INTEGRATION_REPORT.md).
+R08 còn thiếu nhãn người đánh giá độc lập: Precision@K/NDCG hiện **N/A**.
+
+`demo` = MOCK_DEMO; `research` = HISTORICAL_RESEARCH. `live` chỉ là luồng truy
+cập nguồn hiện hành, **không tự động đồng nghĩa LIVE_VERIFIED**. Research không
+bật collector flags hoặc giải quyết thay blocker quyền truy cập crawler.
+
 | Thành phần | Implementation hiện tại |
 |---|---|
 | Requirement Analyzer / Clarification | Trích category, budget, purpose, brands, tiêu chí/ưu tiên; hỏi bổ sung khi thiếu dữ liệu. Demo parser local; Live thử LLM rồi fallback local. |
@@ -24,6 +43,7 @@
 | Feedback / History | Ghi phản hồi và xem lại phiên. History dùng chung database local, chưa có đăng nhập/phân quyền. |
 | Cache | SQLite cache theo normalized requirement + config, TTL 1800s, Live-only; copy snapshot, không replay giá vào catalog. |
 | Frontend / Browser E2E | Summary, score breakdown, matching/evidence, filter/sort, compare, feedback, history; Playwright chạy Demo local. |
+| Marketplace upgrade | Contract typed cho collector, URL Shopee/Lazada trực tiếp, ProductVariant + Offer + PriceObservation, score Product/Offer hai cấp, freshness và cảnh báo so giá khác SKU. Live collector mặc định khóa theo policy. |
 
 AI Match là điểm phù hợp theo quy tắc, không phải xác suất mua đúng. Data Confidence là chỉ số chất lượng/độ đầy đủ dữ liệu riêng, chưa được hiệu chuẩn thống kê. Voice là **NOT REQUIRED FOR MVP**. Xem [final audit](docs/FINAL_AUDIT.md).
 
@@ -126,9 +146,59 @@ Hai `.env.example` không có secret, liệt kê đầy đủ Settings hiện t�
 | `LLM_RETRY_COUNT` / `SEARCH_RETRY_COUNT` | 2 / 1 |
 | `MAX_SEARCH_QUERIES` / `MAX_RESULTS_PER_QUERY` / `TOP_K` | 4 / 5 / 5 |
 | `CACHE_TTL_SECONDS` | 1800; không dương thì vô hiệu hóa cache |
+| `PRODUCT_OFFER_FRESHNESS_TTL_SECONDS` | 3600; độc lập với search-result cache |
+| `COLLECTOR_MAX_URLS` | 5 URL trực tiếp mỗi request |
+| `COLLECTOR_LIVE_ENABLED` / `COLLECTOR_POLICY_CONFIRMED` | `false` / `false`; cả hai chỉ bật khi operator có quyền phù hợp |
+| `ENABLE_LLM_EXTRACTION_FALLBACK` | `false`; fallback chỉ nhận specs, không nhận giá/ID/rating/stock |
 | `SECRET_KEY` | Placeholder `change-this-before-production`, chưa dùng làm authentication trong MVP |
 
 Live: chủ động đặt `DEMO_MODE=false`, Tavily key và key/model hợp lệ của provider được chọn trong backend env, rồi restart. Chọn model khả dụng trong tài khoản; không coi giá trị mặc định là bảo đảm provider đang cung cấp model đó. Analyzer/explanation có fallback local; search Live thiếu key/lỗi toàn bộ sẽ báo lỗi, không âm thầm biến mock thành dữ liệu Live. Tests không gọi API trả phí.
+
+Collector marketplace là một opt-in riêng với Live search. Điều khoản công khai được rà
+soát ngày 2026-10-15 không cung cấp bằng chứng quyền crawl cho repository này, vì vậy
+Shopee/Lazada đang ở trạng thái `ACCESS_RESTRICTED`; xem [collector policy](docs/collector-policy.md).
+Không bật hai cờ collector nếu chưa có thẩm quyền/đồng ý áp dụng.
+
+Collector nguồn storefront công khai cũng mặc định fail-closed: registry rỗng, chưa có
+merchant điện tử nào được duyệt hoặc xác minh Live. WooCommerce Store API và HTTPX/JSON-LD
+được kiểm thử offline; xem [crawler runbook](docs/CRAWLER_RUNBOOK.md),
+[đánh giá](docs/CRAWLER_EVALUATION.md), [source matrix](docs/CRAWLER_SOURCE_MATRIX.md)
+và [tiến độ](docs/CRAWLER_PROGRESS.md). DNS/IP được kiểm tra lại và ghim tại lúc
+mở kết nối; registry vẫn fail-closed và không được bật merchant chưa có căn cứ quyền.
+
+Benchmark offline tái lập:
+
+```powershell
+cd backend
+.\.venv\Scripts\python.exe -B -X utf8 -m benchmarks.run --output ..\docs\benchmark-results
+```
+
+Kết quả này là `FIXTURE_TESTED_ONLY`, không phải Live.
+
+Sau khi đã cấu hình một nguồn được phép trong
+`COLLECTOR_SOURCE_REGISTRY_JSON` và bật cả hai cờ policy, có thể nạp trước
+catalog điện thoại, laptop/máy tính để bàn và tai nghe vào database hiện tại:
+
+```powershell
+cd backend
+.\.venv\Scripts\python.exe -B -X utf8 -m scripts.ingest_catalog
+```
+
+Job này không fine-tune mô hình; nó chuẩn hóa và upsert dữ liệu có bằng chứng
+vào chính các bảng mà recommendation đang đọc. Registry rỗng hoặc nguồn bị
+chặn sẽ trả lỗi và không tạo dữ liệu giả. Xem tùy chọn `--query`, `--url` và
+quy trình phê duyệt nguồn trong [crawler runbook](docs/CRAWLER_RUNBOOK.md).
+
+Với thao tác Live thủ công, ưu tiên CLI có preflight và hard cap:
+
+```powershell
+cd backend
+.\.venv\Scripts\python.exe -B -X utf8 -m scripts.crawl_products preflight --url "https://APPROVED-HOST/product/example"
+.\.venv\Scripts\python.exe -B -X utf8 -m scripts.crawl_products ingest --live --max-products 5 --max-pages 2
+```
+
+Crawl4AI là dependency tùy chọn trong `backend/requirements-browser.txt`; xem
+runbook trước khi bật `COLLECTOR_BROWSER_ENABLED`.
 
 ## Validation
 
@@ -189,4 +259,4 @@ Mở frontend và thử một [scenario](docs/demo.md). Có thể gộp build/st
 
 ## Tài liệu
 
-[Architecture](docs/architecture.md) · [Database](docs/database.md) · [API](docs/api.md) · [Testing](docs/testing.md) · [Demo](docs/demo.md) · [Presentation](docs/presentation.md) · [MASTER_SPEC](docs/MASTER_SPEC.md) · [Final audit](docs/FINAL_AUDIT.md)
+[Architecture](docs/architecture.md) · [Database](docs/database.md) · [API](docs/api.md) · [Testing](docs/testing.md) · [Crawler runbook](docs/CRAWLER_RUNBOOK.md) · [Crawler evaluation](docs/CRAWLER_EVALUATION.md) · [Demo](docs/demo.md) · [Presentation](docs/presentation.md) · [MASTER_SPEC](docs/MASTER_SPEC.md) · [Final audit](docs/FINAL_AUDIT.md)

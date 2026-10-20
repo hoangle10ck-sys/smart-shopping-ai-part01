@@ -102,7 +102,8 @@ class ExplanationBatch:
                         continue
                     attempts.append(provider)
                     try:
-                        raw = await self._request(provider,prompt,max(.001,deadline-asyncio.get_running_loop().time()))
+                        remaining = max(.001, deadline - asyncio.get_running_loop().time())
+                        raw = await self._request(provider, prompt, min(self.timeout, remaining))
                     except (TimeoutError, httpx.TimeoutException):
                         return self._fallback(job)
                     except (ValidationError, ValueError, TypeError):

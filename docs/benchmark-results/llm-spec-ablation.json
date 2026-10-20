@@ -1,0 +1,31 @@
+{
+  "dataset": "synthetic-quote-verified-spec-ablation-v1",
+  "dataset_kind": "FIXTURE_TESTED_ONLY",
+  "sample_count": 2,
+  "modes": {
+    "without_llm": {
+      "correct": 0,
+      "predicted": 0,
+      "expected": 4,
+      "precision": null,
+      "recall": 0.0,
+      "latency_ms_total": 0.0005999900167807937,
+      "network_calls": 0,
+      "estimated_cost": 0
+    },
+    "quote_verified_structured_output": {
+      "correct": 3,
+      "predicted": 3,
+      "expected": 4,
+      "precision": 1.0,
+      "recall": 0.75,
+      "latency_ms_total": 0.09590000263415277,
+      "network_calls": 0,
+      "estimated_cost": 0
+    }
+  },
+  "limitations": [
+    "Structured outputs are checked-in simulated model responses, not a paid-provider measurement.",
+    "Latency measures local schema and quote validation only."
+  ]
+}

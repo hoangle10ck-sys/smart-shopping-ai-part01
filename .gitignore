@@ -16,6 +16,7 @@ backend/smart_shopping.db
 # Node / Next.js
 frontend/node_modules/
 frontend/.next/
+*.tsbuildinfo
 frontend/out/
 frontend/test-results/
 frontend/playwright-report/
@@ -27,12 +28,24 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 
+# Local AI tool settings
+.claude/
+
+# Ad-hoc logs / temp output
+*.log
+frontend/frontend-unified-*.log
+
 # Local database/runtime files
+backend/data/research/
+backend/data/research-expanded/
+backend/research-artifacts/
 backend/smart_shopping.db
 backend/smart_shopping.db-shm
 backend/smart_shopping.db-wal
 backend/.venv/
 backend/.pytest_cache/
+backend/.runtime/
+backend/.crawl4ai/
 __pycache__/
 *.pyc
 frontend/node_modules/

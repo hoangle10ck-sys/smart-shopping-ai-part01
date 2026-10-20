@@ -42,7 +42,8 @@ def offer_observation(db, offer, product, session_id=None):
         proof = raw.get('page_validation')
         if proof is None or not same_identity(raw.get('name'), product.name):
             continue
-        if proof.get('product_page_valid') and raw.get('product_url') == offer.product_url and proof.get('price') == offer.price:
+        verified_source = proof.get('product_page_valid') or proof.get('source_observation_valid')
+        if verified_source and raw.get('product_url') == offer.product_url and proof.get('price') == offer.price:
             return proof
     return None
 
@@ -86,6 +87,12 @@ class CandidateBuilder:
                 )
             )
         )
+
+        from app.core.config import get_settings
+        from app.services.collectors.freshness import offer_freshness
+        ttl = get_settings().product_offer_freshness_ttl_seconds
+        for current_offer in offers:
+            current_offer.freshness_status = offer_freshness(current_offer, ttl)
 
         offers_by_product: dict[
             int,

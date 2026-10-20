@@ -179,22 +179,9 @@ async def analyze_requirement(
             str
         ] = []
 
-        if (
-            not assessment
-            .needs_clarification
-        ):
-            queries = (
-                QueryGenerator()
-                .generate(
-                    requirement_data
-                )
-            )
-
-            save_search_queries(
-                db,
-                search_session.id,
-                queries,
-            )
+        if not assessment.needs_clarification:
+            queries = QueryGenerator().generate(requirement_data)
+            save_search_queries(db, search_session.id, queries)
 
         # -------------------------------------------------
         # 3. Finish the write transaction immediately.
@@ -331,18 +318,8 @@ async def clarify_requirement(
         queries: list[str] = []
 
         if not assessment.needs_clarification:
-            queries = (
-                QueryGenerator()
-                .generate(
-                    requirement_data
-                )
-            )
-
-            save_search_queries(
-                db,
-                search_session.id,
-                queries,
-            )
+            queries = QueryGenerator().generate(requirement_data)
+            save_search_queries(db, search_session.id, queries)
 
         db.commit()
 

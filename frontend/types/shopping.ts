@@ -34,9 +34,26 @@ export interface RecommendationEvidence {
   warnings?: string[];
 }
 
-export interface RecommendationItem {
+export interface ResearchMetadata {
+  source_mode?: "HISTORICAL_RESEARCH" | null;
+  historical_price?: { amount: string; currency: string; reference_year: number; price_observed_at: null } | null;
+  research_provenance?: { dataset_id: string; revision: string; parent_asin: string; dataset_url: string; imported_at: string } | null;
+}
+
+export interface RecommendationItem extends ResearchMetadata {
+  variant_id?: number | null;
+  offer_id?: number | null;
+  platform?: string | null;
+  freshness_status?: string | null;
+  score_version?: string;
+  product_suitability?: Record<string, unknown> | null;
+  offer_quality?: Record<string, unknown> | null;
+  price_type?: "CONCRETE" | null;
+  alternate_offers?: Record<string, unknown>[];
   variant?: Record<string, string>;
   product_page_valid?: boolean | null;
+  source_observation_valid?: boolean | null;
+  verification_level?: "VERIFIED_PUBLIC_API" | "VERIFIED_CONTENT" | "VERIFIED_SEARCH_METADATA" | "UNVERIFIED" | "REJECTED" | null;
   image_source?: string | null;
   evidence_url?: string | null;
   product_id: number;
@@ -132,7 +149,7 @@ export interface SearchPipelineResponse {
   session_id: string;
   requirement?: ParsedRequirement | null;
   status?: "PENDING" | "PROCESSING" | "COMPLETED" | "FAILED" | null;
-  data_mode?: "demo" | "live" | null;
+  data_mode?: "demo" | "live" | "research" | null;
   demo_mode?: boolean;
   data_semantics?: "snapshot" | "legacy_recomputed" | "not_generated";
   warnings?: string[];
@@ -153,6 +170,7 @@ export interface SearchPipelineResponse {
 
 export interface ProductOffer {
   product_page_valid?: boolean | null;
+  source_observation_valid?: boolean | null;
   image_url?: string | null;
   image_source?: string | null;
   evidence_url?: string | null;
@@ -182,7 +200,7 @@ export interface ProductOffer {
 }
 
 
-export interface ProductDetail {
+export interface ProductDetail extends ResearchMetadata {
   recommendation?: RecommendationItem | null;
   recommendation_session_id?: string | null;
   id: number;
@@ -233,8 +251,16 @@ export interface ComparisonOffer {
 }
 
 
-export interface ComparisonProduct {
+export interface ComparisonProduct extends ResearchMetadata {
+  requirement_matches?: RequirementMatch[];
   product_id: number;
+  variant_id?: number | null;
+  offer_id?: number | null;
+  platform?: string | null;
+  freshness_status?: string | null;
+  product_suitability?: Record<string, unknown> | null;
+  offer_quality?: Record<string, unknown> | null;
+  alternate_offers?: Record<string, unknown>[];
 
   name?: string | null;
 
@@ -281,6 +307,10 @@ export interface ComparisonResult {
   criteria: string[];
 
   products: ComparisonProduct[];
+  product_comparison?: Record<string, unknown>[];
+  offer_comparison?: Record<string, unknown>[];
+  price_comparability?: "COMPARABLE" | "NOT_COMPARABLE";
+  warnings?: string[];
 }
 
 

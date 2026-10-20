@@ -1,4 +1,7 @@
 .git
+backend/data/research
+backend/data/research-expanded
+backend/research-artifacts
 .agents
 .codex
 **/.env

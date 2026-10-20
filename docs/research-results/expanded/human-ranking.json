@@ -1,0 +1,56 @@
+{
+  "status": "LABELS_PENDING",
+  "label_origin": "operator-supplied; software cannot certify independent human authorship",
+  "label_sha256": "5f7bdafb610e780c8157851448c0a348ad72c0111892b9b2fb239fea227627c6",
+  "revision": "2b6d039ed471f2ba5fd2acb718bf33b0a7e5598e",
+  "prefix_hashes": {
+    "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+    "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+    "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+    "954ac0b7883757354e92299dc1a45a604c3a0fca1b202e9028e0505616b9d0a9": "954ac0b7883757354e92299dc1a45a604c3a0fca1b202e9028e0505616b9d0a9"
+  },
+  "judgments": 0,
+  "metrics": {
+    "k": 5,
+    "relevance_threshold": 2,
+    "precision_denominator": "k, including unfilled slots",
+    "precision_at_k": {
+      "value": null,
+      "numerator": 0,
+      "denominator": 0,
+      "queries": 0
+    },
+    "ndcg_at_k": {
+      "value": null,
+      "denominator": 0
+    },
+    "incomplete_queries": [
+      "R13",
+      "R14",
+      "R15",
+      "R16",
+      "R17",
+      "R18",
+      "R19",
+      "R20",
+      "R21",
+      "R22",
+      "R23",
+      "R24",
+      "R25",
+      "R26",
+      "R27",
+      "R28",
+      "R29",
+      "R30",
+      "R31",
+      "R32",
+      "R33",
+      "R34",
+      "R35",
+      "R36"
+    ],
+    "zero_ideal_gain_queries": [],
+    "per_query": []
+  }
+}

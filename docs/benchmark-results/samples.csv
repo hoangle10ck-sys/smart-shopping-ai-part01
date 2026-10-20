@@ -1,0 +1,4 @@
+id,status_correct,name_correct,price_correct,sku_correct,latency_ms
+shopee-product,True,True,True,True,0.6
+lazada-range,True,True,True,True,0.117
+not-product,True,True,True,True,0.029

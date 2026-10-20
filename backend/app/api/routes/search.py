@@ -46,6 +46,7 @@ from app.services.search.search_service import (
 )
 from app.services.search.base import SearchProviderError
 from app.services.search.cached_search_service import CachedSearchService
+from app.services.search.unified.orchestrator import UnifiedSearchService
 
 
 router = APIRouter(
@@ -175,7 +176,7 @@ def load_raw_search_result(
         ),
         warnings=list(execution_state.warnings) if execution_state is not None else [],
         retrieval_diagnostics=deepcopy(snapshot.payload.get('retrieval_diagnostics', [])) if snapshot else [],
-        demo_mode=settings.demo_mode,
+        demo_mode=False if snapshot and snapshot.payload.get("result", {}).get("data_mode") == "research" else settings.demo_mode,
         processing_time_ms=0.0,
     )
 
@@ -194,6 +195,10 @@ async def execute_search(
     started_at = (
         time.perf_counter()
     )
+
+    prior_snapshot = db.get(RecommendationSnapshot, payload.session_id)
+    if prior_snapshot and prior_snapshot.payload.get("result", {}).get("data_mode") == "research":
+        raise HTTPException(status_code=409, detail="Research snapshot bất biến; hãy tạo truy vấn Research mới.")
 
     search_session = db.get(
         SearchSession,
@@ -246,8 +251,80 @@ async def execute_search(
     db.commit()
 
     try:
+        # Unified multi-source search: catalog + research + external (demo/live/collector).
+        if payload.search_scope == "auto":
+            unified_result, outcomes, enhancement = await (
+                UnifiedSearchService().execute(
+                    db=db,
+                    session_id=payload.session_id,
+                    queries=queries,
+                    direct_urls=payload.direct_urls,
+                )
+            )
+
+            duration_ms = (
+                time.perf_counter() - started_at
+            ) * 1000
+
+            search_session = db.get(
+                SearchSession,
+                payload.session_id,
+            )
+
+            if search_session is not None:
+                search_session.status = (
+                    SearchSessionStatus.COMPLETED
+                )
+
+                search_session.completed_at = (
+                    utc_now()
+                )
+
+                search_session.processing_time_ms = (
+                    round(
+                        duration_ms,
+                        2,
+                    )
+                )
+
+            # Collect warnings from all source outcomes.
+            all_warnings: list[str] = []
+            for outcome in outcomes:
+                all_warnings.extend(outcome.warnings)
+            save_search_warnings(db, payload.session_id, all_warnings)
+
+            db.commit()
+
+            return SearchPipelineResponse(
+                session_id=payload.session_id,
+                status=search_session.status.value if search_session else "COMPLETED",
+                queries=queries,
+                sources=[],  # Unified search does not expose raw SearchSourceItem list.
+                raw_products=[],
+                total_results=unified_result.total_found,
+                total_sources=len(outcomes),
+                total_products=len(unified_result.recommendations),
+                warnings=all_warnings,
+                retrieval_diagnostics=[],
+                demo_mode=get_settings().demo_mode,
+                processing_time_ms=round(duration_ms, 2),
+                requirement=unified_result.requirement,
+                candidates=unified_result.candidates,
+                filter_decisions=unified_result.filter_decisions,
+                recommendations=unified_result.recommendations,
+                data_semantics=unified_result.data_semantics,
+                data_mode="unified",
+                total_found=unified_result.total_found,
+                total_filtered=unified_result.total_filtered,
+                total_recommended=len(unified_result.recommendations),
+                unified_sources=[o.summary() for o in outcomes],
+                enhancement=enhancement,
+            )
+
         raw_result, recommendation_result = await CachedSearchService().execute(
             db=db, session_id=payload.session_id, queries=queries,
+            direct_urls=payload.direct_urls, refresh=payload.refresh,
+            source_platforms=payload.source_platforms,
         )
 
         duration_ms = (

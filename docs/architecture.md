@@ -1,5 +1,29 @@
 # Architecture
 
+## Historical Research Catalog (2026-10-17)
+
+Research là adapter độc lập, không gọi CachedSearchService/Tavily/crawler/LLM:
+native JSONL local → bounded importer → Product + ResearchProduct + HistoricalPriceReference
+→ `/api/research/search` → matcher/hard filter/rank → RecommendationSnapshot
+→ GET search/history/detail/comparison hiện có → UI nhãn HISTORICAL_RESEARCH.
+
+Luồng cũ giữ nguyên. ProductDeduplicator của Demo/Live không merge research IDs.
+Research snapshot là phiên bất biến; refresh bằng Live trả 409, truy vấn mới tạo
+session mới. Revision mới tạo identity mới, không overwrite provenance cũ.
+
+`research-v1` chỉ có điểm phù hợp sản phẩm. Trọng số cơ sở: requirements=.60,
+rating=.25, review volume=.05, historical USD budget=.10; chỉ chuẩn hóa lại
+trên tiêu chí áp dụng. Unknown requirement nhận 0, không thành matched; priority=5
+phải matched mới qua lọc. Không yêu cầu specs thì bỏ thành phần requirements;
+ngân sách không USD thì bỏ budget với warning. Rating thiếu nhận 0. OfferScore
+= NULL, không cộng seller/source/shipping/stock. Confidence là độ đầy đủ metadata,
+không xác suất chính xác. Purpose chưa chứng minh được không được cộng điểm.
+
+Parser local hỗ trợ danh mục Việt/Anh, vài brand/keyword, RAM/storage/camera có
+đơn vị và ngân sách số nguyên. Không phải NLP tổng quát; ngân sách thập phân
+bị từ chối thay vì parse sai. API nhận RequirementData để thử nhu cầu cấu trúc.
+MVP giới hạn 5,000 candidates/revision; vượt giới hạn báo lỗi, không cắt âm thầm.
+
 Tài liệu mô tả implementation sau Phase 7. PROJECT OVERRIDES trong MASTER_SPEC
 ưu tiên tên/route đang hoạt động, không yêu cầu dựng lại repository theo cây mẫu.
 
@@ -31,6 +55,34 @@ flowchart TD
   History --> Results
 ```
 
+## Marketplace collector and purchase choices (upgrade)
+
+Discovery remains the existing `SearchProvider`; it supplies candidates, not verified
+prices. An explicitly registered public storefront API or direct product URL is checked
+against merchant-specific permission, URL policy, DNS preflight, and robots before bounded
+HTTP access, then parsed into `ProductObservation`/`OfferObservation`. Storefront API
+observations remain distinct from product-page validation. Only after network I/O completes
+does the SQLite write phase upsert the canonical Product, configuration-based ProductVariant,
+merchant Offer and immutable PriceObservation. HTTPX performs authoritative DNS/IP policy
+checks inside `connect_tcp` and opens the socket to the selected public IP while preserving
+the original hostname for Host, TLS SNI and certificate validation. Live collection is not
+approved by default because merchant-specific permission is still required.
+
+For an approved page whose successful HTTP response is an empty JavaScript app shell, an
+optional Crawl4AI renderer may render exactly that page through a pinned CONNECT proxy and
+same-host Playwright route guard under timeout/DOM/process/RSS limits. It is
+not attempted after access or policy failures and its DOM returns to the same deterministic
+JSON-LD parser. A final optional LLM step accepts technical specifications only when every
+value has an exact quote in the bounded visible source text; offer/identity fields are
+schema-rejected. The normal install requires neither browser nor paid-model credentials.
+
+The legacy six-component `ScoringEngine` remains the compatibility score. New snapshots
+also store `two-level-v1`: Product Suitability uses requirement/purpose/budget evidence;
+Offer Quality uses verified price, availability, freshness, source reliability and seller
+trust only when present. Offer choices remain grouped below a product. Comparison exposes
+separate Product and Offer sections and emits `NOT_COMPARABLE` unless model, variant and
+currency match.
+
 ## Phân chia trách nhiệm
 
 | Công việc | Thành phần thực thi |
@@ -39,7 +91,7 @@ flowchart TD
 | Clarification | `RequirementAnalyzer` xác định dữ liệu thiếu, route ghép câu trả lời vào ngữ cảnh rồi phân tích lại |
 | Query generation | `services/llm/query_generator.py` là Python deterministic dù nằm trong thư mục `llm` |
 | Search | `SearchProvider` interface, MockSearchProvider/TavilySearchProvider, SourceStrategy/SourceFilter |
-| Extraction | Parser deterministic hỗ trợ labelled Demo payload và các mẫu search text; chưa có extraction LLM tổng quát |
+| Extraction | Parser deterministic cho API/JSON-LD; optional Crawl4AI chỉ render DOM và optional LLM chỉ bổ sung technical specs có quote, không tạo offer facts |
 | Normalize/dedup | Python parsers và ProductDeduplicator; category chỉ dựa evidence sản phẩm |
 | Hard filter, scoring, rank, matching | Python; LLM không được quyết định final score |
 | Evidence/confidence | Python; provenance chỉ khi observation khớp field value của candidate |

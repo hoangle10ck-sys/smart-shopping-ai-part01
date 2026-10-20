@@ -133,9 +133,38 @@ class NormalizationService:
         # OFFER
         # =====================================================
 
-        if candidate.page_validation is not None and not candidate.page_validation.get("product_page_valid"):
+        if candidate.page_validation is not None and not (
+            candidate.page_validation.get("product_page_valid")
+            or candidate.page_validation.get("source_observation_valid")
+        ):
             db.flush()
             return PersistenceResult(product.id, None, created_product, False)
+
+        if normalized.platform and normalized.platform != "unknown" and (
+            normalized.external_sku_id or normalized.variant_attributes
+        ):
+            from datetime import datetime, timezone
+            from app.schemas.collector import OfferObservation, PriceRange, VariantIdentity
+            from app.services.collectors.persistence import persist_offer_observation
+            price_range = (PriceRange(minimum=normalized.price_min, maximum=normalized.price_max)
+                           if normalized.price_min is not None and normalized.price_max is not None else None)
+            result = persist_offer_observation(db, product_id=product.id, source_id=source_id,
+                observation=OfferObservation(identity=VariantIdentity(platform=normalized.platform,
+                    external_product_id=normalized.external_product_id,
+                    external_shop_id=normalized.external_shop_id,
+                    external_sku_id=normalized.external_sku_id,
+                    attributes=normalized.variant_attributes, condition=normalized.condition),
+                    merchant=candidate.merchant, listed_price=normalized.listed_price,
+                    sale_price=normalized.sale_price if normalized.sale_price is not None else normalized.price,
+                    listed_price_minor_units=normalized.listed_price_minor_units,
+                    sale_price_minor_units=normalized.sale_price_minor_units,
+                    currency_minor_unit=normalized.currency_minor_unit,
+                    price_range=price_range, currency=normalized.currency,
+                    shipping_fee=normalized.shipping_fee, voucher=normalized.voucher,
+                    warranty=normalized.warranty,
+                    availability=normalized.availability, product_url=normalized.product_url or candidate.evidence_url or "",
+                    observed_at=normalized.observed_at or datetime.now(timezone.utc)))
+            return PersistenceResult(product.id, result.offer.id, created_product, result.offer_created)
 
         (
             offer,
@@ -316,6 +345,11 @@ class NormalizationService:
                 price=(
                     candidate.price
                 ),
+                listed_price=candidate.listed_price,
+                sale_price=candidate.sale_price,
+                listed_price_minor_units=candidate.listed_price_minor_units,
+                sale_price_minor_units=candidate.sale_price_minor_units,
+                currency_minor_unit=candidate.currency_minor_unit,
 
                 currency=(
                     candidate.currency
@@ -372,6 +406,11 @@ class NormalizationService:
             offer.price = (
                 candidate.price
             )
+        offer.listed_price = candidate.listed_price
+        offer.sale_price = candidate.sale_price
+        offer.listed_price_minor_units = candidate.listed_price_minor_units
+        offer.sale_price_minor_units = candidate.sale_price_minor_units
+        offer.currency_minor_unit = candidate.currency_minor_unit
 
 
         if (

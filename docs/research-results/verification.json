@@ -1,0 +1,434 @@
+{
+  "status": "RESEARCH_DATASET_VERIFIED",
+  "live_status": "LIVE_NOT_VERIFIED",
+  "revision": "2b6d039ed471f2ba5fd2acb718bf33b0a7e5598e",
+  "source_manifests": {
+    "Electronics": {
+      "dataset": "McAuley-Lab/Amazon-Reviews-2023",
+      "revision": "2b6d039ed471f2ba5fd2acb718bf33b0a7e5598e",
+      "category": "Electronics",
+      "source_url": "https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023/resolve/2b6d039ed471f2ba5fd2acb718bf33b0a7e5598e/raw/meta_categories/meta_Electronics.jsonl",
+      "downloaded_at": "2026-10-16T19:09:54.884645+00:00",
+      "head_status": 200,
+      "full_source_bytes": 5246144134,
+      "range_status": 206,
+      "requested_range": "bytes=0-4194303",
+      "received_bytes": 589824,
+      "retained_bytes": 548643,
+      "complete_records": 150,
+      "sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "checksum_scope": "retained native JSONL prefix, NOT full corpus",
+      "permission_basis": "local noncommercial thesis research; source assessment; no redistribution",
+      "selection": "first complete native records, prefix-biased; import 75 valid unique per category"
+    },
+    "Cell_Phones_and_Accessories": {
+      "dataset": "McAuley-Lab/Amazon-Reviews-2023",
+      "revision": "2b6d039ed471f2ba5fd2acb718bf33b0a7e5598e",
+      "category": "Cell_Phones_and_Accessories",
+      "source_url": "https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023/resolve/2b6d039ed471f2ba5fd2acb718bf33b0a7e5598e/raw/meta_categories/meta_Cell_Phones_and_Accessories.jsonl",
+      "downloaded_at": "2026-10-16T19:09:57.570750+00:00",
+      "head_status": 200,
+      "full_source_bytes": 4015159840,
+      "range_status": 206,
+      "requested_range": "bytes=0-4194303",
+      "received_bytes": 589824,
+      "retained_bytes": 529522,
+      "complete_records": 150,
+      "sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "checksum_scope": "retained native JSONL prefix, NOT full corpus",
+      "permission_basis": "local noncommercial thesis research; source assessment; no redistribution",
+      "selection": "first complete native records, prefix-biased; import 75 valid unique per category"
+    }
+  },
+  "product_count": 150,
+  "price_reference_count": 70,
+  "offer_count": 0,
+  "completeness": {
+    "name": {
+      "numerator": 150,
+      "denominator": 150
+    },
+    "category": {
+      "numerator": 150,
+      "denominator": 150
+    },
+    "brand": {
+      "numerator": 110,
+      "denominator": 150
+    },
+    "model": {
+      "numerator": 73,
+      "denominator": 150
+    },
+    "rating": {
+      "numerator": 150,
+      "denominator": 150
+    },
+    "review_count": {
+      "numerator": 150,
+      "denominator": 150
+    },
+    "image_url": {
+      "numerator": 150,
+      "denominator": 150
+    },
+    "historical_price_USD": {
+      "numerator": 70,
+      "denominator": 150
+    }
+  },
+  "source_category_counts": {
+    "Electronics": 75,
+    "Cell_Phones_and_Accessories": 75
+  },
+  "mapped_category_counts": {
+    "dien tu": 37,
+    "phu kien dien tu": 34,
+    "phu kien dien thoai": 74,
+    "laptop": 3,
+    "dien thoai": 1,
+    "ban phim": 1
+  },
+  "independent_raw_checks": [
+    {
+      "parent_asin": "B0821M984B",
+      "category": "Electronics",
+      "line": 56,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B08HM9RQX5",
+      "category": "Electronics",
+      "line": 73,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0C5XLH1HM",
+      "category": "Electronics",
+      "line": 79,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07PXWYLQX",
+      "category": "Electronics",
+      "line": 13,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07SM135LS",
+      "category": "Electronics",
+      "line": 3,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00CFGZAT8",
+      "category": "Electronics",
+      "line": 12,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00M38DMTS",
+      "category": "Electronics",
+      "line": 72,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07M9421GV",
+      "category": "Electronics",
+      "line": 32,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0B1BXC6W1",
+      "category": "Electronics",
+      "line": 74,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00YQ6LZJ4",
+      "category": "Electronics",
+      "line": 36,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0753CM3Q3",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 41,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B01LYVCPWQ",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 59,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00ARDJSBM",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 51,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B06XGY6FRT",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 34,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07YTYFBCT",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 18,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00JI55D2I",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 12,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B013SK1JTY",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 1,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00B6ZMBQE",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 79,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B01NBPHBJO",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 64,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B019VQJN7O",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 89,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    }
+  ],
+  "audit_method": "20 seeded records; direct raw comparisons without importer mapping",
+  "price_unknown": 80,
+  "api_journeys": [
+    {
+      "query": "phụ kiện điện thoại dưới 50 USD",
+      "session_id": "1b6d2929-5a1c-4d3f-a037-e4b500a1901a",
+      "recommendations": 5,
+      "comparison_id": 1,
+      "parent_asins": [
+        "B0BBRQW3VS",
+        "B09N44927L",
+        "B087ZR713Q",
+        "B0BHY2CR5B",
+        "B075V8H17X"
+      ],
+      "latency_ms": 24.46
+    },
+    {
+      "query": "điện tử",
+      "session_id": "bb2b8e62-885a-45d8-9494-c24562d280f3",
+      "recommendations": 5,
+      "comparison_id": 2,
+      "parent_asins": [
+        "B0BSQL7M51",
+        "B08K2T4JFQ",
+        "B07Y6K1PRB",
+        "B0B1BXC6W1",
+        "B002PKKO5O"
+      ],
+      "latency_ms": 24.68
+    },
+    {
+      "query": "điện thoại RAM 999GB",
+      "session_id": "716a5bf9-3d8f-477d-b655-d95b2bd131da",
+      "recommendations": 0,
+      "comparison_id": null,
+      "parent_asins": [],
+      "latency_ms": 20.78
+    }
+  ]
+}

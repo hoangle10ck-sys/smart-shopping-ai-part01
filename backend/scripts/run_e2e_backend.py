@@ -34,6 +34,21 @@ def main():
 
         assert Path(engine.url.database).resolve() == database.resolve()
         assert get_settings().demo_mode
+        from app.core.database import init_db, SessionLocal
+        from app.services.research.importer import CATEGORIES, import_catalog
+        init_db()
+        real_dir = os.environ.get("RESEARCH_E2E_DATA")
+        fixture_dir = Path(__file__).resolve().parents[1] / "tests" / "fixtures" / "research"
+        with SessionLocal() as db:
+            for category in CATEGORIES:
+                path = Path(real_dir) / f"meta_{category}.prefix.jsonl" if real_dir else fixture_dir / f"{category}.jsonl"
+                if real_dir:
+                    from scripts.download_research_metadata import REVISION
+                    revision = REVISION
+                else:
+                    revision = "SYNTHETIC-TEST-ONLY"
+                import_catalog(db, path=path, category=category, revision=revision, limit=75)
+            db.commit()
         # Test-only origin, without changing application CORS or routes.
         app.add_middleware(CORSMiddleware, allow_origins=["http://127.0.0.1:13000"],
                            allow_methods=["*"], allow_headers=["*"])

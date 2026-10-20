@@ -59,9 +59,7 @@ class RequirementAnalyzer:
         )
 
         requirement = apply_budget_semantics(requirement, raw_query)
-        return self.assess(
-            requirement
-        )
+        return self.assess(requirement)
 
     @staticmethod
     def _backend_normalize(

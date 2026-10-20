@@ -24,13 +24,32 @@ from app.schemas.search import (
 
 
 RecommendationDataSemantics = Literal["snapshot", "legacy_recomputed", "not_generated"]
-RecommendationDataMode = Literal["demo", "live"]
+RecommendationDataMode = Literal["demo", "live", "research", "unified"]
+
+
+class UnifiedEnhancement(BaseModel):
+    """Progress of optional background enrichment after an early unified response."""
+
+    status: Literal["pending", "completed", "not_needed", "failed"]
+    detail: str | None = None
 
 
 class RecommendationItem(BaseModel):
     """One ranked recommendation returned to the client."""
 
+    source_mode: Literal["HISTORICAL_RESEARCH"] | None = None
+    historical_price: dict | None = None
+    research_provenance: dict | None = None
+
     product_id: int
+    variant_id: int | None = None
+    offer_id: int | None = None
+    platform: str | None = None
+    freshness_status: str | None = None
+    score_version: str = "legacy-v1"
+    product_suitability: dict | None = None
+    offer_quality: dict | None = None
+    alternate_offers: list[dict] = Field(default_factory=list)
 
     rank: int = Field(
         ge=1,
@@ -47,7 +66,8 @@ class RecommendationItem(BaseModel):
     product_page_valid: bool | None = None
     price_type: Literal['CONCRETE'] | None = None
     variant: dict[str, str] | None = None
-    verification_level: Literal['VERIFIED_CONTENT', 'VERIFIED_SEARCH_METADATA', 'UNVERIFIED', 'REJECTED'] | None = None
+    source_observation_valid: bool | None = None
+    verification_level: Literal['VERIFIED_PUBLIC_API', 'VERIFIED_CONTENT', 'VERIFIED_SEARCH_METADATA', 'UNVERIFIED', 'REJECTED'] | None = None
     product_page_confidence: float | None = Field(default=None, ge=0, le=100)
     image_source: str | None = None
     evidence_url: str | None = None
@@ -127,3 +147,8 @@ class SearchPipelineResponse(
     total_filtered: int = 0
 
     total_recommended: int = 0
+
+    # Unified-search provenance: which sources were checked and their outcomes.
+    unified_sources: list[dict] = Field(default_factory=list)
+
+    enhancement: UnifiedEnhancement | None = None

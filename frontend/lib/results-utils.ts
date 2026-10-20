@@ -1,4 +1,11 @@
-import type { RecommendationItem, ScoreBreakdown } from "../types/shopping";
+import type { RecommendationItem, ScoreBreakdown, ResearchMetadata } from "../types/shopping";
+
+export function historicalPriceLabel(product: ResearchMetadata): string {
+  const ref = product.historical_price;
+  return ref && ref.currency === "USD" && /^\d+\.\d{2}$/.test(ref.amount)
+    ? `Giá tham khảo lịch sử (USD): ${ref.amount} USD`
+    : "Chưa có giá trong dataset";
+}
 
 export const SCORE_COMPONENTS = [
   { key: "budget_score", label: "Ngân sách", weight: 25 },
@@ -46,6 +53,7 @@ export function record(value: unknown): Record<string, unknown> {
 }
 
 export function dataModeLabel(mode: unknown): string {
+  if (mode === "research") return "HISTORICAL_RESEARCH — Dữ liệu nghiên cứu (2023), không phải giá bán hiện tại";
   return mode === "demo" ? "Demo Mode — dữ liệu minh họa" : mode === "live" ? "Live Data — dữ liệu đã thu thập" : "Chưa xác định chế độ dữ liệu của phiên";
 }
 
@@ -71,9 +79,18 @@ export function filterError(filters: ResultFilters, products: readonly Recommend
   if ((filters.minPrice.trim() && min === null) || (filters.maxPrice.trim() && max === null)) return "Giá lọc phải là số không âm.";
   if (min !== null && max !== null && min > max) return "Giá tối thiểu không được lớn hơn giá tối đa.";
   const priceOperation = min !== null || max !== null || filters.sort.startsWith("price_");
+  const researchCount = products.filter(item => item.source_mode === "HISTORICAL_RESEARCH").length;
+  if (priceOperation && researchCount > 0 && researchCount !== products.length) return "Không so sánh lẫn giá lịch sử và giá offer.";
   const currencies = new Set(products.map((item) => item.currency || ""));
   if (priceOperation && !filters.currency && (currencies.size > 1 || currencies.has(""))) return "Chọn một loại tiền tệ để lọc hoặc sắp xếp giá; không tự quy đổi tiền tệ.";
   return null;
+}
+
+export function resultPrice(item: RecommendationItem): number | null {
+  if (item.source_mode !== "HISTORICAL_RESEARCH") return finiteNumber(item.price);
+  const ref = item.historical_price;
+  return ref?.currency === "USD" && /^\d+\.\d{2}$/.test(ref.amount)
+    ? finiteNumber(Number(ref.amount)) : null;
 }
 
 export function filterAndSort(products: readonly RecommendationItem[], filters: ResultFilters): RecommendationItem[] {
@@ -83,12 +100,12 @@ export function filterAndSort(products: readonly RecommendationItem[], filters: 
     if (filters.brand && item.brand !== filters.brand) return false;
     if (filters.category && item.category !== filters.category) return false;
     if (filters.currency && item.currency !== filters.currency) return false;
-    const price = finiteNumber(item.price);
+    const price = resultPrice(item);
     if ((min !== null || max !== null) && price === null) return false;
     return (min === null || price! >= min) && (max === null || price! <= max);
   });
   return filtered.sort((a, b) => {
-    const field = (item: RecommendationItem) => filters.sort === "ai" ? item.score?.final_score : filters.sort === "rating" ? item.rating : item.price;
+    const field = (item: RecommendationItem) => filters.sort === "ai" ? item.score?.final_score : filters.sort === "rating" ? item.rating : resultPrice(item);
     const left = finiteNumber(field(a)), right = finiteNumber(field(b));
     // Missing data always sorts last, including descending sorts.
     if (left === null && right !== null) return 1;

@@ -1,0 +1,37 @@
+id,split,query
+R01,development,phụ kiện điện thoại
+R02,development,phụ kiện điện thoại dưới 50 USD
+R03,development,điện tử
+R04,development,điện tử dưới 100 USD
+R05,development,laptop
+R06,development,điện thoại RAM 8GB
+R07,development,phụ kiện điện thoại không dây
+R08,development,điện tử Bluetooth
+R09,development,điện thoại dưới 10 triệu
+R10,development,tai nghe
+R11,development,điện tử Sony
+R12,development,bàn phím
+R13,evaluation,phụ kiện điện thoại dưới 10 USD
+R14,evaluation,phụ kiện điện thoại dưới 20 USD
+R15,evaluation,phụ kiện điện thoại dưới 30 USD
+R16,evaluation,phụ kiện điện thoại dưới 100 USD
+R17,evaluation,phụ kiện điện thoại Bluetooth
+R18,evaluation,phụ kiện điện thoại Samsung
+R19,evaluation,phụ kiện điện tử
+R20,evaluation,phụ kiện điện tử dưới 20 USD
+R21,evaluation,điện tử dưới 20 USD
+R22,evaluation,điện tử dưới 50 USD
+R23,evaluation,điện tử không dây
+R24,evaluation,điện tử camera tốt
+R25,evaluation,laptop dưới 500 USD
+R26,evaluation,laptop RAM 16GB
+R27,evaluation,laptop storage 512GB
+R28,evaluation,điện thoại
+R29,evaluation,điện thoại dưới 200 USD
+R30,evaluation,điện thoại RAM 999GB
+R31,evaluation,điện thoại camera 999MP
+R32,evaluation,điện thoại pin lâu
+R33,evaluation,tai nghe chống ồn
+R34,evaluation,màn hình
+R35,evaluation,phụ kiện điện thoại dưới 1 VND
+R36,evaluation,tìm sản phẩm chưa xác định

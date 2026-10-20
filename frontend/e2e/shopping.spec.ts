@@ -80,7 +80,8 @@ test("Demo journey: home, analysis, search, results, filters, detail, compare, f
   await page.getByRole("button", { name: "So sánh ngay (2)", exact: true }).click();
   expect((await comparisonResponse).ok()).toBeTruthy();
   await expect(page).toHaveURL(/\/compare\/\d+$/);
-  await expect(page.getByRole("heading", { name: "Bảng so sánh chi tiết" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "So sánh cấu hình sản phẩm" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Offer, shop và độ mới" })).toBeVisible();
   await page.goto(resultPath);
   const feedbackResponse = page.waitForResponse((r) => r.url() === `${API}/api/feedback` && r.request().method() === "POST");
   await cards.first().getByRole("button", { name: "👍 Hữu ích" }).click();

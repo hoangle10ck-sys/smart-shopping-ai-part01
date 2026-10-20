@@ -78,6 +78,9 @@ class RequirementData(BaseModel):
         "price_asc",
         "price_desc",
         "rating",
+        "balanced",
+        "price_first",
+        "trusted_seller",
     ] = "best_match"
 
     confidence: float = Field(

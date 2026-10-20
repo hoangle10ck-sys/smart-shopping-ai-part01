@@ -1,0 +1,3 @@
+# Optional browser fallback; not required for API/HTTPX collectors or tests.
+-r requirements.txt
+crawl4ai==0.9.5

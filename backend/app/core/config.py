@@ -105,6 +105,15 @@ class Settings(BaseSettings):
 
     top_k: int = 5
 
+    # =========================================================
+    # UNIFIED SEARCH
+    # =========================================================
+
+    unified_top_k: int = 10
+    unified_min_fresh_products: int = 3
+    unified_source_timeout_seconds: float = 15.0
+    unified_enhancement_enabled: bool = True
+
 
     # =========================================================
     # DEMO MODE
@@ -118,6 +127,21 @@ class Settings(BaseSettings):
     # =========================================================
 
     cache_ttl_seconds: int = 1800
+    product_offer_freshness_ttl_seconds: int = 3600
+    collector_max_urls: int = 5
+    collector_live_enabled: bool = False
+    collector_policy_confirmed: bool = False
+    collector_source_registry_json: str = "[]"
+    collector_max_pages: int = 2
+    collector_max_bytes: int = 2_000_000
+    collector_http_timeout_seconds: float = 8.0
+    collector_min_interval_seconds: float = 1.0
+    collector_browser_enabled: bool = False
+    collector_browser_timeout_seconds: float = 12.0
+    collector_browser_max_dom_bytes: int = 2_000_000
+    enable_llm_extraction_fallback: bool = False
+    llm_extraction_max_input_chars: int = 12000
+    llm_extraction_cache_ttl_seconds: int = 3600
 
 
     # =========================================================

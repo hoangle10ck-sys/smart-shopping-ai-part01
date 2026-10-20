@@ -56,10 +56,7 @@ async def test_laptop_without_budget_requires_clarification() -> None:
 
     assert "budget" in result.missing_fields
 
-    assert (
-        result.clarification_question
-        == "Bạn dự kiến ngân sách khoảng bao nhiêu?"
-    )
+    assert result.clarification_question == "Bạn dự kiến ngân sách khoảng bao nhiêu?"
 
 
 @pytest.mark.asyncio

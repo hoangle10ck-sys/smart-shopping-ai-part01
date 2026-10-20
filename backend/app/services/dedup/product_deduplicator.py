@@ -6,6 +6,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.models.product import Product
+from app.models.research import ResearchProduct
 from app.schemas.normalization import (
     NormalizedProductCandidate,
 )
@@ -27,6 +28,7 @@ class ProductDeduplicator:
         products = list(
             db.scalars(
                 select(Product)
+                .where(~Product.id.in_(select(ResearchProduct.product_id)))
                 .order_by(Product.id)
             )
         )

@@ -117,6 +117,10 @@ class Product(Base):
         cascade="all, delete-orphan",
     )
 
+    variants: Mapped[list["ProductVariant"]] = relationship(
+        "ProductVariant", back_populates="product", cascade="all, delete-orphan"
+    )
+
     recommendations: Mapped[list["Recommendation"]] = relationship(
         "Recommendation",
         back_populates="product",

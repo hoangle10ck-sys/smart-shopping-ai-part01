@@ -1,0 +1,37 @@
+id,split,query,recommended,eligible,latency_median_ms,parent_asins
+R01,development,phụ kiện điện thoại,5,74,84.094,"['B0BBRQW3VS', 'B09N44927L', 'B087ZR713Q', 'B0BHY2CR5B', 'B011363WOU']"
+R02,development,phụ kiện điện thoại dưới 50 USD,5,34,59.939,"['B0BBRQW3VS', 'B09N44927L', 'B087ZR713Q', 'B0BHY2CR5B', 'B075V8H17X']"
+R03,development,điện tử,5,37,50.774,"['B0BSQL7M51', 'B08K2T4JFQ', 'B07Y6K1PRB', 'B0B1BXC6W1', 'B002PKKO5O']"
+R04,development,điện tử dưới 100 USD,5,14,50.994,"['B08K2T4JFQ', 'B07Y6K1PRB', 'B0B1BXC6W1', 'B00VBTJCJE', 'B0BPLX8B2K']"
+R05,development,laptop,3,3,48.489,"['B08PQDHNG3', 'B0BYBG1PPD', 'B01F1JNIWG']"
+R06,development,điện thoại RAM 8GB,0,0,49.775,[]
+R07,development,phụ kiện điện thoại không dây,5,74,63.577,"['B09N44927L', 'B087ZR713Q', 'B094FJRS5C', 'B09NQ9956S', 'B0B3LTBB8B']"
+R08,development,điện tử Bluetooth,5,37,56.154,"['B08K2T4JFQ', 'B08HM9RQX5', 'B07Y6MRH7G', 'B0746NTYYD', 'B01MG5L0H0']"
+R09,development,điện thoại dưới 10 triệu,1,1,49.977,['B07SG731NV']
+R10,development,tai nghe,0,0,49.928,[]
+R11,development,điện tử Sony,0,0,51.487,[]
+R12,development,bàn phím,1,1,48.982,['B094C5ZN1M']
+R13,evaluation,phụ kiện điện thoại dưới 10 USD,5,15,49.517,"['B0BBRQW3VS', 'B09N44927L', 'B09QC96CDF', 'B0B3LTBB8B', 'B072F2FSY5']"
+R14,evaluation,phụ kiện điện thoại dưới 20 USD,5,29,49.485,"['B0BBRQW3VS', 'B09N44927L', 'B087ZR713Q', 'B0BHY2CR5B', 'B075V8H17X']"
+R15,evaluation,phụ kiện điện thoại dưới 30 USD,5,32,52.611,"['B0BBRQW3VS', 'B09N44927L', 'B087ZR713Q', 'B0BHY2CR5B', 'B075V8H17X']"
+R16,evaluation,phụ kiện điện thoại dưới 100 USD,5,34,49.327,"['B0BBRQW3VS', 'B09N44927L', 'B087ZR713Q', 'B0BHY2CR5B', 'B075V8H17X']"
+R17,evaluation,phụ kiện điện thoại Bluetooth,5,74,54.791,"['B0BBRQW3VS', 'B09N44927L', 'B087ZR713Q', 'B0BHY2CR5B', 'B011363WOU']"
+R18,evaluation,phụ kiện điện thoại Samsung,2,2,50.097,"['B009VGOXHU', 'B01NBPHBJO']"
+R19,evaluation,phụ kiện điện tử,5,34,49.095,"['B0C5XLH1HM', 'B09M7TH3YC', 'B07PXWYLQX', 'B086W46TYP', 'B07DYJR44S']"
+R20,evaluation,phụ kiện điện tử dưới 20 USD,5,11,49.134,"['B0C5XLH1HM', 'B09M7TH3YC', 'B07DYJR44S', 'B0BGPG7ZNM', 'B07BJ7ZZL7']"
+R21,evaluation,điện tử dưới 20 USD,5,8,48.62,"['B07Y6K1PRB', 'B0B1BXC6W1', 'B0BPLX8B2K', 'B00FSTW88K', 'B07C4YHF4L']"
+R22,evaluation,điện tử dưới 50 USD,5,11,48.481,"['B07Y6K1PRB', 'B0B1BXC6W1', 'B0BPLX8B2K', 'B00FSTW88K', 'B07C4YHF4L']"
+R23,evaluation,điện tử không dây,5,37,55.01,"['B07Y6MRH7G', 'B0746NTYYD', 'B00TX536EK', 'B000LV7P8I', 'B0BSQL7M51']"
+R24,evaluation,điện tử camera tốt,5,37,50.643,"['B0BSQL7M51', 'B08K2T4JFQ', 'B07Y6K1PRB', 'B0B1BXC6W1', 'B002PKKO5O']"
+R25,evaluation,laptop dưới 500 USD,1,1,47.994,['B0BYBG1PPD']
+R26,evaluation,laptop RAM 16GB,0,0,49.986,[]
+R27,evaluation,laptop storage 512GB,0,0,49.587,[]
+R28,evaluation,điện thoại,1,1,48.035,['B07SG731NV']
+R29,evaluation,điện thoại dưới 200 USD,0,0,53.862,[]
+R30,evaluation,điện thoại RAM 999GB,0,0,51.842,[]
+R31,evaluation,điện thoại camera 999MP,0,0,49.336,[]
+R32,evaluation,điện thoại pin lâu,1,1,49.582,['B07SG731NV']
+R33,evaluation,tai nghe chống ồn,0,0,53.791,[]
+R34,evaluation,màn hình,0,0,48.188,[]
+R35,evaluation,phụ kiện điện thoại dưới 1 VND,5,74,49.377,"['B0BBRQW3VS', 'B09N44927L', 'B087ZR713Q', 'B0BHY2CR5B', 'B011363WOU']"
+R36,evaluation,tìm sản phẩm chưa xác định,0,0,0.002,[]

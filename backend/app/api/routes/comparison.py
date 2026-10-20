@@ -40,7 +40,20 @@ def _serialize_product(item: RecommendationItem) -> dict[str, Any]:
     """Project a consistent recommendation view into the existing API shape."""
     explanation = item.explanation
     return {
+        "source_mode": item.source_mode,
+        "historical_price": item.historical_price,
+        "research_provenance": item.research_provenance,
+        "requirement_matches": [match.model_dump() for match in item.requirement_matches],
         "product_id": item.product_id,
+        "variant_id": item.variant_id,
+        "offer_id": item.offer_id,
+        "platform": item.platform,
+        "freshness_status": item.freshness_status,
+        "score_version": item.score_version,
+        "product_suitability": item.product_suitability,
+        "offer_quality": item.offer_quality,
+        "price_type": item.price_type,
+        "alternate_offers": item.alternate_offers,
         "name": item.name,
         "category": item.category,
         "brand": item.brand,
@@ -125,6 +138,15 @@ def _build_result(
         "phụ khi cần phân hạng."
     )
 
+    identities = {(item.get("model"), item.get("variant_id"), item.get("price_type"),
+                   (item.get("best_offer") or {}).get("currency")) for item in products}
+    prices_comparable = len(identities) == 1 and all(
+        item.get("model") is not None and item.get("variant_id") is not None
+        and item.get("price_type") is not None
+        and (item.get("best_offer") or {}).get("price") is not None
+        for item in products
+    )
+
     return {
         "winner_product_id": (
             winner["product_id"]
@@ -141,6 +163,20 @@ def _build_result(
             "Cons",
         ],
         "products": products,
+        "product_comparison": [{
+            "product_id": item["product_id"], "model": item.get("model"),
+            "variant_id": item.get("variant_id"), "specifications": item.get("specifications", {}),
+            "product_suitability": item.get("product_suitability"),
+        } for item in products],
+        "offer_comparison": [{
+            "product_id": item["product_id"], "offer": item.get("best_offer"),
+            "platform": item.get("platform"), "freshness_status": item.get("freshness_status"),
+            "offer_quality": item.get("offer_quality"), "alternate_offers": item.get("alternate_offers", []),
+        } for item in products],
+        "price_comparability": "COMPARABLE" if prices_comparable else "NOT_COMPARABLE",
+        "warnings": [] if prices_comparable else [
+            "NOT_COMPARABLE: giá chỉ được đối chiếu trực tiếp khi cùng model, cùng SKU, cùng kiểu giá và cùng tiền tệ."
+        ],
     }
 
 

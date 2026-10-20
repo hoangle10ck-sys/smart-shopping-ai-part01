@@ -1,10 +1,30 @@
 # Database
 
+## Research additions (R01–R03)
+
+- `research_products`: FK unique Product, unique `(dataset_id, revision,
+  external_product_id)`; source category/URL, input SHA256, raw-line SHA256,
+  native line number, imported_at, native metadata fields. parent_asin là nhóm
+  sản phẩm, không SKU. Store chỉ giữ metadata, không merchant trust.
+- `historical_price_references`: FK unique research product, amount decimal
+  text chính xác, currency USD, reference_year=2023, price_observed_at NULL,
+  imported_at và provenance. Không phải ProductOffer/PriceObservation Live.
+- `research_import_runs`: log nhập riêng, checksum/revision/thống kê; không crawl log.
+
+Model registry/create_all tạo bảng additive. Importer savepoint rollback khi lỗi
+đọc/giải nén/giới hạn; caller commit. Cùng identity+raw hash thì skip duplicate,
+khác nội dung cùng revision thì conflict, không merge. Revision khác tạo Product
+riêng. Raw dataset/database bị loại khỏi git và Docker build context.
+
+Catalog thực local hiện tại: 150 Product research, 70 reference USD, 0 research
+offer. Các bản ghi Demo/Live có sẵn không bị xóa. Chi tiết/checksum trong
+[verification](research-results/verification.json).
+
 MVP dùng **SQLite + SQLAlchemy 2**, không cần PostgreSQL hoặc Redis. Bảng được
 đăng ký qua `app/models/__init__.py`; FastAPI lifespan gọi `init_db()`/`create_all()`
 để tạo bảng còn thiếu. Không có migration/backfill database thật trong Phase 7.
 
-## 14 bảng thực tế
+## Bảng trong luồng MVP cốt lõi
 
 | Bảng | Trường chính và vai trò |
 |---|---|
@@ -86,3 +106,18 @@ cũ lúc tạo. Feedback là dữ liệu đánh giá, chưa dùng để tự đi
   chưa có job dọn định kỳ các row cũ.
 
 Xem [architecture](architecture.md), [API](api.md), [testing](testing.md).
+# Marketplace upgrade tables and migration
+
+`ProductVariant` belongs to one canonical Product and uses a deterministic identity key
+from normalized configuration plus condition. `ProductOffer.variant_id` is nullable so
+legacy offers remain readable. External platform/product/shop/SKU IDs are nullable and are
+stored only when source evidence supplies them. `PriceObservation` is immutable and
+deduplicated by offer plus price-state fingerprint. `CrawlRun` stores success/failure
+diagnostics, including nullable `robots_checked_at`; a failed run never refreshes price or
+stock. This timestamp records the preflight robots check when a crawl run is persisted; it
+does not prove that the merchant authorized collection.
+
+`init_db()` applies only additive SQLite columns, creates missing tables/indexes, and never
+drops or rewrites a legacy row. Before upgrading a non-test database, stop writers and copy
+the `.db`, `-wal`, and `-shm` files together (or use SQLite `.backup`). Rollback means stop
+the new app and restore that complete backup; do not delete individual tables/columns.

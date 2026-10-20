@@ -1,0 +1,103 @@
+{
+  "dataset": "synthetic-offline-v1",
+  "dataset_kind": "FIXTURE_TESTED_ONLY",
+  "sample_count": 3,
+  "environment": "offline deterministic parser",
+  "network_calls": 0,
+  "crawl": {
+    "attempted": 3,
+    "allowed": 3,
+    "fetched": 3,
+    "restricted": 0,
+    "fetch_success": {
+      "numerator": 3,
+      "denominator": 3,
+      "value": 1.0
+    },
+    "extraction_success": {
+      "numerator": 2,
+      "denominator": 3,
+      "value": 0.6666666666666666
+    },
+    "name_accuracy": {
+      "numerator": 3,
+      "denominator": 3,
+      "value": 1.0
+    },
+    "price_accuracy": {
+      "numerator": 3,
+      "denominator": 3,
+      "value": 1.0
+    },
+    "sku_accuracy": {
+      "numerator": 3,
+      "denominator": 3,
+      "value": 1.0
+    },
+    "completeness": {
+      "numerator": 3,
+      "denominator": 3,
+      "value": 1.0
+    },
+    "persistence_success": {
+      "numerator": 0,
+      "denominator": 0,
+      "value": null
+    },
+    "latency_ms": {
+      "p50": 0.117,
+      "p95": 0.6
+    }
+  },
+  "recommendation": {
+    "constraint_violations": {
+      "numerator": 0,
+      "denominator": 2,
+      "value": 0.0
+    },
+    "sku_match_accuracy": {
+      "numerator": 1,
+      "denominator": 2,
+      "value": 0.5
+    },
+    "offer_selection_accuracy": {
+      "numerator": 0,
+      "denominator": 0,
+      "value": null
+    },
+    "precision_at_k": {
+      "numerator": 1,
+      "denominator": 1,
+      "value": 1.0
+    },
+    "ndcg_at_k": {
+      "numerator": 1.0,
+      "denominator": 1,
+      "value": 1.0
+    },
+    "evidence_consistency": {
+      "numerator": 0,
+      "denominator": 0,
+      "value": null
+    },
+    "legacy_precision_at_1": {
+      "numerator": 1,
+      "denominator": 1,
+      "value": 1.0
+    },
+    "two_level_precision_at_1": {
+      "numerator": 1,
+      "denominator": 1,
+      "value": 1.0
+    },
+    "legacy_ndcg_at_2": 1.0,
+    "two_level_ndcg_at_2": 1.0
+  },
+  "ablation": {
+    "deterministic_parser": "MEASURED",
+    "playwright": "N/A",
+    "parser_plus_llm": "N/A (disabled/no API call)",
+    "legacy_vs_two_level": "MEASURED_SYNTHETIC"
+  },
+  "live": "N/A"
+}

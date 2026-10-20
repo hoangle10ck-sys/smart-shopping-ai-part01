@@ -14,6 +14,7 @@ from sqlalchemy.orm import (
 
 from app.core.database import get_db
 from app.models.product import Product
+from app.services.research.recommendation import catalog_metadata
 from app.services.recommendation.candidate_builder import offer_observation
 from app.services.recommendation.recommendation_service import RecommendationService
 from app.models.product_offer import (
@@ -100,9 +101,18 @@ def get_product(
         offers.append(
             ProductOfferItem(
                 id=offer.id,
+                variant_id=offer.variant_id, platform=offer.platform,
+                external_product_id=offer.external_product_id,
+                external_shop_id=offer.external_shop_id, external_sku_id=offer.external_sku_id,
+                listed_price=offer.listed_price, sale_price=offer.sale_price,
+                price_min=offer.price_min, price_max=offer.price_max,
+                shipping_fee=offer.shipping_fee, freshness_status=offer.freshness_status,
+                warranty=offer.warranty,
+                last_verified_at=offer.last_verified_at,
                 image_url=proof.get('image_url') if proof else None,
                 image_source=proof.get('image_source') if proof else None,
                 product_page_valid=proof.get('product_page_valid') if proof else None,
+                source_observation_valid=proof.get('source_observation_valid') if proof else None,
                 price_type=proof.get('price_type') if proof else None,
                 variant=proof.get('variant') if proof else None,
                 verification_level=proof.get('verification_level') if proof else None,
@@ -152,6 +162,7 @@ def get_product(
         if recommendation is None:
             raise HTTPException(status_code=404, detail="Product not recommended in this session.")
     return ProductDetailResponse(
+        **catalog_metadata(db, product.id),
         recommendation=recommendation,
         recommendation_session_id=session_id,
         id=product.id,

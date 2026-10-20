@@ -1,0 +1,549 @@
+{
+  "status": "RESEARCH_BENCHMARK_MEASURED",
+  "live_crawl_success": "NOT_APPLICABLE",
+  "revision": "2b6d039ed471f2ba5fd2acb718bf33b0a7e5598e",
+  "prefix_hashes": {
+    "Electronics": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+    "Cell_Phones_and_Accessories": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1"
+  },
+  "query_count": 36,
+  "split": {
+    "development": 12,
+    "evaluation": 24
+  },
+  "repeats": 3,
+  "metrics": {
+    "import_success": {
+      "numerator": 150,
+      "denominator": 171
+    },
+    "duplicate_generated": {
+      "numerator": 0,
+      "denominator": 150
+    },
+    "completeness": {
+      "name": {
+        "numerator": 150,
+        "denominator": 150
+      },
+      "category": {
+        "numerator": 150,
+        "denominator": 150
+      },
+      "brand": {
+        "numerator": 110,
+        "denominator": 150
+      },
+      "model": {
+        "numerator": 73,
+        "denominator": 150
+      },
+      "rating": {
+        "numerator": 150,
+        "denominator": 150
+      },
+      "review_count": {
+        "numerator": 150,
+        "denominator": 150
+      },
+      "image_url": {
+        "numerator": 150,
+        "denominator": 150
+      },
+      "historical_price_USD": {
+        "numerator": 70,
+        "denominator": 150
+      }
+    },
+    "budget_violations": {
+      "numerator": 0,
+      "denominator": 46
+    },
+    "source_field_support": {
+      "numerator": 380,
+      "denominator": 380,
+      "method": "raw name/rating/review_count/historical price comparisons"
+    },
+    "returned_items": 100,
+    "latency_ms": {
+      "p50": 49.776,
+      "p95": 75.723,
+      "denominator": 108
+    },
+    "precision_at_5": {
+      "value": null,
+      "numerator": null,
+      "denominator": 0,
+      "reason": "Independent human labels not available"
+    },
+    "ndcg_at_5": {
+      "value": null,
+      "numerator": null,
+      "denominator": 0,
+      "reason": "Independent human labels not available"
+    },
+    "requirement_match_accuracy": {
+      "value": null,
+      "numerator": null,
+      "denominator": 0,
+      "reason": "Independent human labels not available"
+    },
+    "semantic_explanation_grounding": {
+      "value": null,
+      "numerator": null,
+      "denominator": 0,
+      "reason": "Independent human labels not available"
+    }
+  },
+  "observations": [
+    {
+      "id": "R01",
+      "split": "development",
+      "query": "phụ kiện điện thoại",
+      "recommended": 5,
+      "eligible": 74,
+      "latency_median_ms": 84.094,
+      "parent_asins": [
+        "B0BBRQW3VS",
+        "B09N44927L",
+        "B087ZR713Q",
+        "B0BHY2CR5B",
+        "B011363WOU"
+      ]
+    },
+    {
+      "id": "R02",
+      "split": "development",
+      "query": "phụ kiện điện thoại dưới 50 USD",
+      "recommended": 5,
+      "eligible": 34,
+      "latency_median_ms": 59.939,
+      "parent_asins": [
+        "B0BBRQW3VS",
+        "B09N44927L",
+        "B087ZR713Q",
+        "B0BHY2CR5B",
+        "B075V8H17X"
+      ]
+    },
+    {
+      "id": "R03",
+      "split": "development",
+      "query": "điện tử",
+      "recommended": 5,
+      "eligible": 37,
+      "latency_median_ms": 50.774,
+      "parent_asins": [
+        "B0BSQL7M51",
+        "B08K2T4JFQ",
+        "B07Y6K1PRB",
+        "B0B1BXC6W1",
+        "B002PKKO5O"
+      ]
+    },
+    {
+      "id": "R04",
+      "split": "development",
+      "query": "điện tử dưới 100 USD",
+      "recommended": 5,
+      "eligible": 14,
+      "latency_median_ms": 50.994,
+      "parent_asins": [
+        "B08K2T4JFQ",
+        "B07Y6K1PRB",
+        "B0B1BXC6W1",
+        "B00VBTJCJE",
+        "B0BPLX8B2K"
+      ]
+    },
+    {
+      "id": "R05",
+      "split": "development",
+      "query": "laptop",
+      "recommended": 3,
+      "eligible": 3,
+      "latency_median_ms": 48.489,
+      "parent_asins": [
+        "B08PQDHNG3",
+        "B0BYBG1PPD",
+        "B01F1JNIWG"
+      ]
+    },
+    {
+      "id": "R06",
+      "split": "development",
+      "query": "điện thoại RAM 8GB",
+      "recommended": 0,
+      "eligible": 0,
+      "latency_median_ms": 49.775,
+      "parent_asins": []
+    },
+    {
+      "id": "R07",
+      "split": "development",
+      "query": "phụ kiện điện thoại không dây",
+      "recommended": 5,
+      "eligible": 74,
+      "latency_median_ms": 63.577,
+      "parent_asins": [
+        "B09N44927L",
+        "B087ZR713Q",
+        "B094FJRS5C",
+        "B09NQ9956S",
+        "B0B3LTBB8B"
+      ]
+    },
+    {
+      "id": "R08",
+      "split": "development",
+      "query": "điện tử Bluetooth",
+      "recommended": 5,
+      "eligible": 37,
+      "latency_median_ms": 56.154,
+      "parent_asins": [
+        "B08K2T4JFQ",
+        "B08HM9RQX5",
+        "B07Y6MRH7G",
+        "B0746NTYYD",
+        "B01MG5L0H0"
+      ]
+    },
+    {
+      "id": "R09",
+      "split": "development",
+      "query": "điện thoại dưới 10 triệu",
+      "recommended": 1,
+      "eligible": 1,
+      "latency_median_ms": 49.977,
+      "parent_asins": [
+        "B07SG731NV"
+      ]
+    },
+    {
+      "id": "R10",
+      "split": "development",
+      "query": "tai nghe",
+      "recommended": 0,
+      "eligible": 0,
+      "latency_median_ms": 49.928,
+      "parent_asins": []
+    },
+    {
+      "id": "R11",
+      "split": "development",
+      "query": "điện tử Sony",
+      "recommended": 0,
+      "eligible": 0,
+      "latency_median_ms": 51.487,
+      "parent_asins": []
+    },
+    {
+      "id": "R12",
+      "split": "development",
+      "query": "bàn phím",
+      "recommended": 1,
+      "eligible": 1,
+      "latency_median_ms": 48.982,
+      "parent_asins": [
+        "B094C5ZN1M"
+      ]
+    },
+    {
+      "id": "R13",
+      "split": "evaluation",
+      "query": "phụ kiện điện thoại dưới 10 USD",
+      "recommended": 5,
+      "eligible": 15,
+      "latency_median_ms": 49.517,
+      "parent_asins": [
+        "B0BBRQW3VS",
+        "B09N44927L",
+        "B09QC96CDF",
+        "B0B3LTBB8B",
+        "B072F2FSY5"
+      ]
+    },
+    {
+      "id": "R14",
+      "split": "evaluation",
+      "query": "phụ kiện điện thoại dưới 20 USD",
+      "recommended": 5,
+      "eligible": 29,
+      "latency_median_ms": 49.485,
+      "parent_asins": [
+        "B0BBRQW3VS",
+        "B09N44927L",
+        "B087ZR713Q",
+        "B0BHY2CR5B",
+        "B075V8H17X"
+      ]
+    },
+    {
+      "id": "R15",
+      "split": "evaluation",
+      "query": "phụ kiện điện thoại dưới 30 USD",
+      "recommended": 5,
+      "eligible": 32,
+      "latency_median_ms": 52.611,
+      "parent_asins": [
+        "B0BBRQW3VS",
+        "B09N44927L",
+        "B087ZR713Q",
+        "B0BHY2CR5B",
+        "B075V8H17X"
+      ]
+    },
+    {
+      "id": "R16",
+      "split": "evaluation",
+      "query": "phụ kiện điện thoại dưới 100 USD",
+      "recommended": 5,
+      "eligible": 34,
+      "latency_median_ms": 49.327,
+      "parent_asins": [
+        "B0BBRQW3VS",
+        "B09N44927L",
+        "B087ZR713Q",
+        "B0BHY2CR5B",
+        "B075V8H17X"
+      ]
+    },
+    {
+      "id": "R17",
+      "split": "evaluation",
+      "query": "phụ kiện điện thoại Bluetooth",
+      "recommended": 5,
+      "eligible": 74,
+      "latency_median_ms": 54.791,
+      "parent_asins": [
+        "B0BBRQW3VS",
+        "B09N44927L",
+        "B087ZR713Q",
+        "B0BHY2CR5B",
+        "B011363WOU"
+      ]
+    },
+    {
+      "id": "R18",
+      "split": "evaluation",
+      "query": "phụ kiện điện thoại Samsung",
+      "recommended": 2,
+      "eligible": 2,
+      "latency_median_ms": 50.097,
+      "parent_asins": [
+        "B009VGOXHU",
+        "B01NBPHBJO"
+      ]
+    },
+    {
+      "id": "R19",
+      "split": "evaluation",
+      "query": "phụ kiện điện tử",
+      "recommended": 5,
+      "eligible": 34,
+      "latency_median_ms": 49.095,
+      "parent_asins": [
+        "B0C5XLH1HM",
+        "B09M7TH3YC",
+        "B07PXWYLQX",
+        "B086W46TYP",
+        "B07DYJR44S"
+      ]
+    },
+    {
+      "id": "R20",
+      "split": "evaluation",
+      "query": "phụ kiện điện tử dưới 20 USD",
+      "recommended": 5,
+      "eligible": 11,
+      "latency_median_ms": 49.134,
+      "parent_asins": [
+        "B0C5XLH1HM",
+        "B09M7TH3YC",
+        "B07DYJR44S",
+        "B0BGPG7ZNM",
+        "B07BJ7ZZL7"
+      ]
+    },
+    {
+      "id": "R21",
+      "split": "evaluation",
+      "query": "điện tử dưới 20 USD",
+      "recommended": 5,
+      "eligible": 8,
+      "latency_median_ms": 48.62,
+      "parent_asins": [
+        "B07Y6K1PRB",
+        "B0B1BXC6W1",
+        "B0BPLX8B2K",
+        "B00FSTW88K",
+        "B07C4YHF4L"
+      ]
+    },
+    {
+      "id": "R22",
+      "split": "evaluation",
+      "query": "điện tử dưới 50 USD",
+      "recommended": 5,
+      "eligible": 11,
+      "latency_median_ms": 48.481,
+      "parent_asins": [
+        "B07Y6K1PRB",
+        "B0B1BXC6W1",
+        "B0BPLX8B2K",
+        "B00FSTW88K",
+        "B07C4YHF4L"
+      ]
+    },
+    {
+      "id": "R23",
+      "split": "evaluation",
+      "query": "điện tử không dây",
+      "recommended": 5,
+      "eligible": 37,
+      "latency_median_ms": 55.01,
+      "parent_asins": [
+        "B07Y6MRH7G",
+        "B0746NTYYD",
+        "B00TX536EK",
+        "B000LV7P8I",
+        "B0BSQL7M51"
+      ]
+    },
+    {
+      "id": "R24",
+      "split": "evaluation",
+      "query": "điện tử camera tốt",
+      "recommended": 5,
+      "eligible": 37,
+      "latency_median_ms": 50.643,
+      "parent_asins": [
+        "B0BSQL7M51",
+        "B08K2T4JFQ",
+        "B07Y6K1PRB",
+        "B0B1BXC6W1",
+        "B002PKKO5O"
+      ]
+    },
+    {
+      "id": "R25",
+      "split": "evaluation",
+      "query": "laptop dưới 500 USD",
+      "recommended": 1,
+      "eligible": 1,
+      "latency_median_ms": 47.994,
+      "parent_asins": [
+        "B0BYBG1PPD"
+      ]
+    },
+    {
+      "id": "R26",
+      "split": "evaluation",
+      "query": "laptop RAM 16GB",
+      "recommended": 0,
+      "eligible": 0,
+      "latency_median_ms": 49.986,
+      "parent_asins": []
+    },
+    {
+      "id": "R27",
+      "split": "evaluation",
+      "query": "laptop storage 512GB",
+      "recommended": 0,
+      "eligible": 0,
+      "latency_median_ms": 49.587,
+      "parent_asins": []
+    },
+    {
+      "id": "R28",
+      "split": "evaluation",
+      "query": "điện thoại",
+      "recommended": 1,
+      "eligible": 1,
+      "latency_median_ms": 48.035,
+      "parent_asins": [
+        "B07SG731NV"
+      ]
+    },
+    {
+      "id": "R29",
+      "split": "evaluation",
+      "query": "điện thoại dưới 200 USD",
+      "recommended": 0,
+      "eligible": 0,
+      "latency_median_ms": 53.862,
+      "parent_asins": []
+    },
+    {
+      "id": "R30",
+      "split": "evaluation",
+      "query": "điện thoại RAM 999GB",
+      "recommended": 0,
+      "eligible": 0,
+      "latency_median_ms": 51.842,
+      "parent_asins": []
+    },
+    {
+      "id": "R31",
+      "split": "evaluation",
+      "query": "điện thoại camera 999MP",
+      "recommended": 0,
+      "eligible": 0,
+      "latency_median_ms": 49.336,
+      "parent_asins": []
+    },
+    {
+      "id": "R32",
+      "split": "evaluation",
+      "query": "điện thoại pin lâu",
+      "recommended": 1,
+      "eligible": 1,
+      "latency_median_ms": 49.582,
+      "parent_asins": [
+        "B07SG731NV"
+      ]
+    },
+    {
+      "id": "R33",
+      "split": "evaluation",
+      "query": "tai nghe chống ồn",
+      "recommended": 0,
+      "eligible": 0,
+      "latency_median_ms": 53.791,
+      "parent_asins": []
+    },
+    {
+      "id": "R34",
+      "split": "evaluation",
+      "query": "màn hình",
+      "recommended": 0,
+      "eligible": 0,
+      "latency_median_ms": 48.188,
+      "parent_asins": []
+    },
+    {
+      "id": "R35",
+      "split": "evaluation",
+      "query": "phụ kiện điện thoại dưới 1 VND",
+      "recommended": 5,
+      "eligible": 74,
+      "latency_median_ms": 49.377,
+      "parent_asins": [
+        "B0BBRQW3VS",
+        "B09N44927L",
+        "B087ZR713Q",
+        "B0BHY2CR5B",
+        "B011363WOU"
+      ]
+    },
+    {
+      "id": "R36",
+      "split": "evaluation",
+      "query": "tìm sản phẩm chưa xác định",
+      "recommended": 0,
+      "eligible": 0,
+      "latency_median_ms": 0.002,
+      "parent_asins": []
+    }
+  ]
+}

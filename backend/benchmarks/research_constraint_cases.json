@@ -1,0 +1,8 @@
+[
+  {"id":"C01","query":"phụ kiện điện thoại từ 20 đến 50 USD","expected":{"budget_min":20,"budget_max":50,"currency":"USD"}},
+  {"id":"C02","query":"điện thoại dưới 100 USD RAM tối thiểu 8GB","expected":{"budget_min":null,"budget_max":100,"currency":"USD","requirements":[{"name":"ram","value":"toi thieu 8 gb","priority":5}]}},
+  {"id":"C03","query":"điện thoại không mua Apple","expected":{"brands":[],"excluded_requirements":["Apple"]}},
+  {"id":"C04","query":"laptop để học lập trình","expected":{"purpose":["lập trình"]}},
+  {"id":"C05","query":"laptop tối thiểu 200 USD","expected":{"budget_min":200,"budget_max":null,"currency":"USD"}},
+  {"id":"C06","query":"tai nghe từ 10 đến 100 USD","expected":{"budget_min":10,"budget_max":100,"currency":"USD"}}
+]

@@ -12,9 +12,23 @@ class ProductOfferItem(BaseModel):
     """One merchant offer for a product."""
 
     id: int
+    variant_id: int | None = None
+    platform: str | None = None
+    external_product_id: str | None = None
+    external_shop_id: str | None = None
+    external_sku_id: str | None = None
+    listed_price: int | None = None
+    sale_price: int | None = None
+    price_min: int | None = None
+    price_max: int | None = None
+    shipping_fee: int | None = None
+    warranty: str | None = None
+    freshness_status: str | None = None
+    last_verified_at: datetime | None = None
     image_url: str | None = None
     image_source: str | None = None
     product_page_valid: bool | None = None
+    source_observation_valid: bool | None = None
     price_type: Literal['CONCRETE'] | None = None
     variant: dict[str, str] | None = None
     verification_level: str | None = None
@@ -44,6 +58,10 @@ class ProductOfferItem(BaseModel):
 
 class ProductDetailResponse(BaseModel):
     """Full product information for frontend."""
+
+    source_mode: str | None = None
+    historical_price: dict | None = None
+    research_provenance: dict | None = None
 
     id: int
     recommendation: RecommendationItem | None = None

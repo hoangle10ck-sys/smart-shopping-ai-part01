@@ -16,7 +16,7 @@ from tests.fixtures.sales_pages import sales_page
 
 def source(n=56, domain='shop.test', prefix='products'):
     return SearchSourceItem(url=f'https://{domain}/{prefix}/samsung-galaxy-a{n}',
-                           title=f'Samsung Galaxy A{n}', content='')
+                           title=f'Samsung Galaxy A{n}', content='')    
 
 
 def proof(s, stock='in_stock'):

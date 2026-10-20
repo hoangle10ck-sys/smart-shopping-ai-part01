@@ -126,6 +126,23 @@ class ProductNormalizer:
 
         return NormalizedProductCandidate(
             name=name,
+            platform=candidate.platform,
+            external_product_id=candidate.external_product_id,
+            external_shop_id=candidate.external_shop_id,
+            external_sku_id=candidate.external_sku_id,
+            variant_attributes=dict(candidate.variant_attributes),
+            condition=candidate.condition,
+            listed_price=candidate.listed_price,
+            sale_price=candidate.sale_price,
+            listed_price_minor_units=candidate.listed_price_minor_units,
+            sale_price_minor_units=candidate.sale_price_minor_units,
+            currency_minor_unit=candidate.currency_minor_unit,
+            price_min=candidate.price_min,
+            price_max=candidate.price_max,
+            shipping_fee=candidate.shipping_fee,
+            warranty=candidate.warranty,
+            voucher=candidate.voucher,
+            observed_at=candidate.observed_at,
             normalized_name=normalized_name,
             category=infer_product_category(candidate.name, candidate.category),
             brand=brand,
@@ -143,7 +160,7 @@ class ProductNormalizer:
             price=parse_price(
                 candidate.price_text
             ),
-            currency="VND",
+            currency=candidate.currency or "VND",
             rating=parse_rating(
                 candidate.rating_text
             ),

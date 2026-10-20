@@ -14,6 +14,21 @@ export const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL ??
   "http://127.0.0.1:8000";
 
+export class ApiError extends Error {
+  status: number;
+  constructor(message: string, status: number) {
+    super(message);
+    this.name = "ApiError";
+    this.status = status;
+  }
+}
+
+export function searchErrorMessage(error: unknown): string {
+  return error instanceof ApiError && error.status >= 400 && error.status < 500
+    ? error.message
+    : "Chưa thể kết nối để tìm kiếm. Vui lòng thử lại sau ít phút.";
+}
+
 
 async function request<T>(
   path: string,
@@ -82,7 +97,7 @@ async function request<T>(
     }
 
 
-    throw new Error(message);
+    throw new ApiError(message, response.status);
   }
 
 
@@ -103,6 +118,22 @@ export function analyzeRequirement(
       }),
     },
   );
+}
+
+export function researchSearch(rawQuery: string): Promise<SearchPipelineResponse> {
+  return request<SearchPipelineResponse>("/api/research/search", { method: "POST", body: JSON.stringify({ raw_query: rawQuery }) });
+}
+
+export async function repeatResearchSearch(sessionId: string): Promise<SearchPipelineResponse> {
+  const previous = await request<{ raw_query: string; result: SearchPipelineResponse }>(`/api/history/${encodeURIComponent(sessionId)}`);
+  if (previous.result?.data_mode !== "research") throw new Error("Phiên không thuộc Research.");
+  return request<SearchPipelineResponse>("/api/research/search", { method: "POST", body: JSON.stringify({
+    raw_query: previous.raw_query, requirement: previous.result.requirement,
+  }) });
+}
+
+export function researchStatus(): Promise<{ products: number; default_mode: "demo" | "live" }> {
+  return request("/api/research/status");
 }
 
 
@@ -126,6 +157,7 @@ export function clarifyRequirement(
 
 export function executeSearch(
   sessionId: string,
+  options?: { directUrls?: string[]; sourcePlatforms?: ("shopee" | "lazada")[]; refresh?: boolean },
 ): Promise<SearchPipelineResponse> {
   return request<SearchPipelineResponse>(
     "/api/search",
@@ -134,6 +166,9 @@ export function executeSearch(
 
       body: JSON.stringify({
         session_id: sessionId,
+        direct_urls: options?.directUrls ?? [],
+        source_platforms: options?.sourcePlatforms ?? ["shopee", "lazada"],
+        refresh: options?.refresh ?? false,
       }),
     },
   );

@@ -1,0 +1,3993 @@
+{
+  "status": "RESEARCH_DATASET_VERIFIED",
+  "live_status": "LIVE_NOT_VERIFIED",
+  "revision": "2b6d039ed471f2ba5fd2acb718bf33b0a7e5598e",
+  "source_manifests": {
+    "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98": {
+      "dataset": "McAuley-Lab/Amazon-Reviews-2023",
+      "revision": "2b6d039ed471f2ba5fd2acb718bf33b0a7e5598e",
+      "category": "Electronics",
+      "source_url": "https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023/resolve/2b6d039ed471f2ba5fd2acb718bf33b0a7e5598e/raw/meta_categories/meta_Electronics.jsonl",
+      "downloaded_at": "2026-10-16T19:09:54.884645+00:00",
+      "head_status": 200,
+      "full_source_bytes": 5246144134,
+      "range_status": 206,
+      "requested_range": "bytes=0-4194303",
+      "received_bytes": 589824,
+      "retained_bytes": 548643,
+      "complete_records": 150,
+      "sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "checksum_scope": "retained native JSONL prefix, NOT full corpus",
+      "permission_basis": "local noncommercial thesis research; source assessment; no redistribution",
+      "selection": "first complete native records, prefix-biased; import 75 valid unique per category"
+    },
+    "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1": {
+      "dataset": "McAuley-Lab/Amazon-Reviews-2023",
+      "revision": "2b6d039ed471f2ba5fd2acb718bf33b0a7e5598e",
+      "category": "Cell_Phones_and_Accessories",
+      "source_url": "https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023/resolve/2b6d039ed471f2ba5fd2acb718bf33b0a7e5598e/raw/meta_categories/meta_Cell_Phones_and_Accessories.jsonl",
+      "downloaded_at": "2026-10-16T19:09:57.570750+00:00",
+      "head_status": 200,
+      "full_source_bytes": 4015159840,
+      "range_status": 206,
+      "requested_range": "bytes=0-4194303",
+      "received_bytes": 589824,
+      "retained_bytes": 529522,
+      "complete_records": 150,
+      "sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "checksum_scope": "retained native JSONL prefix, NOT full corpus",
+      "permission_basis": "local noncommercial thesis research; source assessment; no redistribution",
+      "selection": "first complete native records, prefix-biased; import 75 valid unique per category"
+    },
+    "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7": {
+      "dataset": "McAuley-Lab/Amazon-Reviews-2023",
+      "revision": "2b6d039ed471f2ba5fd2acb718bf33b0a7e5598e",
+      "category": "Electronics",
+      "source_url": "https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023/resolve/2b6d039ed471f2ba5fd2acb718bf33b0a7e5598e/raw/meta_categories/meta_Electronics.jsonl",
+      "downloaded_at": "2026-10-17T06:59:00.252695+00:00",
+      "head_status": 200,
+      "full_source_bytes": 5246144134,
+      "range_status": 206,
+      "requested_range": "bytes=0-4194303",
+      "received_bytes": 3276800,
+      "retained_bytes": 3234735,
+      "complete_records": 900,
+      "sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "checksum_scope": "retained native JSONL prefix, NOT full corpus",
+      "permission_basis": "local noncommercial thesis research; source assessment; no redistribution",
+      "selection": "first complete native records, prefix-biased; import 75 valid unique per category"
+    },
+    "954ac0b7883757354e92299dc1a45a604c3a0fca1b202e9028e0505616b9d0a9": {
+      "dataset": "McAuley-Lab/Amazon-Reviews-2023",
+      "revision": "2b6d039ed471f2ba5fd2acb718bf33b0a7e5598e",
+      "category": "Cell_Phones_and_Accessories",
+      "source_url": "https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023/resolve/2b6d039ed471f2ba5fd2acb718bf33b0a7e5598e/raw/meta_categories/meta_Cell_Phones_and_Accessories.jsonl",
+      "downloaded_at": "2026-10-17T06:59:04.403876+00:00",
+      "head_status": 200,
+      "full_source_bytes": 4015159840,
+      "range_status": 206,
+      "requested_range": "bytes=0-4194303",
+      "received_bytes": 3276800,
+      "retained_bytes": 3211971,
+      "complete_records": 900,
+      "sha256": "954ac0b7883757354e92299dc1a45a604c3a0fca1b202e9028e0505616b9d0a9",
+      "checksum_scope": "retained native JSONL prefix, NOT full corpus",
+      "permission_basis": "local noncommercial thesis research; source assessment; no redistribution",
+      "selection": "first complete native records, prefix-biased; import 75 valid unique per category"
+    }
+  },
+  "product_count": 191,
+  "price_reference_count": 88,
+  "offer_count": 0,
+  "completeness": {
+    "name": {
+      "numerator": 191,
+      "denominator": 191
+    },
+    "category": {
+      "numerator": 191,
+      "denominator": 191
+    },
+    "brand": {
+      "numerator": 148,
+      "denominator": 191
+    },
+    "model": {
+      "numerator": 104,
+      "denominator": 191
+    },
+    "rating": {
+      "numerator": 191,
+      "denominator": 191
+    },
+    "review_count": {
+      "numerator": 191,
+      "denominator": 191
+    },
+    "image_url": {
+      "numerator": 191,
+      "denominator": 191
+    },
+    "historical_price_USD": {
+      "numerator": 88,
+      "denominator": 191
+    }
+  },
+  "source_category_counts": {
+    "Electronics": 111,
+    "Cell_Phones_and_Accessories": 80
+  },
+  "mapped_category_counts": {
+    "dien tu": 37,
+    "phu kien dien tu": 34,
+    "laptop": 20,
+    "phu kien dien thoai": 74,
+    "tai nghe": 19,
+    "dien thoai": 6,
+    "ban phim": 1
+  },
+  "independent_raw_checks": [
+    {
+      "parent_asin": "B00006FXFQ",
+      "category": "Electronics",
+      "line": 26,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0002H7HNO",
+      "category": "Electronics",
+      "line": 45,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B000IMSFWU",
+      "category": "Electronics",
+      "line": 22,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B000LV7P8I",
+      "category": "Electronics",
+      "line": 11,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B000VBK7TM",
+      "category": "Electronics",
+      "line": 671,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B000VXJFMU",
+      "category": "Electronics",
+      "line": 46,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B002PKKO5O",
+      "category": "Electronics",
+      "line": 58,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B004E2Z88O",
+      "category": "Electronics",
+      "line": 5,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B005G99O2U",
+      "category": "Electronics",
+      "line": 8,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B006NYHP82",
+      "category": "Electronics",
+      "line": 70,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B007U1YGOS",
+      "category": "Electronics",
+      "line": 19,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B007XSU2XC",
+      "category": "Electronics",
+      "line": 181,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0084EZTLY",
+      "category": "Electronics",
+      "line": 39,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00A3QQKIW",
+      "category": "Electronics",
+      "line": 146,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00ABEQ6TY",
+      "category": "Electronics",
+      "line": 14,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00ACCH5TU",
+      "category": "Electronics",
+      "line": 626,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00BDC7890",
+      "category": "Electronics",
+      "line": 342,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00BEJQL2W",
+      "category": "Electronics",
+      "line": 612,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00CFGZAT8",
+      "category": "Electronics",
+      "line": 12,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00EEF8HKW",
+      "category": "Electronics",
+      "line": 562,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00FSTW88K",
+      "category": "Electronics",
+      "line": 43,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00KS0K4MG",
+      "category": "Electronics",
+      "line": 64,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00M38DMTS",
+      "category": "Electronics",
+      "line": 72,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00MCW7G9M",
+      "category": "Electronics",
+      "line": 1,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00OLZFM9Y",
+      "category": "Electronics",
+      "line": 63,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00R6R82HS",
+      "category": "Electronics",
+      "line": 10,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00TX536EK",
+      "category": "Electronics",
+      "line": 6,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00VBTJCJE",
+      "category": "Electronics",
+      "line": 18,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00VQRBTMO",
+      "category": "Electronics",
+      "line": 37,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00YDYHDRM",
+      "category": "Electronics",
+      "line": 556,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00YQ6LZJ4",
+      "category": "Electronics",
+      "line": 36,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00YT6XQSE",
+      "category": "Electronics",
+      "line": 2,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B014IYU6DY",
+      "category": "Electronics",
+      "line": 76,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0174X43LM",
+      "category": "Electronics",
+      "line": 518,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0178F72E6",
+      "category": "Electronics",
+      "line": 31,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B019ZZ8WZK",
+      "category": "Electronics",
+      "line": 157,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B01AC7EOL6",
+      "category": "Electronics",
+      "line": 53,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B01F1JNIWG",
+      "category": "Electronics",
+      "line": 57,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B01H40LA6Q",
+      "category": "Electronics",
+      "line": 174,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B01M197YY0",
+      "category": "Electronics",
+      "line": 223,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B01MCZP7RF",
+      "category": "Electronics",
+      "line": 9,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B01MG5L0H0",
+      "category": "Electronics",
+      "line": 30,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B01N6BOWFJ",
+      "category": "Electronics",
+      "line": 768,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B06XJHRP5G",
+      "category": "Electronics",
+      "line": 35,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B06XYZDS5N",
+      "category": "Electronics",
+      "line": 65,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B073DYZLTF",
+      "category": "Electronics",
+      "line": 68,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0746NTYYD",
+      "category": "Electronics",
+      "line": 69,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B076DKFYF9",
+      "category": "Electronics",
+      "line": 637,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07789W1T1",
+      "category": "Electronics",
+      "line": 729,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B077BNJHVJ",
+      "category": "Electronics",
+      "line": 346,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07848ZT9T",
+      "category": "Electronics",
+      "line": 17,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0797ZGJZX",
+      "category": "Electronics",
+      "line": 367,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B079J395DC",
+      "category": "Electronics",
+      "line": 599,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B079ZNCN64",
+      "category": "Electronics",
+      "line": 522,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07B4Z7G4Z",
+      "category": "Electronics",
+      "line": 81,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07BJ7ZZL7",
+      "category": "Electronics",
+      "line": 7,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07C4YHF4L",
+      "category": "Electronics",
+      "line": 52,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07DYJR44S",
+      "category": "Electronics",
+      "line": 75,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07KPSVQNL",
+      "category": "Electronics",
+      "line": 379,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07M9421GV",
+      "category": "Electronics",
+      "line": 32,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07MB8Z452",
+      "category": "Electronics",
+      "line": 341,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07MVKYVVL",
+      "category": "Electronics",
+      "line": 54,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07PXWYLQX",
+      "category": "Electronics",
+      "line": 13,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07Q1XBJQ3",
+      "category": "Electronics",
+      "line": 664,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07QF5117Q",
+      "category": "Electronics",
+      "line": 28,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07R4WS1P7",
+      "category": "Electronics",
+      "line": 66,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07SM135LS",
+      "category": "Electronics",
+      "line": 3,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07VJXK7BV",
+      "category": "Electronics",
+      "line": 41,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07X2TVBNY",
+      "category": "Electronics",
+      "line": 214,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07Y6K1PRB",
+      "category": "Electronics",
+      "line": 15,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07Y6MRH7G",
+      "category": "Electronics",
+      "line": 16,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07YFFFPCZ",
+      "category": "Electronics",
+      "line": 77,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07Z9PZRCY",
+      "category": "Electronics",
+      "line": 42,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0821M984B",
+      "category": "Electronics",
+      "line": 56,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0822SL7JX",
+      "category": "Electronics",
+      "line": 34,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B086W46TYP",
+      "category": "Electronics",
+      "line": 67,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B08862M8VY",
+      "category": "Electronics",
+      "line": 44,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B089CNGZCW",
+      "category": "Electronics",
+      "line": 4,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B08BJP9H1N",
+      "category": "Electronics",
+      "line": 49,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B08DKG3P4R",
+      "category": "Electronics",
+      "line": 268,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B08GFTPQ5B",
+      "category": "Electronics",
+      "line": 62,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B08GG5KD6F",
+      "category": "Electronics",
+      "line": 33,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B08HM9RQX5",
+      "category": "Electronics",
+      "line": 73,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B08K2T4JFQ",
+      "category": "Electronics",
+      "line": 51,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B08L6TVZZX",
+      "category": "Electronics",
+      "line": 625,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B08PQDHNG3",
+      "category": "Electronics",
+      "line": 78,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B08T8BSHQ9",
+      "category": "Electronics",
+      "line": 50,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0916VTJV8",
+      "category": "Electronics",
+      "line": 59,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B093N94GPG",
+      "category": "Electronics",
+      "line": 25,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B09432ZFQ6",
+      "category": "Electronics",
+      "line": 532,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B094C5ZN1M",
+      "category": "Electronics",
+      "line": 29,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B094JGVY16",
+      "category": "Electronics",
+      "line": 71,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B09K67QXKT",
+      "category": "Electronics",
+      "line": 60,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B09M7TH3YC",
+      "category": "Electronics",
+      "line": 38,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B09QSNNBBV",
+      "category": "Electronics",
+      "line": 249,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0B1BXC6W1",
+      "category": "Electronics",
+      "line": 74,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0B5Y4FVYY",
+      "category": "Electronics",
+      "line": 557,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0B6SQMZ4P",
+      "category": "Electronics",
+      "line": 178,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0B8CY1MJ4",
+      "category": "Electronics",
+      "line": 359,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0BCV6K63S",
+      "category": "Electronics",
+      "line": 763,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0BGMJX4RN",
+      "category": "Electronics",
+      "line": 86,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0BGPG7ZNM",
+      "category": "Electronics",
+      "line": 61,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0BKS1K986",
+      "category": "Electronics",
+      "line": 48,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0BKSML7WW",
+      "category": "Electronics",
+      "line": 509,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0BMXFDSKM",
+      "category": "Electronics",
+      "line": 186,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0BPLX8B2K",
+      "category": "Electronics",
+      "line": 20,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0BSQL7M51",
+      "category": "Electronics",
+      "line": 47,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0BYBG1PPD",
+      "category": "Electronics",
+      "line": 21,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0C2VCWPGY",
+      "category": "Electronics",
+      "line": 23,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0C48TKVX7",
+      "category": "Electronics",
+      "line": 444,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0C5XLH1HM",
+      "category": "Electronics",
+      "line": 79,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0071OC36W",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 8,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B009VGOXHU",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 83,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00ARDJSBM",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 51,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00B1N780U",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 88,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00B6ZMBQE",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 79,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00D5OO8E2",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 82,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00DL7NEFC",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 30,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00GKR3L12",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 3,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00JI55D2I",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 12,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00JIFK1HA",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 6,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00MUQJORC",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 24,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00OZF3MBA",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 20,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00PB8U8BW",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 4,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00RDWP1WK",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 58,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B00W702JDC",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 47,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B011363WOU",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 52,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B013SK1JTY",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 1,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B014V1ST4M",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 26,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0199NJKDG",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 73,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B019VQJN7O",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 89,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B01B79A82C",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 62,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B01GINVN1W",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 398,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B01LXIBQ00",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 48,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B01LYVCPWQ",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 59,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B01LZKE8OI",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 50,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B01N3676BD",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 38,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B01NBPHBJO",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 64,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B06XGY6FRT",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 34,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B072F2FSY5",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 36,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B075363DS2",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 21,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0753CM3Q3",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 41,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B075V8H17X",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 72,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0772PVQ74",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 32,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0782HHZZY",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 55,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B078YVN46K",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 37,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B079B36WCY",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 63,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07B8K6B95",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 39,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07B936NZQ",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 70,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07D3RHSRV",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 5,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07H6DPJ68",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 77,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07JZJT3RH",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 78,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07KCDF1T7",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 22,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07MY92X3G",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 71,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07NWTB6P1",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 15,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07PYT3FJT",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 84,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07SDQ483V",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 255,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07SG731NV",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 65,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07XWZKH1Q",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 54,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07YTYFBCT",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 18,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B07ZPSG8P5",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 2,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B083FVLQLP",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 57,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B087ZR713Q",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 92,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B089742DWT",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 40,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B089SW31D9",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 91,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B08BC89N2Y",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 56,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B08C82CVM2",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 17,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B08CZJFV8F",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 503,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B08DV787SQ",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 74,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B08F4FXWQ8",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 23,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B08GG6YZPR",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 43,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B08R6SBG33",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 44,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B08X6D6HST",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 46,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B094FJRS5C",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 90,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B098BK2SJ5",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 371,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B09DKPPM8V",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 85,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B09LYXJNNV",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 45,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B09N44927L",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 35,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B09NNP8RKH",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 76,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B09NQ35M4H",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 49,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B09NQ9956S",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 87,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B09QC96CDF",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 25,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B09QJ5YY3Y",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 60,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0B3LTBB8B",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 31,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0B4R7QLP9",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 67,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0B6ZJLCLP",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 28,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0B8ZBCCY6",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 14,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0B97Z7H3P",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 417,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0BBRQW3VS",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 27,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0BG2RX476",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 81,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    },
+    {
+      "parent_asin": "B0BHY2CR5B",
+      "category": "Cell_Phones_and_Accessories",
+      "line": 7,
+      "checks": {
+        "identity": true,
+        "name": true,
+        "rating": true,
+        "review_count": true,
+        "record_hash": true,
+        "input_hash": true,
+        "brand": true,
+        "price": true
+      }
+    }
+  ],
+  "audit_method": "all records",
+  "catalog_records": {
+    "B00006FXFQ": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "0e8447b1d78966e561fd3922cf61fa764041671d4b54ff82679ebcec87e5d96f",
+      "category": "dien tu"
+    },
+    "B0002H7HNO": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "28cc7f9eb12ae2ccde630375ec948611bf053c8c7bcd1bfdf9fb3b9800aa9f2e",
+      "category": "dien tu"
+    },
+    "B000IMSFWU": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "8418078f0c481cdee9092e72488555aa86ccc18166b714afacbe9cfd545c17a9",
+      "category": "phu kien dien tu"
+    },
+    "B000LV7P8I": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "03d887a55d5bfe8c1b57ea6761cc793cb766d9b9f1bd576dddb7989916d22b07",
+      "category": "dien tu"
+    },
+    "B000VBK7TM": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "be6e190029313fa88738f147a7e4ade7d33f69e7db3fd941a3efccde428b4818",
+      "category": "laptop"
+    },
+    "B000VXJFMU": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "1d5b0c5d9801e814a0b68789ce018b3b86ae1bd944cd1190b6e088cc317c37c7",
+      "category": "phu kien dien tu"
+    },
+    "B002PKKO5O": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "76c151682ad17d391eff77544ecdd7530f0d903d8208ad000d1facb0af86e35b",
+      "category": "dien tu"
+    },
+    "B004E2Z88O": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "2110d4c91b0a6caba8a0c87f3cc56683499a9642e1eec7429df18dcfb6dac987",
+      "category": "dien tu"
+    },
+    "B005G99O2U": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "87b9d5118b433d3f091781af4c72efb083bc74028da71f80c33b72f0a8729696",
+      "category": "dien tu"
+    },
+    "B006NYHP82": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "8345022ccede604e3e0baefd8eb11517ce76d4c6c0efba2c0a65639ffa1a2069",
+      "category": "dien tu"
+    },
+    "B0071OC36W": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "e8ea979b24dd1828e64c83cfada60e969c5138e5352162defe6dc61e59d39eec",
+      "category": "phu kien dien thoai"
+    },
+    "B007U1YGOS": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "5c8965fbf5612b96305c45a1898a0fe3660eaba89a3db842f8fbdf38a1be5091",
+      "category": "dien tu"
+    },
+    "B007XSU2XC": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "18ea4a6201a2e19885f4a8c734a2cb3fe2a270b09d5c6be47b620db552fbab68",
+      "category": "tai nghe"
+    },
+    "B0084EZTLY": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "d1b9d6e01afeed3a0c442fbe66e48997cd451f2b4ea740a1a88e07a565f2222f",
+      "category": "dien tu"
+    },
+    "B009VGOXHU": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "8b36c97e994fe88ab574cc2a59b48ef0160e5f995f80976ee01572e1a1855a97",
+      "category": "phu kien dien thoai"
+    },
+    "B00A3QQKIW": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "c00fd9bc6b77c8516d0a0941eceee761cfbe932dbf6fdae961bffc70d595412e",
+      "category": "tai nghe"
+    },
+    "B00ABEQ6TY": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "c61c5d670f832148142b68817d3c50864481faebf842a74319eab477a74ea989",
+      "category": "phu kien dien tu"
+    },
+    "B00ACCH5TU": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "2a020db2eaf1b83c037e80c5f6666f457820d228b65cc3ca7ed92807dccc55e4",
+      "category": "tai nghe"
+    },
+    "B00ARDJSBM": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "7bdfde0c91b2ee037de51360f3e35626eed1e8b3ae3c45398fd5a61b7873fe07",
+      "category": "phu kien dien thoai"
+    },
+    "B00B1N780U": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "61074ffdce81aa015157e3f24d41ea840886af0219a966900fe84cb36017e4cf",
+      "category": "phu kien dien thoai"
+    },
+    "B00B6ZMBQE": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "3f538f313459002301fc8184c61c58c0ab001b9a941df5aea273fb40fd3456c7",
+      "category": "phu kien dien thoai"
+    },
+    "B00BDC7890": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "644e18ae159d0634caaa613b7e0729da17527f6315307940c75400d385e8d66d",
+      "category": "tai nghe"
+    },
+    "B00BEJQL2W": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "92192cd98a81c2b4c6a16724efddbe0bbccb94bc7a4d1f3ab4e020a5b66886ee",
+      "category": "tai nghe"
+    },
+    "B00CFGZAT8": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "c13f399d928570c3c2e6c36c9823ae3e297e1c88710af6076097bb926206be0d",
+      "category": "phu kien dien tu"
+    },
+    "B00D5OO8E2": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "0a9c062bb78750b5af57602347f7f52784686b62befe8fe7c3f60bab762c43d3",
+      "category": "phu kien dien thoai"
+    },
+    "B00DL7NEFC": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "1165627c953677515b6f5d8374116d90f56b1ed5aea886a161c0a8aa7f632dbc",
+      "category": "phu kien dien thoai"
+    },
+    "B00EEF8HKW": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "14edebdd89b6c92b5535fcc160750b557e7941a895cf451a53b09067364758c5",
+      "category": "tai nghe"
+    },
+    "B00FSTW88K": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "8dc4ff73ae0630b1097ca45a490d1036dce2fb5609c09af69e581995c8abb814",
+      "category": "dien tu"
+    },
+    "B00GKR3L12": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "1ab4184f59123bd173221b98b44e2aeb4960251d6b19cc749841cdcf806202dd",
+      "category": "phu kien dien thoai"
+    },
+    "B00JI55D2I": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "63f0ee4f1621b86c307fe6d55e219538fac0c1172ddee3519352ad90c9bb5f75",
+      "category": "phu kien dien thoai"
+    },
+    "B00JIFK1HA": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "28ff3c63d1e8d87c6ef233d404611167693c16b7f441a99507451ce93f9727bd",
+      "category": "phu kien dien thoai"
+    },
+    "B00KS0K4MG": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "fe0c2bb633ae2a9e9dca0e00b0da13517120962d697313074032f4aa3202a282",
+      "category": "phu kien dien tu"
+    },
+    "B00M38DMTS": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "b55e87b5565c92e5c283bf45bbc3188b4b6e475ee8b93374d244acd0ae5d59e1",
+      "category": "phu kien dien tu"
+    },
+    "B00MCW7G9M": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "0ef4dcc0d80f6e2881c9c160aaa9e3b3b37c3ae4f856cbd2b1104b644d7c1b39",
+      "category": "dien tu"
+    },
+    "B00MUQJORC": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "3816f08d2735df54057fed98f5ddeafed56b99b89e18e0c5e6f19d1fcad05327",
+      "category": "phu kien dien thoai"
+    },
+    "B00OLZFM9Y": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "8f8057e8eabb7ec8e241f2b4d2ed7ad3f39e66dca2a51c9b6e69bf5b9621bb3a",
+      "category": "phu kien dien tu"
+    },
+    "B00OZF3MBA": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "e3b891cc3b0f0decad04c88ab9f049815b33b994e77195a7f603ef18802f71eb",
+      "category": "phu kien dien thoai"
+    },
+    "B00PB8U8BW": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "4c8fd1b634f2f735b61c92a6c1c48d49274f11031a433ea6391c9355ddb29097",
+      "category": "phu kien dien thoai"
+    },
+    "B00R6R82HS": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "c267eeffa30190ef8971bafcd32e927b856f55a4abdbaaa39a4f1ee0346f819a",
+      "category": "phu kien dien tu"
+    },
+    "B00RDWP1WK": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "3b5a3df59e5d3a1d8a071d689fa996e489177054eaed1687d6e4574f77fdc5c6",
+      "category": "phu kien dien thoai"
+    },
+    "B00TX536EK": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "b41c8e7310ff014e10e6fe2422ac166760d81bc36bbeed9330ce163102a79d34",
+      "category": "dien tu"
+    },
+    "B00VBTJCJE": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "4baff8afb05978d1f21197c2cb318a1fc4c72d4fd4830d19e121d391002ccf20",
+      "category": "dien tu"
+    },
+    "B00VQRBTMO": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "7480ece1293d92403367a2578e5ad502b5c4d90e081b354d71e05d2db9f27f6e",
+      "category": "phu kien dien tu"
+    },
+    "B00W702JDC": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "070926c3c2b7b78970a7517d7d5d399f15155b17ae5251198a95f75e6247657a",
+      "category": "phu kien dien thoai"
+    },
+    "B00YDYHDRM": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "9cf9667b5871e4bc480c90323a44240ef51fabb2196fc0901cae4f4c961887d4",
+      "category": "tai nghe"
+    },
+    "B00YQ6LZJ4": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "38c03e64b7ca9b379b367b75740478f3bbfd1fa0f55481b3717bc8882956db01",
+      "category": "dien tu"
+    },
+    "B00YT6XQSE": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "534f8be618a688e72992ce2a9d0ba597cf9fbd2b67edfcc296787dd9fbe998f1",
+      "category": "dien tu"
+    },
+    "B011363WOU": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "7647ac18eb4c05a48d8ea944ebff04daea0b29aaf22c723752af0f0e4f620d0c",
+      "category": "phu kien dien thoai"
+    },
+    "B013SK1JTY": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "6b48192793b956f8b75f94a86eb4c791eda377ab4f2e3b113451916a9a105257",
+      "category": "phu kien dien thoai"
+    },
+    "B014IYU6DY": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "c1291359c63d61fe837de2bf90d2f41d0bb2233729774da6c8698f9050588ef2",
+      "category": "dien tu"
+    },
+    "B014V1ST4M": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "4815b7b88e1983996ebe1c7e0c30af5b7c56d7be470e9072907bbeb11177699b",
+      "category": "phu kien dien thoai"
+    },
+    "B0174X43LM": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "e7b7298e1f7be4786e97ce45f84d5bc5611eb1a2d36b641206cfb2da61a75661",
+      "category": "laptop"
+    },
+    "B0178F72E6": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "08f02d4918b6daf5c47c79984fce8c548f71530ad1d77b1a9838f1a90ae7b96f",
+      "category": "phu kien dien tu"
+    },
+    "B0199NJKDG": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "a203a71811bb2012535b0864c677ebb3c377674897fa797840e1d553ef37f409",
+      "category": "phu kien dien thoai"
+    },
+    "B019VQJN7O": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "0d756b542dff6f9d7e316c92ea91cda61595681d06a7a942795a4bdf7a63967a",
+      "category": "phu kien dien thoai"
+    },
+    "B019ZZ8WZK": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "4cbae6a0eae4ae163e244ed846d24e08bbbe6d3ecb90c0bc4e21f9b7fa7828e1",
+      "category": "tai nghe"
+    },
+    "B01AC7EOL6": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "d6730567913b9aca741c5c3c09f01299b1876ec2e075f6ce9abfca728315b14a",
+      "category": "dien tu"
+    },
+    "B01B79A82C": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "a535b7621555734e65619204a98b8e7f2b28a9faa928f8377908b1fe651a7d16",
+      "category": "phu kien dien thoai"
+    },
+    "B01F1JNIWG": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "a8eb74eb72de9e8d722960a750db4fc659f9217b74d64584c323f0195cdb11f0",
+      "category": "laptop"
+    },
+    "B01GINVN1W": {
+      "input_sha256": "954ac0b7883757354e92299dc1a45a604c3a0fca1b202e9028e0505616b9d0a9",
+      "record_sha256": "e41ffa269c081d4b5303c6439bec0388427b836a4ddf8f1d298886f35817c159",
+      "category": "dien thoai"
+    },
+    "B01H40LA6Q": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "e0e8360623ee8c07d13c6a64db5c6175a6dfd132d5f58a1aeab5d32c9907bfc3",
+      "category": "laptop"
+    },
+    "B01LXIBQ00": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "e05a253e97ae6863b01650842d4d7f26d97af838eef825622e3ea30a96b95de3",
+      "category": "phu kien dien thoai"
+    },
+    "B01LYVCPWQ": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "4a970ad8807ec065ccab056424d5c41b4441564e157c7d7d157273ea963353c6",
+      "category": "phu kien dien thoai"
+    },
+    "B01LZKE8OI": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "7826bdb830f72e11c700100132c939ba33b9b1050b7cebb211e8acc3d4be535b",
+      "category": "phu kien dien thoai"
+    },
+    "B01M197YY0": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "6ebebe22c0ffc651584e3568e09800fe826069063485241982e63fc83a4a48cc",
+      "category": "tai nghe"
+    },
+    "B01MCZP7RF": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "d5c73dd50258ff4fb0abe5086368f235d5ebeb546be2ec35b2be317ab28fee0b",
+      "category": "phu kien dien tu"
+    },
+    "B01MG5L0H0": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "c44cba03363b63234ee20197ef53c9e38b73a081bdc0ad7d3d597fc75c0f34f8",
+      "category": "dien tu"
+    },
+    "B01N3676BD": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "ee329519447cd47e76fdda55fffda5d6dfd8dda5101cfa4117bfec1e7b7c6043",
+      "category": "phu kien dien thoai"
+    },
+    "B01N6BOWFJ": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "b7e153c755653fbc1f7258572cb3497cd615bf0b9370d6c1a42a253d4f94ee72",
+      "category": "laptop"
+    },
+    "B01NBPHBJO": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "636e02299a8e31e557d4438ed5a73ff8cec4a6dbc7c9a6da3d9ed40b36b0daf7",
+      "category": "phu kien dien thoai"
+    },
+    "B06XGY6FRT": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "38ce25e0708ea6b6c7fad5c69e8daef827986451ef57a324f693547ee0a87fe8",
+      "category": "phu kien dien thoai"
+    },
+    "B06XJHRP5G": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "53ee5ad4a1130769e7419d93bb29ec204133469f91d830e4d25f39960283e125",
+      "category": "dien tu"
+    },
+    "B06XYZDS5N": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "60fce5729f6a36d6615026c9a33703e5a044eec0b39ca379166ff42b9c3e5123",
+      "category": "phu kien dien tu"
+    },
+    "B072F2FSY5": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "92c1ae590db264ac281f136faa24e5f01ed1f90973ccc4d3000efe43e99ef732",
+      "category": "phu kien dien thoai"
+    },
+    "B073DYZLTF": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "2f8f57f25d1ad1dcbf0c2365cd916d9213743143ced0556497ed432c23a4b209",
+      "category": "dien tu"
+    },
+    "B0746NTYYD": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "4474bb05bb91665a21e022bb69d830edba26c31af6d9ad3a08e23dd05e1f5e70",
+      "category": "dien tu"
+    },
+    "B075363DS2": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "820e3237599a93f62b472cfd00c8558182303c2bba934e0588ffac5ab0b904bd",
+      "category": "phu kien dien thoai"
+    },
+    "B0753CM3Q3": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "30189b1c84021f3c43da76f1e2446e48948f6efcd4769791b7d81cb2fd65f176",
+      "category": "phu kien dien thoai"
+    },
+    "B075V8H17X": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "7e83ac637d4b2cd107d3a6808eaeb17f8e63fb7b4191e1c223415c4da9029814",
+      "category": "phu kien dien thoai"
+    },
+    "B076DKFYF9": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "80e4a5f8cbefe07e2d35cfd9eb2ee4bbcf36393103a8832aaee6059add6b5301",
+      "category": "laptop"
+    },
+    "B0772PVQ74": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "70f426bf2ce31f5da1f2ebac373988e7f994e52be93fbdc0959ab865038f3590",
+      "category": "phu kien dien thoai"
+    },
+    "B07789W1T1": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "7a2467a2547fab29654d9e54f12b33b38a3feda46d38783f3f93f59d9ddc860c",
+      "category": "laptop"
+    },
+    "B077BNJHVJ": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "599b017d61d483af0b64e8c37e5bf75f33479edfd421cbfbf01bc98465fad6ba",
+      "category": "laptop"
+    },
+    "B0782HHZZY": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "eabb0f027ddbfa5edc97a41ffdaf6fac7282b28b00bf42d2b8931ee2d4fdad80",
+      "category": "phu kien dien thoai"
+    },
+    "B07848ZT9T": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "2f942cf89bd9058b710f9aef172eb7c561ee0a5462a6856143e85dc2a220f3eb",
+      "category": "dien tu"
+    },
+    "B078YVN46K": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "00e38e1be0776f7acde609d5366fe8112cbd441426d3814b865fd1cb8bfa9dfd",
+      "category": "phu kien dien thoai"
+    },
+    "B0797ZGJZX": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "0951342b1eb36451d66cdb27a2713fa4aeb5fc33cc7e39c9e1c29f470b718bb3",
+      "category": "laptop"
+    },
+    "B079B36WCY": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "9c2c574e5837e9073afed37ee119761630d0267b5365acc43d13093d8aa68abe",
+      "category": "phu kien dien thoai"
+    },
+    "B079J395DC": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "d80f1c784121c592da9e61c41a85bfc17f101c13e9e62b4aa669ab56fc4be3f0",
+      "category": "laptop"
+    },
+    "B079ZNCN64": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "fdd470a52aa037d06d5fdc3b2ff35cfd7893e5b830ea3b93283f41ceaf1fe89f",
+      "category": "tai nghe"
+    },
+    "B07B4Z7G4Z": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "a209ae92ebbd206b9b78815e75a4580e5a4668e4a56b95eb61feed55eb49ed28",
+      "category": "laptop"
+    },
+    "B07B8K6B95": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "fb82490519528bb19b783e118fcb3947a57d9313d6cfdf58a715ea89245e1f04",
+      "category": "phu kien dien thoai"
+    },
+    "B07B936NZQ": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "54c0cfe901471368071f351c0cc4c8b0a04d37279f03fab860de1cd803ec0b92",
+      "category": "phu kien dien thoai"
+    },
+    "B07BJ7ZZL7": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "08e599881b4c5c0c927ec55995eb85ed53e1e0061637b80dd0ec8c2e855ee8dd",
+      "category": "phu kien dien tu"
+    },
+    "B07C4YHF4L": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "3a871af3cca5137d0c17bf594bb1173715cf991e319983adca6d452d51d66a4c",
+      "category": "dien tu"
+    },
+    "B07D3RHSRV": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "d3c3a02d6202e40f0549b0a2d34cee1a34089b113be085b6dd311bb109931d0a",
+      "category": "phu kien dien thoai"
+    },
+    "B07DYJR44S": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "6cd5bdba09bcdbb83007e0b27a028eba59ac4e9140cfb4d61df3126186211809",
+      "category": "phu kien dien tu"
+    },
+    "B07H6DPJ68": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "d949d5a2782892479231024ac96c5e4703102e964d9e39bbed2dcab4b3397015",
+      "category": "phu kien dien thoai"
+    },
+    "B07JZJT3RH": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "6c2a615ce39a58f70ae9c7af8515b28413ee6a3f618a5934f1457105088b08f7",
+      "category": "phu kien dien thoai"
+    },
+    "B07KCDF1T7": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "9847a0e90fe2ef72b48b653acca03983095432b03cc8e95b668ab1f64b0efb70",
+      "category": "phu kien dien thoai"
+    },
+    "B07KPSVQNL": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "f98564d15c524a9ccf2d5b6f0c88900d2534176f8b712d7acc86c9a18163975b",
+      "category": "tai nghe"
+    },
+    "B07M9421GV": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "0caa21097edbfd7732e68f1236759b0fd51892bdd351c1be1a7bf5494be863f6",
+      "category": "dien tu"
+    },
+    "B07MB8Z452": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "601cdf57ea40d17fe7559f2f839d7899db7e049994277828a3fe683590baa9c7",
+      "category": "laptop"
+    },
+    "B07MVKYVVL": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "d0ef90d867e1197020f483e3364226b8a6752ac3e90bbc3191417fe2d399aeb3",
+      "category": "phu kien dien tu"
+    },
+    "B07MY92X3G": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "fcfb8f14c882dd3277b7446aee272a49c5bb965013dc2eded69cd03727dfa6ba",
+      "category": "phu kien dien thoai"
+    },
+    "B07NWTB6P1": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "b3053849ab7da4bc6855280502f2c3a4f228af2fd26bcdf7b29904e8a3e82b31",
+      "category": "phu kien dien thoai"
+    },
+    "B07PXWYLQX": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "be9c9d68f690809c32e0440823ef3abf74f535845effdfb3b4b05bfc10ffbdca",
+      "category": "phu kien dien tu"
+    },
+    "B07PYT3FJT": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "43469fd20ee38839b114ff1362fea224307b654cd170c03e0a05eca35261fc32",
+      "category": "phu kien dien thoai"
+    },
+    "B07Q1XBJQ3": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "644507e4a61c13446f1433429e0f5d8ae503414a8b7047d09eb22e914583754e",
+      "category": "laptop"
+    },
+    "B07QF5117Q": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "e737b604ff76b1e401126b6d065128ef7468abb57619872482444d1f918e11ab",
+      "category": "dien tu"
+    },
+    "B07R4WS1P7": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "25def21d18c339d31a4595d87a3dfc252db000aceaab66cfc869ac3e4eef20e0",
+      "category": "phu kien dien tu"
+    },
+    "B07SDQ483V": {
+      "input_sha256": "954ac0b7883757354e92299dc1a45a604c3a0fca1b202e9028e0505616b9d0a9",
+      "record_sha256": "eb3f411bace961da2e1a7112b72908a4d35ec30e355817cf5daad74dfb06fea6",
+      "category": "dien thoai"
+    },
+    "B07SG731NV": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "6c2ac3740295b14e1703d136369d5cf4eddef61a8e8c37b95885f62836ba602e",
+      "category": "dien thoai"
+    },
+    "B07SM135LS": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "d7791f2b013e1cad234876bb017482fe99b28a3edaa5253b04ee4064d4582d64",
+      "category": "phu kien dien tu"
+    },
+    "B07VJXK7BV": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "2b26359666527672d3dba967fb62020a731b349595fcb4e62025090d5b373135",
+      "category": "dien tu"
+    },
+    "B07X2TVBNY": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "b60ec8742ceb5e37b20c8780c6915996d40701a14b5c95be8426144fc888c7e8",
+      "category": "tai nghe"
+    },
+    "B07XWZKH1Q": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "10150ee60e42cf5dc5df87f3af69835ee9d8bcfcdfe91efeedf94ecada1acf52",
+      "category": "phu kien dien thoai"
+    },
+    "B07Y6K1PRB": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "51bfb1d9a0307afd9a8d83fc90287229c6731fb8c7a273e576a626f23ed46f63",
+      "category": "dien tu"
+    },
+    "B07Y6MRH7G": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "ecb836d8c2d8db1e550ed5821cd012bd0b8080cd4fef06eb403bf0d377daf333",
+      "category": "dien tu"
+    },
+    "B07YFFFPCZ": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "04d44e333b2e5a9945d0c5a22cf1ace8026537dff89b9ebf58eea24865fc778d",
+      "category": "phu kien dien tu"
+    },
+    "B07YTYFBCT": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "927441641284c644735ac39551f4846c3bb0b89c3111032d0a66768a2c891efe",
+      "category": "phu kien dien thoai"
+    },
+    "B07Z9PZRCY": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "ffbce2f7cf29b22c7855f25eb6711aa1355ff9a40d80f072d0af2209864f774f",
+      "category": "phu kien dien tu"
+    },
+    "B07ZPSG8P5": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "6fff1c351a74c2206f94571c6a6033dbebc381e59b37e4a91ffd29e588adaecb",
+      "category": "phu kien dien thoai"
+    },
+    "B0821M984B": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "7a980b9b83102e1dacf3313f142f8ccaa3a9380c3237b8bbacbe264fd7362b7f",
+      "category": "phu kien dien tu"
+    },
+    "B0822SL7JX": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "46175a16fa365d22c35003f370a1a4e59600e58f53197628eac703543f5dd0d6",
+      "category": "phu kien dien tu"
+    },
+    "B083FVLQLP": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "d77a305ea0be21a504bb529b08e1ad6e6aad0a201dd128ceeaf5ce6203022274",
+      "category": "phu kien dien thoai"
+    },
+    "B086W46TYP": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "766323e9c8ff6b785b0d8e17b273d68d230f6b9d9ae9b4aaacf057533a5c0886",
+      "category": "phu kien dien tu"
+    },
+    "B087ZR713Q": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "8857eee2ac6a86e79dc49fb08f06e428c428e5bd4fddc72dcfa68c3d587a987f",
+      "category": "phu kien dien thoai"
+    },
+    "B08862M8VY": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "03b7e0afc4bd3b0a5f6ef36ce835d53a234ac411f8a8dfe57fdfb1d6029a6ef4",
+      "category": "phu kien dien tu"
+    },
+    "B089742DWT": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "9461d0d17cc7e376966f0b4b3b37e7ffe7cdab74fd94521184a09a6d8f151d69",
+      "category": "phu kien dien thoai"
+    },
+    "B089CNGZCW": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "50a9542635061bdb8c9707c2f2eeb34ec25342a426451b8896f656f517620eb0",
+      "category": "phu kien dien tu"
+    },
+    "B089SW31D9": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "fa5ba89e9f6069b1b38b5a4832ce560eadec4622c93af3f258107b5d6ee837a9",
+      "category": "phu kien dien thoai"
+    },
+    "B08BC89N2Y": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "55bce8702d1f004a6dcd26beadf0a6877d3d978b5bab8248027678322071487b",
+      "category": "phu kien dien thoai"
+    },
+    "B08BJP9H1N": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "0f5db4a30d07b2cbae62eb254073093cfd54709ad3107394db9f341b291b40fd",
+      "category": "phu kien dien tu"
+    },
+    "B08C82CVM2": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "a468908cd12c177006dadcdfbeec4a65132c5e7c6feb8945b9ae25df44bd80c0",
+      "category": "phu kien dien thoai"
+    },
+    "B08CZJFV8F": {
+      "input_sha256": "954ac0b7883757354e92299dc1a45a604c3a0fca1b202e9028e0505616b9d0a9",
+      "record_sha256": "2bf995d98a93b205a51a0913a17f39f242b504ece8cca32dcf3a15f1c2c8b15c",
+      "category": "dien thoai"
+    },
+    "B08DKG3P4R": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "c1ac3653cc8a93d7a5a2099b3bc7ec0dae27d8716bd510e594d5ab11b061b905",
+      "category": "tai nghe"
+    },
+    "B08DV787SQ": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "602273ba8846ee73dadea33b6bbbb176a6573a71d31f63b1ff2697093a447da0",
+      "category": "phu kien dien thoai"
+    },
+    "B08F4FXWQ8": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "1d1e1d2aef1b37581498f7085344c35db9a1623623a906373c5ed0305139024e",
+      "category": "phu kien dien thoai"
+    },
+    "B08GFTPQ5B": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "83477ec6859d48d100cc62f92521b27e706bdd958252f71ea6af0915a05da4a5",
+      "category": "phu kien dien tu"
+    },
+    "B08GG5KD6F": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "0b83d19514403e871015cea4615db0abacbe586b6c82654563bc33f3d52a5443",
+      "category": "phu kien dien tu"
+    },
+    "B08GG6YZPR": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "94b81f6ce8e4e80df4e9f07bdbaa8d8ac05b316d6d0dbb141d379d5d53ea0448",
+      "category": "phu kien dien thoai"
+    },
+    "B08HM9RQX5": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "a249f3d2becbdcacee37bb5d2cdec784270a686b45f0283f950d7295dbd50baa",
+      "category": "dien tu"
+    },
+    "B08K2T4JFQ": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "83de9cae4b64ea4f0ace84a3b37c2b70af171b8b7c709823027a5fb74059e449",
+      "category": "dien tu"
+    },
+    "B08L6TVZZX": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "5dd4c31d6073c618c1dd63c17e5aff6512efbd68e3572002bcf71d9a8115c978",
+      "category": "laptop"
+    },
+    "B08PQDHNG3": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "ce87799c3b5792526aa32e0d2d81f68b1d0ce5a0bcce6347c3bbbe9d55c3e5ed",
+      "category": "laptop"
+    },
+    "B08R6SBG33": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "75935b49de039a98ad1fdbd62e6dd756257b9fc7efea390140a0e911a60a7460",
+      "category": "phu kien dien thoai"
+    },
+    "B08T8BSHQ9": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "b0fb176cc21290e1684668cb5f3d5cfcd1247d1018c3953ca793e873af5f889e",
+      "category": "dien tu"
+    },
+    "B08X6D6HST": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "0cda5b438a6753e5b982cfe8f33fd7a2fe7678c04159515534178eb2b31b9428",
+      "category": "phu kien dien thoai"
+    },
+    "B0916VTJV8": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "765e8d06a0d8b0299a46c3b6a803388629a7dd204f9e93a443e3c3f2b295f324",
+      "category": "dien tu"
+    },
+    "B093N94GPG": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "def52a582635f07de61928848862a48486a0c4d8425e7500996d83cf93f4aaf6",
+      "category": "dien tu"
+    },
+    "B09432ZFQ6": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "ef6944ea9582a662ce2590873508d9892c64d806bfcfb76e8cc68c26d719d71e",
+      "category": "laptop"
+    },
+    "B094C5ZN1M": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "3de26abe4ba8ef28256d3ebac56ade100d116436367ba554220e50b1b478b1c9",
+      "category": "ban phim"
+    },
+    "B094FJRS5C": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "7c813f9fd65f9afb85d99aef9467bc64b66e40b9158aba7ca19e0dc6594b6947",
+      "category": "phu kien dien thoai"
+    },
+    "B094JGVY16": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "6b23b266136409bee6086e6147ba427fd446e2ff51149c9bf52270ebe8f2fee7",
+      "category": "phu kien dien tu"
+    },
+    "B098BK2SJ5": {
+      "input_sha256": "954ac0b7883757354e92299dc1a45a604c3a0fca1b202e9028e0505616b9d0a9",
+      "record_sha256": "1cea14c632a9dafc9335be4603200503f3acb8d3086073755f023b57121e8e4a",
+      "category": "dien thoai"
+    },
+    "B09DKPPM8V": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "f38bd3cc181ec522bb99cdef4c1d333cbca5fc50b72ba7bbbee8eb603552c69b",
+      "category": "phu kien dien thoai"
+    },
+    "B09K67QXKT": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "43d9b3f2dcc7ee9834d4b28b18e6791524a4c5e19cbb140f077703fa2c8c06da",
+      "category": "phu kien dien tu"
+    },
+    "B09LYXJNNV": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "d3209116cdf390afba1fbe104c29d22ef0ecc3032e9945292973155fc06fe8d1",
+      "category": "phu kien dien thoai"
+    },
+    "B09M7TH3YC": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "52cb6ee4fbf7b1886c7c308716a35fea2bab7a20e10736f748b7262e73e96fa0",
+      "category": "phu kien dien tu"
+    },
+    "B09N44927L": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "3dc8c353d6e1fcc53d30f68352e7106e59268ded01794113b33d1d4885979dc6",
+      "category": "phu kien dien thoai"
+    },
+    "B09NNP8RKH": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "9dd107aa0a0ed13bfecdf9cf20ec0b86f9abd0f05dfa34845f0e8cb70de2c3be",
+      "category": "phu kien dien thoai"
+    },
+    "B09NQ35M4H": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "7b1b84bd9adbd25f579fdc41db6481fc1c297ad45d8fa37d3c236eff8234d05b",
+      "category": "phu kien dien thoai"
+    },
+    "B09NQ9956S": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "816eb7be1834948ac96ee5f8e044b6067ed8482080401dc6979df52ab6e0a47e",
+      "category": "phu kien dien thoai"
+    },
+    "B09QC96CDF": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "b46513974e4d424e45ef9787eb4eb8732bf9503dd173ab518b3ec0341d3856ae",
+      "category": "phu kien dien thoai"
+    },
+    "B09QJ5YY3Y": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "48398211cfc2827040083f85d25cdb686b50c3d00f432e5a222da43bdaf90732",
+      "category": "phu kien dien thoai"
+    },
+    "B09QSNNBBV": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "d7fa7504b127481a5ff9a2a63f4182748171ef18ab26b57aecc7e50b6df4d423",
+      "category": "tai nghe"
+    },
+    "B0B1BXC6W1": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "ec3e60b9a4cfc714def65155818ccbe584fbe6602dd9dbf8ac41a8382f17ab79",
+      "category": "dien tu"
+    },
+    "B0B3LTBB8B": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "d4258a48869f93484176a71e8b71ae1a237cdcf661b15b7182289881550ecace",
+      "category": "phu kien dien thoai"
+    },
+    "B0B4R7QLP9": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "ebfc8cbfa26f8dcde0321e55175821e8c0bfc8e26320b8370c95041b9c27ac36",
+      "category": "phu kien dien thoai"
+    },
+    "B0B5Y4FVYY": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "9b9881882568f85483dd2fd09e2e8fe0615cd2e01c6755d091d9e058008065ca",
+      "category": "tai nghe"
+    },
+    "B0B6SQMZ4P": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "3365e6e26a38f553caa4c5150b353afa0169072118c31cb7a6be022f0200e26a",
+      "category": "tai nghe"
+    },
+    "B0B6ZJLCLP": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "b5b73abfe5c593a6f21fbf7e798c968550ef7901b53f8046827f3bfb443203c0",
+      "category": "phu kien dien thoai"
+    },
+    "B0B8CY1MJ4": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "e402685b34b7e6b0b917965f0c5eace970d0a6eff7011872471ef54dbec33899",
+      "category": "tai nghe"
+    },
+    "B0B8ZBCCY6": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "5fa85cdfbd7af4302a61c83033343736608d911f0dfd591384c4608def9d75c6",
+      "category": "phu kien dien thoai"
+    },
+    "B0B97Z7H3P": {
+      "input_sha256": "954ac0b7883757354e92299dc1a45a604c3a0fca1b202e9028e0505616b9d0a9",
+      "record_sha256": "d962e5536db9fd25cadedf0cc169e157ad2d6d5b42d04cd1d4ff781965f9ae6d",
+      "category": "dien thoai"
+    },
+    "B0BBRQW3VS": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "29cceff801bc62841fd09985e27bc7cab0769fc69294253d4473abfc11405b6d",
+      "category": "phu kien dien thoai"
+    },
+    "B0BCV6K63S": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "3160a1c39105626daf3af1d73a7047743dc16a2058a8840cd9ab79e4ef991e69",
+      "category": "laptop"
+    },
+    "B0BG2RX476": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "0565ad60e1dd160063271b16a72d43f17fce123cebaa3ce119dc141937447b8e",
+      "category": "phu kien dien thoai"
+    },
+    "B0BGMJX4RN": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "25e7537cc96e2a8f528ead48813995ebc9f77bb89a1d700fcc057b3cdae14e03",
+      "category": "laptop"
+    },
+    "B0BGPG7ZNM": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "1aaea9a72dcc8d6e2ba1b0cff82c3009fadfba9d981bca53c8a597f28caee04f",
+      "category": "phu kien dien tu"
+    },
+    "B0BHY2CR5B": {
+      "input_sha256": "0a2341a52e6dbad8d23e4d253306f016ec9a00a4627fa5387bd52dc6d2d6cee1",
+      "record_sha256": "9ed047e5dbb2197c712f26185c499caecda53cf1c596caa41278dc3a2735a669",
+      "category": "phu kien dien thoai"
+    },
+    "B0BKS1K986": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "effa4b69447885185ec8377eca9aa04c15517058c7b0e37e54a886c1de3da849",
+      "category": "dien tu"
+    },
+    "B0BKSML7WW": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "afc03a2ca9baba93cf4379704a8b408ddcdf64537662cbd011176df9d9eaea67",
+      "category": "tai nghe"
+    },
+    "B0BMXFDSKM": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "14838260f9ac0807b0a169106bc97e97d312c985c9f63b116f0c23e513e8cad9",
+      "category": "laptop"
+    },
+    "B0BPLX8B2K": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "0054e7337f5a8865e79e66f65efea7ff2d8a8cf9a67c434e763127c3f73afcb7",
+      "category": "dien tu"
+    },
+    "B0BSQL7M51": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "7829c53dc5b9c360d2cae7d1e810a4918dcb7aed6b46897c55805d696fe0030c",
+      "category": "dien tu"
+    },
+    "B0BYBG1PPD": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "d5e78c69133bc996d102e6eb74b91f55b43a37f0390c9b3c6e1b2e82b86d53e7",
+      "category": "laptop"
+    },
+    "B0C2VCWPGY": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "3d1f8317a8833d421761d9157756462e851b201730a95f3690f34e3acd322649",
+      "category": "phu kien dien tu"
+    },
+    "B0C48TKVX7": {
+      "input_sha256": "a2cc6579145cd0de6a27ac69fd1be74c085737c107ce974bc24436aa571387d7",
+      "record_sha256": "6ae0b67b1c417cbd7d3c9c76f31e2a6aff89a2397014edf4152f42a3bffdbd19",
+      "category": "tai nghe"
+    },
+    "B0C5XLH1HM": {
+      "input_sha256": "5ff6d1db0f84e0435002eec1eec9e585c1f3d9b5610664c731b7388375d31b98",
+      "record_sha256": "a76ef485df6009fc9d2653a12af48204292441fd55a3ec6a096aed3fbd2c00f9",
+      "category": "phu kien dien tu"
+    }
+  },
+  "price_unknown": 103,
+  "api_journeys": [
+    {
+      "query": "phụ kiện điện thoại dưới 50 USD",
+      "session_id": "c3ccc115-78f4-4705-bc39-afc9819989f9",
+      "recommendations": 5,
+      "comparison_id": 3,
+      "parent_asins": [
+        "B0BBRQW3VS",
+        "B09N44927L",
+        "B087ZR713Q",
+        "B0BHY2CR5B",
+        "B075V8H17X"
+      ],
+      "latency_ms": 112.5
+    },
+    {
+      "query": "điện tử",
+      "session_id": "b4c88c6e-2438-4d35-9957-f34fc878ba88",
+      "recommendations": 5,
+      "comparison_id": 4,
+      "parent_asins": [
+        "B0BSQL7M51",
+        "B08K2T4JFQ",
+        "B07Y6K1PRB",
+        "B0B1BXC6W1",
+        "B002PKKO5O"
+      ],
+      "latency_ms": 86.21
+    },
+    {
+      "query": "điện thoại RAM 999GB",
+      "session_id": "2e144a8c-ed84-4670-9000-b597b7e40688",
+      "recommendations": 0,
+      "comparison_id": null,
+      "parent_asins": [],
+      "latency_ms": 98.09
+    }
+  ]
+}

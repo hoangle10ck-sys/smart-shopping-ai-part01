@@ -30,7 +30,9 @@ class CachedSearchService:
         self.settings = get_settings()
         self.cache = cache if cache is not None else DatabaseSearchCache()
 
-    async def execute(self, *, db: Session, session_id: str, queries: list[str]):
+    async def execute(self, *, db: Session, session_id: str, queries: list[str],
+                      direct_urls: list[str] | None = None, refresh: bool = False,
+                      source_platforms: list[str] | None = None):
         session = db.get(SearchSession, session_id)
         model = db.scalar(select(Requirement).where(Requirement.session_id == session_id))
         if model is None:
@@ -60,7 +62,7 @@ class CachedSearchService:
             or db.get(RecommendationSnapshot, session_id) is not None
             or db.scalar(select(Recommendation.id).where(Recommendation.session_id == session_id).limit(1)) is not None
         )
-        can_reuse = enabled and not has_previous_success
+        can_reuse = enabled and not has_previous_success and not refresh and not direct_urls
         # An interrupted earlier run may have raw rows without a snapshot.
         # Do not append a second result set to that session.
         can_reuse = can_reuse and db.scalar(select(RawProductCandidate.id).where(
@@ -71,7 +73,8 @@ class CachedSearchService:
             if cached is not None:
                 return cached
         try:
-            raw = await SearchService().execute(db=db, session_id=session_id, queries=queries)
+            raw = await SearchService().execute(db=db, session_id=session_id, queries=queries,
+                direct_urls=direct_urls or [], source_platforms=source_platforms or ["shopee", "lazada"])
         except SearchProviderError as exc:
             # Another request may have populated cache while this provider call ran.
             # Never replace a session's previous success on a failed refresh.

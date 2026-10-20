@@ -1,5 +1,30 @@
 # Testing
 
+## Research Catalog checks
+
+Từ `backend/`: `.venv/Scripts/python.exe -m pytest -q tests/test_research_import.py tests/test_research_pipeline.py tests/test_research_safety.py`.
+Suite research ban đầu **34 passed**: bounded JSONL/gzip, corrupt/truncated/giant data,
+money/identity/idempotency/revisions/conflicts, legacy additive tables, redirect
+policy, search/immutable snapshot/comparison/history, VND/USD và unknown specs.
+Default pytest không tải metadata và dùng DB tạm; fixtures có nhãn SYNTHETIC TEST.
+
+Thêm `tests/test_research_evaluation.py` kiểm công thức P@K/NDCG, nhãn thiếu,
+split và provenance: tổng Research suite **40 passed**. Full backend trước khi
+thêm6 tests công cụ độc lập này: **972 passed (91.68s)**.
+
+Frontend: `npm.cmd test`, `npm.cmd run lint`, `npm.cmd run build`, `npm.cmd run test:e2e`.
+E2E mặc định import fixtures trong backend tạm. Muốn xác minh browser với native
+metadata thật đã tải hợp lệ, đặt `RESEARCH_E2E_DATA` thành đường dẫn tuyệt đối tới
+`backend/data/research` rồi chạy E2E. Vẫn dùng DB tạm, không sửa DB chính.
+Lần chạy thực 2026-10-17: **16 passed (42.2s)** với nguồn thật trong Research journey;
+15 journeys còn lại là Demo/archived fixtures, không gọi chúng là Live verification.
+Sau E2E build lại frontend để bỏ API URL test 18000.
+
+Benchmark nghiên cứu riêng: `python -X utf8 -m scripts.verify_research_catalog`,
+`python -X utf8 -m scripts.benchmark_research`. Xem
+[rubric/nhãn còn thiếu](RESEARCH_BENCHMARK_RUBRIC.md) và
+[báo cáo](RESEARCH_DATA_INTEGRATION_REPORT.md). Không dùng các số này thay Live crawl metrics.
+
 ## Backend
 
 From `backend/` on Windows run:
@@ -46,6 +71,21 @@ detail, feedback and History. `-s` prints actual scores and match values for dem
 Exact final collected/passed/failed/warnings are recorded in [FINAL_AUDIT](FINAL_AUDIT.md).
 Passing mocked tests does not verify paid keys, external model availability or
 arbitrary Live website extraction.
+
+Collector tests are offline and use `httpx.MockTransport`, static HTML, or a fake
+browser renderer. The 2026-10-16 regression completed with 921 backend tests;
+the focused collector command completed with 64 tests. Useful focused commands:
+
+```powershell
+.\.venv\Scripts\python.exe -B -X utf8 -m pytest tests/unit/test_browser_fallback.py tests/unit/test_source_registry_preflight.py tests/unit/test_storefront_api.py
+.\.venv\Scripts\python.exe -B -X utf8 -m benchmarks.llm_spec_ablation --output ..\crawler-benchmark-output\llm-spec-ablation.json
+.\.venv\Scripts\python.exe -B -X utf8 -m scripts.crawl_products preflight --url "https://APPROVED-HOST/product/example"
+```
+
+The final command is a Live network operation only when the URL has an approved
+registry entry; an unregistered URL fails before network access. Live ingestion
+also requires `--live`, both policy flags, and the registry. See the crawler
+runbook for the bounded command and optional browser installation.
 
 ## Docker verification
 
@@ -143,3 +183,31 @@ Both arrays are stored in the existing version-1 JSON recommendation snapshot.
 GET and cache copying preserve them; old snapshots default to empty arrays without
 database writes or backfill. No SQL schema, route, cache-key, TTL, or score-weight
 changes are part of Phase 6.
+# Collector/benchmark upgrade checks
+
+All default tests remain offline. Collector tests use `httpx.MockTransport` for JSON-LD,
+missing price, SKU ranges, 403/429/CAPTCHA, timeout, redirect SSRF and body limits. Direct
+URL integration monkeypatches the collector and proves the path does not require Tavily.
+
+Run the reproducible fixture benchmark from `backend/`:
+
+```powershell
+.\.venv\Scripts\python.exe -B -X utf8 -m benchmarks.run --output ..\docs\benchmark-results
+```
+
+```bash
+.venv/bin/python -B -m benchmarks.run --output ../docs/benchmark-results
+```
+
+The committed report identifies its synthetic dataset and denominators. Live smoke is N/A
+and must remain opt-in after policy/permission review.
+
+No repository database file existed during the final audit, so migration-on-a-copy was
+N/A. `test_additive_migration.py` instead creates a disposable legacy SQLite database,
+copies the legacy row semantics through the additive migration twice, and verifies that
+the original price and product link remain readable. Demo integration and E2E tests clear
+all API keys and use isolated temporary databases.
+
+Playwright E2E uses `e2e/global-setup.mjs` to own the isolated Python and Next processes;
+the teardown explicitly terminates their process trees on Windows. The full suite completed
+with 15 passed and a clean exit.
