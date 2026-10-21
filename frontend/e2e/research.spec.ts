@@ -1,18 +1,16 @@
 import { test, expect } from "@playwright/test";
 
-test("Research validation reports the API reason rather than a network error", async ({ page }) => {
+test("Unified validation reports the API reason rather than a network error", async ({ page }) => {
   await page.goto("/");
-  await page.getByLabel("Chế độ dữ liệu").selectOption("research");
   await page.getByLabel("Bạn đang tìm sản phẩm gì?").fill("điện thoại dưới 19.95 USD");
   await page.getByRole("button", { name: "Tìm bằng AI" }).click();
-  await expect(page.getByText(/MVP Research nhận ngân sách số nguyên/)).toBeVisible();
+  await expect(page.getByRole("alert")).toBeVisible();
   await expect(page.getByText(/Chưa thể kết nối để tìm kiếm/)).toHaveCount(0);
 });
 
-test("Research historical-price filters work and refresh creates a new snapshot", async ({ page }) => {
+test("Unified historical-price filters work and refresh creates a new snapshot", async ({ page }) => {
   await page.route("**/*", route => ["127.0.0.1", "localhost"].includes(new URL(route.request().url()).hostname) ? route.continue() : route.abort());
   await page.goto("/");
-  await page.getByLabel("Chế độ dữ liệu").selectOption("research");
   await page.getByLabel("Bạn đang tìm sản phẩm gì?").fill("phụ kiện điện thoại");
   await page.getByRole("button", { name: "Tìm bằng AI" }).click();
   await page.waitForURL(/\/results\//);
@@ -30,13 +28,12 @@ test("Research historical-price filters work and refresh creates a new snapshot"
   await expect(page.locator("article.product-card").first()).toBeVisible();
 });
 
-test("Research catalog search, snapshot detail, comparison and history", async ({ page }) => {
+test("Unified catalog search, snapshot detail, comparison and history", async ({ page }) => {
   await page.route("**/*", route => {
     const host = new URL(route.request().url()).hostname;
     return ["127.0.0.1", "localhost"].includes(host) ? route.continue() : route.abort();
   });
   await page.goto("/");
-  await page.getByLabel("Chế độ dữ liệu").selectOption("research");
   await expect(page.getByLabel("URL sản phẩm trực tiếp (không bắt buộc)")).toHaveCount(0);
   await page.getByLabel("Bạn đang tìm sản phẩm gì?").fill("phụ kiện điện thoại");
   await page.getByRole("button", { name: "Tìm bằng AI" }).click();

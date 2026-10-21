@@ -157,7 +157,7 @@ export function clarifyRequirement(
 
 export function executeSearch(
   sessionId: string,
-  options?: { directUrls?: string[]; sourcePlatforms?: ("shopee" | "lazada")[]; refresh?: boolean },
+  options?: { directUrls?: string[]; refresh?: boolean },
 ): Promise<SearchPipelineResponse> {
   return request<SearchPipelineResponse>(
     "/api/search",
@@ -167,7 +167,6 @@ export function executeSearch(
       body: JSON.stringify({
         session_id: sessionId,
         direct_urls: options?.directUrls ?? [],
-        source_platforms: options?.sourcePlatforms ?? ["shopee", "lazada"],
         refresh: options?.refresh ?? false,
       }),
     },

@@ -145,13 +145,17 @@ requirement. History đọc dữ liệu có sẵn, không gọi provider hoặc 
 Mở `/docs`: analyze → lấy session_id → search → GET search → chọn hai product_id
 trong recommendations → POST comparisons → feedback → history. Dùng Demo với
 API keys rỗng; [demo.md](demo.md) có dữ liệu/điểm quan sát cho ba câu nhập chính.
-# Search request additions (backward compatible)
+# Search request (automatic unified search)
 
 `POST /api/search` still requires `session_id` and additionally accepts:
 
-- `direct_urls`: up to five Shopee/Lazada product URLs;
-- `source_platforms`: `shopee`, `lazada`, or both;
+- `direct_urls`: up to five explicitly supplied product URLs (only processed by configured, permitted retrieval paths);
 - `refresh`: bypasses reusable search-result cache and checks configured sources again.
+
+Search automatically uses the unified pipeline. Legacy `search_scope` values are
+accepted as compatibility aliases; platform-specific collection is not implied.
+Live web discovery uses only configured providers: Tavily (`TAVILY_API_KEY`)
+and/or an operator-managed SearXNG instance (`SEARXNG_BASE_URL`).
 
 Recommendation items add nullable `variant_id`, `offer_id`, `platform`, freshness,
 `product_suitability`, `offer_quality`, and ranked `alternate_offers`. Old payloads remain

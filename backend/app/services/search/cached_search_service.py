@@ -32,7 +32,7 @@ class CachedSearchService:
 
     async def execute(self, *, db: Session, session_id: str, queries: list[str],
                       direct_urls: list[str] | None = None, refresh: bool = False,
-                      source_platforms: list[str] | None = None):
+                      ):
         session = db.get(SearchSession, session_id)
         model = db.scalar(select(Requirement).where(Requirement.session_id == session_id))
         if model is None:
@@ -50,7 +50,12 @@ class CachedSearchService:
             'live_search_initial_candidates': self.settings.live_search_initial_candidates,
             'live_search_max_candidates': self.settings.live_search_max_candidates,
             'live_search_discovery_pages': self.settings.live_search_discovery_pages,
-            "mode": "live", "search_provider": "tavily", "top_k": self.settings.top_k,
+            "mode": "live",
+            "search_providers": {
+                "tavily_configured": bool(self.settings.tavily_api_key.strip()),
+                "searxng_base_url": self.settings.searxng_base_url.strip().rstrip("/"),
+            },
+            "top_k": self.settings.top_k,
             "max_search_queries": self.settings.max_search_queries,
             "max_results_per_query": self.settings.max_results_per_query,
             "llm_provider": self.settings.llm_provider,
@@ -74,7 +79,7 @@ class CachedSearchService:
                 return cached
         try:
             raw = await SearchService().execute(db=db, session_id=session_id, queries=queries,
-                direct_urls=direct_urls or [], source_platforms=source_platforms or ["shopee", "lazada"])
+                direct_urls=direct_urls or [])
         except SearchProviderError as exc:
             # Another request may have populated cache while this provider call ran.
             # Never replace a session's previous success on a failed refresh.

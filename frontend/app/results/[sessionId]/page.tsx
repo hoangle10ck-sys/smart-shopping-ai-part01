@@ -221,6 +221,25 @@ function SessionResults({ sessionId }: { sessionId: string }) {
               </button>
             )}
 
+            {!!data.unified_sources?.length && (
+              <section aria-label="Trạng thái nguồn tìm kiếm" className="surface mb-6 p-4">
+                <h2 className="font-semibold text-sm">Phạm vi tìm kiếm</h2>
+                <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+                  {data.unified_sources.map((source, index) => (
+                    <li key={`${source.source}-${index}`} className="rounded-lg border border-[var(--line)] p-3 text-xs">
+                      <span className="font-semibold">{source.source}</span>
+                      <span className="ml-2 text-[var(--muted)]">
+                        {source.error ? `Chưa truy vấn: ${source.error}` : source.available ? "Đã kiểm tra" : "Không khả dụng / bị giới hạn"}
+                      </span>
+                      {typeof source.matched_products === "number" && source.matched_products > 0 && (
+                        <span className="ml-2">{source.matched_products} kết quả phù hợp</span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
             {/* Warnings Alert */}
             {!!data.warnings?.length && (
               <div role="alert" className="notice mb-6">

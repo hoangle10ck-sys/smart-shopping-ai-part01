@@ -1,5 +1,6 @@
 """Search API endpoints."""
 
+import logging
 import time
 from app.services.performance import profile_request, current_trace
 from copy import deepcopy
@@ -53,6 +54,7 @@ router = APIRouter(
     prefix="/api/search",
     tags=["Search"],
 )
+logger = logging.getLogger(__name__)
 
 
 def save_search_warnings(db: Session, session_id: str, warnings: list[str]) -> None:
@@ -176,6 +178,8 @@ def load_raw_search_result(
         ),
         warnings=list(execution_state.warnings) if execution_state is not None else [],
         retrieval_diagnostics=deepcopy(snapshot.payload.get('retrieval_diagnostics', [])) if snapshot else [],
+        unified_sources=deepcopy(snapshot.payload.get('unified_sources', [])) if snapshot else [],
+        enhancement=snapshot.payload.get('enhancement') if snapshot else None,
         demo_mode=False if snapshot and snapshot.payload.get("result", {}).get("data_mode") == "research" else settings.demo_mode,
         processing_time_ms=0.0,
     )
@@ -251,8 +255,13 @@ async def execute_search(
     db.commit()
 
     try:
-        # Unified multi-source search: catalog + research + external (demo/live/collector).
-        if payload.search_scope == "auto":
+        # Every accepted scope now uses the same automatic unified search.
+        # ``platforms`` remains a compatibility alias for older clients.
+        if payload.search_scope in {"auto", "platforms"}:
+            if payload.search_scope == "platforms":
+                logger.warning(
+                    "Deprecated search_scope=platforms treated as automatic unified search"
+                )
             unified_result, outcomes, enhancement = await (
                 UnifiedSearchService().execute(
                     db=db,
@@ -324,7 +333,6 @@ async def execute_search(
         raw_result, recommendation_result = await CachedSearchService().execute(
             db=db, session_id=payload.session_id, queries=queries,
             direct_urls=payload.direct_urls, refresh=payload.refresh,
-            source_platforms=payload.source_platforms,
         )
 
         duration_ms = (
@@ -522,6 +530,8 @@ def get_search_result(
         ),
         data_semantics=recommendation_result.data_semantics,
         data_mode=recommendation_result.data_mode,
+        unified_sources=deepcopy(snapshot.payload.get("unified_sources", [])) if snapshot else [],
+        enhancement=snapshot.payload.get("enhancement") if snapshot else None,
         total_found=(
             recommendation_result.total_found
         ),

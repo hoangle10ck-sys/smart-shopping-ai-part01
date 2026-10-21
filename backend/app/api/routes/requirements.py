@@ -37,6 +37,7 @@ from app.services.llm.query_generator import (
 from app.services.llm.requirement_analyzer import (
     RequirementAnalyzer,
 )
+from app.services.recommendation.recommendation_service import requirement_to_schema
 
 
 logger = logging.getLogger(__name__)
@@ -292,6 +293,20 @@ async def clarify_requirement(
         requirement_data = (
             assessment.requirement
         )
+
+        # A clarification is an addition to the original request, not a new
+        # independent query. Preserve previously extracted fields when the
+        # latest answer does not mention them.
+        previous = requirement_to_schema(requirement_model)
+        for field_name in ("category", "budget_min", "budget_max", "currency",
+                           "purpose", "brands", "requirements",
+                           "excluded_requirements", "sort_preference"):
+            current_value = getattr(requirement_data, field_name)
+            previous_value = getattr(previous, field_name)
+            if current_value in (None, [], "") and previous_value not in (None, [], ""):
+                setattr(requirement_data, field_name, previous_value)
+
+        assessment = RequirementAnalyzer.assess(requirement_data)
 
         values = (
             requirement_to_model_values(

@@ -68,6 +68,8 @@
 ### Unified Multi-Source Search (kế hoạch đã nộp 2026-10-17)
 Mục tiêu: bỏ dropdown chế độ dữ liệu, user nhập 1 câu → hệ thống tự tìm DB + Research + Demo + nguồn live khả dụng song song, hiển thị sớm + tăng cường, Top 10.
 
+Task plan chi tiết theo nghiệp vụ đã được ghi riêng tại [`TASKS_UNIFIED_SEARCH.md`](TASKS_UNIFIED_SEARCH.md). Plan làm rõ rằng Demo fixture không được trộn vào offer mua sắm thật; hệ thống thử mọi nguồn đã cấu hình, khả dụng và được phép trong budget, lưu provenance, báo coverage/partial failure và không bịa dữ liệu.
+
 | Phase | Nội dung | Trạng thái |
 |---|---|---|
 | U1 — Backend | Orchestrator, adapters, route `search_scope=auto`, snapshot và response unified | ⏳ ĐANG LÀM — chưa có pytest xác nhận |

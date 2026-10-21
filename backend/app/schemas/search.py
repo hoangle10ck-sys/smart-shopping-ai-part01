@@ -19,11 +19,9 @@ class SearchRequest(
         max_length=36,
     )
     direct_urls: list[str] = Field(default_factory=list, max_length=5)
-    source_platforms: list[Literal["shopee", "lazada"]] = Field(default_factory=lambda: ["shopee", "lazada"])
     refresh: bool = False
-    # "platforms" keeps the legacy behaviour untouched; "auto" runs the
-    # UnifiedSearchService which discovers every configured source.
-    search_scope: Literal["platforms", "auto"] = "platforms"
+    # Legacy clients may still send a scope; server always uses unified search.
+    search_scope: Literal["platforms", "auto"] = "auto"
 
     @classmethod
     def _unique_urls(cls, values: list[str]) -> list[str]:

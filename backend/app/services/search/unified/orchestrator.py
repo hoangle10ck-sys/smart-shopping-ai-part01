@@ -26,7 +26,6 @@ from app.services.recommendation.recommendation_service import (
 from app.services.search.unified.base import SourceOutcome
 from app.services.search.unified.catalog_source import DatabaseCatalogSource
 from app.services.search.unified.external_sources import (
-    CollectorProductSource,
     DemoProductSource,
     LiveProductSource,
 )
@@ -44,7 +43,6 @@ class UnifiedSearchService:
         self.research = ResearchCatalogSource()
         self.demo = DemoProductSource()
         self.live = LiveProductSource()
-        self.collector = CollectorProductSource()
 
     async def execute(
         self,
@@ -79,52 +77,41 @@ class UnifiedSearchService:
         )
         outcomes.append(research_outcome)
 
-        # 3. External supplement only when the internal catalog is thin.
-        need_external = (
-            catalog_outcome.fresh_products < self.settings.unified_min_fresh_products
-        )
+        # 3. Always inspect every configured external source for this run.
+        # A sufficiently populated local catalog is not proof that its offers
+        # are current or that it contains the best available alternatives.
         enhancement = UnifiedEnhancement(status="not_needed")
-        if need_external:
+        if self.settings.demo_mode:
             # Demo fixtures must never be presented as commercial offers.
-            if self.settings.demo_mode:
-                outcomes.append(SourceOutcome(
-                    source_name=self.demo.name,
-                    available=False,
-                    error="Dữ liệu minh họa bị loại khỏi kết quả mua sắm unified.",
-                ))
-            elif self.live.is_available(db):
-                live_outcome = await self.live.search(
-                    db=db,
-                    session_id=session_id,
-                    requirement=requirement,
-                    queries=queries,
-                    direct_urls=direct_urls,
+            outcomes.append(SourceOutcome(
+                source_name=self.demo.name,
+                available=False,
+                error="Dữ liệu minh họa bị loại khỏi kết quả mua sắm unified.",
+            ))
+
+        if self.live.is_available(db):
+            live_outcome = await self.live.search(
+                db=db,
+                session_id=session_id,
+                requirement=requirement,
+                queries=queries,
+                direct_urls=direct_urls,
+            )
+            outcomes.append(live_outcome)
+            if live_outcome.error:
+                enhancement = UnifiedEnhancement(
+                    status="failed",
+                    detail="Không thể bổ sung dữ liệu trực tuyến trong lần tìm này.",
                 )
-                outcomes.append(live_outcome)
-                if live_outcome.error:
-                    enhancement = UnifiedEnhancement(
-                        status="failed",
-                        detail="Không thể bổ sung dữ liệu trực tuyến trong lần tìm này.",
-                    )
-                else:
-                    db.commit()
-                    enhancement = UnifiedEnhancement(status="completed")
             else:
-                outcomes.append(SourceOutcome(
-                    source_name=self.live.name,
-                    available=False,
-                    error="Không có nguồn live khả dụng (Demo mode hoặc thiếu Tavily key).",
-                ))
+                db.commit()
+                enhancement = UnifiedEnhancement(status="completed")
         else:
             outcomes.append(SourceOutcome(
                 source_name=self.live.name,
                 available=False,
-                warnings=[
-                    f"Catalog nội bộ đủ {catalog_outcome.fresh_products} sản phẩm mới; "
-                    "không cần truy vấn nguồn trực tuyến."
-                ],
+                error="Nguồn trực tuyến chưa khả dụng (Demo mode hoặc thiếu Tavily key).",
             ))
-
 
         # 4. Run deterministic recommendation and merge read-only research rows.
 

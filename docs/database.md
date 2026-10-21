@@ -88,6 +88,27 @@ Comparison mới dựa cùng recommendation view, sau đó giữ JSON result ri�
 comparison đã lưu từ trước Phase 7 không sửa/backfill; chúng vẫn phản ánh semantics
 cũ lúc tạo. Feedback là dữ liệu đánh giá, chưa dùng để tự điều chỉnh scoring weights.
 
+## PostgreSQL (đề xuất cho multi-user)
+
+Repo hỗ trợ cả SQLite và PostgreSQL qua duy nhất biến `DATABASE_URL`
+(`app/core/database.py` phân nhánh theo dialect). Khuyến nghị:
+
+- **Docker Compose**: service `db` (postgres:17-alpine) tự dựng, backend chờ
+  `pg_isready` healthy rồi khởi động; volume `shopping-data` giờ chứa data PG.
+- **Local**: cài PostgreSQL (hoặc dùng Neon/Supabase free tier), đổi
+  `backend/.env`:
+  `DATABASE_URL=postgresql+psycopg://shopping:change-this-before-production@127.0.0.1:5432/smart_shopping`
+  rồi chạy `python -m alembic upgrade head` hoặc để `init_db()` tạo bảng thiếu.
+- **Pytest/E2E vẫn dùng SQLite tạm** từ `tests/conftest.py` và
+  `scripts/run_e2e_backend.py` — không đổi, giữ test nhanh và không phụ thuộc server.
+- **Migration**: Alembic scaffold tại `backend/alembic/`. Từ DB đã có schema,
+  tạo baseline một lần: `python -m alembic revision --autogenerate -m "baseline"`.
+  Khi chuyển SQLite→PG, autogenerate trên DB PG trống rồi
+  `alembic upgrade head`; JSON columns chạy native trên PG, semantics snapshot
+  giữ nguyên.
+- Driver: `psycopg` v3 (`psycopg[binary]`) trong `requirements.txt`; engine PG
+  dùng pool `pool_size=10`, `max_overflow=20`, `pool_recycle=1800`.
+
 ## SQLite và vận hành
 
 - Local chạy từ `backend/`: `sqlite:///./smart_shopping.db`.

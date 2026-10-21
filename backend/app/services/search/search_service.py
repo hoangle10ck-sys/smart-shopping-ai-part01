@@ -261,7 +261,6 @@ class SearchService:
         session_id: str,
         queries: list[str],
         direct_urls: list[str] | None = None,
-        source_platforms: list[str] | None = None,
     ) -> SearchExecutionResponse:
         """Execute complete search pipeline."""
 
@@ -331,7 +330,6 @@ class SearchService:
 
         diagnostics = []
         direct_urls = list(dict.fromkeys(direct_urls or []))[: self.settings.collector_max_urls]
-        source_platforms = source_platforms or ["shopee", "lazada"]
         direct_batches = []
         collector_results = []
         if direct_urls:
@@ -339,9 +337,6 @@ class SearchService:
             results = await asyncio.gather(*(CollectorService().fetch(url) for url in direct_urls))
             collector_results = list(results)
             from app.schemas.collector import FetchStatus
-            for result in results:
-                if result.platform in {"shopee", "lazada"} and result.platform not in source_platforms:
-                    direct_batches.append((result.source_url, [], "Nguồn URL trực tiếp không nằm trong lựa chọn nền tảng."))
                     continue
                 if result.status not in {FetchStatus.SUCCESS, FetchStatus.PARTIAL_DATA} or result.observation is None:
                     direct_batches.append((result.source_url, [], f"Direct collector {result.status.value}: {result.failure.message if result.failure else ''}"))

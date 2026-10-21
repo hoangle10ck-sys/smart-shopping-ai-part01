@@ -111,6 +111,17 @@ async def test_actually_missing_input_still_clarifies(query, missing):
 
 
 @pytest.mark.asyncio
+async def test_category_alone_is_enough_to_start_search():
+    from app.schemas.requirement import RequirementData
+
+    assessment = RequirementAnalyzer.assess(RequirementData(category="máy tính"))
+
+    assert not assessment.needs_clarification
+    assert assessment.clarification_question is None
+    assert assessment.missing_fields == []
+
+
+@pytest.mark.asyncio
 async def test_query_order_and_page_merge_are_deterministic_with_shared_urls():
     async def run(reverse):
         class Provider:

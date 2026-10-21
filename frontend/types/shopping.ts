@@ -145,6 +145,17 @@ export interface AnalyzeResponse {
 }
 
 
+export interface UnifiedSourceStatus {
+  source: string;
+  available: boolean;
+  matched_products?: number;
+  fresh_products?: number;
+  ingested_rows?: number;
+  warnings?: string[];
+  error?: string | null;
+  duration_ms?: number;
+}
+
 export interface SearchPipelineResponse {
   session_id: string;
   requirement?: ParsedRequirement | null;
@@ -311,6 +322,8 @@ export interface ComparisonResult {
   offer_comparison?: Record<string, unknown>[];
   price_comparability?: "COMPARABLE" | "NOT_COMPARABLE";
   warnings?: string[];
+  unified_sources?: UnifiedSourceStatus[];
+  enhancement?: { status: "pending" | "completed" | "not_needed" | "failed"; detail?: string | null } | null;
 }
 
 

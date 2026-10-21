@@ -7,8 +7,12 @@ const results = fs.readFileSync(new URL('../app/results/[sessionId]/page.tsx', i
 const compare = fs.readFileSync(new URL('../app/compare/[comparisonId]/page.tsx', import.meta.url), 'utf8');
 const card = fs.readFileSync(new URL('../components/product-card.tsx', import.meta.url), 'utf8');
 
-test('smart search exposes marketplace and direct URL controls', () => {
-  assert.match(home, /direct-product-url/); assert.match(home, /Shopee/); assert.match(home, /Lazada/);
+test('smart search accepts one natural-language product command and has no direct URL input', () => {
+  assert.doesNotMatch(home, /direct-product-url|directUrl|URL sản phẩm/);
+  assert.match(home, /Tìm và đề xuất/);
+  assert.match(home, /Máy tính/);
+  assert.match(home, /executeSearch\(analyzed\.session_id/);
+  assert.doesNotMatch(home, /Shopee|Lazada|clarification-answer/);
 });
 test('refresh is a real backend action and evidence statuses are visible', () => {
   assert.match(results, /executeSearch\(sessionId, \{ refresh: true \}\)/);

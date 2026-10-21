@@ -117,23 +117,10 @@ class RequirementAnalyzer:
                 "category"
             )
 
-        if (
-            requirement.budget_min is None
-            and requirement.budget_max is None
-        ):
-            missing_fields.append(
-                "budget"
-            )
-
-        if not requirement.purpose and not any(item.name.strip() and item.value.strip()
-                                               for item in requirement.requirements):
-            missing_fields.append(
-                "purpose"
-            )
-
         question: str | None = None
 
-        # Only ask one important question per turn.
+        # A product category is enough to start a broad search. Budget and
+        # purpose are optional ranking hints, not prerequisites.
         if "category" in missing_fields:
             question = (
                 "Bạn muốn mua loại sản phẩm nào?"

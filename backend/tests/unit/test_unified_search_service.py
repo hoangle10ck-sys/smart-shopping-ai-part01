@@ -79,20 +79,31 @@ def test_catalog_thin_demo_test_fixture_supplements() -> None:
     )
     assert live_outcome is not None
     assert live_outcome.available is False
+    assert not any("collector" in o.source_name for o in outcomes)
 
 
 # ---------------------------------------------------------------------------
 # Scenario 3: Catalog sufficient -> external source not required.
 # ---------------------------------------------------------------------------
-def test_catalog_thin_demo_supplements() -> None:
+def test_catalog_search_reports_sources_even_when_catalog_is_sufficient(monkeypatch) -> None:
     session_id = _analyze_session(
         "Tôi có 2 triệu cần laptop học tập, pin lâu, màn hình full HD"
     )
     assert _session_has_requirement(session_id)
 
+    from app.services.search.unified.orchestrator import UnifiedSearchService
+
+    service = UnifiedSearchService()
+    # Simulate a mature catalog deterministically; source discovery must still
+    # report external coverage rather than silently treating it as unnecessary.
+    from app.services.search.unified.base import SourceOutcome
+    monkeypatch.setattr(service.catalog, "search", lambda **kwargs: SourceOutcome(
+        source_name="database_catalog", matched_products=8, fresh_products=8,
+    ))
+
     with SessionLocal() as db:
         result, outcomes, enhancement = _run(
-            UnifiedSearchService().execute(
+            service.execute(
                 db=db,
                 session_id=session_id,
                 queries=["laptop học tập pin lâu màn hình full HD"],
@@ -103,8 +114,10 @@ def test_catalog_thin_demo_supplements() -> None:
     demo_outcome = next(
         (o for o in outcomes if o.source_name == "demo_mock"), None
     )
-    assert live_outcome is None
-    assert demo_outcome is not None and demo_outcome.available is True
+    live_outcome = next(o for o in outcomes if o.source_name == "tavily_live")
+    assert demo_outcome is None
+    assert live_outcome.available is False
+    assert not any("collector" in o.source_name for o in outcomes)
 
 
 # ---------------------------------------------------------------------------
@@ -128,9 +141,6 @@ def test_research_source_outcome_present() -> None:
     assert result is not None
     research_outcome = next(
         (o for o in outcomes if o.source_name == "research_catalog"), None
-    )
-    collector_outcome = next(
-        (o for o in outcomes if o.source_name == "marketplace_collector"), None
     )
     # Budget có cả USD và VND → research raise ValueError (không tự quy đổi FX).
     assert research_outcome.matched_products >= 0
@@ -191,10 +201,7 @@ def test_collector_fail_closed_not_invoked() -> None:
         )
 
     assert result is not None
-    # Auto mode reports the policy-gated collector as unavailable.
-    collector_outcome = next(
-        (o for o in outcomes if o.source_name == "marketplace_collector"), None
-    )
+    assert not any("collector" in o.source_name for o in outcomes)
 
 
 # ---------------------------------------------------------------------------
@@ -303,9 +310,10 @@ def test_no_requirement_raises_value_error() -> None:
 def test_post_search_defaults_to_unified_scope() -> None:
     from app.schemas.search import SearchRequest
 
-    # Legacy clients retain the old default; the web client explicitly selects auto.
     request = SearchRequest(session_id="session-1")
-    assert request.search_scope == "platforms"
+    assert request.search_scope == "auto"
+    # Legacy clients can still submit the old scope while migrating.
+    assert SearchRequest(session_id="session-1", search_scope="platforms").search_scope == "platforms"
     assert SearchRequest(session_id="session-1", search_scope="auto").search_scope == "auto"
 
 

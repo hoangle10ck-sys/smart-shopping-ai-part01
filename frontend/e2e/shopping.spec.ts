@@ -21,6 +21,7 @@ async function demoResult(page: Page): Promise<SearchPipelineResponse> {
   const { session_id } = await analysis.json();
   const response = await page.request.post(`${API}/api/search`, { data: { session_id } });
   expect(response.ok()).toBeTruthy();
+  expect((await response.request().postDataJSON()).search_scope ?? "auto").toBe("auto");
   return response.json();
 }
 

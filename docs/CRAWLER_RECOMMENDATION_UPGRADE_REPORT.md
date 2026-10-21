@@ -11,9 +11,9 @@ Product/Variant/Offer identity, price history, compliant direct-URL collection, 
 scoring, SKU-safe comparison, UI provenance and an offline benchmark.
 
 No paid API was called. No product-page Live smoke was attempted. Shopee and Lazada are
-`ACCESS_RESTRICTED` because their published terms restrict automated collection without
+`ACCESS_RESTRICTED` because their published terms restrict automated collection withoutA
 applicable permission and no written permission is present in this repository. Collector
-fixtures are `FIXTURE_TESTED_ONLY`, never `LIVE_VERIFIED`.
+fixtures are `FIXTURE_TESTED_ONLY`, never `LIVE_VERIFIED`.A
 
 ## Before / after
 

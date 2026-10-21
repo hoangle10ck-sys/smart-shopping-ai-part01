@@ -18,6 +18,7 @@ from app.schemas.requirement import RequirementData
 from app.services.search.mock_provider import MockSearchProvider
 from app.services.search.search_service import SearchService
 from app.services.search.tavily_provider import TavilyProvider
+from app.services.search.multi_provider import MultiSearchProvider
 from app.services.search.unified.base import SourceOutcome
 
 
@@ -95,15 +96,12 @@ class DemoProductSource(_PipelineSource):
 
 
 class LiveProductSource(_PipelineSource):
-    """Tavily-backed live source; available only outside Demo mode with a key."""
+    """Configured-provider live source (Tavily and/or operator SearXNG)."""
 
-    name = "tavily_live"
+    name = "configured_web_search"
 
     def is_available(self, db: Session) -> bool:
-        return (
-            not self.settings.demo_mode
-            and bool(self.settings.tavily_api_key.strip())
-        )
+        return bool(self.settings.tavily_api_key.strip() or self.settings.searxng_base_url.strip())
 
     async def search(
         self,
@@ -124,35 +122,8 @@ class LiveProductSource(_PipelineSource):
             queries=queries,
             direct_urls=direct_urls or [],
             outcome=outcome,
-            provider=TavilyProvider(),
+            provider=MultiSearchProvider(),
         )
 
 
-class CollectorProductSource:
-    """Shopee/Lazada collectors stay fail-closed unless policy explicitly allows."""
-
-    name = "marketplace_collector"
-
-    def __init__(self) -> None:
-        self.settings = get_settings()
-
-    def is_available(self, db: Session) -> bool:
-        if not (self.settings.collector_live_enabled and self.settings.collector_policy_confirmed):
-            return False
-        return bool(self.settings.collector_source_registry_json.strip() not in {"", "[]", "[ ]"})
-
-    def search(
-        self,
-        *,
-        db: Session,
-        session_id: str,
-        requirement: RequirementData,
-        queries: list[str],
-        direct_urls: list[str] | None = None,
-    ) -> SourceOutcome:
-        # Policy-gated; when enabled this would route through CollectorService
-        # with the approved registry. Until then availability stays False and
-        # the unified run simply reports the source as skipped.
-        outcome = SourceOutcome(source_name=self.name, available=False)
-        outcome.error = "Collector đang khóa theo chính sách nguồn (ACCESS_RESTRICTED)."
-        return outcome
+\n

@@ -67,6 +67,9 @@ class Settings(BaseSettings):
 
     tavily_api_key: str = ""
 
+    # Optional self-hosted SearXNG instance; public instances are not assumed.
+    searxng_base_url: str = ""
+
 
     # =========================================================
     # TIMEOUT / RETRY

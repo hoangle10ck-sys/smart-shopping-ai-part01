@@ -24,6 +24,12 @@ settings = get_settings()
 
 _connect_args: dict[str, object] = {}
 
+# Non-SQLite engines (PostgreSQL) get a real connection pool instead of
+# SQLAlchemy's defaults.
+_engine_kwargs: dict[str, object] = {
+    "pool_pre_ping": True,
+}
+
 
 if settings.database_url.startswith(
     "sqlite"
@@ -37,12 +43,25 @@ if settings.database_url.startswith(
             "timeout": 30,
         }
     )
+elif settings.database_url.startswith(
+    "postgresql"
+):
+    _engine_kwargs.update(
+        {
+            "pool_size": 10,
+            "max_overflow": 20,
+
+            # Recycle connections so idle server restarts
+            # do not surface stale sockets.
+            "pool_recycle": 1800,
+        }
+    )
 
 
 engine = create_engine(
     settings.database_url,
     connect_args=_connect_args,
-    pool_pre_ping=True,
+    **_engine_kwargs,
 )
 
 
