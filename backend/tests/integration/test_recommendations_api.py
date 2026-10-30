@@ -8,6 +8,7 @@ from app.main import app
 from app.models.recommendation import (
     Recommendation,
 )
+from tests.fixtures.unified_catalog import seed_headphones
 
 
 client = TestClient(app)
@@ -21,6 +22,9 @@ QUERY = (
 
 def _create_session() -> str:
     """Create a completed recommendation session."""
+
+    with SessionLocal() as db:
+        seed_headphones(db, count=1)
 
     analyze_response = client.post(
         "/api/requirements/analyze",

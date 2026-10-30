@@ -94,7 +94,8 @@ def make_requirement() -> RequirementData:
     )
 
 
-def test_demo_explanation_contains_product_name() -> None:
+def test_demo_explanation_contains_product_name(monkeypatch) -> None:
+    monkeypatch.setattr(get_settings(), "demo_mode", True)
     explanation = (
         ExplanationService(
             use_llm=False
@@ -148,6 +149,7 @@ def test_generation_modes_roundtrip(mode):
 
 @pytest.mark.parametrize("use_llm", [None, True])
 def test_demo_never_calls_provider_even_with_explicit_hint(monkeypatch, use_llm):
+    monkeypatch.setattr(get_settings(), "demo_mode", True)
     calls = []
     monkeypatch.setattr(ExplanationService, "_generate_with_provider", lambda *a, **kw: calls.append(kw))
     result = ExplanationService(use_llm=use_llm).explain(

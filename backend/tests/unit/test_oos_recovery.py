@@ -115,9 +115,11 @@ async def test_no_opportunities_and_already_satisfied_do_no_work():
 @pytest.mark.asyncio
 async def test_recovery_deadline_cancels_probe_and_never_retries():
     pages = Pages(hang=True); r = setup(pages)
-    r.deadline = time.monotonic() + .02
+    # Leave enough time for the probe to start even when the full suite is busy;
+    # the old 20 ms window could expire before recover_direct reached inspect().
+    r.deadline = time.monotonic() + 1
     s = source(); pending(r, s)
-    await asyncio.wait_for(r.recover_direct(), timeout=.5)
+    await asyncio.wait_for(r.recover_direct(), timeout=1.5)
     assert not pages.active and pages.calls == [s.url]
     assert not r.enough() and r.remaining() == 0
     await r.recover_direct()

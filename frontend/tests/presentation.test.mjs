@@ -25,24 +25,26 @@ test("missing comparison score stays unknown, while an observed zero stays zero"
   assert.doesNotMatch(missing, /0\.00|width:/);
   assert.match(render(ScoreBadge, { value: 0 }), /0\.00\/100/);
 });
-test("AI Match presents the exact backend score without recalculating or rounding to an integer", () => {
-  assert.match(render(ScoreBadge, { value: 61.81 }), /61\.81\/100/);
+test("customer-facing suitability label presents the exact score without claiming a purchase probability", () => {
+  const html = render(ScoreBadge, { value: 61.81 });
+  assert.match(html, /Mức độ phù hợp/);
+  assert.match(html, /61\.81\/100/);
+  assert.doesNotMatch(html, /AI Match/);
 });
-test("unknown stock uses a neutral state, never the in-stock or out-of-stock style", () => {
+test("unknown stock is omitted instead of showing an unhelpful badge", () => {
   for (const value of [null, undefined, "unknown", "not_published"]) {
     const html = render(AvailabilityBadge, { value });
-    assert.match(html, /Chưa rõ tồn kho/);
-    assert.doesNotMatch(html, /tag-green|tag-red/);
+    assert.equal(html, "");
   }
 });
 test("explicit source stock values remain distinct", () => {
   assert.match(render(AvailabilityBadge, {value: "https://schema.org/InStock"}), /Còn hàng/);
   assert.match(render(AvailabilityBadge, {value: "out_of_stock"}), /Hết hàng/);
 });
-test("missing or unsafe product images render a local placeholder without an img element", () => {
+test("missing or unsafe product images render nothing without a fallback", () => {
   for (const src of [null, "javascript:alert(1)", "https://shop.example/logo.png"]) {
     const html = render(ProductImage, {src, name: "Observed product"});
-    assert.match(html, /Chưa có ảnh sản phẩm/);
+    assert.equal(html, "");
     assert.doesNotMatch(html, /<img/);
   }
 });

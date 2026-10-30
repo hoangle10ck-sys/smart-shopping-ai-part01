@@ -107,14 +107,14 @@ export function ResultFilters({
             }
             className="field !h-10 !py-1.5 !text-xs font-normal"
           >
-            <option value="ai">AI Match cao → thấp</option>
+            <option value="ai">Mức độ phù hợp cao → thấp</option>
             <option value="price_asc">
               {research ? "Giá lịch sử thấp → cao" : "Giá thấp → cao"}
             </option>
             <option value="price_desc">
               {research ? "Giá lịch sử cao → thấp" : "Giá cao → thấp"}
             </option>
-            <option value="rating">Rating cao → thấp</option>
+            <option value="rating">Đánh giá cao → thấp</option>
           </select>
         </label>
       </div>

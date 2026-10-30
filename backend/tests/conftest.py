@@ -1,4 +1,4 @@
-"""Run every test against a clean, disposable database in Demo Mode."""
+"""Run every test against a clean, disposable database with Demo disabled."""
 
 from collections.abc import Generator
 from pathlib import Path
@@ -14,7 +14,18 @@ _test_directory = TemporaryDirectory(prefix="smart-shopping-tests-")
 _database_path = Path(_test_directory.name) / "test.sqlite3"
 _environment = pytest.MonkeyPatch()
 _environment.setenv("DATABASE_URL", f"sqlite:///{_database_path.as_posix()}")
-_environment.setenv("DEMO_MODE", "true")
+_environment.setenv("DEMO_MODE", "false")
+# Tests must remain deterministic and free of external API charges regardless
+# of credentials or collector settings in the developer's ignored .env file.
+_environment.setenv("LLM_PROVIDER", "mock")
+_environment.setenv("LLM_FALLBACK_PROVIDER", "")
+_environment.setenv("OPENAI_API_KEY", "")
+_environment.setenv("GEMINI_API_KEY", "")
+_environment.setenv("TAVILY_API_KEY", "")
+_environment.setenv("SEARXNG_BASE_URL", "")
+_environment.setenv("COLLECTOR_LIVE_ENABLED", "false")
+_environment.setenv("COLLECTOR_POLICY_CONFIRMED", "false")
+_environment.setenv("COLLECTOR_SOURCE_REGISTRY_JSON", "[]")
 
 from app.core.config import get_settings
 

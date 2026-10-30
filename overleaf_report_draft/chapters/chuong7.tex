@@ -1,0 +1,31 @@
+\chapter{KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN}
+
+\section{Kết luận}
+
+Đề tài đã xây dựng được một nền tảng web trợ lý mua sắm với luồng từ mô tả nhu cầu đến tìm kiếm hợp nhất, lọc và xếp hạng, xem chi tiết, so sánh, phản hồi và xem lại lịch sử. Backend tách Product, biến thể, offer và quan sát giá; snapshot giữ bằng chứng và ngữ nghĩa dữ liệu của phiên. Kiến trúc hỗ trợ nhiều nguồn nhưng không đánh đồng dữ liệu nghiên cứu, URL khám phá và offer thương mại đã xác minh.
+
+Quy tắc ảnh xác minh đặt chất lượng bằng chứng lên trước số lượng kết quả: sản phẩm không đủ bằng chứng ảnh bị loại khỏi bề mặt người dùng. Bộ kiểm thử tự động của checkpoint 30/10/2026 đạt các kết quả được báo cáo ở Chương 5. Đây là bằng chứng về tính đúng đắn của các luồng trong môi trường kiểm thử, không phải chứng nhận độ phủ thương mại hay triển khai production.
+
+\section{Hạn chế hiện tại}
+
+\begin{itemize}
+  \item \textbf{Phạm vi sản phẩm còn phụ thuộc vào nguồn dữ liệu được phép truy cập.} Catalog hiện có chỉ bao phủ những sản phẩm mà các bộ dữ liệu đã tích hợp cung cấp. SearXNG giúp phát hiện trang web và URL ứng viên, nhưng không xác minh trang đó có đúng sản phẩm, giá bán hay người bán đáng tin cậy hay không. Muốn chuyển một ứng viên thành dữ liệu thương mại, hệ thống cần parser phù hợp, bằng chứng định danh và quyền thu thập từ chính nguồn đó. Các bước này phải được thực hiện riêng theo từng nhà cung cấp; không thể tự động coi mọi kết quả tìm kiếm web là dữ liệu sản phẩm hợp lệ.
+
+  \item \textbf{Giá, tồn kho và đánh giá có thể thiếu hoặc không còn mới.} Những thông tin này thay đổi theo người bán và thời điểm, nên chỉ được hiển thị khi nguồn cung cấp dữ kiện tương ứng kèm thời điểm quan sát. Một catalog nghiên cứu có thể lưu tên, ảnh hoặc thông số nhưng thường không đại diện cho một giao dịch hiện hành. Vì vậy, dữ liệu nghiên cứu và snapshot lịch sử không thể dùng thay cho việc kiểm tra lại giá, tồn kho hoặc đánh giá tại nguồn bán.
+
+  \item \textbf{MVP chưa có tài khoản và phân quyền dữ liệu theo từng người dùng.} Luồng hiện tại tập trung vào tìm kiếm dạng khách và lưu kết quả theo session trong instance ứng dụng; chưa xây dựng đầy đủ danh tính, quyền sở hữu session và quy tắc chỉ cho phép chủ phiên xem lịch sử. Nếu mở trực tiếp instance này cho nhiều người dùng trên Internet, thiếu các ranh giới đó có thể khiến dữ liệu giữa người dùng không được cách ly đúng cách. Do đó cần hoàn thiện xác thực, phân quyền và kiểm soát truy cập trước khi coi đây là dịch vụ đa người dùng công khai.
+
+  \item \textbf{Xác minh ảnh hiện chủ yếu dựa trên bằng chứng nguồn và kiểm tra kỹ thuật.} Hệ thống kiểm tra mối liên hệ của ảnh với sản phẩm/trang nguồn, khả năng tải, định dạng và các dấu hiệu mâu thuẫn; các phép kiểm tra này không hiểu đầy đủ nội dung thị giác như người kiểm duyệt. Việc rà soát thủ công toàn bộ catalog chưa được triển khai vì cần quy trình, nhân lực và ghi nhận kết quả kiểm duyệt. Khi bằng chứng tự động không đủ, sản phẩm bị loại thay vì lấy ảnh tương tự hoặc ảnh không rõ nguồn.
+
+  \item \textbf{Chưa báo cáo Precision@K hoặc NDCG cho chất lượng đề xuất.} Các chỉ số này cần một tập truy vấn có nhãn mức độ liên quan do người đánh giá xác định theo quy trình nhất quán. Dự án hiện chưa có tập nhãn độc lập đủ để làm chuẩn đối chiếu. Chạy các chỉ số trên fixture hoặc tự gán nhãn từ chính thuật toán sẽ không đo được chất lượng recommendation một cách khách quan, vì vậy chưa công bố các con số này.
+
+  \item \textbf{Chưa xác nhận khả năng vận hành production và độ ổn định của nguồn Live.} Các kiểm thử tự động và kiểm tra Docker cục bộ chỉ chứng minh ứng dụng chạy trong môi trường đã kiểm tra; chúng không thay thế triển khai có domain, TLS, giám sát, sao lưu, quy trình khôi phục và kiểm soát truy cập. Tương tự, một lần truy vấn thành công tới nguồn ngoài không đảm bảo nguồn đó luôn hoạt động hoặc cho phép thu thập lâu dài. Cần kiểm thử vận hành trong môi trường production và theo dõi từng nguồn theo thời gian trước khi kết luận về độ sẵn sàng.
+\end{itemize}
+
+\section{Hướng phát triển}
+
+Ưu tiên tiếp theo là xây dựng quy trình rà soát nguồn và ảnh có audit trail, đo freshness và cập nhật trạng thái dữ liệu, tạo tập đánh giá relevance có nhãn người dùng độc lập, và cải thiện khả năng theo dõi lỗi từng provider. Trước khi phục vụ công khai cần thiết kế xác thực/phân quyền, giới hạn tần suất, bảo vệ dữ liệu lịch sử, logging, backup/restore, giám sát, cấu hình secret và kiểm thử bảo mật phù hợp. Mỗi nguồn thương mại mới cần được duyệt chính sách và kiểm tra quyền riêng trước khi thu thập.
+
+\section{Tổng kết}
+
+Smart Shopping AI nên được đánh giá như một trợ lý tìm kiếm và tổng hợp bằng chứng, không phải nơi bảo đảm mọi sản phẩm đều sẵn hàng hoặc có giá hiện hành. Việc trình bày rõ nguồn, thời điểm và trạng thái xác minh là điều kiện để người dùng tự đánh giá kết quả một cách an toàn và chính xác.

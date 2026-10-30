@@ -15,6 +15,7 @@ from sqlalchemy import delete
 from sqlalchemy.orm import Session
 
 from app.core.database import get_db
+from app.api.guest_owner import get_guest_owner, require_owned_session
 from app.models.requirement import (
     Requirement as RequirementModel,
 )
@@ -25,6 +26,7 @@ from app.models.search_session import (
     SearchSession,
     SearchSessionStatus,
 )
+from app.models.user import User
 from app.schemas.requirement import (
     AnalyzeRequirementRequest,
     ClarifyRequirementRequest,
@@ -113,6 +115,7 @@ def save_search_queries(
 async def analyze_requirement(
     payload: AnalyzeRequirementRequest,
     db: Session = Depends(get_db),
+    owner: User = Depends(get_guest_owner),
 ) -> RequirementAnalysisResponse:
     """Analyze a new shopping request."""
 
@@ -142,6 +145,7 @@ async def analyze_requirement(
 
         search_session = (
             SearchSession(
+                user_id=owner.id,
                 raw_query=(
                     payload.raw_query
                     .strip()
@@ -244,23 +248,11 @@ async def analyze_requirement(
 async def clarify_requirement(
     payload: ClarifyRequirementRequest,
     db: Session = Depends(get_db),
+    owner: User = Depends(get_guest_owner),
 ) -> RequirementAnalysisResponse:
     """Analyze additional information for an existing session."""
 
-    search_session = db.get(
-        SearchSession,
-        payload.session_id,
-    )
-
-    if search_session is None:
-        raise HTTPException(
-            status_code=(
-                status.HTTP_404_NOT_FOUND
-            ),
-            detail=(
-                "Không tìm thấy search session."
-            ),
-        )
+    search_session = require_owned_session(db, payload.session_id, owner)
 
     requirement_model = (
         search_session.requirement

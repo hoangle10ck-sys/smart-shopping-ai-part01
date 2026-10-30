@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { RecommendationDetails } from "@/components/recommendation-details";
 import { FeedbackPanel } from "@/components/feedback-panel";
@@ -25,6 +26,13 @@ export function ProductCard({
   compareDisabled = false,
   onToggleCompare,
 }: ProductCardProps) {
+  const [imageValid, setImageValid] = useState(true);
+  if (
+    !product.image_evidence
+    || product.image_evidence.status !== "VERIFIED"
+    || product.image_evidence.image_url !== product.image_url
+    || !imageValid
+  ) return null;
   const research = product.source_mode === "HISTORICAL_RESEARCH";
   const sourceVerified =
     product.product_page_valid === true || product.source_observation_valid === true;
@@ -37,16 +45,20 @@ export function ProductCard({
       : typeof product.explanation === "string"
       ? product.explanation
       : null;
+  const researchRatingLabel =
+    product.rating == null && product.review_count == null
+      ? "Chưa có đánh giá hoặc lượt nhận xét trong dữ liệu tham khảo"
+      : "Đánh giá tham khảo";
 
   const status =
     product.freshness_status === "STALE"
-      ? "Stale"
+      ? "Cần kiểm tra lại"
       : product.source_observation_valid === true
-      ? "API verified"
+      ? "Nguồn đã kiểm tra"
       : product.product_page_valid === true
-      ? "Verified"
+      ? "Trang sản phẩm đã kiểm tra"
       : product.evidence?.warnings?.length
-      ? "Partial"
+      ? "Thông tin chưa đầy đủ"
       : "Chưa xác minh";
 
   return (
@@ -56,7 +68,7 @@ export function ProductCard({
       }`}
     >
       <div className="relative overflow-hidden rounded-[14px]">
-        <ProductImage src={product.image_url} name={product.name} />
+        <ProductImage src={product.image_url} evidence={product.image_evidence} name={product.name} onInvalid={() => setImageValid(false)} />
         <span className="tag absolute left-2.5 top-2.5 !bg-white/95 !shadow-xs backdrop-blur-xs font-semibold">
           #{product.rank} Đề xuất
         </span>
@@ -76,9 +88,9 @@ export function ProductCard({
           )}
           <span
             className={`tag !py-0.5 !text-[10px] ${
-              status === "Verified" || status === "API verified"
+              status === "Trang sản phẩm đã kiểm tra" || status === "Nguồn đã kiểm tra"
                 ? "tag-green"
-                : status === "Stale"
+                : status === "Cần kiểm tra lại"
                 ? "tag-red"
                 : ""
             }`}
@@ -112,6 +124,11 @@ export function ProductCard({
         {/* Price & Availability */}
         {!research && (
           <div className="mt-3.5 flex flex-wrap items-baseline justify-between gap-2 border-t border-[var(--line)] pt-3">
+            {product.freshness_status === "STALE" && (
+              <p className="basis-full text-xs font-medium text-[var(--muted)]" role="status">
+                Giá và tình trạng lần cuối ghi nhận
+              </p>
+            )}
             <p className="money !text-[1.4rem] font-bold text-[var(--foreground)]">
               {formatMoney(product.price, product.currency)}
             </p>
@@ -121,7 +138,7 @@ export function ProductCard({
 
         <p className="muted mt-1 text-[11.5px]">
           {research
-            ? "Rating lịch sử"
+            ? researchRatingLabel
             : product.merchant
             ? `tại ${product.merchant}`
             : "Chưa rõ cửa hàng"}
@@ -139,7 +156,7 @@ export function ProductCard({
         {product.product_suitability &&
           typeof product.product_suitability.score === "number" && (
             <p className="muted mt-2 text-[11px]">
-              Phù hợp sản phẩm:{" "}
+              Mức độ phù hợp sản phẩm:{" "}
               <strong className="text-[var(--foreground)] font-mono">
                 {product.product_suitability.score}/100
               </strong>
@@ -148,7 +165,7 @@ export function ProductCard({
 
         {product.offer_quality && typeof product.offer_quality.score === "number" && (
           <p className="muted mt-0.5 text-[11px]">
-            Chất lượng offer:{" "}
+              Độ tin cậy thông tin bán:{" "}
             <strong className="text-[var(--foreground)] font-mono">
               {product.offer_quality.score}/100
             </strong>
@@ -158,13 +175,6 @@ export function ProductCard({
         {product.last_checked_at && (
           <p className="muted mt-0.5 text-[11px]">
             Quan sát: {new Date(product.last_checked_at).toLocaleString("vi-VN")}
-          </p>
-        )}
-
-        {product.confidence != null && (
-          <p className="muted mt-1.5 text-[11px]">
-            {research ? "Độ đầy đủ metadata" : "Độ tin cậy dữ liệu"}:{" "}
-            <span className="font-mono font-medium">{product.confidence.toFixed(2)}/100</span>
           </p>
         )}
 

@@ -143,19 +143,43 @@ requirement. History đọc dữ liệu có sẵn, không gọi provider hoặc 
 ## Thử nhanh
 
 Mở `/docs`: analyze → lấy session_id → search → GET search → chọn hai product_id
-trong recommendations → POST comparisons → feedback → history. Dùng Demo với
-API keys rỗng; [demo.md](demo.md) có dữ liệu/điểm quan sát cho ba câu nhập chính.
+trong recommendations → POST comparisons → feedback → history. Luồng này dùng
+unified search; nếu catalog không có candidate và chưa cấu hình Tavily/SearXNG,
+kết quả hợp lệ có thể rỗng. [demo.md](demo.md) mô tả fixtures kiểm thử lịch sử,
+không phải sản phẩm thật hay một chế độ Demo trên Home.
 # Search request (automatic unified search)
 
 `POST /api/search` still requires `session_id` and additionally accepts:
 
-- `direct_urls`: up to five explicitly supplied product URLs (only processed by configured, permitted retrieval paths);
-- `refresh`: bypasses reusable search-result cache and checks configured sources again.
+- `direct_urls`: up to five unique explicitly supplied product URLs. Surrounding
+  whitespace is trimmed; blank entries and duplicates are removed. URLs are
+  processed only through configured, permitted retrieval paths.
+- `refresh`: retained for compatibility; automatic unified search checks configured sources on every run.
 
-Search automatically uses the unified pipeline. Legacy `search_scope` values are
-accepted as compatibility aliases; platform-specific collection is not implied.
-Live web discovery uses only configured providers: Tavily (`TAVILY_API_KEY`)
-and/or an operator-managed SearXNG instance (`SEARXNG_BASE_URL`).
+Search automatically uses the unified pipeline. `search_scope` defaults to
+`auto`; the deprecated `platforms` value is accepted as an alias. Neither value
+selects a marketplace or implies platform-specific collection.
+Live product-page retrieval uses configured Tavily (`TAVILY_API_KEY`). SearXNG
+(`SEARXNG_BASE_URL`) is discovery-only: it returns candidate URLs and never
+feeds them into product-page retrieval or Product/Offer persistence.
+The upstream [SearXNG project is licensed under AGPL-3.0](https://github.com/searxng/searxng/blob/master/LICENSE).
+An optional local SearXNG service is available with the Compose `searxng`
+profile. It is pinned to an upstream image tag, publishes only on loopback,
+and enables JSON in `searxng/settings.yml`. The default Compose profile does
+not start it or configure the backend to use it. Set `SEARXNG_BASE_URL` to
+`http://searxng:8080` when starting the backend in Compose. Search results are
+discovery hints; they do not verify a product's current price, stock, rating,
+or seller. Its `unified_sources` entry is named `web_discovery`; each
+`web_candidates` item includes `title`, `url`, `domain`, `status=DISCOVERED`,
+`review_status`, `collector_eligible`, and `source=searxng`. An unregistered or
+pending host is `REVIEW_REQUIRED`; configured restriction/disable states are
+reported explicitly. `collector_eligible` is a static policy check only: the
+source must be approved and enabled, both collector gates must be on, the URL
+must be HTTPS on the default port and match an allowed path for a product-page
+adapter. Collector preflight still checks permission, DNS/network policy and
+robots before any fetch. Candidate state is stored in the existing search
+snapshot; it does not create a Product or Offer. Review AGPL-3.0 obligations
+for any distribution or hosted use; this note is not a legal opinion.
 
 Recommendation items add nullable `variant_id`, `offer_id`, `platform`, freshness,
 `product_suitability`, `offer_quality`, and ranked `alternate_offers`. Old payloads remain

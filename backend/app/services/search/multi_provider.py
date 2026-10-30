@@ -14,14 +14,14 @@ from app.services.search.tavily_provider import TavilyProvider
 class MultiSearchProvider(SearchProvider):
     """Query configured providers concurrently and deduplicate by result URL."""
 
-    def __init__(self) -> None:
+    def __init__(self, *, include_searxng: bool = True) -> None:
         settings = get_settings()
         providers: list[SearchProvider] = []
         if settings.tavily_api_key.strip():
             providers.append(TavilyProvider())
         endpoint = settings.searxng_base_url.strip()
         parsed = urlparse(endpoint)
-        if parsed.scheme in {"http", "https"} and parsed.netloc:
+        if include_searxng and parsed.scheme in {"http", "https"} and parsed.netloc:
             providers.append(SearXNGProvider())
         self.providers = providers
 

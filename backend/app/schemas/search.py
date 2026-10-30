@@ -6,6 +6,7 @@ from typing import Literal
 from pydantic import (
     BaseModel,
     Field,
+    field_validator,
 )
 
 
@@ -23,8 +24,11 @@ class SearchRequest(
     # Legacy clients may still send a scope; server always uses unified search.
     search_scope: Literal["platforms", "auto"] = "auto"
 
+    @field_validator("direct_urls", mode="before")
     @classmethod
-    def _unique_urls(cls, values: list[str]) -> list[str]:
+    def _unique_urls(cls, values: object) -> object:
+        if not isinstance(values, list) or not all(isinstance(value, str) for value in values):
+            return values
         return list(dict.fromkeys(value.strip() for value in values if value.strip()))
 
 

@@ -4,16 +4,16 @@ export function historicalPriceLabel(product: ResearchMetadata): string {
   const ref = product.historical_price;
   return ref && ref.currency === "USD" && /^\d+\.\d{2}$/.test(ref.amount)
     ? `Giá tham khảo lịch sử (USD): ${ref.amount} USD`
-    : "Chưa có giá trong dataset";
+    : "Chưa có giá trong dữ liệu tham khảo";
 }
 
 export const SCORE_COMPONENTS = [
   { key: "budget_score", label: "Ngân sách", weight: 25 },
   { key: "requirement_score", label: "Yêu cầu", weight: 30 },
   { key: "purpose_score", label: "Mục đích", weight: 20 },
-  { key: "rating_score", label: "Rating", weight: 10 },
+  { key: "rating_score", label: "Đánh giá sản phẩm", weight: 10 },
   { key: "review_score", label: "Lượt đánh giá", weight: 5 },
-  { key: "source_score", label: "Nguồn", weight: 10 },
+  { key: "source_score", label: "Chất lượng nguồn", weight: 10 },
 ] as const;
 
 export function scoreRows(score?: Partial<ScoreBreakdown> | null) {
@@ -52,9 +52,72 @@ export function record(value: unknown): Record<string, unknown> {
   return value !== null && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : {};
 }
 
-export function dataModeLabel(mode: unknown): string {
-  if (mode === "research") return "HISTORICAL_RESEARCH — Dữ liệu nghiên cứu (2023), không phải giá bán hiện tại";
-  return mode === "demo" ? "Demo Mode — dữ liệu minh họa" : mode === "live" ? "Live Data — dữ liệu đã thu thập" : "Chưa xác định chế độ dữ liệu của phiên";
+export function dataModeLabel(mode: unknown, recommendations: unknown = []): string {
+  if (mode === "research") {
+    const products = Array.isArray(recommendations) ? recommendations : [];
+    const includesCommunityCatalog = products.some((item) => {
+      const provenance = record(record(item).research_provenance);
+      return provenance.dataset_id === "OpenFoodFacts" || provenance.dataset_id === "OpenProductsFacts";
+    });
+    if (includesCommunityCatalog) {
+      const includesOtherResearch = products.some((item) => {
+        const provenance = record(record(item).research_provenance);
+        return provenance.dataset_id !== "OpenFoodFacts" && provenance.dataset_id !== "OpenProductsFacts";
+      });
+      return includesOtherResearch ? "Dữ liệu tham khảo gồm nguồn cộng đồng" : "Dữ liệu tham khảo từ nguồn cộng đồng";
+    }
+    return "Dữ liệu tham khảo lịch sử";
+  }
+  if (mode === "unified") return "Đề xuất theo nhu cầu";
+  return mode === "demo" ? "Dữ liệu minh họa" : mode === "live" ? "Tìm từ nguồn trực tuyến" : "Nguồn dữ liệu chưa rõ";
+}
+
+export function unifiedSourceName(source: unknown): string {
+  if (source === "database_catalog") return "Danh mục sản phẩm";
+  if (source === "research_catalog") return "Dữ liệu nghiên cứu";
+  if (source === "configured_web_search") return "Tìm kiếm trên web";
+  if (source === "demo_mock") return "Dữ liệu minh họa";
+  return "Nguồn tìm kiếm khác";
+}
+
+export function unifiedSourceStatusLabel(source: {
+  available: boolean;
+  matched_products?: number;
+  error?: string | null;
+}): string {
+  const error = source.error?.toLowerCase() ?? "";
+  if (error.startsWith("chưa cấu hình") || error.startsWith("not configured")) {
+    return "Tìm kiếm trên web chưa khả dụng; kết quả có thể chưa đầy đủ.";
+  }
+  if (error.includes("access_restricted") || error.includes("restricted")) {
+    return "Nguồn này giới hạn truy cập; kết quả có thể chưa đầy đủ.";
+  }
+  if (error.includes("timeout") || error.includes("timed out")) {
+    return "Nguồn không phản hồi kịp thời; kết quả có thể chưa đầy đủ.";
+  }
+  if (source.error && source.available) return "Tìm kiếm một phần; kết quả có thể chưa đầy đủ.";
+  if (source.error) return "Nguồn tạm thời không khả dụng.";
+  if (!source.available) return "Nguồn chưa khả dụng trong lần tìm kiếm này.";
+  if (source.matched_products === 0) return "Đã tìm nhưng chưa có kết quả phù hợp.";
+  return "Đã tìm kiếm";
+}
+
+export function userFacingWarning(warning: string): string {
+  const code = warning.match(/^([A-Z][A-Z0-9_]*):\s*/)?.[1];
+  if (code === "BUDGET_NOT_COMPARABLE") {
+    return "Ngân sách của bạn là VND, còn giá tham khảo trong dữ liệu là USD. Hệ thống không tự quy đổi nên không dùng mức giá này để lọc hoặc chấm điểm.";
+  }
+  if (code === "PURPOSE_NOT_SCORED") {
+    return "Dữ liệu hiện có chưa đủ để xác minh sản phẩm phù hợp với mục đích này, nên hệ thống chưa cộng điểm cho tiêu chí đó.";
+  }
+  if (code) return "Có lưu ý về độ đầy đủ của dữ liệu sản phẩm.";
+  if (warning === "Online source failed; other available results are retained.") {
+    return "Nguồn tìm kiếm trực tuyến gặp sự cố; kết quả từ các nguồn khác vẫn được giữ lại.";
+  }
+  if (warning === "Research catalog is unavailable for this search.") {
+    return "Dữ liệu tham khảo chưa khả dụng trong lần tìm kiếm này.";
+  }
+  return warning;
 }
 
 export type ResultSort = "ai" | "price_asc" | "price_desc" | "rating";
@@ -133,5 +196,34 @@ export function safeProductImageUrl(value: unknown): string | null {
   const safe = safeHttpUrl(value);
   if (!safe || /logo|favicon|icon|banner|category|placeholder|sprite|tracking|avatar/i.test(safe)) return null;
   const url = new URL(safe);
-  return url.username || url.password || url.pathname.toLowerCase().endsWith(".svg") ? null : safe;
+  const host = url.hostname.toLowerCase().replace(/\.$/, "");
+  if (url.username || url.password || url.pathname.toLowerCase().endsWith(".svg") || isInternalImageHost(host)) return null;
+  return safe;
+}
+
+function isInternalImageHost(host: string): boolean {
+  if (
+    !host.includes(".")
+    || host === "localhost"
+    || host.endsWith(".localhost")
+    || host.endsWith(".local")
+    || host.endsWith(".internal")
+    || host.endsWith(".lan")
+    || host.endsWith(".home.arpa")
+    || (host.startsWith("[") && host.endsWith("]"))
+  ) return true;
+
+  const octets = host.split(".");
+  if (octets.length !== 4 || octets.some((part) => !/^\d{1,3}$/.test(part))) return false;
+  const [first, second, third] = octets.map(Number);
+  return first === 0
+    || first === 10
+    || first === 127
+    || (first === 169 && second === 254)
+    || (first === 172 && second >= 16 && second <= 31)
+    || (first === 192 && (second === 0 || second === 168))
+    || (first === 100 && second >= 64 && second <= 127)
+    || (first === 198 && (second === 18 || second === 19 || second === 51))
+    || (first === 203 && second === 0 && third === 113)
+    || first >= 224;
 }

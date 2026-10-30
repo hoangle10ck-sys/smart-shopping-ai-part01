@@ -219,3 +219,15 @@ All modifications were strictly confined to the presentation layer in `frontend/
 - [x] **Responsive Compliance:** Tested and passing at 375px, 768px, 1366px, and 1920px viewports with zero horizontal overflow.
 - [x] **Accessibility (WCAG 2.1 AA):** Visible focus rings, skip-to-content links, semantic HTML landmarks, and keyboard shortcuts (`Ctrl+Enter`, `Enter`).
 - [x] **Production Build Clean:** Next.js Turbopack build succeeds with zero errors and zero ESLint warnings.
+
+## Verification checkpoint - October 30, 2026
+
+This checkpoint supplements the dated report above; it records the current UI and test run without rewriting historical results.
+
+- Results no longer expose internal candidate/filter counts or processing milliseconds. The count shown to shoppers tracks the currently visible, filtered products.
+- Comparison no longer presents a database variant ID as an SKU. Its unsupported freshness and last-checked section was removed after checking the current FastAPI response schema; visible price, merchant, availability, and product links still come from the saved offer.
+- The reviewed product-detail and comparison labels use Vietnamese shopper-facing wording. Missing API fields remain unavailable instead of being inferred.
+- `npm test`: 72 passed. `npm run lint`: exit 0. `npx tsc --noEmit`: exit 0. `npm run build`: exit 0. `npm run test:e2e`: 23 passed.
+- Playwright reviewed the five public routes at 375, 768, 1366, and 1920 px, covering keyboard navigation, horizontal comparison-table scrolling, loading/error/empty states, and primary shopping flows.
+- `docker compose build frontend` and `docker compose up -d --no-deps frontend` completed with exit code 0. The refreshed container logged Next.js ready; `curl.exe` to `http://127.0.0.1:3000/` returned HTTP 200. Backend and database remained running.
+- E2E uses disposable test data and local test services. This checkpoint verifies frontend behavior against the configured local API/test fixtures; it does not verify live merchant data or external source coverage.

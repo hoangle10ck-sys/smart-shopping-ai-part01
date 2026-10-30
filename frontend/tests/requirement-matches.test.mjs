@@ -24,7 +24,8 @@ for (const [status, label] of [["matched", "✓ Đáp ứng"], ["unmet", "✕ Kh
 test("missing historical matches stay unavailable and do not become unmet", () => {
   for (const value of [undefined, []]) {
     const html = render(value);
-    assert.match(html, /Backend chưa cung cấp/);
+    assert.match(html, /Chưa có dữ liệu để đối chiếu từng tiêu chí/);
+    assert.doesNotMatch(html, /Backend/);
     assert.doesNotMatch(html, /✕|✓/);
   }
 });

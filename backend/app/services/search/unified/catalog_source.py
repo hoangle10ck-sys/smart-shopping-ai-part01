@@ -9,6 +9,7 @@ creates duplicate products or offers.
 from __future__ import annotations
 
 import time
+from datetime import timezone
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -128,7 +129,16 @@ class DatabaseCatalogSource:
     @staticmethod
     def _catalog_payload(product: Product, offer: ProductOffer) -> dict:
         """Rebuild an evidence payload the legacy pipeline accepts."""
-        checked = offer.last_checked_at or product.updated_at
+        # Offer check time and Product update time describe different events.
+        checked = offer.last_checked_at
+        if checked is not None and checked.tzinfo is not None and checked.utcoffset() is not None:
+            checked = checked.astimezone(timezone.utc)
+            observed_at = checked.isoformat()
+        elif checked is not None:
+            # A naive timestamp has no verified timezone; do not label it UTC.
+            observed_at = None
+        else:
+            observed_at = None
         return dict(
             name=product.name,
             category=product.category,
@@ -144,7 +154,7 @@ class DatabaseCatalogSource:
             specifications=dict(product.specifications or {}),
             image_url=product.image_url,
             currency=offer.currency or "VND",
-            observed_at=checked,
+            observed_at=observed_at,
             page_validation={
                 "product_page_valid": True,
                 "source_kind": "CATALOG",
@@ -152,7 +162,9 @@ class DatabaseCatalogSource:
                 "price": offer.price,
                 "availability": offer.availability,
                 "verified_from_catalog": True,
-                "last_checked_at": checked.isoformat() if checked else None,
+                # Preserve the Offer check field's own value/meaning even when
+                # its timezone is unknown; only observed_at requires a safe instant.
+                "last_checked_at": offer.last_checked_at.isoformat() if offer.last_checked_at else None,
             },
             raw_text=None,
         )

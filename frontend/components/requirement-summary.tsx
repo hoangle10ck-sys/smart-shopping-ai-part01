@@ -1,8 +1,7 @@
 import type { ParsedRequirement } from "@/types/shopping";
-import { finiteNumber, formatMoney } from "@/lib/results-utils";
+import { formatMoney } from "@/lib/results-utils";
 
 export function RequirementSummary({ requirement }: { requirement?: ParsedRequirement | null }) {
-  const confidence = finiteNumber(requirement?.confidence);
   const mode = requirement?.budget_mode;
 
   return (
@@ -14,7 +13,7 @@ export function RequirementSummary({ requirement }: { requirement?: ParsedRequir
         <div>
           <h2 className="section-title text-base sm:text-lg">Nhu cầu đã phân tích</h2>
           <p className="muted mt-1 text-xs">
-            Các tiêu chí được trích xuất từ câu mô tả của bạn để lọc và xếp hạng sản phẩm.
+            Dựa trên thông tin bạn mô tả để lọc và sắp xếp sản phẩm.
           </p>
         </div>
         {mode && (
@@ -100,10 +99,7 @@ export function RequirementSummary({ requirement }: { requirement?: ParsedRequir
                 Loại trừ:{" "}
                 {requirement.excluded_requirements?.join(", ") || "Không có tiêu chí loại trừ được cung cấp"}
               </p>
-              <p>
-                Tiền tệ: {requirement.currency || "Chưa xác định"} · Confidence phân tích:{" "}
-                {confidence === null ? "Chưa có dữ liệu" : `${(confidence * 100).toFixed(1)}%`}
-              </p>
+              {requirement.currency && <p>Đơn vị ngân sách: {requirement.currency}</p>}
             </div>
           </details>
         </>

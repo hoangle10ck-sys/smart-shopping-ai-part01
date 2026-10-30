@@ -30,7 +30,7 @@ services:
     environment:
       APP_ENV: "${APP_ENV:-development}"
       DATABASE_URL: "postgresql+psycopg://${POSTGRES_USER:-shopping}:${POSTGRES_PASSWORD:-change-this-before-production}@db:5432/${POSTGRES_DB:-smart_shopping}"
-      DEMO_MODE: "${DEMO_MODE:-true}"
+      DEMO_MODE: "${DEMO_MODE:-false}"
       SECRET_KEY: "${SECRET_KEY:-change-this-before-production}"
       LLM_PROVIDER: "${LLM_PROVIDER:-openai}"
       LLM_FALLBACK_PROVIDER: "${LLM_FALLBACK_PROVIDER:-gemini}"
@@ -61,6 +61,22 @@ services:
     depends_on:
       backend:
         condition: service_healthy
+  searxng:
+    image: "${SEARXNG_IMAGE:-ghcr.io/searxng/searxng:2026.10.23-629368e40}"
+    profiles: ["searxng"]
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      SEARXNG_PORT: "8080"
+      SEARXNG_BIND_ADDRESS: "0.0.0.0"
+      SEARXNG_SECRET: "${SEARXNG_SECRET:-local-only-development-secret}"
+      SEARXNG_LIMITER: "false"
+      SEARXNG_PUBLIC_INSTANCE: "false"
+    volumes:
+      - ./searxng/settings.yml:/etc/searxng/settings.yml:ro
+      - searxng-cache:/var/cache/searxng
 
 volumes:
   shopping-data:
+  searxng-cache:

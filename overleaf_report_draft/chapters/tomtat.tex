@@ -1,0 +1,12 @@
+\chapter*{TÓM TẮT}
+\addcontentsline{toc}{chapter}{Tóm tắt}
+
+Đề tài xây dựng Smart Shopping AI, một ứng dụng web hỗ trợ người dùng mô tả nhu cầu mua sắm bằng ngôn ngữ tự nhiên, tìm sản phẩm từ các nguồn dữ liệu được tích hợp, xem mức độ phù hợp, kiểm tra bằng chứng nguồn và lưu lại kết quả tìm kiếm. Hệ thống gồm giao diện Next.js và dịch vụ API FastAPI. Dữ liệu sản phẩm được chuẩn hóa thành danh tính sản phẩm, biến thể và nguồn bán; các kết quả của một phiên được lưu thành snapshot để có thể xem lại.
+
+Khác với một website thương mại điện tử, ứng dụng không trực tiếp bán hàng và không bảo đảm mọi truy vấn đều có kết quả. Catalog nghiên cứu có thể cung cấp tên, ảnh và thông số cho một số sản phẩm nhưng không đồng nghĩa với giá bán hiện tại, tồn kho hoặc đánh giá đã xác minh. Nguồn khám phá web như SearXNG chỉ cung cấp URL ứng viên; URL này chưa phải sản phẩm hoặc offer đã được kiểm chứng. Việc thu thập dữ liệu sản phẩm thật chỉ được thực hiện khi nguồn được cấu hình, được phép và vượt qua các bước xác minh.
+
+Một quy tắc quan trọng của ứng dụng là chỉ đưa sản phẩm vào luồng hiển thị khi có ảnh được liên kết với đúng danh tính sản phẩm và có bằng chứng xác minh. Ảnh hỏng, thiếu bằng chứng hoặc không phù hợp không được thay bằng ảnh minh họa hay ảnh AI. Kết quả kiểm toán ảnh tại checkpoint ngày 30/10/2026 ghi nhận 242 bản ghi sản phẩm: 180 đủ điều kiện theo cổng ảnh, 62 bị loại; đây là kiểm tra bằng chứng và tính toàn vẹn dữ liệu ảnh, không phải đánh giá thủ công toàn bộ ảnh và cũng không xác nhận giá bán Live.
+
+Các kiểm thử tự động được ghi nhận tại checkpoint cùng ngày gồm 1.118 kiểm thử backend, 73 kiểm thử frontend và 23 kịch bản trình duyệt E2E đều hoàn tất thành công. Lint, kiểm tra kiểu TypeScript và production build cũng hoàn tất với mã thoát 0. Các kết quả này xác nhận hành vi trong môi trường kiểm thử cô lập, không chứng minh độ phủ sản phẩm toàn Internet, khả năng truy cập liên tục của nhà bán hàng hoặc việc triển khai production.
+
+\noindent\textbf{Từ khóa:} trợ lý mua sắm, tìm kiếm hợp nhất, đề xuất sản phẩm, bằng chứng dữ liệu, snapshot, xác minh ảnh.

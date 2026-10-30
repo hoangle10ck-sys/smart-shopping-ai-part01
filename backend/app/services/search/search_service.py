@@ -168,6 +168,7 @@ class SearchService:
                 "specifications": observation.specifications,
                 "image_url": observation.image_url,
                 "image_source": "PUBLIC_API" if is_public_api and observation.image_url else None,
+                "image_probe": observation.image_probe,
                 "availability": offer.availability if offer else None,
                 "product_url": product_url,
                 "evidence_url": evidence_url,
@@ -337,7 +338,7 @@ class SearchService:
             results = await asyncio.gather(*(CollectorService().fetch(url) for url in direct_urls))
             collector_results = list(results)
             from app.schemas.collector import FetchStatus
-                    continue
+            for result in results:
                 if result.status not in {FetchStatus.SUCCESS, FetchStatus.PARTIAL_DATA} or result.observation is None:
                     direct_batches.append((result.source_url, [], f"Direct collector {result.status.value}: {result.failure.message if result.failure else ''}"))
                     continue

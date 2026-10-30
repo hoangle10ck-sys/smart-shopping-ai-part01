@@ -1,4 +1,6 @@
 import asyncio
+import time
+from datetime import datetime
 from types import SimpleNamespace
 
 import pytest
@@ -77,6 +79,58 @@ class BlockedResolver:
 
     async def _image_loads(self, url):
         raise AssertionError('No verified image evidence; must not fetch provider image')
+
+
+@pytest.mark.asyncio
+async def test_verified_page_gets_fetch_observation_time_and_preserves_source_time():
+    supplied_time = '2026-01-02T12:00:00+05:30'
+
+    class Resolver:
+        async def inspect(self, url, **kwargs):
+            return {
+                'product_page_valid': True,
+                'page_fetched': True,
+                'name': 'Samsung Galaxy A36 128GB',
+                'price': 9000000,
+                'observed_at': supplied_time,
+            }
+
+    retriever = ProgressiveRetriever(None, Resolver(), settings())
+    retriever.deadline = time.monotonic() + 1
+    verified = await retriever.verify(source())
+
+    assert verified.page_validation['observed_at'] == supplied_time
+    assert datetime.fromisoformat(verified.page_validation['observed_at']).utcoffset() is not None
+
+
+@pytest.mark.asyncio
+async def test_verified_page_without_source_time_uses_aware_fetch_time():
+    class Resolver:
+        async def inspect(self, url, **kwargs):
+            return {
+                'product_page_valid': True,
+                'page_fetched': True,
+                'name': 'Samsung Galaxy A36 128GB',
+                'price': 9000000,
+            }
+
+    retriever = ProgressiveRetriever(None, Resolver(), settings())
+    retriever.deadline = time.monotonic() + 1
+    verified = await retriever.verify(source())
+
+    observed_at = datetime.fromisoformat(verified.page_validation['observed_at'])
+    assert observed_at.utcoffset() is not None
+
+
+@pytest.mark.asyncio
+async def test_verified_search_metadata_without_page_fetch_gets_observation_time():
+    retriever = ProgressiveRetriever(None, BlockedResolver(), settings())
+    retriever.deadline = time.monotonic() + 1
+    verified = await retriever.verify(source())
+
+    assert verified.page_validation['verification_level'] == 'VERIFIED_SEARCH_METADATA'
+    observed_at = datetime.fromisoformat(verified.page_validation['observed_at'])
+    assert observed_at.utcoffset() is not None
 
 
 def settings(**changes):

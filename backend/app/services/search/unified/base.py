@@ -15,6 +15,8 @@ class SourceOutcome:
     fresh_products: int = 0
     ingested_rows: int = 0
     research_items: list[dict] = field(default_factory=list)
+    web_candidates: list[dict] = field(default_factory=list)
+    retrieval_diagnostics: list[dict] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
     error: str | None = None
     duration_ms: float = 0.0
@@ -28,6 +30,8 @@ class SourceOutcome:
             "fresh_products": self.fresh_products,
             "ingested_rows": self.ingested_rows,
             "research_items": len(self.research_items),
+            "web_candidates": list(self.web_candidates),
+            "web_candidates_count": len(self.web_candidates),
             "warnings": list(self.warnings),
             "error": self.error,
             "duration_ms": round(self.duration_ms, 2),

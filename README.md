@@ -4,7 +4,7 @@
 
 Ứng dụng nhận nhu cầu mua hàng bằng tiếng Việt, tìm và chuẩn hóa sản phẩm, lọc theo yêu cầu, chấm điểm bằng Python và giải thích kết quả kèm nguồn. Đây là project đã phát triển các luồng MVP, không còn là skeleton PART 01.
 
-**Demo Mode chạy không cần API key.** Sản phẩm Demo là dữ liệu giả lập, không phải giá hoặc hàng hóa đang bán. Live Mode có adapter OpenAI/Gemini và Tavily; chất lượng dữ liệu phụ thuộc nguồn và cấu hình tài khoản.
+Trang Home hiện chạy một luồng tìm kiếm hợp nhất: đọc catalog nội bộ và catalog nghiên cứu có nhãn lịch sử, đồng thời thử nguồn web đã được cấu hình. Nếu thiếu dữ liệu catalog và không có nguồn web khả dụng, hệ thống có thể trả 0 sản phẩm; nó không chèn sản phẩm fixture để lấp kết quả. API tìm kiếm chính không có công tắc Demo/Research/Live. `DEMO_MODE` là cờ cấu hình tương thích/runtime, không chứng minh sản phẩm trả về là dữ liệu giả hay dữ liệu Live.
 
 ## Tính năng
 
@@ -12,8 +12,8 @@
 
 Đã tích hợp Amazon Reviews 2023 **lịch sử**, không phải Live: SQLite local có
 150 sản phẩm thật, 70 giá tham khảo USD, **0 ProductOffer tạo từ dataset**.
-Chọn **Research Catalog** ở trang chủ để tìm catalog, xem thông số/điểm phù hợp,
-so sánh và lịch sử. Ví dụ: “phụ kiện điện thoại dưới 50 USD”, “điện tử”.
+Catalog này được truy vấn bởi endpoint nghiên cứu riêng `/api/research/search`;
+nó không phải một lựa chọn trên Home. Ví dụ: “phụ kiện điện thoại dưới 50 USD”, “điện tử”.
 Ngân sách VND không so với USD; RAM/storage bắt buộc thiếu chứng cứ không được
 coi là đạt. Không cần LLM/Tavily key, không fine-tune mô hình.
 
@@ -23,15 +23,31 @@ dataset không có giấy phép mở rõ ràng. [Đánh giá nguồn](docs/RESEA
 [báo cáo và lệnh tái lập](docs/RESEARCH_DATA_INTEGRATION_REPORT.md).
 R08 còn thiếu nhãn người đánh giá độc lập: Precision@K/NDCG hiện **N/A**.
 
-`demo` = MOCK_DEMO; `research` = HISTORICAL_RESEARCH. `live` chỉ là luồng truy
-cập nguồn hiện hành, **không tự động đồng nghĩa LIVE_VERIFIED**. Research không
+Catalog bổ sung Amazon Berkeley Objects (ABO) dùng giấy phép [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+và hiện có tối đa 200 metadata sản phẩm trong PostgreSQL runtime local. Ảnh và thông số
+chỉ có khi dataset cung cấp; ABO không có giá hiện hành, rating, review count, tồn kho
+hoặc link mua hàng đã xác minh. Dữ liệu runtime/raw không được commit. Từ thư mục
+`backend`, có thể tải lại mẫu bằng `python -m scripts.download_abo_research_sample`
+và phần mở rộng bằng `python -m scripts.download_abo_research_extension`; importer
+mặc định dry-run và chỉ ghi database khi truyền `--apply`. Để nhập đủ mẫu đã duyệt,
+chạy dry-run trước cho từng phần. Phần mở rộng:
+
+```powershell
+python -m scripts.import_abo_research_sample --input data/research/abo-extension-64/abo-extension-64.jsonl --images data/research/abo/images.csv.gz --manifest data/research/abo-extension-64/manifest.json --limit 64
+```
+
+Chỉ thêm `--apply` sau khi đã xem báo cáo dry-run.
+
+`HISTORICAL_RESEARCH` không phải offer hiện hành. `LIVE` chỉ mô tả lần thử truy
+cập nguồn hiện tại, **không tự động đồng nghĩa LIVE_VERIFIED**. Mock fixtures chỉ
+dành cho test/compatibility, không được coi là offer mua hàng. Research không
 bật collector flags hoặc giải quyết thay blocker quyền truy cập crawler.
 
 | Thành phần | Implementation hiện tại |
 |---|---|
 | Requirement Analyzer / Clarification | Trích category, budget, purpose, brands, tiêu chí/ưu tiên; hỏi bổ sung khi thiếu dữ liệu. Demo parser local; Live thử LLM rồi fallback local. |
 | Query Generator | Python tạo query mua hàng từ requirement/source strategy, không gọi LLM. |
-| Search Provider | Interface chung; mock offline hoặc Tavily Live với timeout/retry, xử lý lỗi từng query. |
+| Search Provider | Unified search dùng Tavily và/hoặc SearXNG do operator cấu hình; không tự bật public SearXNG hay fallback sang mock. Mock providers chỉ dùng trong test/compatibility. |
 | Extraction / Normalization | Parser deterministic từ search payload; chuẩn hóa tên, category theo evidence, giá VND, rating, review count, specifications. |
 | Deduplication / Product / Product Offer | Hợp nhất Product; mỗi merchant/source có offer riêng. Không copy category từ yêu cầu sang sản phẩm. |
 | Hard Filter / Scoring / Ranking | Lọc category, budget, brand, exclusion; Python tính 6 điểm thành phần và Top K. Không tạo dữ liệu để đủ K. |
@@ -41,8 +57,8 @@ bật collector flags hoặc giải quyết thay blocker quyền truy cập craw
 | AI Explanation | Demo deterministic; Live OpenAI/Gemini với timeout/retry/fallback. LLM không quyết định numerical score. |
 | Product detail / Comparison | Detail đọc catalog hiện có. Comparison mới dùng snapshot/legacy view nhất quán; kết luận do Python, không gọi LLM. |
 | Feedback / History | Ghi phản hồi và xem lại phiên. History dùng chung database local, chưa có đăng nhập/phân quyền. |
-| Cache | SQLite cache theo normalized requirement + config, TTL 1800s, Live-only; copy snapshot, không replay giá vào catalog. |
-| Frontend / Browser E2E | Summary, score breakdown, matching/evidence, filter/sort, compare, feedback, history; Playwright chạy Demo local. |
+| Cache | The legacy `CachedSearchService` has a SQLite cache (TTL 1800s); Home unified search does not reuse cross-session cache and checks configured sources on each run. |
+| Frontend / Browser E2E | Home automatic search, summary, score breakdown, matching/evidence, filter/sort, compare, feedback, history; Playwright dùng database cô lập và nguồn giả lập trong test, không phải Live acceptance. |
 | Marketplace upgrade | Contract typed cho collector, URL Shopee/Lazada trực tiếp, ProductVariant + Offer + PriceObservation, score Product/Offer hai cấp, freshness và cảnh báo so giá khác SKU. Live collector mặc định khóa theo policy. |
 
 AI Match là điểm phù hợp theo quy tắc, không phải xác suất mua đúng. Data Confidence là chỉ số chất lượng/độ đầy đủ dữ liệu riêng, chưa được hiệu chuẩn thống kê. Voice là **NOT REQUIRED FOR MVP**. Xem [final audit](docs/FINAL_AUDIT.md).
@@ -58,15 +74,15 @@ flowchart LR
   S --> N[Normalize / Dedup / Hard Filter]
   N --> P[Python Score / Rank / Evidence]
   P --> E[Explanation]
-  E --> D[(SQLite Snapshot / History / Cache)]
+  E --> D[(Snapshot / History)]
   D --> F
 ```
 
-- Frontend: Next.js **16.3.3**, React **19.2.8**, TypeScript, Tailwind CSS 4.
-- Backend: Python, FastAPI, Pydantic 2, SQLAlchemy 2, SQLite WAL.
-- Adapters: OpenAI qua HTTP, Gemini qua `google-genai`, Tavily qua HTTP.
+- Frontend: Next.js **16.4.1**, React **19.2.8**, TypeScript, Tailwind CSS 4.
+- Backend: Python, FastAPI, Pydantic 2, SQLAlchemy 2; SQLite WAL locally and PostgreSQL 17 in Docker Compose.
+- Adapters: OpenAI qua HTTP, Gemini qua `google-genai`, Tavily and operator-managed SearXNG over HTTP.
 - Tests: pytest, Node test runner/React render, ESLint, Playwright **1.63.0**.
-- Đã kiểm tra trên Python **3.13.12**, Node **22.21.1**, Windows, Edge headless. Khuyến nghị Python 3.13 và Node 22; Node tối thiểu 22.6 cho `--experimental-strip-types` của frontend tests.
+- Toolchains observed in this workspace: backend tests on Python **3.12.0**, local frontend on Node **24.19.0**, and Playwright **1.63.0**; Docker images use Python **3.13** and Node **22**. Node 22.6+ supports `--experimental-strip-types` for frontend tests.
 - Frontend cài bằng lockfile `npm ci`. Backend giữ dependency ranges trong `requirements.txt`, chưa có Python lockfile; lần cài mới có thể nhận patch khác.
 
 ## Cấu trúc thực tế
@@ -137,7 +153,7 @@ Hai `.env.example` không có secret, liệt kê đầy đủ Settings hiện t�
 
 | Biến backend | Mặc định |
 |---|---|
-| `APP_ENV` / `DATABASE_URL` | `development` / `sqlite:///./smart_shopping.db` |
+| `APP_ENV` / `DATABASE_URL` | `development` / `sqlite:///./smart_shopping.db` (local default; Docker Compose uses PostgreSQL 17) |
 | `DEMO_MODE` | `true` |
 | `LLM_PROVIDER` / `LLM_FALLBACK_PROVIDER` | `openai` / `gemini` |
 | `OPENAI_API_KEY` / `GEMINI_API_KEY` / `TAVILY_API_KEY` | Rỗng |
@@ -152,7 +168,7 @@ Hai `.env.example` không có secret, liệt kê đầy đủ Settings hiện t�
 | `ENABLE_LLM_EXTRACTION_FALLBACK` | `false`; fallback chỉ nhận specs, không nhận giá/ID/rating/stock |
 | `SECRET_KEY` | Placeholder `change-this-before-production`, chưa dùng làm authentication trong MVP |
 
-Live: chủ động đặt `DEMO_MODE=false`, Tavily key và key/model hợp lệ của provider được chọn trong backend env, rồi restart. Chọn model khả dụng trong tài khoản; không coi giá trị mặc định là bảo đảm provider đang cung cấp model đó. Analyzer/explanation có fallback local; search Live thiếu key/lỗi toàn bộ sẽ báo lỗi, không âm thầm biến mock thành dữ liệu Live. Tests không gọi API trả phí.
+Unified web search chỉ gọi Tavily khi có key hoặc SearXNG khi operator cấu hình endpoint; cấu hình provider model/key riêng nếu muốn dùng LLM cho analyzer/explanation. Chọn model khả dụng trong tài khoản; không coi giá trị mặc định là bảo đảm provider đang cung cấp model đó. Khi thiếu nguồn web hoặc nguồn lỗi, search báo trạng thái và giữ dữ liệu hợp lệ khác; không âm thầm biến mock thành Live. Tests không gọi API trả phí. `DEMO_MODE=false` không cấp quyền truy cập nguồn bên ngoài.
 
 Collector marketplace là một opt-in riêng với Live search. Điều khoản công khai được rà
 soát ngày 2026-10-15 không cung cấp bằng chứng quyền crawl cho repository này, vì vậy
@@ -217,13 +233,13 @@ npm.cmd run build
 npm.cmd run test:e2e
 ```
 
-Pytest tự dùng database tạm sạch. Playwright tự khởi động Demo backend **18000**, frontend **13000**, không dùng DB thật. Edge được ưu tiên nếu đã cài; nếu không có, cài Chromium bằng `npx.cmd playwright install chromium`. Không chạy E2E cùng Next dev/build khác trong cùng thư mục. Sau E2E, build lại trước `npm start` bình thường vì `.next` đã nhúng URL test. Chi tiết: [testing](docs/testing.md).
+Pytest tự dùng database tạm sạch. Playwright tự khởi động backend **18000** và frontend **13000** với database tạm, catalog tổng hợp và network guard; không dùng DB thật hoặc chứng minh Live retrieval. Edge được ưu tiên nếu đã cài; nếu không có, cài Chromium bằng `npx.cmd playwright install chromium`. Không chạy E2E cùng Next dev/build khác trong cùng thư mục. Sau E2E, build lại trước `npm start` bình thường vì `.next` đã nhúng URL test. Chi tiết: [testing](docs/testing.md).
 
 ## Docker local
 
-Yêu cầu Docker Engine/Desktop chạy Linux containers và Docker Compose v2. **Máy thực hiện Phase 7 không có Docker: NOT RUNTIME VERIFIED.**
+Yêu cầu Docker Engine/Desktop chạy Linux containers và Docker Compose v2. Config, image build và runtime đã kiểm tra ngày 2026-10-29 bằng Compose project cùng PostgreSQL volume cô lập; lệnh `up` mặc định vẫn tạo volume bền `shopping-data` để giữ dữ liệu local.
 
-Tại root, dùng example để đảm bảo Demo không phụ thuộc `.env` cá nhân:
+Tại root, dùng example với provider keys rỗng để kiểm tra cấu hình/build local:
 
 ```powershell
 docker compose --env-file .env.example config
@@ -238,6 +254,27 @@ docker compose --env-file .env.example down
 Mở frontend và thử một [scenario](docs/demo.md). Có thể gộp build/start bằng `docker compose --env-file .env.example up --build -d`. Backend healthcheck dùng database status; frontend chờ backend healthy. Port chỉ publish lên loopback local. Named volume `shopping-data` chứa `/data/smart_shopping.db`; `down` giữ volume. Không bind-mount DB thật và không dùng `down -v` nếu cần giữ dữ liệu.
 
 `.dockerignore` loại env/secrets, database, venv, node_modules, build output và artifacts. Keys chỉ truyền runtime vào backend. Image frontend giữ toolchain Next/TypeScript cho config hiện tại, chưa tối ưu kích thước. Đây là Docker local MVP, không phải public deployment.
+
+SearXNG is optional and is not started by the default Compose profile. To run
+the pinned local service, publish it only on loopback, and enable JSON (needed
+by the adapter), use a generated local secret and set the backend URL in the
+same PowerShell session:
+
+```powershell
+$env:SEARXNG_SECRET = (New-Guid).Guid.Replace('-', '')
+$env:SEARXNG_BASE_URL = "http://searxng:8080"
+docker compose --env-file .env.example --profile searxng up -d searxng
+```
+
+For the backend container to use it, start the normal app services in that
+same session with `docker compose --env-file .env.example --profile searxng
+up --build -d`; the `SEARXNG_BASE_URL` value is passed to the backend. To test
+only the local search service from the host, set the URL to
+`http://127.0.0.1:8080`. SearXNG sends search
+queries to the search engines configured in its upstream defaults; review their
+policies for your use. Search results are discovery evidence only, not verified
+prices, inventory, or ratings. Keep marketplace collectors disabled unless
+their source permissions are established.
 
 ## Troubleshooting
 

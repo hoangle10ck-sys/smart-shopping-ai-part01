@@ -189,3 +189,52 @@ Next task:
 - `HISTORICAL_PRICE_AVAILABLE`: chỉ có giá tham khảo lịch sử, không có chứng cứ seller/availability.
 - `LIVE_VERIFIED`: chỉ dành cho crawler/seller price đã trực tiếp xác minh hiện hành qua nguồn được phép.
 - `BLOCKED_RIGHTS`, `BLOCKED_DATA`, `BLOCKED_RUNTIME`: phải có lý do và phương án tiếp tục.
+
+### Follow-up — ABO catalog (2026-10-29)
+
+- [x] Approved scope: at most 200 ABO Research records; preserve existing catalog;
+  no price or offer creation.
+- [x] Add bounded official metadata downloader, CC BY 4.0 attribution, ABO mapper/importer,
+  and UI provenance. Default research search sees records across datasets.
+- [x] Downloaded and imported 136 real ABO listings to the existing local PostgreSQL DB;
+  120 image URLs populated, 136 records with specifications, no ratings or prices.
+- [x] Verified additive counts: products 31→167, research_products 0→136,
+  product_offers remained 32, historical prices remained 0; no schema migration.
+- [x] Target research suite 101 passed; full backend suite 1046 passed (78.97s); frontend
+  65 passed; typecheck, lint, and production build exit 0; `git diff --check` exit 0.
+- [x] Final task diff reviewed; unrelated dirty workspace changes preserved.
+
+Status: `HISTORICAL_RESEARCH` expanded. This is not `LIVE_VERIFIED` and does not supply
+current merchant prices, stock, reviews, seller URLs, or verified purchase links.
+
+### Follow-up — ABO taxonomy coverage (2026-10-29)
+
+- [x] Profiled all 147,702 official ABO metadata records; observed 576 native product types.
+- [x] Added evidence-based mappings and aligned source normalization/fallback/query
+  recognition for shoes, grocery, home goods, pets, sports, TVs, and refrigerators;
+  regression-tested category filtering.
+- [x] Added 64 image-backed, nonduplicate products to reach 200 ABO Research records,
+  within the approved maximum. No prices/offers/ratings/review counts were created.
+- [x] PostgreSQL verified: 231 products, 200 ABO research records, 32 offers unchanged,
+  0 historical prices. Seven category searches returned matching-category results.
+- [x] Target tests 92 passed and final full backend 1076 passed (79.78s); database tests are
+  confirmed isolated to a temporary SQLite file.
+
+Open: human relevance labels are still required for Precision@K/NDCG@K. Commerce Live,
+current prices, stock, seller ratings, and verified purchase links remain unverified.
+
+### Follow-up — R08 regression and research-path revalidation (2026-10-30)
+
+- [x] Verified pytest isolation: `tests/conftest.py` forces a fresh temporary SQLite
+  engine and disables external providers/Live collection before app imports.
+- [x] Research target regression: **50 passed**; full backend regression:
+  **1105 passed** (exit 0). One 20 ms timeout test was made stable under suite load;
+  its cancellation and no-retry assertions remain intact (recovery file: 23 passed).
+- [x] Frontend regression **71 passed**, lint/typecheck/build exit 0; isolated browser
+  E2E **23 passed** (exit 0), with temporary SQLite and loopback-only network guard.
+- [x] Docker frontend build guard and runtime recovery verified; see latest checkpoint
+  in `docs/RESEARCH_DATA_PROGRESS.md`.
+
+Status: R08 remains `PARTIAL / LABELS_PENDING` until independent people label the
+evaluation set. No software-only check can supply honest relevance ground truth.
+Commerce Live remains `LIVE_NOT_VERIFIED`.

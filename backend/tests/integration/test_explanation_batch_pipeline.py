@@ -12,12 +12,15 @@ from app.services.recommendation.recommendation_service import RecommendationSer
 from app.services.llm.explanation_batch import ExplanationBatch
 from app.services.performance import PerformanceTrace, current_trace
 from tests.fixtures.explanation_jobs import prompt_payload
+from tests.fixtures.unified_catalog import seed_headphones
 
 
 @pytest.mark.parametrize('timeout_middle',[False,True])
 def test_persisted_rank_facts_and_get_survive_reverse_order_and_one_timeout(monkeypatch,timeout_middle):
     settings=get_settings();monkeypatch.setattr(settings,'top_k',3)
     with TestClient(app) as client:
+        with SessionLocal() as db:
+            seed_headphones(db)
         analyzed=client.post('/api/requirements/analyze',json={'raw_query':'Tai nghe 500 nghìn để học online, microphone tốt, pin lâu'})
         sid=analyzed.json()['session_id']
         baseline=client.post('/api/search',json={'session_id':sid}).json()['recommendations']

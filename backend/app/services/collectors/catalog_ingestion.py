@@ -215,6 +215,10 @@ class CatalogIngestionService:
                         "product_page_valid": False,
                         "source_kind": "COLLECTOR",
                         "name": observation.name,
+                        "image_url": observation.image_url,
+                        "image_source": observation.image_source,
+                        "image_probe": observation.image_probe,
+                        "evidence_url": result.source_url,
                     },
                 )
             )

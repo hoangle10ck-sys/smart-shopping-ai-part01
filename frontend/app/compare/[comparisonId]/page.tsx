@@ -26,6 +26,7 @@ export default function ComparePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [attempt, setAttempt] = useState(0);
+  const [invalidImageIds, setInvalidImageIds] = useState<number[]>([]);
 
   useEffect(() => {
     let active = true;
@@ -50,14 +51,25 @@ export default function ComparePage() {
     };
   }, [comparisonId, attempt]);
 
-  const products = data?.result?.products ?? [];
+  const allProducts = data?.result?.products ?? [];
+  const imageCounts = new Map<string, number>();
+  for (const product of allProducts) {
+    const hash = product.image_evidence?.content_sha256;
+    if (hash) imageCounts.set(hash, (imageCounts.get(hash) ?? 0) + 1);
+  }
+  const products = allProducts.filter((product) =>
+    product.image_evidence?.status === "VERIFIED"
+    && product.image_evidence.image_url === product.image_url
+    && (imageCounts.get(product.image_evidence.content_sha256) ?? 0) === 1
+    && !invalidImageIds.includes(product.product_id)
+  );
   const research = products.some((p) => p.source_mode === "HISTORICAL_RESEARCH");
   const specificationKeys = Array.from(
     new Set(products.flatMap((product) => Object.keys(product.specifications ?? {})))
   );
 
   const rows: { label: string; render: (product: ComparisonProduct) => string }[] = [
-    { label: "AI Match", render: (p) => displayScore(p.ai_score) },
+    { label: "Mức độ phù hợp", render: (p) => displayScore(p.ai_score) },
     { label: "Độ tin cậy dữ liệu", render: (p) => displayScore(p.confidence) },
     {
       label: research ? "Giá tham khảo lịch sử (USD)" : "Giá đã lưu",
@@ -75,7 +87,7 @@ export default function ComparePage() {
           },
         ]),
     {
-      label: "Rating",
+      label: "Đánh giá sản phẩm",
       render: (p) => (p.rating == null ? "Chưa có dữ liệu" : `${p.rating.toFixed(1)}/5`),
     },
     {
@@ -93,6 +105,17 @@ export default function ComparePage() {
         p.specifications?.[key] == null ? "Chưa có dữ liệu" : String(p.specifications[key]),
     })),
   ];
+
+  if (!loading && !error && data?.result && products.length < 2) {
+    return (
+      <main id="main-content" tabIndex={-1} className="page-container page-content">
+        <EmptyState
+          title="Không đủ sản phẩm có ảnh đã xác minh để so sánh"
+          description="Một hoặc nhiều ảnh không tải được hoặc thiếu bằng chứng nhận diện sản phẩm. Hãy quay lại kết quả và chọn sản phẩm còn ảnh hợp lệ."
+        />
+      </main>
+    );
+  }
 
   return (
     <main id="main-content" tabIndex={-1}>
@@ -147,7 +170,7 @@ export default function ComparePage() {
             {/* Incomparability Alert */}
             {data.result.price_comparability === "NOT_COMPARABLE" && (
               <div role="alert" className="notice mb-6 !border-amber-300 !bg-amber-50">
-                <span className="font-bold text-[#7d5214]">NOT_COMPARABLE</span> — Các mức giá không cùng model/SKU/điều kiện nên không được dùng để kết luận offer nào rẻ hơn.
+                <span className="font-bold text-[#7d5214]">Chưa thể so sánh giá</span> — Các mức giá chưa chắc cùng mẫu mã hoặc điều kiện bán, nên chưa thể kết luận lựa chọn nào rẻ hơn.
               </div>
             )}
 
@@ -174,8 +197,10 @@ export default function ComparePage() {
                     <div className="overflow-hidden rounded-xl">
                       <ProductImage
                         src={product.image_url}
+                        evidence={product.image_evidence}
                         name={product.name || "Sản phẩm"}
                         className="!aspect-[4/3]"
+                        onInvalid={() => setInvalidImageIds((current) => [...new Set([...current, product.product_id])])}
                       />
                     </div>
 
@@ -307,35 +332,6 @@ export default function ComparePage() {
               </div>
             </section>
 
-            {/* Offer, shop và độ mới */}
-            {!research && (
-              <section className="surface mt-8 p-5 sm:p-6">
-                <h2 className="section-title text-base sm:text-lg">
-                  Offer, shop và độ mới
-                </h2>
-                <div className="mt-4 grid gap-4 md:grid-cols-2">
-                  {products.map((product) => (
-                    <div
-                      key={product.product_id}
-                      className="rounded-xl border border-[var(--line)] bg-[var(--surface-subtle)] p-4 text-xs"
-                    >
-                      <h3 className="font-bold text-sm text-[var(--foreground)]">
-                        {product.name}
-                      </h3>
-                      <p className="muted mt-2 text-xs">
-                        SKU: <span className="font-mono">{product.variant_id ?? "Chưa xác định"}</span> · Nền tảng:{" "}
-                        <span className="font-semibold">{product.platform ?? "Chưa rõ"}</span> ·{" "}
-                        <span className="font-mono">{product.freshness_status ?? "UNKNOWN"}</span>
-                      </p>
-                      <p className="muted mt-1.5 text-xs">
-                        Có {product.alternate_offers?.length ?? 0} lựa chọn shop đã lưu.
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
-
             {/* Pros & Cons matrices */}
             <div className="mt-6 grid gap-5 md:grid-cols-2">
               {(["pros", "cons"] as const).map((kind) => (
@@ -380,7 +376,7 @@ export default function ComparePage() {
                 ))
               ) : (
                 <p className="muted mt-3 text-xs sm:text-sm leading-relaxed">
-                  Bản so sánh này chưa lưu đối chiếu matched / unmet / unknown hoặc evidence theo trường. Mở kết quả tìm kiếm để xem dữ liệu của phiên; thông tin đó không được ghép vào bản so sánh này.
+                  Bản so sánh này chưa lưu phần đối chiếu từng tiêu chí hoặc nguồn thông tin chi tiết. Hãy mở kết quả tìm kiếm để xem dữ liệu của phiên; thông tin không được tự ghép vào bản so sánh này.
                 </p>
               )}
               <Link

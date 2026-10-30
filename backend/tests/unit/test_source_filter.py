@@ -115,3 +115,25 @@ def test_source_filter_removes_rental_result() -> None:
             "air-blade-125"
         )
     )
+
+
+def test_source_filter_rejects_youtube_reference_before_price_extraction() -> None:
+    """Video snippets mentioning a product and price are not merchant offers."""
+    results = [
+        SearchResult(
+            title="Đánh giá điện thoại Example X giá 10.000.000đ",
+            url="https://www.youtube.com/watch?v=example",
+            content="Tư vấn mua điện thoại Example X, giá 10.000.000đ.",
+        ),
+        SearchResult(
+            title="Sản phẩm Example X",
+            url="https://shop.example/products/example-x",
+            content="Giá 10.000.000đ",
+        ),
+    ]
+
+    filtered = SourceFilter().filter(results)
+
+    assert [source.url for source in filtered] == [
+        "https://shop.example/products/example-x"
+    ]

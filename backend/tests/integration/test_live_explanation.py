@@ -14,6 +14,7 @@ from app.main import app
 from app.services.llm import explanation_service as module
 from app.services.llm import explanation_batch as batch_module
 from app.services.recommendation.recommendation_service import RecommendationService
+from tests.fixtures.unified_catalog import seed_headphones
 
 
 @pytest.mark.parametrize("provider", ["openai", "gemini"])
@@ -22,6 +23,8 @@ def test_live_provider_roundtrip_and_safe_fallback(monkeypatch, provider, outcom
     settings = get_settings()
     monkeypatch.setattr(settings, "top_k", 1)
     with TestClient(app) as client:
+        with SessionLocal() as db:
+            seed_headphones(db, count=1)
         analyzed = client.post("/api/requirements/analyze", json={
             "raw_query": "Tai nghe 500 nghìn để học online, microphone tốt, pin lâu",
         })

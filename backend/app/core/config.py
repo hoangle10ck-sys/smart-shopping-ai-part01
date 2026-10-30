@@ -122,7 +122,7 @@ class Settings(BaseSettings):
     # DEMO MODE
     # =========================================================
 
-    demo_mode: bool = True
+    demo_mode: bool = False
 
 
     # =========================================================

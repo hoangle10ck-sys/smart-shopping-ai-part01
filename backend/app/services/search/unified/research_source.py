@@ -8,6 +8,7 @@ returned as scored recommendations carrying the HISTORICAL_RESEARCH marker.
 
 from __future__ import annotations
 
+from collections import Counter
 import time
 
 from sqlalchemy import select
@@ -16,6 +17,8 @@ from sqlalchemy.orm import Session
 from app.models.research import ResearchProduct
 from app.schemas.requirement import RequirementData
 from app.services.research.recommendation import evaluate
+from app.services.product_images.eligibility import apply_image_eligibility
+from app.services.product_images.research import verify_research_images
 from app.services.search.unified.base import SourceOutcome
 
 RESEARCH_SOURCE_NAME = "research_catalog"
@@ -29,7 +32,7 @@ class ResearchCatalogSource:
     def is_available(self, db: Session) -> bool:
         return db.scalar(select(ResearchProduct.id).limit(1)) is not None
 
-    def search(
+    async def search(
         self,
         *,
         db: Session,
@@ -48,7 +51,26 @@ class ResearchCatalogSource:
             return outcome
 
         outcome.warnings.extend(warnings)
+        checked_count = len(result.recommendations)
+        rejection_reasons = await verify_research_images(result.recommendations, db=db)
+        rejected = apply_image_eligibility(result, rejection_reasons)
+        reason_counts = dict(Counter(rejected.values()))
         outcome.matched_products = len(result.recommendations)
+        if rejected:
+            outcome.warnings.append(
+                f"IMAGE_FILTERED: loại {len(rejected)} sản phẩm vì ảnh thiếu hoặc chưa xác minh được."
+            )
+            outcome.retrieval_diagnostics.append({
+                "image_verification": {
+                    "checked": checked_count,
+                    "eligible": len(result.recommendations),
+                    "rejected_by_reason": reason_counts,
+                    "rejected_products": [
+                        {"product_id": product_id, "reason": reason}
+                        for product_id, reason in sorted(rejected.items())
+                    ],
+                }
+            })
         outcome.research_items = [
             item.model_dump(mode="json") for item in result.recommendations
         ]

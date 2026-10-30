@@ -1,0 +1,73 @@
+\chapter{PHÂN TÍCH YÊU CẦU VÀ THIẾT KẾ HỆ THỐNG}
+
+\section{Tác nhân và yêu cầu chức năng}
+
+Tác nhân chính là khách truy cập không cần đăng nhập trong phạm vi MVP. Người dùng có thể:
+\begin{enumerate}
+  \item Nhập câu mô tả nhu cầu mua sắm.
+  \item Trả lời câu hỏi bổ sung nếu yêu cầu chưa đủ thông tin để tìm kiếm.
+  \item Xem kết quả, nguồn, trạng thái dữ liệu, tiêu chí phù hợp và cảnh báo.
+  \item Lọc hoặc sắp xếp kết quả; mở trang chi tiết sản phẩm.
+  \item Chọn sản phẩm trong cùng phiên để so sánh, gửi phản hồi và xem lại lịch sử.
+\end{enumerate}
+
+Hệ thống không được tạo sản phẩm hoặc offer chỉ để lấp đủ số lượng kết quả. Khi không có ứng viên đủ điều kiện, kết quả rỗng là một trạng thái hợp lệ và cần được trình bày cùng tình trạng nguồn.
+
+\section{Yêu cầu phi chức năng}
+
+Các yêu cầu chính gồm: dữ liệu có thể truy nguồn; lỗi từng provider được biểu diễn; request bên ngoài có timeout và giới hạn; pipeline tiếp tục khi một nguồn độc lập lỗi; snapshot giữ ngữ nghĩa lịch sử; API kiểm tra kiểu dữ liệu; kiểm thử mặc định không gọi dịch vụ trả phí hoặc crawler Live; giao diện responsive và có loading, empty, partial-result cùng error state.
+
+\section{Kiến trúc tổng thể}
+
+\begin{figure}[htbp]
+\centering
+\begin{tabularx}{0.95\textwidth}{>{\raggedright\arraybackslash}X}
+Người dùng \(\rightarrow\) Next.js UI \(\rightarrow\) FastAPI API\\
+\(\downarrow\) Phân tích yêu cầu và làm rõ\\
+\(\downarrow\) Query generator và Unified Search Orchestrator\\
+Catalog nội bộ \quad Catalog nghiên cứu \quad Provider web đã cấu hình\\
+\(\downarrow\) Chuẩn hóa, kiểm tra danh tính, lọc và kiểm tra bằng chứng\\
+\(\downarrow\) Chấm điểm/xếp hạng bằng Python \(\rightarrow\) giải thích có schema\\
+\(\downarrow\) Recommendation Snapshot và database\\
+Kết quả / chi tiết / so sánh / phản hồi / lịch sử
+\end{tabularx}
+\caption{Luồng xử lý tổng quát của Smart Shopping AI.}
+\label{fig:system-flow}
+\end{figure}
+
+Frontend gọi API backend qua các endpoint phân tích yêu cầu, làm rõ, tìm kiếm, lấy session, lấy sản phẩm, so sánh, phản hồi và lịch sử. Backend điều phối truy vấn nguồn, chuẩn hóa dữ liệu, áp dụng cổng ảnh, xếp hạng và lưu trạng thái. Các endpoint cụ thể được công bố qua OpenAPI của FastAPI.
+
+\section{Mô hình dữ liệu khái niệm}
+
+\begin{description}
+  \item[Product] Danh tính sản phẩm chuẩn hóa trong catalog.
+  \item[ProductVariant] Biến thể cụ thể như dung lượng hoặc cấu hình; chỉ so sánh giá khi danh tính biến thể tương thích.
+  \item[ProductOffer] Lựa chọn bán gắn với một nguồn/người bán, có thể có giá, tình trạng và URL.
+  \item[PriceObservation] Quan sát giá bất biến kèm thời điểm và nguồn.
+  \item[SearchSession] Phiên tìm kiếm chứa yêu cầu, trạng thái và thời gian tạo/hoàn tất.
+  \item[RecommendationSnapshot] Bản lưu các kết quả, điểm, bằng chứng và giải thích tại thời điểm tạo.
+  \item[ResearchProduct] Phân loại dữ liệu tham khảo/nghiên cứu, không phải offer mua bán hiện hành.
+\end{description}
+
+Các khái niệm này ngăn việc dùng một giá cũ như giá hiện hành, hoặc gộp hai biến thể không tương đương. Snapshot cũ không tự động được bổ sung bằng dữ liệu catalog mới.
+
+\section{Luồng tìm kiếm}
+
+\begin{enumerate}
+  \item UI gửi câu hỏi tới API phân tích; backend tạo cấu trúc requirement hoặc yêu cầu làm rõ.
+  \item Query generator xác định các truy vấn phù hợp với danh mục và điều kiện.
+  \item Orchestrator hỏi catalog nội bộ, catalog nghiên cứu và các provider web đã cấu hình.
+  \item Kết quả nguồn được ghi nhận riêng; lỗi từng nguồn tạo trạng thái/cảnh báo và không biến nguồn lỗi thành mock Live.
+  \item Ứng viên được chuẩn hóa, kiểm tra danh tính và bằng chứng. URL khám phá đơn thuần không trở thành offer.
+  \item Bộ lọc cứng áp dụng loại sản phẩm, điều kiện ngân sách/tiền tệ và điều kiện loại trừ.
+  \item Backend tính điểm, xếp hạng, tạo giải thích và lưu snapshot.
+  \item UI trình bày kết quả đủ điều kiện hoặc empty/partial/error state, rồi cung cấp detail, comparison, feedback và history.
+\end{enumerate}
+
+\section{Quy tắc ảnh và so sánh}
+
+Quy tắc cổng ảnh được áp dụng ở API và luồng giao diện: muốn hiển thị như sản phẩm đủ điều kiện thì phải có URL ảnh và bằng chứng xác minh gắn với đúng Product. Ảnh lỗi tải không được thay thế bằng ảnh không rõ nguồn. So sánh yêu cầu sản phẩm thuộc recommendation view hợp lệ; kết luận giá bị đánh dấu không thể so sánh nếu model, biến thể/SKU, loại giá hoặc tiền tệ không khớp.
+
+\section{Bảo mật và chính sách nguồn}
+
+Nguồn bên ngoài phải tuân thủ chính sách truy cập, điều khoản sử dụng, robots/policy và giới hạn tần suất. Collector mặc định fail-closed; không vượt CAPTCHA, xác thực hoặc cơ chế chống bot. URL ứng viên được xem là dữ liệu không tin cậy. Kiểm tra URL, địa chỉ mạng, redirect, timeout và giới hạn kích thước phản hồi giúp giảm rủi ro SSRF và tiêu thụ tài nguyên. Phiên bản MVP chưa có xác thực người dùng và không được xem là đã sẵn sàng phục vụ công khai nhiều người dùng.

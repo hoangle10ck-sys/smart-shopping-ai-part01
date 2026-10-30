@@ -12,6 +12,11 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.core.database import get_db
+from app.api.guest_owner import (
+    get_guest_owner,
+    require_owned_comparison,
+    require_owned_session,
+)
 from app.schemas.recommendation import RecommendationItem
 from app.services.recommendation.recommendation_service import RecommendationService
 from app.models.comparison import (
@@ -24,10 +29,12 @@ from app.models.recommendation import (
 from app.models.search_session import (
     SearchSession,
 )
+from app.models.user import User
 from app.schemas.comparison import (
     ComparisonCreateRequest,
     ComparisonResponse,
 )
+from app.services.product_images.eligibility import has_verified_image
 
 
 router = APIRouter(
@@ -59,6 +66,7 @@ def _serialize_product(item: RecommendationItem) -> dict[str, Any]:
         "brand": item.brand,
         "model": item.model,
         "image_url": item.image_url,
+        "image_evidence": item.image_evidence.model_dump(mode="json") if item.image_evidence else None,
         "rating": item.rating,
         "review_count": item.review_count,
         "specifications": dict(item.specifications),
@@ -190,23 +198,11 @@ def _build_result(
 def create_comparison(
     payload: ComparisonCreateRequest,
     db: Session = Depends(get_db),
+    owner: User = Depends(get_guest_owner),
 ) -> ComparisonResponse:
     """Compare two or three products."""
 
-    search_session = db.get(
-        SearchSession,
-        payload.session_id,
-    )
-
-    if search_session is None:
-        raise HTTPException(
-            status_code=(
-                status.HTTP_404_NOT_FOUND
-            ),
-            detail=(
-                "Không tìm thấy search session."
-            ),
-        )
+    search_session = require_owned_session(db, payload.session_id, owner)
 
     product_models = list(
         db.scalars(
@@ -334,22 +330,22 @@ def create_comparison(
 def get_comparison(
     comparison_id: int,
     db: Session = Depends(get_db),
+    owner: User = Depends(get_guest_owner),
 ) -> ComparisonResponse:
     """Return a persisted comparison."""
 
-    comparison = db.get(
-        ComparisonSession,
-        comparison_id,
-    )
+    comparison = require_owned_comparison(db, comparison_id, owner)
 
-    if comparison is None:
+    products = (comparison.result or {}).get("products", [])
+    if not products or any(
+        not isinstance(product, dict)
+        or not product.get("image_url")
+        or not has_verified_image(product.get("image_url"), product.get("image_evidence"))
+        for product in products
+    ) or len({product["image_evidence"]["content_sha256"] for product in products}) != len(products):
         raise HTTPException(
-            status_code=(
-                status.HTTP_404_NOT_FOUND
-            ),
-            detail=(
-                "Không tìm thấy comparison."
-            ),
+            status_code=status.HTTP_409_CONFLICT,
+            detail="Comparison predates verified image evidence and cannot be displayed safely.",
         )
 
     return ComparisonResponse.model_validate(

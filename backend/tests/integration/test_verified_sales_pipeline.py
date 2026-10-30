@@ -1,5 +1,7 @@
 """Real pipeline with local HTML/HTTP fixtures and no paid provider calls."""
 from copy import deepcopy
+from datetime import datetime, timezone
+from hashlib import sha256
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import select
@@ -13,7 +15,8 @@ from app.models.requirement import Requirement
 from app.models.search_query import SearchQuery
 from app.models.search_session import SearchSession
 from app.services.search.base import SearchResult
-from app.services.search import search_service
+from app.services.search.multi_provider import MultiSearchProvider
+from app.services.search.unified.external_sources import LiveProductSource
 from app.services.extraction.product_image_resolver import ProductImageResolver
 from tests.fixtures.sales_pages import sales_page
 
@@ -41,13 +44,16 @@ def test_offer_identity_image_evidence_snapshot_and_detail(monkeypatch, image_pa
         if image_pattern == 'lazy': html += f'<img alt="{name}" src="/placeholder.png" data-original="{image}">'
         if image_pattern == 'srcset': html += f'<img alt="{name}" srcset="{image} 600w">'
         return url, html
-    async def image_ok(self, url): return True
-    monkeypatch.setattr(search_service, 'get_search_provider', Provider)
+    async def image_ok(self, url):
+        return {"accepted": True, "checked_at": datetime.now(timezone.utc).isoformat(),
+                "content_type": "image/jpeg", "content_sha256": sha256(url.encode()).hexdigest()}
+    monkeypatch.setattr(MultiSearchProvider, '__init__', lambda self, **kwargs: setattr(self, 'providers', [Provider()]))
+    monkeypatch.setattr(LiveProductSource, 'is_available', lambda self, db: True)
     monkeypatch.setattr(ProductImageResolver, '_fetch_html', fetch)
-    monkeypatch.setattr(ProductImageResolver, '_image_loads', image_ok)
-    def session():
+    monkeypatch.setattr(ProductImageResolver, 'verify_image', image_ok)
+    def session(owner_id):
         with SessionLocal() as db:
-            s = SearchSession(raw_query='laptop 25 million')
+            s = SearchSession(user_id=owner_id, raw_query='laptop 25 million')
             db.add(s); db.flush()
             db.add(Requirement(session_id=s.id, category='laptop', budget_max=25000000,
                                requirements=[{'name': 'ram', 'value': '16GB', 'priority': 5}]))
@@ -55,10 +61,19 @@ def test_offer_identity_image_evidence_snapshot_and_detail(monkeypatch, image_pa
             db.commit()
             return s.id
     with TestClient(app) as client:
-        a = session()
+        analyzed = client.post(
+            '/api/requirements/analyze',
+            json={'raw_query': 'Laptop 25 million'},
+        )
+        assert analyzed.status_code == 200
+        with SessionLocal() as db:
+            owner_id = db.get(SearchSession, analyzed.json()['session_id']).user_id
+        a = session(owner_id)
         response = client.post('/api/search', json={'session_id': a})
         assert response.status_code == 200
-        assert [source['result_type'] for source in response.json()['sources'][:2]] == ['DIRECT_PRODUCT', 'DIRECT_PRODUCT']
+        audited_types = [row['SOURCE_TYPE'] for diagnostic in response.json()['retrieval_diagnostics']
+                         for row in diagnostic.get('source_audit', [])]
+        assert audited_types.count('DIRECT_PRODUCT') >= 2
         items = response.json()['recommendations']
         assert len(items) == 1
         saved = deepcopy(items[0])
@@ -74,7 +89,7 @@ def test_offer_identity_image_evidence_snapshot_and_detail(monkeypatch, image_pa
             assert len(offers) == 2 and {o.product_url for o in offers} == set(urls[:2])
             assert len(list(db.scalars(select(Product)))) == 1
         state['price'] = 20000000
-        b = session()
+        b = session(owner_id)
         assert client.post('/api/search', json={'session_id': b}).status_code == 200
         assert client.get(f'/api/search/{a}').json()['recommendations'] == items
         assert client.get(f'/api/history/{a}').json()['result']['recommendations'] == items

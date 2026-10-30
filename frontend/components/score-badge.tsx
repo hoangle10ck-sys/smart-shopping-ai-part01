@@ -2,7 +2,7 @@ import { displayScore, finiteNumber } from "@/lib/results-utils";
 
 export function ScoreBadge({
   value,
-  label = "AI Match",
+  label = "Mức độ phù hợp",
 }: {
   value?: number | null;
   label?: string;

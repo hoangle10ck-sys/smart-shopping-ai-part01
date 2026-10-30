@@ -18,8 +18,19 @@ from app.services.scoring.scoring_engine import ScoringEngine
 from app.services.normalization.text_normalizer import remove_diacritics
 from app.schemas.evidence import RequirementMatch
 
-WARNING = "Dữ liệu nghiên cứu (2023) — không phải giá bán hiện tại. Không có offer, tồn kho hoặc SKU đã xác minh."
-DATASET_PAGE = "https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023"
+WARNING = "Dữ liệu nghiên cứu lịch sử — không phải giá bán hiện tại. Không có offer hoặc tồn kho đã xác minh."
+DATASET_PAGES = {
+    "Amazon-Reviews-2023": "https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023",
+    "Amazon-Berkeley-Objects": "https://amazon-berkeley-objects.s3.amazonaws.com/index.html",
+    "OpenFoodFacts": "https://world.openfoodfacts.org/",
+    "OpenProductsFacts": "https://world.openproductsfacts.org/",
+}
+DATASET_NAMES = {
+    "Amazon-Reviews-2023": "Amazon Reviews 2023",
+    "Amazon-Berkeley-Objects": "Amazon Berkeley Objects",
+    "OpenFoodFacts": "Open Food Facts",
+    "OpenProductsFacts": "Open Products Facts",
+}
 
 
 def _budget(text: str) -> dict:
@@ -58,10 +69,17 @@ def parse_query(query: str) -> RequirementData:
     category = None
     for aliases, value in [(("phu kien dien thoai", "op lung", "phone case", "phone accessories"), "phu kien dien thoai"),
                            (("phu kien dien tu", "electronic accessories"), "phu kien dien tu"),
+                           (("do the thao", "sporting goods", "sports equipment"), "đồ thể thao"),
+                           (("thu cung", "pet supplies", "pet products"), "thú cưng"),
+                           (("do gia dung", "household goods", "home appliances"), "đồ gia dụng"),
+                           (("thuc pham", "grocery", "groceries", "food products"), "thực phẩm"),
                            (("dien thoai", "smartphone", "cell phone"), "dien thoai"),
                            (("tai nghe", "headphone", "earbud"), "tai nghe"),
                            (("laptop", "may tinh xach tay"), "laptop"),
                            (("man hinh", "monitor"), "man hinh"),
+                           (("tivi", "smart tv", "television"), "tivi"),
+                           (("tu lanh", "refrigerator", "fridge"), "tủ lạnh"),
+                           (("giay", "sneaker", "shoes"), "giày"),
                            (("ban phim", "keyboard"), "ban phim"),
                            (("chuot", "mouse"), "chuot"), (("dien tu", "electronics"), "dien tu")]:
         if any(alias in text for alias in aliases):
@@ -101,11 +119,30 @@ def parse_query(query: str) -> RequirementData:
 
 
 def provenance(row: ResearchProduct) -> dict:
-    return dict(dataset_id=row.dataset_id, revision=row.revision, parent_asin=row.external_product_id,
-                source_category=row.source_category, source_url=row.source_url, dataset_url=DATASET_PAGE,
+    metadata = row.metadata_fields or {}
+    dataset_url = metadata.get("dataset_url") or DATASET_PAGES.get(row.dataset_id, row.source_url)
+    result = dict(dataset_id=row.dataset_id, dataset_name=metadata.get("dataset_name") or DATASET_NAMES.get(row.dataset_id, row.dataset_id),
+                revision=row.revision, external_product_id=row.external_product_id,
+                source_category=row.source_category, source_url=row.source_url, dataset_url=dataset_url,
                 input_sha256=row.input_sha256, record_sha256=row.record_sha256, line_number=row.line_number,
-                imported_at=row.imported_at.isoformat(), identity_scope="parent product group; not SKU",
-                source_mode="HISTORICAL_RESEARCH")
+                imported_at=row.imported_at.isoformat(), source_mode="HISTORICAL_RESEARCH")
+    if row.dataset_id == "Amazon-Reviews-2023":
+        result.update(parent_asin=row.external_product_id, identifier_label="parent_asin",
+                      identity_scope="parent product group; not SKU")
+    elif metadata.get("identifier_label") == "barcode":
+        result.update(barcode=row.external_product_id, identifier_label="barcode",
+                      identity_scope="source product identifier; not a verified merchant SKU")
+    else:
+        result.update(identifier_label="item_id", identity_scope="dataset catalog item; not a verified offer")
+    if metadata.get("license"):
+        result["license"] = metadata["license"]
+    if metadata.get("license_url"):
+        result["license_url"] = metadata["license_url"]
+    for key in ("content_license", "content_license_url", "database_license", "image_license",
+                "image_license_url", "source_product_url", "attribution", "retrieved_on"):
+        if metadata.get(key):
+            result[key] = metadata[key]
+    return result
 
 
 def price_view(ref: HistoricalPriceReference | None) -> dict | None:
@@ -129,15 +166,15 @@ def evaluate(db: Session, requirement: RequirementData, *, revision: str | None 
     if requirement.purpose:
         warnings.append("PURPOSE_NOT_SCORED: metadata chưa đủ để chứng minh hiệu năng cho mục đích sử dụng; không cộng điểm suy đoán.")
     if requirement.category is None:
-        warnings.append("Chưa nhận diện danh mục; hãy nêu điện thoại, phụ kiện điện thoại, tai nghe, laptop hoặc điện tử.")
+        warnings.append("Chưa nhận diện danh mục; hãy nêu rõ loại sản phẩm, ví dụ laptop, tivi, tủ lạnh, thực phẩm hoặc đồ gia dụng.")
         return RecommendationRunResult(requirement, [], [], [], 0, 0, data_mode="research"), warnings
-    if revision is None:
-        revision = db.scalar(select(ResearchProduct.revision).order_by(ResearchProduct.imported_at.desc(), ResearchProduct.id.desc()).limit(1))
-    rows = db.execute(select(Product, ResearchProduct, HistoricalPriceReference)
+    query = (select(Product, ResearchProduct, HistoricalPriceReference)
         .join(ResearchProduct, Product.id == ResearchProduct.product_id)
         .outerjoin(HistoricalPriceReference, ResearchProduct.id == HistoricalPriceReference.research_product_id)
-        .where(ResearchProduct.revision == revision)
-        .order_by(ResearchProduct.external_product_id).limit(5001)).all()
+        .order_by(ResearchProduct.dataset_id, ResearchProduct.external_product_id))
+    if revision is not None:
+        query = query.where(ResearchProduct.revision == revision)
+    rows = db.execute(query.limit(5001)).all()
     if len(rows) > 5000:
         raise ValueError("Research MVP catalog limit exceeded; select a bounded revision")
     has_budget = any(v is not None for v in (requirement.budget_min, requirement.budget_max, requirement.budget_target))
@@ -198,16 +235,19 @@ def evaluate(db: Session, requirement: RequirementData, *, revision: str | None 
     for rank, (candidate, product, research, ref, matches, score, parts, weights) in enumerate(accepted[:top_k], 1):
         known = [product.name, product.category, product.brand, product.image_url, product.rating, product.review_count]
         completeness = round(sum(value is not None for value in known) / len(known) * 100, 2)
-        fields = [FieldEvidence(field=key, value=value, source=research.dataset_id, url=DATASET_PAGE)
+        dataset_url = DATASET_PAGES.get(research.dataset_id, research.source_url)
+        fields = [FieldEvidence(field=key, value=value, source=research.dataset_id, url=dataset_url)
                   for key, value in {"name": product.name, "rating": product.rating, "review_count": product.review_count,
                                      **product.specifications}.items() if value is not None]
-        notes = [f"parent_asin={research.external_product_id}; revision={research.revision}; dòng {research.line_number}"]
+        identity_label = ("parent_asin" if research.dataset_id == "Amazon-Reviews-2023" else
+                          (research.metadata_fields or {}).get("identifier_label", "item_id"))
+        notes = [f"{identity_label}={research.external_product_id}; revision={research.revision}; dòng {research.line_number}"]
         if ref:
-            fields.append(FieldEvidence(field="historical_price_USD", value=ref.amount, source=research.dataset_id, url=DATASET_PAGE))
+            fields.append(FieldEvidence(field="historical_price_USD", value=ref.amount, source=research.dataset_id, url=dataset_url))
         for match in matches:
             if match.name == "keyword" and match.status == "matched":
                 fields.append(FieldEvidence(field="metadata_keyword", value=match.product_value,
-                                            source=research.dataset_id, url=DATASET_PAGE))
+                                            source=research.dataset_id, url=dataset_url))
         evidence = EvidenceReport(confidence=completeness, source_count=1, offer_count=0, fields=fields,
             breakdown=EvidenceBreakdown(source_reliability=0, product_completeness=completeness,
                 offer_completeness=0, consistency=0, corroboration=0), supporting_evidence=notes, warnings=warnings)
@@ -218,7 +258,7 @@ def evaluate(db: Session, requirement: RequirementData, *, revision: str | None 
             rating=product.rating, review_count=product.review_count, specifications=product.specifications,
             price=None, currency="USD", score=score, confidence=completeness, evidence=evidence,
             requirement_matches=matches, source_mode="HISTORICAL_RESEARCH",
-            historical_price=price_view(ref), research_provenance=provenance(research), evidence_url=DATASET_PAGE,
+            historical_price=price_view(ref), research_provenance=provenance(research), evidence_url=dataset_url,
             score_version="research-v1", product_suitability=dict(score=score.final_score, breakdown=parts,
                 weights=weights, confidence=completeness, insufficient_evidence=any(m.status == "unknown" for m in matches)),
             offer_quality=None, explanation=RecommendationExplanation(summary=WARNING, why_fit=fit,

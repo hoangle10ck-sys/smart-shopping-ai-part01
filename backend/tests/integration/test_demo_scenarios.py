@@ -1,48 +1,40 @@
-"""The three documented demo inputs must work offline on a clean test database."""
-
-import json
+"""Automatic shopping search never substitutes demo fixtures for real offers."""
 
 import pytest
 from fastapi.testclient import TestClient
 
+from app.core.config import get_settings
 from app.main import app
 
 
-@pytest.mark.parametrize("query,category,budget,purposes", [
-    ("Tôi có 500 nghìn, cần tai nghe để học online, mic tốt, pin lâu.", "tai nghe", 500000, ["học online"]),
-    ("Tôi cần laptop khoảng 15 triệu để học lập trình.", "laptop", 15000000, ["học lập trình"]),
+@pytest.mark.parametrize("query,category,budget", [
+    ("Tôi có 500 nghìn, cần tai nghe để học online, mic tốt, pin lâu.", "tai nghe", 500000),
+    ("Tôi cần laptop khoảng 15 triệu để học lập trình.", "laptop", 15000000),
     ("Tôi có 5 triệu, cần điện thoại để chụp ảnh và chơi game, ưu tiên camera tốt, pin lâu.",
-     "điện thoại", 5000000, ["chơi game", "chụp ảnh"]),
+     "điện thoại", 5000000),
 ])
-def test_documented_demo(query, category, budget, purposes):
+def test_automatic_search_does_not_return_demo_fixtures(monkeypatch, query, category, budget):
+    settings = get_settings()
+    monkeypatch.setattr(settings, "demo_mode", False)
+    monkeypatch.setattr(settings, "tavily_api_key", "")
+    monkeypatch.setattr(settings, "searxng_base_url", "")
+
     with TestClient(app) as client:
         analysis = client.post("/api/requirements/analyze", json={"raw_query": query})
         assert analysis.status_code == 200
         analyzed = analysis.json()
-        requirement = analyzed["requirement"]
         assert not analyzed["needs_clarification"]
-        assert requirement["category"] == category
-        assert requirement["budget_max"] == budget
-        assert set(requirement["purpose"]) == set(purposes)
-        session_id = analyzed["session_id"]
-        response = client.post("/api/search", json={"session_id": session_id})
-        assert response.status_code == 200
-        result = response.json()
-        assert result["data_mode"] == "demo"
-        assert (result["total_found"], result["total_filtered"], result["total_recommended"]) == (3, 3, 3)
-        for item in result["recommendations"]:
-            assert item["category"] == category and item["price"] <= budget
-            assert item["explanation"]["generation_mode"] == "demo"
-            assert item["evidence"]["fields"]
-            assert len(item["requirement_matches"]) == len(requirement["requirements"])
-        selected = [item["product_id"] for item in result["recommendations"][:2]]
-        comparison = client.post("/api/comparisons", json={"session_id": session_id, "product_ids": selected})
-        assert comparison.status_code == 201
-        assert client.get(f"/api/products/{selected[0]}").status_code == 200
-        assert client.post("/api/feedback", json={"session_id": session_id, "product_id": selected[0], "is_helpful": True}).status_code == 201
-        history = client.get(f"/api/history/{session_id}")
-        assert history.status_code == 200
-        assert history.json()["result"]["recommendations"] == result["recommendations"]
-        print(json.dumps({"category": category, "requirement": requirement,
-                          "products": [{"name": p["name"], "price": p["price"], "score": p["score"]["final_score"],
-                                        "matches": p["requirement_matches"]} for p in result["recommendations"]]}, ensure_ascii=False))
+        assert analyzed["requirement"]["category"] == category
+        assert analyzed["requirement"]["budget_max"] == budget
+
+        result = client.post("/api/search", json={"session_id": analyzed["session_id"]})
+        assert result.status_code == 200
+        body = result.json()
+
+    assert body["data_mode"] == "unified"
+    assert body["recommendations"] == []
+    assert body["total_recommended"] == 0
+    assert all(item["source"] != "demo_mock" for item in body["unified_sources"])
+    web_source = next(item for item in body["unified_sources"]
+                      if item["source"] == "configured_web_search")
+    assert web_source["available"] is False

@@ -7,6 +7,7 @@ from app.core.database import SessionLocal
 from app.main import app
 from app.models.feedback import Feedback
 from app.models.recommendation import Recommendation
+from tests.fixtures.unified_catalog import seed_headphones
 
 
 client = TestClient(app)
@@ -23,6 +24,9 @@ def _create_recommended_session() -> tuple[
     list[int],
 ]:
     """Create a real search session with recommendations."""
+
+    with SessionLocal() as db:
+        seed_headphones(db, count=1)
 
     analyze_response = client.post(
         "/api/requirements/analyze",

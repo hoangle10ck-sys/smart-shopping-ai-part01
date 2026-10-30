@@ -1,0 +1,39 @@
+\chapter{XÂY DỰNG VÀ TRIỂN KHAI CHỨC NĂNG}
+
+\section{Giao diện người dùng}
+
+Ứng dụng có trang nhập nhu cầu, trang kết quả theo mã phiên, trang chi tiết sản phẩm, trang so sánh và trang lịch sử. Thành phần giao diện đọc dữ liệu từ API thay vì tự tính lại điểm xếp hạng. Kết quả thể hiện các điều kiện đã phân tích, lý do phù hợp, giới hạn dữ liệu và trạng thái nguồn. Các trạng thái đang tải, kết quả rỗng, lỗi và kết quả một phần giúp người dùng phân biệt không có sản phẩm phù hợp với việc nguồn tìm kiếm không hoạt động.
+
+Các trang liên quan đến kết quả sử dụng snapshot của phiên. Trang chi tiết truy vấn catalog hiện tại nên giá hoặc dữ liệu có thể khác thời điểm tạo snapshot; thời điểm quan sát và nguồn cần được hiển thị để tránh hiểu nhầm.
+
+\section{API backend}
+
+FastAPI cung cấp API phân tích yêu cầu, làm rõ, tạo/tải kết quả tìm kiếm, đọc recommendation, chi tiết Product, comparison, feedback, history và trạng thái hệ thống. Pydantic kiểm tra request/response. Các endpoint chính gồm \texttt{POST /api/requirements/analyze}, \texttt{POST /api/requirements/clarify}, \texttt{POST /api/search}, \texttt{GET /api/search/\{session\_id\}}, \texttt{GET /api/products/\{product\_id\}}, \texttt{POST /api/comparisons} và các endpoint history/feedback.
+
+API trả trạng thái lỗi riêng cho session không tồn tại, trạng thái nghiệp vụ chưa hợp lệ và provider lỗi toàn bộ. GET snapshot không đồng nghĩa với việc thực hiện truy vấn mới. History đọc lại session đã lưu, không tự gọi provider.
+
+\section{Chuẩn hóa, lọc và xếp hạng}
+
+Backend chuẩn hóa tên, danh mục, giá, đơn vị và thông số từ từng observation. Product và Offer được giữ riêng: dữ liệu sản phẩm mô tả danh tính/thông số, còn offer mô tả nguồn bán và điều kiện mua. Dữ liệu thiếu bằng chứng được để trống hoặc gắn trạng thái unknown; LLM không được tự điền dữ kiện thương mại.
+
+Bộ lọc cứng loại ứng viên vi phạm danh mục, điều kiện ngân sách hoặc điều kiện loại trừ đã xác định. Phần còn lại được chấm và sắp xếp bằng logic Python. AI có thể diễn đạt lý do nhưng nội dung sinh ra không thay thế phép đối chiếu hoặc bằng chứng nguồn.
+
+\section{Catalog nghiên cứu và nguồn Live}
+
+Catalog nghiên cứu được dùng để mở rộng dữ liệu tham khảo trong phạm vi dataset, giấy phép và provenance. Ví dụ, dữ liệu Amazon Berkeley Objects có thể cung cấp metadata/ảnh theo những gì dataset thực sự có; không có nghĩa dataset cung cấp giá bán hiện hành, đánh giá, tồn kho hay liên kết mua đã xác minh. Open Products Facts/Open Food Facts cần được đánh giá riêng theo loại sản phẩm và điều kiện sử dụng. Research được phân biệt với Verified Offer.
+
+Tavily chỉ được dùng khi có cấu hình thích hợp. SearXNG discovery-only trả URL ứng viên; việc nguồn trả HTTP thành công không xác minh nội dung của trang đích. Collector của nhà bán hàng không được tự bật nếu nguồn chưa được phê duyệt theo chính sách. Trạng thái \texttt{LIVE\_VERIFIED} chỉ nên áp dụng cho đúng loại dữ liệu và nguồn đã có bằng chứng thực tế.
+
+\section{Lưu lịch sử và snapshot}
+
+Khi tìm kiếm kết thúc, backend lưu session cùng các recommendation và snapshot dữ liệu cần thiết. Snapshot giữ query, thời gian, trạng thái, danh sách kết quả, điểm, thông số, evidence, explanation và cảnh báo tại lần chạy. History cho phép người dùng truy vấn lại phiên đã lưu theo thời gian. Trong phiên bản chưa có tài khoản, đây là lịch sử của instance ứng dụng chứ không phải hồ sơ cá nhân riêng biệt.
+
+\section{Cổng xác minh ảnh}
+
+Các bước kiểm tra ảnh gồm liên kết nguồn với Product/trang sản phẩm đã xác minh, chọn ứng viên ảnh có ngữ cảnh, giới hạn số lần thử và kích thước dữ liệu tải, xác thực MIME/chữ ký raster, tính hash nội dung và kiểm tra dấu hiệu xung đột model. Bằng chứng được lưu với nguồn/thời gian và có thời hạn. Không tìm được ảnh đủ bằng chứng thì sản phẩm bị loại khỏi các bề mặt hiển thị theo yêu cầu đã chốt. Frontend không dùng ảnh khác để che lỗi tải.
+
+Kiểm tra bằng máy không chứng minh hoàn toàn nội dung thị giác. Ảnh phức tạp hoặc mơ hồ cần quy trình rà soát thủ công nếu muốn nâng tuyên bố thành xác minh trực quan.
+
+\section{Chạy ứng dụng}
+
+Môi trường phát triển có thể chạy frontend Next.js ở cổng 3000 và backend FastAPI ở cổng 8000. Docker Compose bổ sung PostgreSQL; SearXNG là dịch vụ tùy chọn theo profile và không nhất thiết chạy trong Compose mặc định. Cấu hình endpoint frontend/backend phải phù hợp với môi trường browser và build. Hướng dẫn cập nhật cần được đối chiếu với \texttt{README.md} hiện hành trước khi nộp báo cáo.

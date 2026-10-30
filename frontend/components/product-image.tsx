@@ -2,53 +2,53 @@
 
 import { useState } from "react";
 import { safeProductImageUrl } from "@/lib/results-utils";
-import { Icon } from "./icon";
+import type { ProductImageEvidence } from "@/types/shopping";
 
 export function ProductImage({
   src,
+  evidence,
   name,
   className = "",
+  onInvalid,
 }: {
   src?: string | null;
+  evidence?: ProductImageEvidence | null;
   name: string;
   className?: string;
+  onInvalid?: () => void;
 }) {
-  const url = safeProductImageUrl(src);
-  return <ImageContent key={url ?? "missing"} url={url} name={name} className={className} />;
+  const url = evidence?.status === "VERIFIED" && evidence.image_url === src
+    ? safeProductImageUrl(src)
+    : null;
+  return <ImageContent key={url ?? "missing"} url={url} name={name} className={className} onInvalid={onInvalid} />;
 }
 
 function ImageContent({
   url,
   name,
   className,
+  onInvalid,
 }: {
   url: string | null;
   name: string;
   className: string;
+  onInvalid?: () => void;
 }) {
   const [failed, setFailed] = useState(false);
 
+  if (!url || failed) return null;
   return (
     <div className={`product-media ${className}`}>
-      {url && !failed ? (
-        // Remote product images retain their original URL and use the existing URL guard.
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={url}
-          alt={name}
-          loading="lazy"
-          decoding="async"
-          onError={() => setFailed(true)}
-          className="transition-transform duration-300 hover:scale-[1.02]"
-        />
-      ) : (
-        <div className="product-placeholder">
-          <span className="flex size-14 items-center justify-center rounded-2xl border border-[#d9e4dc] bg-white/90 text-[#4c6957] shadow-xs">
-            <Icon name="image" width="26" height="26" />
-          </span>
-          <span className="text-xs font-medium text-[var(--muted)]">Chưa có ảnh sản phẩm</span>
-        </div>
-      )}
+      {/* Product images are rendered only with matching server-side evidence. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={url}
+        alt={name}
+        loading="lazy"
+        decoding="async"
+        onError={() => { setFailed(true); onInvalid?.(); }}
+        className="transition-transform duration-300 hover:scale-[1.02]"
+      />
     </div>
   );
 }

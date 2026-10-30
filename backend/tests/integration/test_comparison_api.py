@@ -1,5 +1,6 @@
 """Integration tests for product comparison API."""
 
+from datetime import datetime, timezone
 from uuid import uuid4
 
 from fastapi.testclient import TestClient
@@ -12,6 +13,7 @@ from app.models.product import Product
 from app.models.recommendation import Recommendation
 from app.models.product_offer import ProductOffer
 from app.models.recommendation_snapshot import RecommendationSnapshot
+from app.models.source import Source
 
 
 client = TestClient(app)
@@ -28,6 +30,42 @@ def _create_recommended_session(
     min_products: int = 2,
 ) -> tuple[str, list[int]]:
     """Create a real search session with recommendations."""
+
+    # The automatic purchase flow does not use mock/demo offers. Seed a small,
+    # verified catalog fixture so comparison tests exercise real API behavior.
+    with SessionLocal() as db:
+        source = Source(
+            url="https://fixture.test/catalog",
+            domain="fixture.test",
+            title="Verified integration catalog",
+        )
+        db.add(source)
+        db.flush()
+        for index, price in enumerate((320_000, 380_000, 450_000), start=1):
+            product = Product(
+                name=f"Integration Headphones H{index}",
+                category="tai nghe",
+                brand="Fixture Audio",
+                model=f"H{index}",
+                normalized_name=f"integration headphones h{index}",
+                    image_url=f"https://fixture.test/images/headphones-h{index}.jpg",
+                rating=4.5,
+                review_count=100 + index,
+                specifications={"microphone": "good", "battery": "long-lasting"},
+            )
+            db.add(product)
+            db.flush()
+            db.add(ProductOffer(
+                product_id=product.id,
+                source_id=source.id,
+                merchant="Fixture Audio Shop",
+                price=price,
+                currency="VND",
+                availability="in_stock",
+                product_url=f"https://fixture.test/catalog/headphones-h{index}",
+                last_checked_at=datetime.now(timezone.utc),
+            ))
+        db.commit()
 
     analyze_response = client.post(
         "/api/requirements/analyze",
@@ -222,7 +260,7 @@ def test_comparison_preserves_session_snapshot_after_catalog_update():
     assert client.get(f"/api/search/{session_id}").json()["recommendations"] == original["recommendations"]
 
 
-def test_legacy_comparison_recomputes_consistently_without_backfill():
+def test_legacy_comparison_rejects_offer_without_matching_saved_evidence():
     session_id, product_ids = _create_recommended_session()
     selected = product_ids[:2]
     with SessionLocal() as db:
@@ -233,14 +271,10 @@ def test_legacy_comparison_recomputes_consistently_without_backfill():
         stored_scores = dict(db.execute(select(Recommendation.product_id, Recommendation.final_score).where(
             Recommendation.session_id == session_id)).all())
     view = client.get(f"/api/search/{session_id}").json()
-    expected = {item["product_id"]: item for item in view["recommendations"]}
+    assert view["data_semantics"] == "legacy_recomputed"
+    assert not set(selected).intersection(item["product_id"] for item in view["recommendations"])
     response = client.post("/api/comparisons", json={"session_id": session_id, "product_ids": selected})
-    assert response.status_code == 201
-    result = response.json()["result"]
-    assert result["data_semantics"] == "legacy_recomputed"
-    for item in result["products"]:
-        assert item["best_offer"]["price"] == 400000
-        assert item["ai_score"] == expected[item["product_id"]]["score"]["final_score"]
+    assert response.status_code == 409
     with SessionLocal() as db:
         assert db.get(RecommendationSnapshot, session_id) is None
         assert dict(db.execute(select(Recommendation.product_id, Recommendation.final_score).where(

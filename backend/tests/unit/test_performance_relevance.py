@@ -61,7 +61,9 @@ async def test_all_six_archived_network_currency_rows_cost_no_fetch_or_progress(
         async def inspect(self,*a,**kw): raise AssertionError('Irrelevant source must not fetch')
     r=retriever(Provider(),Pages())
     await r.pass_queries('requirement',['phone'])
-    assert len(r.sources)==6 and not r.inspected_urls and not r.model_hints()
+    # Wikipedia is rejected by the non-merchant host policy before relevance
+    # analysis; the remaining five irrelevant rows still cost no page fetch.
+    assert len(r.sources)==5 and not r.inspected_urls and not r.model_hints()
     assert r.rounds[0]['no_progress_rounds']==1
     for key in ('new_model_hints','new_merchant_domains','new_direct_urls'):
         assert r.rounds[0][key]==0

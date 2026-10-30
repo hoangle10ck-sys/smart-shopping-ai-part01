@@ -12,6 +12,29 @@ R00–R07 đã thực hiện; R08 có benchmark tự động nhưng thiếu nhã
 độc lập, không tuyên bố hoàn tất chất lượng recommender. R09 ghi tài liệu/checkpoint.
 Không push, không bật Live flags, không ghi đè thay đổi crawler trước đó.
 
+## Cập nhật runtime PostgreSQL — 2026-10-29
+
+Theo phê duyệt bổ sung tối đa 200 sản phẩm ABO, đã tải catalog CC BY 4.0 và nhập
+**136 ABO research records** vào database PostgreSQL `smart_shopping` đang cấu hình
+cho backend. Đây là database khác với SQLite `backend/smart_shopping.db` được dùng
+cho checkpoint Amazon Reviews bên dưới; SQLite cũ không bị sửa. PostgreSQL trước đó
+có 31 Product / 0 ResearchProduct / 32 ProductOffer; sau import có 167 Product /
+136 ABO ResearchProduct / 32 ProductOffer / 0 HistoricalPriceReference. ABO không
+cung cấp giá, rating, review count hay tồn kho hiện hành. Vì vậy số **191 Product /
+88 historical USD prices** phía dưới vẫn là checkpoint SQLite ngày 2026-10-17 và
+không phải số liệu của PostgreSQL runtime. Cả hai trạng thái đều là Research; không
+được hiểu là giá thương mại `LIVE_VERIFIED`.
+
+### Addendum — category coverage (2026-10-29)
+
+Official ABO type inventory covered 576 native product types. The approved PostgreSQL
+ABO catalog now contains **200 records**, including 64 additional image-backed records
+across shoes, grocery, home goods, pets, sports, TVs, and refrigerators. Source types
+map to specific Research categories; no merchant price, rating, stock, or offer is
+asserted. PostgreSQL now has 231 total products, 200 ABO ResearchProduct records, 32
+pre-existing offers, and no historical price references. Human relevance labels remain
+necessary to report Precision@K/NDCG@K; category retrieval tests are not quality labels.
+
 ## Dữ liệu thật đã nhập
 
 Nguồn: [McAuley Lab / Amazon Reviews 2023](https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023).

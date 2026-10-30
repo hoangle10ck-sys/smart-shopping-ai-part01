@@ -119,21 +119,11 @@ class RequirementAnalyzer:
 
         question: str | None = None
 
-        # A product category is enough to start a broad search. Budget and
-        # purpose are optional ranking hints, not prerequisites.
+        # Only an unknown product category prevents a useful broad search.
+        # Budget and purpose are optional ranking hints, not prerequisites.
         if "category" in missing_fields:
             question = (
                 "Bạn muốn mua loại sản phẩm nào?"
-            )
-
-        elif "budget" in missing_fields:
-            question = (
-                "Bạn dự kiến ngân sách khoảng bao nhiêu?"
-            )
-
-        elif "purpose" in missing_fields:
-            question = (
-                "Bạn chủ yếu dùng sản phẩm cho mục đích gì?"
             )
 
         needs_clarification = (

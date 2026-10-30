@@ -14,6 +14,8 @@ WORKDIR /app
 ENV NODE_ENV=production NEXT_TELEMETRY_DISABLED=1
 # Keep existing Next/TS config support; do not change app output mode or routes.
 COPY --from=build --chown=node:node /app /app
+# Fail the image build if a damaged layer leaves Next.js package metadata unreadable.
+RUN node -e "const next = require('./node_modules/next/package.json'); if (typeof next.version !== 'string') throw new Error('Invalid Next.js package metadata')"
 USER node
 EXPOSE 3000
 CMD ["node", "node_modules/next/dist/bin/next", "start", "--hostname", "0.0.0.0", "--port", "3000"]

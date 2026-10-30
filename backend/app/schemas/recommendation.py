@@ -18,6 +18,7 @@ from app.schemas.ranking import (
 from app.schemas.requirement import (
     RequirementData,
 )
+from app.schemas.product_image import ProductImageEvidence
 from app.schemas.search import (
     SearchExecutionResponse,
 )
@@ -72,6 +73,7 @@ class RecommendationItem(BaseModel):
     image_source: str | None = None
     evidence_url: str | None = None
     image_url: str | None = None
+    image_evidence: ProductImageEvidence | None = None
 
     price: int | None = None
 

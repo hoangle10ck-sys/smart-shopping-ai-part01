@@ -1,3 +1,6 @@
+from datetime import datetime, timezone
+from hashlib import sha256
+
 from fastapi.testclient import TestClient
 from sqlalchemy import func, select
 
@@ -13,6 +16,7 @@ from app.schemas.collector import (
     VariantIdentity,
 )
 from app.services.collectors.service import CollectorService
+from app.services.search.unified.external_sources import LiveProductSource
 
 
 client = TestClient(app)
@@ -21,20 +25,25 @@ client = TestClient(app)
 async def fake_fetch(self, url):
     return SourceFetchResult(status=FetchStatus.SUCCESS, source_url=url, platform="shopee",
         observation=ProductObservation(name="Demo Laptop 16GB", brand="Demo", model="L16", category="laptop",
-            specifications={"ram":"16GB"}, offers=[OfferObservation(
+            specifications={"ram":"16GB"},
+            image_url="https://images.example/demo-laptop.jpg",
+            image_probe={"accepted": True, "checked_at": datetime.now(timezone.utc).isoformat(),
+                         "content_type": "image/jpeg", "content_sha256": sha256(b"direct-fixture").hexdigest()},
+            offers=[OfferObservation(
                 identity=VariantIdentity(platform="shopee", external_product_id="2", external_shop_id="1",
                     external_sku_id="16", attributes={"ram":"16GB", "storage":"512GB"}),
                 merchant="Official", sale_price=12_000_000, availability="in_stock", product_url=url)]))
 
 
 def test_direct_url_path_does_not_require_tavily_and_is_idempotent(monkeypatch):
+    monkeypatch.setattr(LiveProductSource, "is_available", lambda self, db: True)
     monkeypatch.setattr(CollectorService, "fetch", fake_fetch)
     analyzed = client.post("/api/requirements/analyze", json={
         "raw_query":"Laptop lập trình RAM 16 GB, ngân sách dưới 20 triệu"
     })
     session_id = analyzed.json()["session_id"]
     payload = {"session_id":session_id, "direct_urls":["https://shopee.vn/demo-i.1.2"],
-               "source_platforms":["shopee"], "refresh":True}
+               "refresh":True}
     first = client.post("/api/search", json=payload)
     assert first.status_code == 200, first.text
     assert first.json()["recommendations"][0]["variant_id"] is not None
@@ -45,19 +54,53 @@ def test_direct_url_path_does_not_require_tavily_and_is_idempotent(monkeypatch):
         assert db.scalar(select(func.count(ProductOffer.id))) == 1
 
 
-def test_direct_url_platform_choice_is_enforced(monkeypatch):
+def test_legacy_platform_choice_does_not_block_direct_product_url(monkeypatch):
+    monkeypatch.setattr(LiveProductSource, "is_available", lambda self, db: True)
     monkeypatch.setattr(CollectorService, "fetch", fake_fetch)
     analyzed = client.post("/api/requirements/analyze", json={
         "raw_query":"Laptop lập trình RAM 16 GB, ngân sách dưới 20 triệu"
     })
     response = client.post("/api/search", json={"session_id": analyzed.json()["session_id"],
-        "direct_urls":["https://shopee.vn/demo-i.1.2"], "source_platforms":["lazada"]})
-    # Demo search remains available, while the direct source is explicitly warned and excluded.
+        "direct_urls":["https://shopee.vn/demo-i.1.2"]})
     assert response.status_code == 200
-    assert any("không nằm trong lựa chọn" in warning for warning in response.json()["warnings"])
+    assert response.json()["recommendations"]
+    assert response.json()["recommendations"][0]["variant_id"] is not None
+    assert not any("không nằm trong lựa chọn" in warning for warning in response.json()["warnings"])
+
+
+def test_direct_urls_run_without_configured_web_search_provider(monkeypatch):
+    """An explicit product URL does not depend on Tavily/SearXNG discovery."""
+    from app.core.config import get_settings
+
+    settings = get_settings()
+    assert not settings.tavily_api_key.strip()
+    assert not settings.searxng_base_url.strip()
+
+    fetched = []
+
+    async def recording_fetch(self, url):
+        fetched.append(url)
+        return await fake_fetch(self, url)
+
+    monkeypatch.setattr(CollectorService, "fetch", recording_fetch)
+    analyzed = client.post("/api/requirements/analyze", json={
+        "raw_query": "Laptop lập trình RAM 16 GB, ngân sách dưới 20 triệu"
+    })
+    session_id = analyzed.json()["session_id"]
+    url = "https://shopee.vn/demo-i.1.2"
+
+    response = client.post("/api/search", json={
+        "session_id": session_id,
+        "direct_urls": [url],
+    })
+
+    assert response.status_code == 200, response.text
+    assert fetched == [url]
+    assert response.json()["recommendations"][0]["variant_id"] is not None
 
 
 def test_registered_public_api_observation_reaches_recommendation_pipeline(monkeypatch):
+    monkeypatch.setattr(LiveProductSource, "is_available", lambda self, db: True)
     async def fake_api_fetch(self, url):
         return SourceFetchResult(
             status=FetchStatus.SUCCESS,
@@ -69,6 +112,9 @@ def test_registered_public_api_observation_reaches_recommendation_pipeline(monke
                 name="Laptop Pipeline Test 16GB",
                 brand="Example",
                 category="laptop",
+                image_url="https://images.example/pipeline-test.jpg",
+                image_probe={"accepted": True, "checked_at": datetime.now(timezone.utc).isoformat(),
+                             "content_type": "image/jpeg", "content_sha256": sha256(b"pipeline-fixture").hexdigest()},
                 evidence=[
                     FieldEvidence(
                         field="name",

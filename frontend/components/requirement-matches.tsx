@@ -10,7 +10,7 @@ export function RequirementMatches({ items }: { items?: RequirementMatch[] }) {
   if (!items?.length) {
     return (
       <p className="mt-3 text-xs text-[var(--muted)]">
-        Backend chưa cung cấp đối chiếu từng yêu cầu cho kết quả này.
+        Chưa có dữ liệu để đối chiếu từng tiêu chí cho sản phẩm này.
       </p>
     );
   }

@@ -7,6 +7,7 @@ import time
 import re
 from collections import Counter
 from contextlib import AsyncExitStack
+from datetime import datetime, timezone
 from urllib.parse import urlsplit
 
 from app.services.extraction.product_page_validator import classify_source, identity_tokens, same_identity
@@ -490,6 +491,15 @@ class ProgressiveRetriever:
             with measure('verification_ms'):
                 proof = {**proof, **verify_search_metadata(source, proof)}
         proof.update(page_requested=True, page_fetched=fetched)
+        if proof.get('product_page_valid') or proof.get('source_observation_valid'):
+            # The verified page or same-source search metadata is the
+            # observation event. Record its time when the source has no
+            # trustworthy timestamp; never reinterpret a supplied naive
+            # timestamp as UTC.
+            observed_at = datetime.now(timezone.utc).isoformat()
+            for offer in concrete_proofs(proof):
+                if offer.get('observed_at') is None:
+                    offer['observed_at'] = observed_at
         proof.setdefault('verification_level', 'UNVERIFIED')
         proof.setdefault('product_page_confidence', 0)
         source.page_validation = proof
@@ -847,9 +857,9 @@ class ProgressiveRetriever:
                 async with asyncio.timeout(max(.001, self.remaining())), self.page_slots:
                     for url, origin in proof.pop('image_candidates', []):
                         async with self.domain_slot(url):
-                            loaded = await self.resolver._image_loads(url)
-                        if loaded:
-                            proof.update(image_url=url, image_source=origin)
+                            image_probe = await self.resolver.verify_image(url)
+                        if image_probe.get('accepted'):
+                            proof.update(image_url=url, image_source=origin, image_probe=image_probe)
                             if not source.page_validation.get('variant_offers'): source.image_url = url
                             break
             except Exception:

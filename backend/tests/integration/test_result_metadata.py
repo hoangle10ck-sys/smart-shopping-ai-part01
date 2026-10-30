@@ -11,9 +11,12 @@ from app.core.database import SessionLocal
 from app.main import app
 from app.models.product_offer import ProductOffer
 from app.models.recommendation_snapshot import RecommendationSnapshot
+from tests.fixtures.unified_catalog import seed_headphones
 
 
 def completed_session(client):
+    with SessionLocal() as db:
+        seed_headphones(db, count=1)
     analyzed = client.post("/api/requirements/analyze", json={"raw_query": "Tai nghe 500 nghìn để học online mic tốt"})
     session_id = analyzed.json()["session_id"]
     response = client.post("/api/search", json={"session_id": session_id})
@@ -24,7 +27,7 @@ def completed_session(client):
 def test_snapshot_mode_and_offer_time_survive_runtime_changes(monkeypatch):
     with TestClient(app) as client:
         session_id, original = completed_session(client)
-        assert original["data_mode"] == "demo"
+        assert original["data_mode"] == "unified"
         assert original["recommendations"][0]["last_checked_at"]
         with SessionLocal() as db:
             for offer in db.scalars(select(ProductOffer)):
@@ -33,7 +36,7 @@ def test_snapshot_mode_and_offer_time_survive_runtime_changes(monkeypatch):
         monkeypatch.setattr(get_settings(), "demo_mode", False)
         loaded = client.get(f"/api/search/{session_id}").json()
         assert loaded["demo_mode"] is False  # Runtime config is deliberately distinct.
-        assert loaded["data_mode"] == "demo"
+        assert loaded["data_mode"] == "unified"
         assert loaded["recommendations"] == original["recommendations"]
 
 
@@ -44,6 +47,7 @@ def test_old_snapshots_do_not_invent_provenance_or_timestamp():
             snapshot = db.get(RecommendationSnapshot, session_id)
             payload = deepcopy(snapshot.payload)
             payload["result"].pop("data_mode")
+            payload.pop("data_mode", None)
             for item in payload["result"]["recommendations"]:
                 item.pop("last_checked_at")
             snapshot.payload = payload
@@ -75,15 +79,16 @@ def test_live_snapshot_and_cache_hit_keep_mode_when_server_switches_to_demo(monk
     monkeypatch.setattr(search_service, "get_search_provider", MockSearchProvider)
     monkeypatch.setattr(ProductImageResolver, "_fetch_html", no_network)
     with TestClient(app) as client:
+        with SessionLocal() as db:
+            seed_headphones(db, count=1)
         ids = [client.post("/api/requirements/analyze", json={"raw_query": "Tai nghe 500 nghìn học online mic tốt"}).json()["session_id"] for _ in range(2)]
         monkeypatch.setattr(settings, "demo_mode", False)
         first = client.post("/api/search", json={"session_id": ids[0]})
         cached = client.post("/api/search", json={"session_id": ids[1]})
         assert first.status_code == cached.status_code == 200
-        assert first.json()["data_mode"] == cached.json()["data_mode"] == "live"
-        assert any("cache" in text for text in cached.json()["warnings"])
+        assert first.json()["data_mode"] == cached.json()["data_mode"] == "unified"
         monkeypatch.setattr(settings, "demo_mode", True)
         loaded = client.get(f"/api/search/{ids[1]}").json()
         assert loaded["demo_mode"] is True
-        assert loaded["data_mode"] == "live"
-        assert loaded["recommendations"] == first.json()["recommendations"]
+        assert loaded["data_mode"] == "unified"
+        assert loaded["recommendations"] == cached.json()["recommendations"]

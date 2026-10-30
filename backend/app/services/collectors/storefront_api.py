@@ -79,6 +79,8 @@ class WooCommerceStoreAPICollector:
         products: list[SourceFetchResult] = []
         warnings: list[str] = []
         seen_product_ids: set[str] = set()
+        from app.services.extraction.product_image_resolver import ProductImageResolver
+        image_verifier = ProductImageResolver(concurrency=4)
         per_page = min(bounded_products, 20)
         try:
             for page in range(1, bounded_pages + 1):
@@ -169,6 +171,22 @@ class WooCommerceStoreAPICollector:
                         product_result = self._product_result(
                             item, source, base, preflight.robots_checked_at
                         )
+                        observation = product_result.observation
+                        if observation is not None and observation.image_url:
+                            image_host = urlsplit(observation.image_url).hostname
+                            image_probe = await image_verifier.verify_image(
+                                observation.image_url,
+                                allowed_hosts={image_host} if image_host else set(),
+                            )
+                            if image_probe.get("accepted"):
+                                observation.image_source = "public_api_product_record"
+                                observation.image_probe = image_probe
+                            else:
+                                observation.image_url = None
+                                observation.image_probe = None
+                                warnings.append(
+                                    f"IMAGE_UNAVAILABLE:{image_probe.get('reason', 'verification_failed')}"
+                                )
                         if product_id is not None:
                             seen_product_ids.add(product_id)
                         products.append(product_result)

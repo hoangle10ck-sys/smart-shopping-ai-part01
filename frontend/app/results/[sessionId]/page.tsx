@@ -186,7 +186,7 @@ function SessionResults({ sessionId }: { sessionId: string }) {
                   data.data_mode === "live" ? "tag-green" : "tag-amber"
                 }`}
               >
-                {dataModeLabel(data.data_mode)}
+                {dataModeLabel(data.data_mode, data.recommendations)}
               </span>
               <p className="muted text-xs">
                 {data.data_semantics === "snapshot"
@@ -201,11 +201,11 @@ function SessionResults({ sessionId }: { sessionId: string }) {
                 onClick={() => void refreshSearch()}
                 className="btn btn-secondary !min-h-[34px] !px-3.5 !py-1 !text-xs font-semibold ml-auto"
               >
-                Refresh Search
+                Tìm lại sản phẩm
               </button>
             </div>
 
-            {data.status && data.status !== "COMPLETED" && (
+            {data.status && data.status !== "COMPLETED" && data.status !== "FAILED" && (
               <PipelineProgress phase={data.status} />
             )}
 
@@ -217,47 +217,8 @@ function SessionResults({ sessionId }: { sessionId: string }) {
                 onClick={() => setReload((value) => value + 1)}
                 className="btn btn-secondary mb-5"
               >
-                Tải lại trạng thái đã lưu
+                Tải lại kết quả
               </button>
-            )}
-
-            {!!data.unified_sources?.length && (
-              <section aria-label="Trạng thái nguồn tìm kiếm" className="surface mb-6 p-4">
-                <h2 className="font-semibold text-sm">Phạm vi tìm kiếm</h2>
-                <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-                  {data.unified_sources.map((source, index) => (
-                    <li key={`${source.source}-${index}`} className="rounded-lg border border-[var(--line)] p-3 text-xs">
-                      <span className="font-semibold">{source.source}</span>
-                      <span className="ml-2 text-[var(--muted)]">
-                        {source.error ? `Chưa truy vấn: ${source.error}` : source.available ? "Đã kiểm tra" : "Không khả dụng / bị giới hạn"}
-                      </span>
-                      {typeof source.matched_products === "number" && source.matched_products > 0 && (
-                        <span className="ml-2">{source.matched_products} kết quả phù hợp</span>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
-
-            {/* Warnings Alert */}
-            {!!data.warnings?.length && (
-              <div role="alert" className="notice mb-6">
-                <p className="font-semibold text-[#664913]">Lưu ý về dữ liệu</p>
-                <p className="mt-1 break-words text-xs leading-relaxed">{data.warnings[0]}</p>
-                {data.warnings.length > 1 && (
-                  <details className="mt-2.5">
-                    <summary className="cursor-pointer text-xs font-semibold hover:underline">
-                      Xem thêm {data.warnings.length - 1} lưu ý về nguồn
-                    </summary>
-                    <ul className="mt-2.5 space-y-1.5 pl-4 list-disc text-xs">
-                      {data.warnings.slice(1).map((warning, index) => (
-                        <li key={index} className="leading-relaxed">{warning}</li>
-                      ))}
-                    </ul>
-                  </details>
-                )}
-              </div>
             )}
 
             {/* Requirement Summary */}
@@ -272,15 +233,11 @@ function SessionResults({ sessionId }: { sessionId: string }) {
               research={data.data_mode === "research"}
             />
 
-            {/* Results Header Count */}
+            {/* Result count follows the active client-side filters. */}
             <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
               <h2 className="section-title text-base sm:text-lg">
-                {data.total_recommended} đề xuất dành cho bạn
+                {visibleProducts.length} sản phẩm phù hợp
               </h2>
-              <p className="muted font-mono text-xs">
-                {data.total_found} ứng viên · {data.total_filtered} sau bộ lọc ·{" "}
-                {Math.round(data.processing_time_ms)} ms
-              </p>
             </div>
 
             {/* Product Grid */}

@@ -21,6 +21,7 @@ export default function ProductPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [attempt, setAttempt] = useState(0);
+  const [imageInvalid, setImageInvalid] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -85,11 +86,15 @@ export default function ProductPage() {
     offer?.product_page_valid === true || offer?.source_observation_valid === true;
   const shopUrl = research ? null : safeSalesUrl(offer?.product_url, offerVerified);
   const sourceUrl = safeHttpUrl(offer?.evidence_url || offer?.product_url);
-  const image = snapshot
-    ? snapshot.image_url
-    : sortedOffers[0]?.product_page_valid || sortedOffers[0]?.source_observation_valid
-    ? sortedOffers[0].image_url
-    : product.image_url;
+  const image = snapshot?.image_url ?? sortedOffers.find((item) => item.image_evidence)?.image_url;
+  const imageEvidence = snapshot?.image_evidence ?? sortedOffers.find((item) => item.image_evidence)?.image_evidence;
+  if (!image || !imageEvidence || imageEvidence.status !== "VERIFIED" || imageEvidence.image_url !== image || imageInvalid) {
+    return (
+      <main id="main-content" tabIndex={-1} className="page-container page-content">
+        <ErrorState title="Ảnh sản phẩm không còn khả dụng hoặc thiếu bằng chứng xác minh" retry={() => { setImageInvalid(false); setAttempt((value) => value + 1); }} />
+      </main>
+    );
+  }
   const specs = Object.entries(identity.specifications || {}).filter(
     ([, value]) => value != null && String(value).trim()
   );
@@ -113,7 +118,7 @@ export default function ProductPage() {
       <section className="page-container grid gap-8 py-8 lg:grid-cols-2 lg:gap-14">
         {/* Product Media Display */}
         <div className="surface self-start overflow-hidden !rounded-2xl p-4 shadow-sm">
-          <ProductImage src={image} name={name} className="!aspect-square" />
+          <ProductImage src={image} evidence={imageEvidence} name={name} className="!aspect-square" onInvalid={() => setImageInvalid(true)} />
         </div>
 
         {/* Product Identity & Hero Pricing */}
@@ -154,7 +159,7 @@ export default function ProductPage() {
             <p className="muted mt-3 text-xs sm:text-sm">
               {identity.rating != null
                 ? `★ ${identity.rating.toFixed(1)}/5`
-                : "Chưa có rating"}
+                : "Chưa có đánh giá"}
               {identity.review_count != null
                 ? ` · ${identity.review_count.toLocaleString("vi-VN")} lượt đánh giá`
                 : ""}
@@ -164,7 +169,7 @@ export default function ProductPage() {
             {!research && (
               <div className="mt-5 rounded-2xl border border-[var(--line)] bg-[var(--surface-subtle)] p-5">
                 <p className="muted text-xs font-medium">
-                  {snapshot ? "Giá tại thời điểm đề xuất" : "Giá offer đã thu thập"}
+                  {snapshot ? "Giá tại thời điểm đề xuất" : "Giá đã ghi nhận"}
                 </p>
                 <p className="money mt-1.5 !text-3xl sm:!text-4xl font-extrabold text-[var(--foreground)]">
                   {formatMoney(offer?.price, offer?.currency)}
@@ -228,7 +233,7 @@ export default function ProductPage() {
               Đề xuất của phiên tìm kiếm
             </h2>
             <p className="muted mt-2 text-xs sm:text-sm">
-              AI Match, giá và bằng chứng dưới đây thuộc cùng kết quả đã lưu.
+              Điểm phù hợp, giá và thông tin nguồn dưới đây thuộc cùng kết quả đã lưu.
             </p>
             <RecommendationDetails product={snapshot} />
           </section>
@@ -286,7 +291,7 @@ export default function ProductPage() {
           <section className="surface p-6 sm:p-8">
             <h2 className="section-title text-lg sm:text-xl">Nơi bán trong catalog</h2>
             <p className="muted mt-1.5 text-xs sm:text-sm leading-relaxed">
-              Các offer catalog đã thu thập, sắp xếp theo giá. Dữ liệu này được trình bày riêng với kết quả đề xuất lịch sử phía trên.
+              Các mức giá đã ghi nhận trong danh mục, sắp xếp theo giá. Dữ liệu này được trình bày riêng với kết quả đề xuất lịch sử phía trên.
             </p>
             {sortedOffers.length ? (
               <ul className="mt-5 divide-y divide-[var(--line)]">

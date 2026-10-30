@@ -1,6 +1,7 @@
 import { test, expect, type Page } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import type { SearchPipelineResponse, ProductDetail } from "../types/shopping";
+import { installQaImageFixtures } from "./image-fixtures";
 
 const API = "http://127.0.0.1:18000";
 test.beforeEach(async ({ page, request }) => {
@@ -9,6 +10,7 @@ test.beforeEach(async ({ page, request }) => {
     const url = new URL(route.request().url());
     return url.hostname === "127.0.0.1" && ["13000", "18000"].includes(url.port) ? route.continue() : route.abort("blockedbyclient");
   });
+  await installQaImageFixtures(page);
 });
 async function result(page: Page): Promise<SearchPipelineResponse> {
   const analysis = await page.request.post(`${API}/api/requirements/analyze`, {data:{raw_query:"Tai nghe 500 nghìn để học online, mic tốt, pin lâu"}});
@@ -58,10 +60,10 @@ test('prompt chips do not submit; clarification and keyboard search preserve the
   await page.getByRole('button',{name:prompt}).click();
   await expect(page.getByLabel('Bạn đang tìm sản phẩm gì?')).toHaveValue(prompt);
   expect(analysisCalls).toBe(0);
-  await page.getByLabel('Bạn đang tìm sản phẩm gì?').fill('Tôi cần tai nghe 500 nghìn');
+  await page.getByLabel('Bạn đang tìm sản phẩm gì?').fill('Tôi cần một sản phẩm phù hợp');
   await page.getByLabel('Bạn đang tìm sản phẩm gì?').press('Control+Enter');
-  await expect(page.getByRole('region',{name:'Bổ sung nhu cầu'})).toBeVisible();
-  const answer='học online, mic tốt, pin lâu';
+  await expect(page.getByRole('form',{name:'Bổ sung nhu cầu'})).toBeVisible();
+  const answer='Tai nghe 500 nghìn, học online, mic tốt, pin lâu';
   await page.getByLabel('Câu trả lời của bạn').fill(answer);
   const response=page.waitForResponse(r => r.url()===`${API}/api/requirements/clarify`);
   await page.getByRole('button',{name:'Tiếp tục với AI →'}).click();
@@ -129,26 +131,29 @@ test('detail hero keeps historical price and score separate from newer catalog o
   await expect(page.getByRole('heading',{name:'Nơi bán trong catalog'}).locator('..')).toContainText('99.000.000đ');
 });
 
-test('comparison missing score and broken image stay unavailable, never zero or in stock', async ({page},info) => {
+test('comparison is unavailable when a verified image fails and one product remains', async ({page},info) => {
   const data=await result(page);
   const response=await page.request.post(`${API}/api/comparisons`,{data:{session_id:data.session_id,product_ids:data.recommendations.slice(0,2).map(p=>p.product_id)}});
   expect(response.ok()).toBeTruthy();
   const comparison=await response.json();
+  const rejectedProductId=comparison.result.products[0].product_id;
+  comparison.result.products[0].image_url='https://qa-catalog.example/images/broken-comparison.jpg';
+  if(comparison.result.products[0].image_evidence) comparison.result.products[0].image_evidence.image_url=comparison.result.products[0].image_url;
   comparison.result.products[0].ai_score=null;
   comparison.result.products[0].confidence=null;
-  comparison.result.products[0].image_url='http://127.0.0.1:13000/broken-comparison.jpg';
   comparison.result.products[0].best_offer.availability=null;
+  comparison.result.products[1].ai_score=null;
+  comparison.result.products[1].confidence=null;
+  comparison.result.products[1].best_offer.availability=null;
   await page.route('**/broken-comparison.jpg',route=>route.fulfill({status:404,body:'missing'}));
   await page.route(`${API}/api/comparisons/${comparison.id}`,route=>route.fulfill({json:comparison}));
   await page.goto(`/compare/${comparison.id}`);
-  const card=page.getByRole('article').first();
-  await expect(card).toContainText('Chưa có dữ liệu');
-  await expect(card).not.toContainText('0.00/100');
-  await expect(card).toContainText('Chưa rõ tồn kho');
-  await expect(card.getByText('Chưa rõ tồn kho')).not.toHaveClass(/tag-green|tag-red/);
-  await expect(card.getByText('Chưa có ảnh sản phẩm',{exact:true})).toBeVisible();
-  await expect(card.getByRole('link',{name:'Xem chi tiết'})).toHaveAttribute('href',`/products/${comparison.result.products[0].product_id}?sessionId=${data.session_id}`);
-  await page.screenshot({path:info.outputPath('comparison-missing-data.png'),fullPage:true});
+  await expect.poll(async()=>page.getByRole('article').count()).toBe(0);
+  await expect(page.getByRole('heading',{level:2})).toBeVisible();
+  await expect(page.locator('main')).not.toContainText(String(rejectedProductId));
+  await expect(page.locator('main')).not.toContainText(/\b(FRESH|STALE|UNKNOWN)\b|SKU:/);
+  await expect(page.locator('main')).not.toContainText('0.00/100');
+  await page.screenshot({path:info.outputPath('comparison-broken-image-filtered.png'),fullPage:true});
 });
 
 test('history error can retry into an honest empty state', async ({page},info) => {
@@ -164,8 +169,8 @@ test('history error can retry into an honest empty state', async ({page},info) =
   await page.screenshot({path:info.outputPath('history-empty.png'),fullPage:true});
 });
 
-test('archived Live TV, motorcycle and phone snapshots render without substituting Demo offers', async ({page},info) => {
-  // Read-only replay of the actual previous Live audit; no provider calls and no production DB.
+test('archived snapshots without verified image evidence are excluded', async ({page},info) => {
+  // Old snapshot payloads predate image proof. They must not regain display eligibility.
   const audit=JSON.parse(readFileSync('../docs/LIVE_TV_CHECK.json','utf8'));
   const base=await result(page);
   for (const index of [0,2,3]) {
@@ -174,16 +179,11 @@ test('archived Live TV, motorcycle and phone snapshots render without substituti
     const session_id=`ui-replay-${index}`;
     await page.route(`${API}/api/search/${session_id}`,route => route.fulfill({json:{...base,session_id,requirement:saved.requirement,data_mode:'live',recommendations,total_found:saved.counts.total_found,total_filtered:saved.counts.total_filtered,total_recommended:recommendations.length,warnings:[]}}));
     await page.goto(`/results/${session_id}`);
-    await expect(page.getByRole('article')).toHaveCount(recommendations.length);
-    await expect(page.getByText('Live Data — dữ liệu đã thu thập',{exact:true})).toBeVisible();
-    for (let j=0;j<recommendations.length;j++) {
-      const card=page.getByRole('article').nth(j), original=saved.recommendations[j];
-      await expect(card.getByRole('heading',{name:original.name,exact:true})).toBeVisible();
-      await expect(card).toContainText(`${original.price.toLocaleString('vi-VN')}đ`);
-      await expect(card.getByRole('link',{name:'Xem sản phẩm ↗',exact:true})).toHaveAttribute('href',original.product_url);
+    await expect(page.getByRole('article')).toHaveCount(0);
+    for (const item of recommendations) {
+      await expect(page.locator('main')).not.toContainText(String(item.name));
     }
-    if(index===2) await expect(page.getByText('Chưa có ảnh sản phẩm',{exact:true})).toHaveCount(recommendations.length);
     await noPageOverflow(page);
-    await page.screenshot({path:info.outputPath(`live-replay-${index}.png`),fullPage:true});
+    await page.screenshot({path:info.outputPath(`unverified-image-replay-${index}.png`),fullPage:true});
   }
 });

@@ -66,36 +66,3 @@ Không xem việc trình bày đề xuất là quyền triển khai. Có thể t
 Một nhiệm vụ chỉ được xem là hoàn thành khi: yêu cầu và phạm vi được đáp ứng; chức năng liên quan được kiểm tra; không có regression đã biết chưa báo cáo; dữ liệu/nguồn được mô tả trung thực; task/checkpoint cập nhật đúng khi được phép; mọi hạn chế chưa xác minh được nói rõ.
 
 Mục tiêu cuối cùng: Chủ động hoàn thiện kế hoạch được giao, nhưng mọi thay đổi lớn phải có lý do, bằng chứng và được chủ dự án phê duyệt. Không phá vỡ kiến trúc, nghiệp vụ, dữ liệu hoặc quy tắc hiện hành.
-
-8. Quyền hạn và thứ tự áp dụng quy tắc
-- Tuânatuân thủ các chỉ dẫn có hiệu lực cao hơn và yêu cầu mới nhất của người dùng, trong phạm vi an toàn và được phép. Bảo toàn quyết định nghiệp vụ, kiến trúc và tiêu chí nghiệm thu đã được người dùng phê duyệt.
-- AGENTS.md gốc quy định vận hành chung cho repository. AGENTS.md ở thư mục con chỉ bổ sung quy tắc chuyên biệt; không được nới lỏng giới hạn an toàn hoặc vượt quyết định đã được phê duyệt.
-- CLAUDE.md và hướng dẫn do IDE/extension sinh ra chỉ áp dụng cho agent/công cụ tương ứng; nội dung tự sinh không tự động trở thành yêu cầu nghiệp vụ của dự án.
-- Không lấy trạng thái mã nguồn hiện tại làm căn cứ để hủy bỏ hoặc thay thế yêu cầu nghiệp vụ đã được phê duyệt. Nếu thẩm quyền giữa các tài liệu chưa rõ, dừng phần bị ảnh hưởng và hỏi người dùng.
-
-9. Chế độ READ-ONLY
-- Trong nhiệm vụ audit, review, chẩn đoán hoặc được yêu cầu READ-ONLY: chỉ đọc và báo cáo. Không sửa code, TASKS, MISS, Memory Bank, database, cấu hình hoặc tài liệu; không tạo file/artifact trong repository; không chạy thao tác có tác dụng phụ ngoài phạm vi đọc.
-- Không cập nhật trạng thái nhiệm vụ hoặc tài liệu tiến độ trong READ-ONLY. Đề xuất thay đổi không đồng nghĩa với quyền thực hiện.
-
-10. Quyền triển khai nhiệm vụ
-- Backlog và checklist mô tả kế hoạch, không tự cấp quyền triển khai tất cả mục. Chủ động hoàn thành phần nằm trong nhiệm vụ người dùng đã giao/phê duyệt, đúng phạm vi và điều kiện nghiệm thu.
-- Không tự mở rộng phạm vi, thay mục tiêu hoặc tiêu chí nghiệm thu, hay triển khai mục đang chờ phê duyệt. Nếu phát sinh công việc ngoài phạm vi, nêu riêng và hỏi người dùng.
-
-11. Trạng thái kiểm chứng và kết quả lệnh
-- Dùng các nhãn riêng biệt: CODE_INSPECTED (đã đọc source/config, chưa chứng minh hoạt động); OFFLINE_TESTED (kiểm thử offline đã chạy và kết quả được xác nhận); LIVE_VERIFIED (đã xác minh Live theo quyền nguồn, tiêu chí và bằng chứng); NOT_RUN (chưa chạy); UNVERIFIED (đã thử nhưng chưa xác nhận được kết quả).
-- Không đánh đồng các trạng thái trên hoặc suy ra PASS từ việc đọc code, output hiển thị, fixture hay mã thoát do shell in ra.
-- Chỉ báo lệnh thành công khi executor xác nhận tiến trình hoàn tất và exit code đáng tin cậy. Nếu không quan sát được completion hoặc exit code mâu thuẫn, ghi UNVERIFIED; không báo PASS và không lặp lệnh tương tự nếu chưa có phương pháp/bằng chứng mới.
-
-12. Cập nhật Memory Bank và tài liệu tiến độ
-- Chỉ cập nhật Memory Bank khi được giao/cho phép và có thông tin ngắn gọn, hữu ích cho phiên sau, đã được xác minh. Không điền placeholder chỉ để hoàn thành hình thức; không sao chép checklist vào Memory Bank.
-- TASKS là nguồn checklist và tiêu chí nghiệm thu chi tiết theo track; MISS là tổng hợp tiến độ và dẫn đến nguồn chi tiết; Memory Bank lưu ngữ cảnh ngắn. Không dùng các nguồn này thay thế lẫn nhau.
-- Khi được phép cập nhật tiến độ, giữ lịch sử/checkpoint; ghi rõ ngày, phạm vi, bằng chứng và trạng thái kiểm chứng. Không xóa nội dung cũ chỉ để làm số liệu nhất quán.
-
-13. Kiểm thử theo phạm vi
-- Ưu tiên targeted tests, sau đó chạy regression/lint/build phù hợp với phạm vi và rủi ro. Tuân thủ nguyên vẹn tiêu chí nghiệm thu đã được phê duyệt; không hạ tiêu chí để báo hoàn thành.
-- Nếu không thể chạy kiểm thử đã yêu cầu, ghi NOT_RUN cùng lý do và giới hạn. Không thực hiện Live, API trả phí hoặc tác vụ có tác dụng phụ trừ khi được phép theo phạm vi và cổng phê duyệt.
-
-14. Phê duyệt thay đổi lớn
-- Phải xin phê duyệt trước khi thay đổi kiến trúc, luồng nghiệp vụ, API contract, database schema, logic scoring/ranking, chính sách thu thập dữ liệu, dependency/công nghệ; refactor diện rộng hoặc xóa module quan trọng.
-- Đề xuất cần nêu: (1) vấn đề và bằng chứng; (2) lý do; (3) phương án giữ nguyên; (4) phương án nâng cấp; (5) lợi ích; (6) rủi ro/tác động; (7) tương thích ngược; (8) kế hoạch kiểm thử và khôi phục.
-- Chỉ triển khai phương án được người dùng chấp thuận rõ ràng. Các cổng phê duyệt tại mục 5 vẫn áp dụng.

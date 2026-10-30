@@ -9,8 +9,9 @@ from app.core.database import SessionLocal
 from app.models.product import Product
 from app.models.raw_product_candidate import RawProductCandidate
 from app.models.recommendation_snapshot import RecommendationSnapshot
-from app.services.search import search_service
 from app.services.search.base import SearchResult
+from app.services.search.multi_provider import MultiSearchProvider
+from app.services.search.unified.external_sources import LiveProductSource
 from app.services.extraction.product_image_resolver import ProductImageResolver
 from tests.fixtures.sales_pages import sales_page
 
@@ -22,14 +23,15 @@ def test_redmi_category_and_separate_fetch_validation_timings_survive_get(monkey
                           live_search_max_queries=2).items(): monkeypatch.setattr(settings,key,value)
     url='https://merchant.test/xiaomi-redmi-note-13-5g-8gb-128gb'
     name='Xiaomi Redmi Note 13 5G 8GB 128GB - Cũ Đẹp'
-    html=sales_page(name=name,brand='Xiaomi',offers={'@type':'Offer','price':3690000,'priceCurrency':'VND',
+    html=sales_page(name=name,brand='Xiaomi',image='https://merchant.test/images/redmi-note-13-5g.jpg',offers={'@type':'Offer','price':3690000,'priceCurrency':'VND',
         'availability':'https://schema.org/'+stock,'seller':{'name':'Fixture merchant'}})
     class Provider:
         async def search(self,q,limit):return [SearchResult(title=name,url=url,content='')]
     async def fetch(self,link):
         assert link==url
         return link,html
-    monkeypatch.setattr(search_service,'get_search_provider',Provider)
+    monkeypatch.setattr(MultiSearchProvider,'__init__',lambda self, **kwargs:setattr(self,'providers',[Provider()]))
+    monkeypatch.setattr(LiveProductSource,'is_available',lambda self,db:True)
     monkeypatch.setattr(ProductImageResolver,'_fetch_html',fetch)
     with TestClient(app) as client:
         analysis=client.post('/api/requirements/analyze',json={'raw_query':'Tôi cần điện thoại khoảng 10 triệu, camera tốt, pin lâu'}).json()

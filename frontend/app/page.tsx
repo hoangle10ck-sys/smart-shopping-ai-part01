@@ -5,7 +5,7 @@ import type { FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { Icon } from "@/components/icon";
 import { PipelineProgress } from "@/components/pipeline-progress";
-import { analyzeRequirement, executeSearch, searchErrorMessage } from "@/lib/api";
+import { analyzeRequirement, clarifyRequirement, executeSearch, searchErrorMessage } from "@/lib/api";
 
 const examples = [
   "Máy tính",
@@ -20,6 +20,8 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [phase, setPhase] = useState<"analyze" | "search">("analyze");
   const [error, setError] = useState<string | null>(null);
+  const [clarification, setClarification] = useState<{ sessionId: string; question: string } | null>(null);
+  const [answer, setAnswer] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -36,7 +38,12 @@ export default function Home() {
       const analyzed = await analyzeRequirement(value);
       if (!analyzed.session_id) throw new Error("Không thể tạo phiên tìm kiếm.");
       if (analyzed.needs_clarification) {
-        throw new Error(analyzed.clarification_question || "Chưa nhận diện được sản phẩm. Hãy thử nhập tên cụ thể, ví dụ: máy tính hoặc điện thoại.");
+        setClarification({
+          sessionId: analyzed.session_id,
+          question: analyzed.clarification_question || "Bạn muốn tìm loại sản phẩm nào?",
+        });
+        setAnswer("");
+        return;
       }
 
       setPhase("search");
@@ -50,8 +57,36 @@ export default function Home() {
     }
   }
 
+  async function handleClarify(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!clarification) return;
+    setLoading(true);
+    setError(null);
+    setPhase("analyze");
+    try {
+      const clarified = await clarifyRequirement(clarification.sessionId, answer.trim());
+      if (clarified.needs_clarification) {
+        setClarification({
+          sessionId: clarified.session_id,
+          question: clarified.clarification_question || "Bạn muốn bổ sung thông tin nào?",
+        });
+        setAnswer("");
+        return;
+      }
+      setPhase("search");
+      const result = await executeSearch(clarified.session_id);
+      if (!result.session_id) throw new Error("Tìm kiếm chưa trả về phiên kết quả.");
+      setClarification(null);
+      router.push(`/results/${result.session_id}`);
+    } catch (caught) {
+      setError(searchErrorMessage(caught));
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
-    <main>
+    <main id="main-content" tabIndex={-1}>
       <section className="page-container pt-12 sm:pt-20">
         <div className="mx-auto max-w-3xl text-center">
           <p className="eyebrow">Mua sắm thông minh</p>
@@ -66,7 +101,13 @@ export default function Home() {
               id="shopping-query"
               aria-label="Bạn đang tìm sản phẩm gì?"
               value={query}
-              onChange={(event) => { setQuery(event.target.value); setError(null); }}
+              onChange={(event) => { setQuery(event.target.value); setError(null); setClarification(null); }}
+              onKeyDown={(event) => {
+                if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
+                  event.preventDefault();
+                  event.currentTarget.form?.requestSubmit();
+                }
+              }}
               rows={4}
               disabled={loading}
               placeholder="Ví dụ: Máy tính; hoặc laptop khoảng 20 triệu để học lập trình…"
@@ -85,6 +126,30 @@ export default function Home() {
               </button>
             </div>
           </form>
+
+          {clarification && (
+            <form aria-label="Bổ sung nhu cầu" onSubmit={handleClarify} className="surface mt-4 p-5 text-left sm:p-7">
+              <p className="field-label mb-2">{clarification.question}</p>
+              <label htmlFor="clarification-answer" className="field-label">Câu trả lời của bạn</label>
+              <textarea
+                id="clarification-answer"
+                value={answer}
+                onChange={(event) => setAnswer(event.target.value)}
+                onKeyDown={(event) => {
+                  if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
+                    event.preventDefault();
+                    event.currentTarget.form?.requestSubmit();
+                  }
+                }}
+                rows={3}
+                disabled={loading}
+                className="field mt-2"
+              />
+              <button type="submit" disabled={loading || answer.trim().length < 2} className="btn btn-primary mt-4">
+                {loading ? "Đang phân tích…" : "Tiếp tục với AI →"}
+              </button>
+            </form>
+          )}
 
           <section aria-label="Gợi ý tìm kiếm" className="mt-6">
             <p className="muted mb-3 text-xs font-semibold">Thử tìm nhanh</p>
@@ -106,9 +171,9 @@ export default function Home() {
         </div>
         <div className="grid gap-6 md:grid-cols-3">
           {[
-            { icon: "search", title: "Nhập điều bạn cần", text: "Tên sản phẩm là đủ; ngân sách và mục đích chỉ giúp đề xuất sát hơn." },
-            { icon: "layers", title: "Tự động tìm kiếm", text: "Hệ thống phân tích yêu cầu và kiểm tra các nguồn dữ liệu khả dụng." },
-            { icon: "shield", title: "Xem đề xuất có cơ sở", text: "Đối chiếu sản phẩm với tiêu chí và bằng chứng thu thập được." },
+            { icon: "search" as const, title: "Nhập điều bạn cần", text: "Tên sản phẩm là đủ; ngân sách và mục đích chỉ giúp đề xuất sát hơn." },
+            { icon: "layers" as const, title: "Tự động tìm kiếm", text: "Hệ thống phân tích yêu cầu và kiểm tra các nguồn dữ liệu khả dụng." },
+            { icon: "shield" as const, title: "Xem đề xuất có cơ sở", text: "Đối chiếu sản phẩm với tiêu chí và bằng chứng thu thập được." },
           ].map((item) => (
             <div key={item.title} className="surface p-6">
               <Icon name={item.icon} width="20" height="20" />

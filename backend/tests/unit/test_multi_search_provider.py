@@ -9,15 +9,46 @@ from app.services.search.multi_provider import MultiSearchProvider
 
 
 def test_multi_provider_includes_only_configured_providers(monkeypatch):
-    settings = SimpleNamespace(tavily_api_key="key", searxng_base_url="https://search.local")
+    settings = SimpleNamespace(
+        tavily_api_key="key",
+        searxng_base_url="https://search.local",
+        search_timeout_seconds=15,
+        search_retry_count=0,
+    )
     monkeypatch.setattr("app.services.search.multi_provider.get_settings", lambda: settings)
+    monkeypatch.setattr("app.services.search.tavily_provider.get_settings", lambda: settings)
+    monkeypatch.setattr("app.services.search.searxng_provider.get_settings", lambda: settings)
     provider = MultiSearchProvider()
     assert len(provider.providers) == 2
 
 
-def test_multi_provider_merges_and_deduplicates_results(monkeypatch):
-    settings = SimpleNamespace(tavily_api_key="key", searxng_base_url="https://search.local")
+def test_product_ingestion_pipeline_can_exclude_discovery_only_searxng(monkeypatch):
+    settings = SimpleNamespace(
+        tavily_api_key="key",
+        searxng_base_url="http://searxng:8080",
+        search_timeout_seconds=15,
+        search_retry_count=0,
+    )
     monkeypatch.setattr("app.services.search.multi_provider.get_settings", lambda: settings)
+    monkeypatch.setattr("app.services.search.tavily_provider.get_settings", lambda: settings)
+    monkeypatch.setattr("app.services.search.searxng_provider.get_settings", lambda: settings)
+
+    provider = MultiSearchProvider(include_searxng=False)
+
+    assert len(provider.providers) == 1
+    assert provider.providers[0].__class__.__name__ == "TavilyProvider"
+
+
+def test_multi_provider_merges_and_deduplicates_results(monkeypatch):
+    settings = SimpleNamespace(
+        tavily_api_key="key",
+        searxng_base_url="https://search.local",
+        search_timeout_seconds=15,
+        search_retry_count=0,
+    )
+    monkeypatch.setattr("app.services.search.multi_provider.get_settings", lambda: settings)
+    monkeypatch.setattr("app.services.search.tavily_provider.get_settings", lambda: settings)
+    monkeypatch.setattr("app.services.search.searxng_provider.get_settings", lambda: settings)
     provider = MultiSearchProvider()
 
     class FixtureProvider:

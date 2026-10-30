@@ -32,3 +32,9 @@ test("hard maximum and explicit range have distinct labels", () => {
 test("historical missing budget mode retains legacy labels", () => {
   assert.match(render({ budget_max: 33000000 }), /Ngân sách tối đa/);
 });
+
+test("customer summary omits internal parser confidence and labels", () => {
+  const html = render({ category: "laptop", currency: "VND", confidence: 0.75 });
+  assert.doesNotMatch(html, /Confidence phân tích|75\.0%/);
+  assert.doesNotMatch(html, /Tiền tệ:/);
+});

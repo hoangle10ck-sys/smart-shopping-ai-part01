@@ -12,6 +12,7 @@ from app.main import app
 from app.models.recommendation import (
     Recommendation,
 )
+from tests.fixtures.unified_catalog import seed_headphones
 
 
 client = TestClient(app)
@@ -21,6 +22,9 @@ def create_completed_search() -> tuple[
     str,
     dict,
 ]:
+    with SessionLocal() as db:
+        seed_headphones(db)
+
     analyze = client.post(
         "/api/requirements/analyze",
         json={
@@ -87,7 +91,7 @@ def test_api_returns_confidence_and_explanation() -> None:
         first["explanation"][
             "generation_mode"
         ]
-        == "demo"
+        == "fallback"
     )
 
 

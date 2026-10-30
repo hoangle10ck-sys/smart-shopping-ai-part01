@@ -10,11 +10,13 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.core.database import get_db
+from app.api.guest_owner import get_guest_owner, require_owned_session
 from app.models.feedback import Feedback
 from app.models.product import Product
 from app.models.search_session import (
     SearchSession,
 )
+from app.models.user import User
 from app.schemas.feedback import (
     FeedbackCreateRequest,
     FeedbackListResponse,
@@ -38,23 +40,11 @@ router = APIRouter(
 def create_feedback(
     payload: FeedbackCreateRequest,
     db: Session = Depends(get_db),
+    owner: User = Depends(get_guest_owner),
 ) -> FeedbackResponse:
     """Store recommendation usefulness feedback."""
 
-    search_session = db.get(
-        SearchSession,
-        payload.session_id,
-    )
-
-    if search_session is None:
-        raise HTTPException(
-            status_code=(
-                status.HTTP_404_NOT_FOUND
-            ),
-            detail=(
-                "Không tìm thấy search session."
-            ),
-        )
+    require_owned_session(db, payload.session_id, owner)
 
     if payload.product_id is not None:
         product = db.get(
@@ -96,23 +86,11 @@ def create_feedback(
 def get_session_feedback(
     session_id: str,
     db: Session = Depends(get_db),
+    owner: User = Depends(get_guest_owner),
 ) -> FeedbackListResponse:
     """Return all feedback for one search session."""
 
-    search_session = db.get(
-        SearchSession,
-        session_id,
-    )
-
-    if search_session is None:
-        raise HTTPException(
-            status_code=(
-                status.HTTP_404_NOT_FOUND
-            ),
-            detail=(
-                "Không tìm thấy search session."
-            ),
-        )
+    require_owned_session(db, session_id, owner)
 
     feedback_entries = list(
         db.scalars(

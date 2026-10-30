@@ -1,0 +1,37 @@
+\chapter{CƠ SỞ LÝ THUYẾT VÀ CÔNG NGHỆ}
+
+\section{Tìm kiếm sản phẩm bằng ngôn ngữ tự nhiên}
+
+Yêu cầu mua sắm thường kết hợp tên danh mục và các thuộc tính như mức giá, mục đích, thương hiệu hoặc thông số. Hệ thống phân tích câu nhập thành cấu trúc gồm danh mục, khoảng ngân sách, tiền tệ, mục đích, thương hiệu, yêu cầu, mức ưu tiên và điều kiện loại trừ. Khi thông tin quan trọng chưa đủ, giao diện có thể yêu cầu người dùng bổ sung trước khi tìm kiếm.
+
+Kết quả phân tích là cách diễn giải yêu cầu, không phải bằng chứng rằng sản phẩm thực tế đáp ứng yêu cầu. Việc một thông số được xem là phù hợp cần dựa vào giá trị sản phẩm có trong dữ liệu và trạng thái đối chiếu tương ứng.
+
+\section{Tìm kiếm hợp nhất và khám phá nguồn}
+
+Tìm kiếm hợp nhất phối hợp nhiều nguồn qua các adapter có giao diện thống nhất. Catalog nội bộ và catalog nghiên cứu trả về dữ liệu sản phẩm đã lưu. Provider web, khi được cấu hình, có thể cung cấp trang hoặc URL ứng viên. Mỗi nguồn có trạng thái và giới hạn riêng; lỗi một nguồn có thể được ghi nhận trong cảnh báo trong khi các nguồn khác vẫn trả kết quả.
+
+SearXNG là công cụ khám phá kết quả web. Tiêu đề và URL từ SearXNG chỉ là gợi ý để xem xét; chúng không xác minh danh tính SKU, giá, tình trạng còn hàng, người bán hay đánh giá. Ở cấu hình hiện tại, SearXNG là discovery-only và không tự chuyển ứng viên thành offer thương mại.
+
+\section{Hệ gợi ý và giải thích}
+
+Sau khi thu thập ứng viên, backend áp dụng điều kiện lọc cứng và chấm điểm bằng Python. Công thức tương thích hiện hành được mô tả trong tài liệu kiến trúc:
+\begin{equation}
+ S = 0{,}25B + 0{,}30R + 0{,}20P + 0{,}10A + 0{,}05V + 0{,}10N,
+\end{equation}
+trong đó $B$ là điểm ngân sách, $R$ là điểm yêu cầu sản phẩm, $P$ là điểm mục đích, $A$ là điểm rating, $V$ là điểm số lượng đánh giá và $N$ là điểm nguồn. Các thành phần được chuẩn hóa về thang 0--100 trước khi kết hợp. Giá trị thiếu hoặc chưa biết không được tự động coi là đạt yêu cầu. Điểm mục đích là heuristic dựa trên bằng chứng văn bản, không phải kết quả benchmark độc lập.
+
+LLM có thể hỗ trợ phân tích yêu cầu hoặc diễn đạt lời giải thích nếu provider được cấu hình. LLM không quyết định điểm số cuối cùng và không được dùng để tự tạo giá, tồn kho, rating hoặc dữ kiện sản phẩm. Khi provider không dùng được, hệ thống có thể dùng phân tích hoặc giải thích dự phòng xác định được.
+
+\section{Provenance, snapshot và dữ liệu thời gian}
+
+Provenance ghi lại nguồn, liên kết, thời điểm quan sát và trạng thái xác minh của dữ kiện. Snapshot lưu kết quả đã hiển thị của một phiên để khi người dùng mở lại lịch sử, giá trị và bằng chứng không bị âm thầm thay bằng dữ liệu mới. Trang chi tiết catalog hiện tại có thể khác với snapshot cũ; hai khái niệm này cần được phân biệt.
+
+\section{Xác minh ảnh sản phẩm}
+
+Có URL ảnh chưa đủ để kết luận ảnh đúng sản phẩm. Hệ thống cần liên hệ ảnh với danh tính sản phẩm hoặc trang sản phẩm đã xác minh, kiểm tra phản hồi tải ảnh, loại nội dung, chữ ký dữ liệu raster, kích thước tải có giới hạn và các dấu hiệu mâu thuẫn như model khác. Bằng chứng xác minh có thời hạn; ảnh bị lỗi hoặc không còn bằng chứng phù hợp không được thay bằng ảnh AI, ảnh mặc định hay ảnh của sản phẩm tương tự.
+
+Các kiểm tra tự động này tăng độ tin cậy về liên kết nguồn và tính toàn vẹn tệp, nhưng không tương đương với việc con người quan sát và xác nhận bằng mắt từng ảnh. Giới hạn này được giữ rõ trong phần đánh giá.
+
+\section{Công nghệ sử dụng}
+
+Frontend được xây dựng bằng Next.js, React, TypeScript và Tailwind CSS. Backend dùng FastAPI, Pydantic và SQLAlchemy. Cơ sở dữ liệu phát triển cục bộ có thể dùng SQLite; Docker Compose dùng PostgreSQL. Kiểm thử backend sử dụng pytest, kiểm thử frontend dùng Node test runner, và luồng trình duyệt dùng Playwright. Phiên bản cụ thể cần được đối chiếu lại với lockfile và cấu hình tại ngày nộp báo cáo.

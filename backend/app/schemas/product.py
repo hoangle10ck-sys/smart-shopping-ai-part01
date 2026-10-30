@@ -6,6 +6,7 @@ from typing import Any
 
 from pydantic import BaseModel, Field
 from app.schemas.recommendation import RecommendationItem
+from app.schemas.product_image import ProductImageEvidence
 
 
 class ProductOfferItem(BaseModel):
@@ -26,6 +27,8 @@ class ProductOfferItem(BaseModel):
     freshness_status: str | None = None
     last_verified_at: datetime | None = None
     image_url: str | None = None
+
+    image_evidence: ProductImageEvidence | None = None
     image_source: str | None = None
     product_page_valid: bool | None = None
     source_observation_valid: bool | None = None
@@ -78,6 +81,8 @@ class ProductDetailResponse(BaseModel):
     normalized_name: str | None = None
 
     image_url: str | None = None
+
+    image_evidence: ProductImageEvidence | None = None
 
     rating: float | None = None
 

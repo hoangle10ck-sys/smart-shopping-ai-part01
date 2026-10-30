@@ -26,12 +26,6 @@ export function RecommendationDetails({
   const evidence = record(product.evidence);
   const url = safeHttpUrl(product.product_url);
   const timestamp = product.last_checked_at ? new Date(product.last_checked_at) : null;
-  const modeNames: Record<string, string> = {
-    demo: "Giải thích Demo",
-    openai: "Giải thích OpenAI",
-    gemini: "Giải thích Gemini",
-    fallback: "Giải thích dự phòng",
-  };
   const summary =
     typeof explanation.summary === "string"
       ? explanation.summary
@@ -91,10 +85,10 @@ export function RecommendationDetails({
         <summary className="cursor-pointer font-bold text-slate-950">Điểm thành phần</summary>
         <div className="mt-3 rounded-xl border border-[var(--line)] bg-[var(--surface-subtle)] p-3.5">
           <p className="text-xs font-medium text-[var(--foreground)]">
-            Final AI Match: <strong className="font-mono text-sm text-[var(--brand)]">{displayScore(product.score?.final_score)}</strong>
+            Mức độ phù hợp: <strong className="font-mono text-sm text-[var(--brand)]">{displayScore(product.score?.final_score)}</strong>
           </p>
           <p className="mt-1 text-[11px] text-[var(--muted)]">
-            Điểm gốc theo thang 100 và trọng số của từng tiêu chí trong kết quả này.
+            Điểm được tính từ các tiêu chí bên dưới để giúp bạn so sánh sản phẩm; đây không phải xác suất mua phù hợp.
           </p>
           <table className="mt-3 w-full text-left text-xs">
             <caption className="sr-only">Điểm gốc và trọng số</caption>
@@ -123,22 +117,13 @@ export function RecommendationDetails({
         <summary className="cursor-pointer font-bold text-slate-950">Vì sao được đề xuất?</summary>
         <div className="mt-3 space-y-2.5">
           <p className="text-xs leading-relaxed text-[var(--foreground)]">
-            {summary || "Backend chưa cung cấp phần tóm tắt giải thích."}
+            {summary || "Chưa có phần giải thích cho đề xuất này."}
           </p>
-          {typeof explanation.generation_mode === "string" && (
-            <p className="text-[11px] font-medium text-[var(--brand)]">
-              {modeNames[explanation.generation_mode] || "Chưa rõ cách tạo giải thích"}
-            </p>
-          )}
           <Notes title="Lý do phù hợp" items={whyFit} />
           <Notes title="Ưu điểm" items={[...textList(product.pros), ...textList(explanation.pros)]} />
           <Notes
             title="Hạn chế / đánh đổi"
             items={[...textList(product.cons), ...textList(explanation.cons), ...textList(explanation.tradeoffs)]}
-          />
-          <Notes
-            title="Lưu ý từ backend"
-            items={[...textList(explanation.cautions), ...textList(explanation.evidence_notes)]}
           />
         </div>
       </details>
@@ -179,7 +164,7 @@ export function RecommendationDetails({
               })}
             </ul>
           ) : (
-            <p className="text-xs text-[var(--muted)]">Chưa có evidence có cấu trúc cho kết quả này.</p>
+            <p className="text-xs text-[var(--muted)]">Chưa có thông tin đối chiếu chi tiết cho kết quả này.</p>
           )}
 
           {!research && (
@@ -193,11 +178,11 @@ export function RecommendationDetails({
                 <dd className="font-mono">{url ? new URL(url).hostname : "Chưa có URL hợp lệ"}</dd>
               </div>
               <div>
-                <dt className="text-[var(--muted)] font-medium">Lần kiểm tra offer ghi trong snapshot</dt>
+                <dt className="text-[var(--muted)] font-medium">Thời điểm ghi nhận giá và tình trạng</dt>
                 <dd>
                   {timestamp && !Number.isNaN(timestamp.getTime())
                     ? timestamp.toLocaleString("vi-VN")
-                    : "Backend chưa lưu thời điểm kiểm tra cho kết quả này"}
+                    : "Chưa ghi nhận thời điểm kiểm tra giá và tình trạng."}
                 </dd>
               </div>
               <div>
@@ -216,11 +201,11 @@ export function RecommendationDetails({
           )}
 
           <Notes
-            title="Bằng chứng giá / rating / thông số từ backend"
+            title="Nguồn và thông tin sản phẩm"
             items={textList(evidence.supporting_evidence)}
           />
           {!textList(evidence.supporting_evidence).length && (
-            <p className="text-xs text-[var(--muted)]">Chưa có bằng chứng chi tiết được backend cung cấp.</p>
+            <p className="text-xs text-[var(--muted)]">Chưa có thông tin nguồn chi tiết cho sản phẩm này.</p>
           )}
           <Notes title="Cảnh báo dữ liệu" items={textList(evidence.warnings)} />
           <p className="text-[11px] text-[var(--muted)] italic">

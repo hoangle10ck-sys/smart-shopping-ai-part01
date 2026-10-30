@@ -56,6 +56,7 @@ class LocalPages:
         number = int(urlsplit(url).path.rsplit('-a', 1)[1].split('-')[0])
         return url, sales_page(name=f'Samsung Galaxy A{number} 128GB', price=self.price,
             brand='Samsung', model=f'Galaxy A{number}', category='điện thoại',
+            image=f'https://merchant{number % 3}.example/images/samsung-galaxy-a{number}-128gb.jpg',
             offers={'@type':'Offer', 'price':self.price, 'priceCurrency':'VND',
                     'seller':{'name':urlsplit(url).hostname},
                     'availability':'https://schema.org/' + ('OutOfStock' if number == 49 and not self.initial_in_stock else 'InStock')},
@@ -63,6 +64,20 @@ class LocalPages:
 
     async def inspect(self, url, **kwargs):
         _, html = await self.html(url)
-        return inspect_page(url, html)
+        proof = inspect_page(url, html)
+        candidates = proof.get('image_candidates') or []
+        if proof.get('product_page_valid') and candidates:
+            image_url, image_source = candidates[0]
+            proof.update(
+                image_url=image_url,
+                image_source=image_source,
+                image_probe={
+                    'accepted': True,
+                    'checked_at': '2026-10-29T19:00:00+00:00',
+                    'content_type': 'image/jpeg',
+                    'content_sha256': __import__('hashlib').sha256(image_url.encode()).hexdigest(),
+                },
+            )
+        return proof
 
     async def _image_loads(self, url): raise AssertionError('No image evidence in fixture')

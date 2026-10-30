@@ -1,0 +1,33 @@
+\chapter{GIỚI THIỆU}
+
+\section{Bối cảnh đề tài}
+
+Người mua thường phải chuyển đổi giữa nhiều website để tìm sản phẩm, đọc thông số, kiểm tra giá và so sánh lựa chọn. Cùng một yêu cầu có thể chứa nhiều điều kiện như loại sản phẩm, ngân sách, mục đích sử dụng, thương hiệu và thông số tối thiểu. Việc tổng hợp thủ công tốn thời gian; kết quả tìm kiếm thông thường cũng không cho biết rõ dữ liệu nào đã được xác minh và dữ liệu nào chỉ là thông tin tham khảo.
+
+Smart Shopping AI được xây dựng nhằm gom các bước tiếp nhận nhu cầu, tìm kiếm, lọc, xếp hạng và giải thích vào một ứng dụng web. Hệ thống hướng tới việc trình bày dữ liệu có nguồn gốc và thời điểm quan sát, thay vì coi mọi kết quả web là giá hoặc sản phẩm có thể mua ngay.
+
+\section{Mục tiêu}
+
+Các mục tiêu của hệ thống gồm:
+\begin{itemize}
+  \item Tiếp nhận mô tả nhu cầu mua sắm bằng tiếng Việt và chuyển thành các điều kiện có cấu trúc.
+  \item Tìm trong catalog nội bộ, catalog nghiên cứu và nguồn web được cấu hình; thông báo khi nguồn không khả dụng hoặc chưa được cấu hình.
+  \item Chuẩn hóa và lọc ứng viên dựa trên loại sản phẩm, ngân sách, thương hiệu và yêu cầu có bằng chứng.
+  \item Xếp hạng bằng logic xác định được, giải thích kết quả và lưu snapshot để xem lại.
+  \item Cung cấp trang kết quả, chi tiết, so sánh, phản hồi và lịch sử tìm kiếm.
+  \item Bảo vệ tính trung thực của ảnh: sản phẩm thiếu ảnh thật có bằng chứng phù hợp không được hiển thị như một lựa chọn đủ điều kiện.
+\end{itemize}
+
+\section{Phạm vi và giới hạn}
+
+Sản phẩm là ứng dụng hỗ trợ quyết định mua sắm, không phải nhà bán hàng hay công cụ bảo đảm tìm thấy mọi mặt hàng trên Internet. Kết quả phụ thuộc vào dữ liệu catalog, cấu hình nguồn, quyền truy cập và chất lượng dữ liệu của từng nguồn. Catalog nghiên cứu có thể chứa dữ liệu lịch sử hoặc dữ liệu tham khảo; loại dữ liệu đó không được diễn giải thành giá hiện tại, tồn kho hay đường dẫn mua hàng đã xác minh.
+
+SearXNG được dùng ở vai trò khám phá URL ứng viên. Ứng viên khám phá không tự động được tải, chuyển thành Product/Offer hoặc coi là bằng chứng về giá. Crawler thương mại bị khóa theo chính sách cho tới khi nguồn cụ thể được đăng ký, kiểm tra quyền và cho phép hoạt động. Dự án chưa có đăng nhập tài khoản người dùng trong MVP; lịch sử hiện thuộc instance/phiên ứng dụng, không phải lịch sử tài khoản đồng bộ đa thiết bị.
+
+\section{Phương pháp thực hiện}
+
+Quy trình phát triển dựa trên khảo sát repository và luồng dữ liệu hiện có, xác định vấn đề bằng kiểm tra mã và dữ liệu, viết kiểm thử hồi quy cho hành vi quan trọng, sửa nguyên nhân gốc, chạy kiểm thử mục tiêu rồi chạy bộ hồi quy phù hợp. Các kiểm thử tích hợp và E2E dùng cơ sở dữ liệu tạm, nguồn giả lập được đánh dấu rõ và chặn kết nối mạng ngoài khi có thể. Vì vậy, kết quả kiểm thử không được trình bày như bằng chứng Live.
+
+\section{Bố cục báo cáo}
+
+Chương 1 trình bày bối cảnh, mục tiêu và phạm vi. Chương 2 giới thiệu nền tảng kỹ thuật và khái niệm. Chương 3 mô tả yêu cầu, kiến trúc, dữ liệu và luồng nghiệp vụ. Chương 4 trình bày triển khai. Chương 5 báo cáo kiểm thử và đánh giá. Chương 6 hướng dẫn vận hành trong môi trường phát triển. Chương 7 kết luận, giới hạn và hướng phát triển.

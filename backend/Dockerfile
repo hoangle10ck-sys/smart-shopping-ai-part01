@@ -2,7 +2,7 @@ FROM python:3.13-slim-bookworm
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    DEMO_MODE=true \
+    DEMO_MODE=false \
     DATABASE_URL=sqlite:////data/smart_shopping.db
 
 WORKDIR /app

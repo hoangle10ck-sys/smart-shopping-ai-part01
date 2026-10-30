@@ -13,7 +13,9 @@ from sqlalchemy.orm import (
 )
 
 from app.core.database import get_db
+from app.api.guest_owner import get_existing_guest_owner, require_owned_session
 from app.models.product import Product
+from app.models.user import User
 from app.services.research.recommendation import catalog_metadata
 from app.services.recommendation.candidate_builder import offer_observation
 from app.services.recommendation.recommendation_service import RecommendationService
@@ -24,6 +26,7 @@ from app.schemas.product import (
     ProductDetailResponse,
     ProductOfferItem,
 )
+from app.services.product_images.page_evidence import page_image_evidence
 
 
 router = APIRouter(
@@ -62,6 +65,7 @@ def get_product(
     product_id: int,
     db: Session = Depends(get_db),
     session_id: str | None = None,
+    owner: User | None = Depends(get_existing_guest_owner),
 ) -> ProductDetailResponse:
     """Return complete product information."""
 
@@ -97,6 +101,16 @@ def get_product(
     ):
         source = offer.source
         proof = offer_observation(db, offer, product)
+        image_url = proof.get("image_url") if proof else None
+        image_evidence = page_image_evidence(
+            proof=proof,
+            image_url=image_url,
+            product_url=offer.product_url,
+            identifier_value=offer.external_product_id,
+            model=product.model,
+        )
+        if image_evidence is None:
+            continue
 
         offers.append(
             ProductOfferItem(
@@ -109,7 +123,8 @@ def get_product(
                 shipping_fee=offer.shipping_fee, freshness_status=offer.freshness_status,
                 warranty=offer.warranty,
                 last_verified_at=offer.last_verified_at,
-                image_url=proof.get('image_url') if proof else None,
+                image_url=str(image_evidence.image_url),
+                image_evidence=image_evidence,
                 image_source=proof.get('image_source') if proof else None,
                 product_page_valid=proof.get('product_page_valid') if proof else None,
                 source_observation_valid=proof.get('source_observation_valid') if proof else None,
@@ -154,6 +169,9 @@ def get_product(
 
     recommendation = None
     if session_id:
+        if owner is None:
+            raise HTTPException(status_code=404, detail="Không tìm thấy search session.")
+        require_owned_session(db, session_id, owner)
         try:
             view = RecommendationService().load(db=db, session_id=session_id)
         except ValueError as exc:
@@ -161,6 +179,18 @@ def get_product(
         recommendation = next((item for item in view.recommendations if item.product_id == product_id), None)
         if recommendation is None:
             raise HTTPException(status_code=404, detail="Product not recommended in this session.")
+    image_evidence = recommendation.image_evidence if recommendation is not None else None
+    image_url = recommendation.image_url if recommendation is not None else None
+    if image_evidence is None:
+        eligible_offer = next((offer for offer in offers if offer.image_evidence is not None), None)
+        if eligible_offer is not None:
+            image_evidence = eligible_offer.image_evidence
+            image_url = eligible_offer.image_url
+    if image_evidence is None or image_url is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Product has no currently verified image evidence.",
+        )
     return ProductDetailResponse(
         **catalog_metadata(db, product.id),
         recommendation=recommendation,
@@ -173,7 +203,8 @@ def get_product(
         normalized_name=(
             product.normalized_name
         ),
-        image_url=product.image_url,
+        image_url=image_url,
+        image_evidence=image_evidence,
         rating=product.rating,
         review_count=(
             product.review_count

@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   EMPTY_FILTERS, dataModeLabel, displayScore, filterAndSort, filterError, formatMoney,
-  record, safeHttpUrl, scoreRows, textList,
+  record, safeHttpUrl, scoreRows, textList, unifiedSourceName, unifiedSourceStatusLabel, userFacingWarning,
 } from "../lib/results-utils.ts";
 
 const product = (id, overrides = {}) => ({
@@ -71,9 +71,42 @@ test("missing values are not rendered as satisfied or zero", () => {
 });
 
 test("unknown historical data mode is not inferred from runtime or LLM mode", () => {
-  assert.match(dataModeLabel("demo"), /Demo Mode/);
-  assert.match(dataModeLabel("live"), /Live Data/);
-  for (const mode of [undefined, null, "openai", false]) assert.match(dataModeLabel(mode), /Chưa xác định/);
+  assert.equal(dataModeLabel("demo"), "Dữ liệu minh họa");
+  assert.equal(dataModeLabel("live"), "Tìm từ nguồn trực tuyến");
+  assert.equal(dataModeLabel("unified"), "Đề xuất theo nhu cầu");
+  assert.equal(dataModeLabel("research"), "Dữ liệu tham khảo lịch sử");
+  assert.equal(dataModeLabel("research", [{ research_provenance: { dataset_id: "OpenProductsFacts" } }]), "Dữ liệu tham khảo từ nguồn cộng đồng");
+  assert.equal(dataModeLabel("research", [
+    { research_provenance: { dataset_id: "Amazon-Berkeley-Objects" } },
+    { research_provenance: { dataset_id: "OpenFoodFacts" } },
+  ]), "Dữ liệu tham khảo gồm nguồn cộng đồng");
+  for (const mode of [undefined, null, "openai", false]) assert.equal(dataModeLabel(mode), "Nguồn dữ liệu chưa rõ");
+});
+
+test("unified source labels use shopper-friendly names and statuses", () => {
+  assert.equal(unifiedSourceName("database_catalog"), "Danh mục sản phẩm");
+  assert.equal(unifiedSourceName("research_catalog"), "Dữ liệu nghiên cứu");
+  assert.equal(unifiedSourceName("configured_web_search"), "Tìm kiếm trên web");
+  assert.equal(unifiedSourceName("unrecognized_internal_name"), "Nguồn tìm kiếm khác");
+  assert.match(unifiedSourceStatusLabel({ available: false, error: "Chưa cấu hình Tavily hoặc SearXNG." }), /Tìm kiếm trên web chưa khả dụng/);
+  assert.match(unifiedSourceStatusLabel({ available: true, matched_products: 13 }), /Đã tìm kiếm/);
+  assert.match(unifiedSourceStatusLabel({ available: true, matched_products: 0 }), /chưa có kết quả phù hợp/);
+  for (const error of ["TimeoutError", "ACCESS_RESTRICTED"]) {
+    const label = unifiedSourceStatusLabel({ available: false, error });
+    assert.doesNotMatch(label, /TimeoutError|ACCESS_RESTRICTED/);
+    assert.match(label, /Nguồn/);
+  }
+});
+
+test("search warnings translate internal codes into clear data limitations", () => {
+  const budget = userFacingWarning("BUDGET_NOT_COMPARABLE: không lọc/chấm giá USD theo VND; không tự quy đổi FX.");
+  assert.match(budget, /VND/);
+  assert.match(budget, /USD/);
+  assert.doesNotMatch(budget, /BUDGET_NOT_COMPARABLE|FX/);
+  const purpose = userFacingWarning("PURPOSE_NOT_SCORED: technical detail");
+  assert.match(purpose, /chưa cộng điểm/);
+  assert.doesNotMatch(purpose, /PURPOSE_NOT_SCORED/);
+  assert.doesNotMatch(userFacingWarning("UNRECOGNIZED_INTERNAL_CODE: detail"), /UNRECOGNIZED_INTERNAL_CODE/);
 });
 
 test("only HTTP(S) product URLs become clickable", () => {

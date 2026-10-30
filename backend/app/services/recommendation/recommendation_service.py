@@ -59,6 +59,12 @@ from app.services.recommendation.ranking_service import (
 from app.services.validation.evidence_validator import (
     EvidenceValidator,
 )
+from app.services.product_images.eligibility import (
+    apply_image_eligibility,
+    apply_image_eligibility_to_items,
+    has_verified_image,
+)
+from app.services.product_images.page_evidence import page_image_evidence
 
 
 @dataclass(slots=True)
@@ -85,6 +91,11 @@ class RecommendationRunResult:
 
     data_semantics: RecommendationDataSemantics = "snapshot"
     data_mode: RecommendationDataMode | None = None
+
+    @property
+    def total_recommended(self) -> int:
+        """Return the count of recommendations currently present in the result."""
+        return len(self.recommendations)
 
 
 def requirement_to_schema(
@@ -134,6 +145,27 @@ def requirement_to_schema(
     )
 
 
+def _editorial_recommendation(item: RecommendationItem) -> bool:
+    """Identify clearly editorial evidence without rejecting unknown merchants."""
+    from urllib.parse import urlsplit
+
+    blocked = {
+        "youtube.com", "youtu.be", "tiktok.com", "instagram.com",
+        "facebook.com", "wikipedia.org", "vnexpress.net",
+        "vietnamnet.vn", "dantri.com.vn",
+    }
+    for value in (item.product_url, item.evidence_url):
+        if not value:
+            continue
+        try:
+            host = (urlsplit(value).hostname or "").lower().removeprefix("www.")
+        except ValueError:
+            continue
+        if any(host == domain or host.endswith("." + domain) for domain in blocked):
+            return True
+    return False
+
+
 class RecommendationService:
     """Filter, score, validate evidence, explain and persist."""
 
@@ -161,6 +193,37 @@ class RecommendationService:
     def run(self, *, db: Session, session_id: str) -> RecommendationRunResult:
         """Persist a complete snapshot in the same transaction as recommendations."""
         return self._evaluate(db=db, session_id=session_id, persist=True)
+
+    @staticmethod
+    def persist_snapshot_rows(
+        *, db: Session, session_id: str, result: RecommendationRunResult
+    ) -> None:
+        """Keep the legacy recommendation detail endpoint aligned with a saved snapshot."""
+        db.execute(delete(Recommendation).where(Recommendation.session_id == session_id))
+        seen_products: set[int] = set()
+        for item in result.recommendations:
+            if item.product_id in seen_products:
+                continue
+            seen_products.add(item.product_id)
+            score = item.score
+            db.add(Recommendation(
+                session_id=session_id,
+                product_id=item.product_id,
+                final_score=score.final_score,
+                budget_score=score.budget_score,
+                requirement_score=score.requirement_score,
+                purpose_score=score.purpose_score,
+                rating_score=score.rating_score,
+                review_score=score.review_score,
+                source_score=score.source_score,
+                confidence=item.confidence,
+                rank=item.rank,
+                explanation={
+                    "evidence": item.evidence.model_dump(mode="json") if item.evidence else None,
+                    "explanation": item.explanation.model_dump(mode="json") if item.explanation else None,
+                },
+            ))
+        db.flush()
 
     def _evaluate(
         self,
@@ -245,16 +308,6 @@ class RecommendationService:
         else:
             explanations = [self.explanation_service.build_deterministic(**job) for job in jobs]
 
-        if persist:
-            db.execute(
-                delete(
-                    Recommendation
-                ).where(
-                    Recommendation.session_id
-                    == session_id
-                )
-            )
-
         items: list[
             RecommendationItem
         ] = []
@@ -277,57 +330,6 @@ class RecommendationService:
             if not persist:
                 explanation.generation_mode = "fallback"
 
-            stored_explanation = {
-                "evidence": (
-                    evidence.model_dump(
-                        mode="json"
-                    )
-                ),
-                "explanation": (
-                    explanation.model_dump(
-                        mode="json"
-                    )
-                ),
-            }
-
-            if persist:
-                db.add(
-                    Recommendation(
-                        session_id=session_id,
-                        product_id=(
-                            candidate.product_id
-                        ),
-                        final_score=(
-                            score.final_score
-                        ),
-                        budget_score=(
-                            score.budget_score
-                        ),
-                        requirement_score=(
-                            score.requirement_score
-                        ),
-                        purpose_score=(
-                            score.purpose_score
-                        ),
-                        rating_score=(
-                            score.rating_score
-                        ),
-                        review_score=(
-                            score.review_score
-                        ),
-                        source_score=(
-                            score.source_score
-                        ),
-                        confidence=(
-                            evidence.confidence
-                        ),
-                        rank=ranked_item.rank,
-                        explanation=(
-                            stored_explanation
-                        ),
-                    )
-                )
-
             items.append(
                 self._build_item(
                     context=context,
@@ -344,6 +346,43 @@ class RecommendationService:
             )
 
             items[-1].requirement_matches = ScoringEngine().requirement_matches(candidate, requirement)
+
+        image_hashes: dict[str, set[int]] = {}
+        image_rejections: dict[int, str] = {}
+        for candidate in accepted:
+            context = context_by_product[candidate.product_id]
+            offer = context.offer
+            proof = context.page_validation
+            verified_image = page_image_evidence(
+                proof=proof,
+                image_url=proof.get("image_url") if proof else None,
+                product_url=offer.product_url if offer else None,
+                identifier_value=offer.external_product_id if offer else None,
+                model=candidate.model,
+            )
+            if not verified_image or not has_verified_image(verified_image.image_url, verified_image):
+                image_rejections[candidate.product_id] = "IMAGE_EVIDENCE_INCOMPLETE"
+                continue
+            image_hashes.setdefault(verified_image.content_sha256, set()).add(candidate.product_id)
+        for product_ids in image_hashes.values():
+            if len(product_ids) > 1:
+                image_rejections.update({
+                    product_id: "IMAGE_DUPLICATE_IDENTITY_CONFLICT" for product_id in product_ids
+                })
+        if image_rejections:
+            decisions_by_id = {decision.product_id: decision for decision in decisions}
+            for product_id, reason in image_rejections.items():
+                decision = decisions_by_id.get(product_id)
+                if decision is not None:
+                    decision.accepted = False
+                    decision.rejection_stage = "image_evidence"
+                    if reason not in decision.reasons:
+                        decision.reasons = [*decision.reasons, reason]
+            accepted = [item for item in accepted if item.product_id not in image_rejections]
+        items, ranked_rejections = apply_image_eligibility_to_items(
+            items, decisions, image_rejections
+        )
+        image_rejections.update(ranked_rejections)
 
         trace = current_trace.get()
         if trace is not None:
@@ -363,13 +402,12 @@ class RecommendationService:
             total_found=len(
                 candidates
             ),
-            total_filtered=len(
-                accepted
-            ),
+            total_filtered=len(accepted),
             data_semantics="snapshot" if persist else "legacy_recomputed",
             data_mode=("demo" if self.settings.demo_mode else "live") if persist else None,
         )
         if persist:
+            self.persist_snapshot_rows(db=db, session_id=session_id, result=result)
             snapshot = db.get(RecommendationSnapshot, session_id)
             if snapshot is None:
                 snapshot = RecommendationSnapshot(session_id=session_id)
@@ -382,6 +420,7 @@ class RecommendationService:
             db.flush()
         return result
 
+
     def load(self, *, db: Session, session_id: str) -> RecommendationRunResult:
         """Read the last successful snapshot without joining mutable Product/Offer data.
 
@@ -393,7 +432,33 @@ class RecommendationService:
         if snapshot is not None:
             if snapshot.payload.get("version") != 1:
                 raise ValueError("Unsupported recommendation snapshot version.")
-            return TypeAdapter(RecommendationRunResult).validate_python(snapshot.payload["result"])
+            result = TypeAdapter(RecommendationRunResult).validate_python(snapshot.payload["result"])
+            unsafe_indexes = [
+                index for index, item in enumerate(result.recommendations)
+                if _editorial_recommendation(item)
+            ]
+            if unsafe_indexes:
+                # Old snapshots can predate source filtering. Recompute only when
+                # a saved item explicitly points at a known editorial host.
+                try:
+                    recomputed = self._evaluate(db=db, session_id=session_id, persist=False)
+                except Exception as exc:
+                    raise ValueError(
+                        "Saved results contain a non-commercial source and could not be safely recomputed."
+                    ) from exc
+                recomputed.data_semantics = "legacy_recomputed"
+                recomputed.data_mode = snapshot.payload.get("data_mode")
+                recomputed.recommendations = [
+                    item for item in recomputed.recommendations
+                    if not _editorial_recommendation(item)
+                ]
+                return recomputed
+            apply_image_eligibility(result)
+            # Legacy version-1 snapshots predate unified source provenance.
+            # Their mode is unknown; do not substitute today's runtime config.
+            if result.data_mode is None:
+                result.data_mode = snapshot.payload.get("data_mode")
+            return result
 
         has_recommendations = db.scalar(select(Recommendation.id).where(
             Recommendation.session_id == session_id,
@@ -451,6 +516,15 @@ class RecommendationService:
         if offer is not None and offer.freshness_status == "STALE":
             evidence.warnings.append("STALE_DATA: offer observation is outside the configured freshness TTL; verify before buying.")
 
+        proof = context.page_validation
+        image_evidence = page_image_evidence(
+            proof=proof,
+            image_url=proof.get("image_url") if proof else None,
+            product_url=offer.product_url if offer else None,
+            identifier_value=offer.external_product_id if offer else None,
+            model=candidate.model,
+        )
+
         return RecommendationItem(
             product_id=(
                 candidate.product_id
@@ -470,7 +544,8 @@ class RecommendationService:
             ),
             brand=candidate.brand,
             model=candidate.model,
-            image_url=(context.page_validation.get("image_url") if context.page_validation is not None else context.product.image_url),
+            image_url=str(image_evidence.image_url) if image_evidence else None,
+            image_evidence=image_evidence,
             product_page_valid=context.page_validation.get("product_page_valid") if context.page_validation is not None else None,
             source_observation_valid=context.page_validation.get("source_observation_valid") if context.page_validation is not None else None,
             price_type=context.page_validation.get('price_type') if context.page_validation is not None else None,

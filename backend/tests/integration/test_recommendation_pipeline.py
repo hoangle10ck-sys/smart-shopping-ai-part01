@@ -13,12 +13,19 @@ from app.main import app
 from app.models.recommendation import (
     Recommendation,
 )
+from tests.fixtures.unified_catalog import seed_headphones
 
 
 client = TestClient(app)
 
 
+def _seed_catalog():
+    with SessionLocal() as db:
+        seed_headphones(db)
+
+
 def test_search_returns_ranked_recommendations() -> None:
+    _seed_catalog()
     analyze = client.post(
         "/api/requirements/analyze",
         json={
@@ -75,6 +82,7 @@ def test_search_returns_ranked_recommendations() -> None:
 
 
 def test_budget_filter_removes_over_budget_products() -> None:
+    _seed_catalog()
     analyze = client.post(
         "/api/requirements/analyze",
         json={
@@ -110,7 +118,7 @@ def test_budget_filter_removes_over_budget_products() -> None:
     ]
 
     assert names == [
-        "StudyBeat M5"
+        "QA Headphones H1"
     ]
 
     assert (
@@ -120,6 +128,7 @@ def test_budget_filter_removes_over_budget_products() -> None:
 
 
 def test_recommendations_are_not_duplicated_on_rerun() -> None:
+    _seed_catalog()
     analyze = client.post(
         "/api/requirements/analyze",
         json={

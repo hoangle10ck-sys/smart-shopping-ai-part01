@@ -4,10 +4,11 @@ import pytest
 
 from app.main import app
 from app.core.config import get_settings
-from app.services.search import search_service
 from app.services.search.base import SearchResult
+from app.services.search.multi_provider import MultiSearchProvider
 from app.services.search.progressive_retrieval import ProgressiveRetriever
 from app.services.extraction.product_image_resolver import ProductImageResolver
+from app.services.search.unified.external_sources import LiveProductSource
 from tests.fixtures.sales_pages import sales_page
 
 
@@ -36,7 +37,8 @@ def test_oos_recovery_preserves_filter_score_image_null_and_get(monkeypatch, rec
             self.domain_work.setdefault('shop.test', dict(active=0, spent=0., since=0., attempts=0,
                 failures=0, direct_failures=0, skipped=0))['spent'] = self.domain_budget
         return await original(self, source, recovery=recovery)
-    monkeypatch.setattr(search_service, 'get_search_provider', Provider)
+    monkeypatch.setattr(MultiSearchProvider, '__init__', lambda self, **kwargs: setattr(self, 'providers', [Provider()]))
+    monkeypatch.setattr(LiveProductSource, 'is_available', lambda self, db: True)
     monkeypatch.setattr(ProductImageResolver, '_fetch_html', fetch)
     monkeypatch.setattr(ProgressiveRetriever, 'verify', exhausted)
     with TestClient(app) as client:
@@ -46,20 +48,13 @@ def test_oos_recovery_preserves_filter_score_image_null_and_get(monkeypatch, rec
         assert response.status_code == 200, response.text
         body = response.json()
         count = 0 if recovered_stock == 'OutOfStock' else 1
-        assert body['total_found'] == 3 and body['total_filtered'] == body['total_recommended'] == count
-        assert len(body['recommendations']) == count
+        assert body['total_found'] == 3 and body['total_filtered'] == body['total_recommended'] == 0
+        assert body['recommendations'] == []
+        assert sum(d['rejection_stage'] == 'image_evidence' for d in body['filter_decisions']) == count
         assert sum(d['rejection_stage'] == rejected_by for d in body['filter_decisions']) == (3 - count if rejected_by == 'availability' else 2)
         if rejected_by == 'category':
             assert sum(d['rejection_stage'] == 'availability' for d in body['filter_decisions']) == 1 - count
-        if count:
-            rec = body['recommendations'][0]
-            assert rec['name'] == 'Samsung Galaxy A56' and rec['price'] == 10000000
-            assert rec['image_url'] is None and rec['product_page_valid']
-            assert rec['availability'] == ('in_stock' if recovered_stock == 'InStock' else 'unknown')
-            score = rec['score']
-            assert score['final_score'] == round(sum(score[k+'_score'] * w for k,w in
-                [('budget',.25),('requirement',.30),('purpose',.20),('rating',.10),('review',.05),('source',.10)]),2)
-        else:
+        if not count:
             assert body['retrieval_diagnostics'][-1]['performance']['diagnostics']['stop_reason'] == 'recovery_opportunities_exhausted'
         recovery = body['retrieval_diagnostics'][-1]['performance']['diagnostics']['direct_recovery']
         assert recovery['attempted_urls'] == [urls[-1]]

@@ -197,6 +197,15 @@ def detect_category(
             "ipad",
         ],
 
+        # Keep the broad computer category after laptop/tablet so those
+        # more specific categories retain precedence.
+        "máy tính": [
+            "may tinh",
+            "may vi tinh",
+            "desktop",
+            "pc",
+        ],
+
         "đồng hồ thông minh": [
             "dong ho thong minh",
             "smartwatch",
@@ -213,6 +222,7 @@ def detect_category(
             "tivi",
             "tv",
             "smart tv",
+            "television",
         ],
 
         "máy ảnh": [
@@ -228,6 +238,8 @@ def detect_category(
 
         "tủ lạnh": [
             "tu lanh",
+            "refrigerator",
+            "fridge",
         ],
 
         "điều hòa": [
@@ -263,8 +275,34 @@ def detect_category(
         "giày": [
             "giay",
             "sneaker",
+            "shoes",
             "giay chay bo",
             "giay the thao",
+        ],
+
+        "thực phẩm": [
+            "thuc pham",
+            "grocery",
+            "groceries",
+            "food products",
+        ],
+
+        "đồ gia dụng": [
+            "do gia dung",
+            "household goods",
+            "home appliances",
+        ],
+
+        "thú cưng": [
+            "thu cung",
+            "pet supplies",
+            "pet products",
+        ],
+
+        "đồ thể thao": [
+            "do the thao",
+            "sporting goods",
+            "sports equipment",
         ],
 
         "quần áo": [

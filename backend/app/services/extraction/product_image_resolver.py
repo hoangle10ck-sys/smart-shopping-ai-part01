@@ -1300,9 +1300,11 @@ class ProductImageResolver:
                     result['page_fetched'] = True
                     if not resolve_images:
                         return result
-                    for image_url, origin in result.pop("image_candidates", []):
-                        if await self._image_loads(image_url):
+                    for image_url, origin in result.pop("image_candidates", [])[:4]:
+                        image_probe = await self.verify_image(image_url)
+                        if image_probe.get("accepted"):
                             result.update(image_url=image_url, image_source=origin)
+                            result["image_probe"] = image_probe
                             break
                     return result
             except (TimeoutError, ValueError, httpx.HTTPError):
@@ -1314,37 +1316,55 @@ class ProductImageResolver:
                         "fetch_blocked": True, "verification_level": "UNVERIFIED", "product_page_confidence": 0,
                         "reason": "Hết thời gian hoặc dữ liệu trang không hợp lệ.", "image_url": None}
 
-    async def _image_loads(self, url: str) -> bool:
-        """Bounded GET prefix probe; HEAD support is never required."""
+    async def verify_image(self, url: str, *, allowed_hosts: set[str] | None = None) -> dict:
+        """Download and validate one bounded raster image; never follow untrusted redirects."""
+        import hashlib
+        from datetime import datetime, timezone
+        from urllib.parse import urlsplit
         from app.services.extraction.product_page_validator import http_url, same_identity
         from app.services.extraction.product_image_candidates import (
             bad_image, image_label, normalized_image_url, raster_prefix,
         )
         from app.services.performance import current_trace
         original_label = image_label(url)
-        record = dict(url=url, attempts=[], reason='cancelled_or_interrupted', accepted=False, bytes_read=0)
+        record = dict(attempts=[], reason='cancelled_or_interrupted', accepted=False, bytes_read=0)
         trace = current_trace.get()
         if trace is not None:
             records = trace.diagnostics.setdefault('image_probes', [])
-            if len(records) < 100: records.append(record)
+            if len(records) < 100:
+                records.append(record)
+
         def finish(accepted, reason):
-            record.update(accepted=accepted, reason=reason)
-            return accepted
+            record.update(accepted=accepted, reason=reason,
+                          checked_at=datetime.now(timezone.utc).isoformat())
+            self._last_image_probe = dict(record)
+            return self._last_image_probe
+
         async with self._http_client() as client:
             for _ in range(4):
-                if not http_url(url) or bad_image(url) or not await _safe_public_url(url):
-                    return finish(False, 'unsafe_url')
+                parsed = urlsplit(url)
+                host = parsed.hostname.lower().rstrip('.') if parsed.hostname else ''
+                if (
+                    not http_url(url)
+                    or bad_image(url)
+                    or (allowed_hosts is not None and host not in allowed_hosts)
+                    or not await _safe_public_url(url)
+                ):
+                    return finish(False, 'unsafe_or_unapproved_host')
                 try:
                     async with client.stream('GET', url, headers={
-                        'Range': 'bytes=0-4095',
                         'Accept': 'image/avif,image/webp,image/png,image/jpeg,image/gif',
                     }) as response:
                         mime = response.headers.get('content-type', '').split(';')[0].strip().lower()
-                        record['attempts'].append(dict(url=url, status=response.status_code, mime=mime))
+                        record['attempts'].append(dict(status=response.status_code, mime=mime))
                         if response.is_redirect:
                             target = normalized_image_url(response.headers.get('location'), url)
                             if not target:
                                 return finish(False, 'unsafe_redirect')
+                            target_host = urlsplit(target).hostname
+                            target_host = target_host.lower().rstrip('.') if target_host else ''
+                            if allowed_hosts is not None and target_host not in allowed_hosts:
+                                return finish(False, 'redirect_outside_approved_host')
                             label = image_label(target)
                             # Opaque original URLs remain valid; changing the asset
                             # needs matching identity. A different opaque hash is unknown.
@@ -1352,24 +1372,33 @@ class ProductImageResolver:
                                 return finish(False, 'unrelated_or_unproven_redirect')
                             url = target
                             continue
-                        if response.status_code not in {200, 206}:
-                            return finish(False, 'http_status')
-                        if response.status_code == 206:
-                            import re
-                            if not re.fullmatch(r'bytes 0-\d+/(?:\d+|\*)', response.headers.get('content-range', '')):
-                                return finish(False, 'invalid_content_range')
+                        if response.status_code != 200:
+                            return finish(False, f'http_{response.status_code}')
                         if mime not in {'image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/avif'}:
                             return finish(False, 'non_raster_mime')
+                        content_length = response.headers.get('content-length')
+                        if content_length and content_length.isdecimal() and int(content_length) > 8 * 1024 * 1024:
+                            return finish(False, 'image_too_large')
                         data = bytearray()
-                        async for chunk in response.aiter_bytes(chunk_size=4096):
-                            data.extend(chunk[:4096 - len(data)])
-                            if len(data) >= 4096: break
+                        async for chunk in response.aiter_bytes(chunk_size=64 * 1024):
+                            if len(data) + len(chunk) > 8 * 1024 * 1024:
+                                return finish(False, 'image_too_large')
+                            data.extend(chunk)
                         record['bytes_read'] = len(data)
-                        accepted = raster_prefix(bytes(data))
-                        return finish(accepted, 'verified_raster_prefix' if accepted else 'invalid_or_tiny_raster')
+                        if not raster_prefix(bytes(data)):
+                            return finish(False, 'invalid_or_tiny_raster')
+                        record['content_type'] = mime
+                        record['content_sha256'] = hashlib.sha256(data).hexdigest()
+                        return finish(True, 'verified_raster')
                 except httpx.HTTPError:
                     return finish(False, 'http_transport_error')
         return finish(False, 'redirect_limit')
+
+    async def _image_loads(self, url: str) -> bool:
+        """Compatibility wrapper used by the product-page image resolver."""
+        result = await self.verify_image(url)
+        self._last_image_probe = result
+        return bool(result.get('accepted'))
 
     async def resolve(self, *, page_url: str, title: str = "", tavily_image_url: str | None = None) -> str | None:
         # Query-wide/provider images do not prove product identity.

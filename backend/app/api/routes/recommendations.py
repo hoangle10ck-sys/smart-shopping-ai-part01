@@ -9,12 +9,14 @@ from fastapi import (
 from sqlalchemy.orm import Session
 
 from app.core.database import get_db
+from app.api.guest_owner import get_guest_owner, require_owned_session
 from app.models.recommendation import (
     Recommendation,
 )
 from app.models.search_session import (
     SearchSession,
 )
+from app.models.user import User
 from app.schemas.recommendation_api import (
     RecommendationDetailResponse,
     RecommendationSessionResponse,
@@ -39,23 +41,11 @@ router = APIRouter(
 def get_session_recommendations(
     session_id: str,
     db: Session = Depends(get_db),
+    owner: User = Depends(get_guest_owner),
 ) -> RecommendationSessionResponse:
     """Return recommendations for one search session."""
 
-    search_session = db.get(
-        SearchSession,
-        session_id,
-    )
-
-    if search_session is None:
-        raise HTTPException(
-            status_code=(
-                status.HTTP_404_NOT_FOUND
-            ),
-            detail=(
-                "Không tìm thấy search session."
-            ),
-        )
+    require_owned_session(db, session_id, owner)
 
     try:
         result = (
@@ -91,6 +81,7 @@ def get_session_recommendations(
 def get_recommendation(
     recommendation_id: int,
     db: Session = Depends(get_db),
+    owner: User = Depends(get_guest_owner),
 ) -> RecommendationDetailResponse:
     """Return one persisted recommendation."""
 
@@ -108,6 +99,8 @@ def get_recommendation(
                 "Không tìm thấy recommendation."
             ),
         )
+
+    require_owned_session(db, recommendation.session_id, owner)
 
     try:
         result = (

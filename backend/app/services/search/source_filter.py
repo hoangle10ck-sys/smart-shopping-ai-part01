@@ -49,6 +49,20 @@ RENTAL_MARKERS = {
     "thue may",
 }
 
+# These hosts publish references, discussions, or social content rather than
+# first-party shopping offers. Snippets from them must not enter price parsing.
+NON_MERCHANT_DOMAINS = {
+    "youtube.com",
+    "youtu.be",
+    "tiktok.com",
+    "instagram.com",
+    "facebook.com",
+    "wikipedia.org",
+    "vnexpress.net",
+    "vietnamnet.vn",
+    "dantri.com.vn",
+}
+
 
 # =============================================================
 # TEXT NORMALIZATION
@@ -333,6 +347,10 @@ class SourceFilter:
             )
 
             if domain is None:
+                continue
+
+            if any(domain == blocked or domain.endswith("." + blocked)
+                   for blocked in NON_MERCHANT_DOMAINS):
                 continue
 
 

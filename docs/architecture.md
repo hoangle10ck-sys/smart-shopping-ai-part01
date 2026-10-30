@@ -27,7 +27,7 @@ MVP giới hạn 5,000 candidates/revision; vượt giới hạn báo lỗi, kh�
 Tài liệu mô tả implementation sau Phase 7. PROJECT OVERRIDES trong MASTER_SPEC
 ưu tiên tên/route đang hoạt động, không yêu cầu dựng lại repository theo cây mẫu.
 
-## Luồng chính
+## Luồng tìm kiếm chính hiện tại
 
 ```mermaid
 flowchart TD
@@ -37,19 +37,22 @@ flowchart TD
   Missing -->|Có| Clarify[Clarification: nhận câu trả lời và phân tích lại]
   Clarify --> Analyze
   Missing -->|Không| Query[Python Query Generator]
-  Query --> Cache{Live session mới có cache hợp lệ?}
-  Cache -->|Có| Copy[Copy complete snapshot]
-  Cache -->|Không| Search[Mock Demo hoặc Tavily Live]
-  Search --> Extract[Source filtering / Extraction]
-  Extract --> Normalize[Normalization]
-  Normalize --> Dedup[Dedup: Product và Product Offer]
-  Dedup --> Filter[Hard Filter]
-  Filter --> Score[Python Scoring / Requirement Matching]
-  Score --> Rank[Ranking Top K]
-  Rank --> Evidence[Confidence / Structured Evidence]
-  Evidence --> Explain[Demo / LLM / Fallback Explanation]
+  Query --> Unified[Unified Search Orchestrator]
+  Unified --> Catalog[Read verified product catalog]
+  Unified --> Research[Read historical research catalog]
+  Unified --> Availability{Configured web provider?}
+  Availability -->|Yes| Web[Tavily and/or operator SearXNG]
+  Availability -->|No| SourceStatus[Report provider not configured]
+  Web --> Extract[Validate and extract source evidence]
+  Extract --> Normalize[Normalize / resolve identity / deduplicate]
+  Normalize --> Persist[Persist valid offers and observations]
+  Catalog --> Evaluate[Hard filter / Python scoring / ranking]
+  Research --> Evaluate
+  Persist --> Evaluate
+  SourceStatus --> Evaluate
+  Evaluate --> Evidence[Provenance and structured evidence]
+  Evidence --> Explain[LLM or deterministic fallback explanation]
   Explain --> Snapshot[(Recommendation Snapshot)]
-  Copy --> Snapshot
   Snapshot --> Results[Next.js Results / filter / detail / compare / feedback]
   Snapshot --> History[History]
   History --> Results
@@ -90,7 +93,7 @@ currency match.
 | Hiểu nhu cầu ngôn ngữ tự nhiên | `services/llm/client.py`: local MockLLMClient hoặc OpenAI/Gemini; Pydantic kiểm tra structured output |
 | Clarification | `RequirementAnalyzer` xác định dữ liệu thiếu, route ghép câu trả lời vào ngữ cảnh rồi phân tích lại |
 | Query generation | `services/llm/query_generator.py` là Python deterministic dù nằm trong thư mục `llm` |
-| Search | `SearchProvider` interface, MockSearchProvider/TavilySearchProvider, SourceStrategy/SourceFilter |
+| Search | Unified flow dùng Tavily và/hoặc SearXNG do operator cấu hình; không fallback sang mock. MockSearchProvider chỉ dành cho test/compatibility của pipeline cũ. |
 | Extraction | Parser deterministic cho API/JSON-LD; optional Crawl4AI chỉ render DOM và optional LLM chỉ bổ sung technical specs có quote, không tạo offer facts |
 | Normalize/dedup | Python parsers và ProductDeduplicator; category chỉ dựa evidence sản phẩm |
 | Hard filter, scoring, rank, matching | Python; LLM không được quyết định final score |
@@ -141,14 +144,15 @@ ghi thời điểm nhưng chưa có time-decay term riêng trong công thức co
   lấy dữ liệu từ cùng recommendation view, lưu riêng JSON result và `data_semantics`.
   Ưu/nhược điểm lấy từ why_fit/tradeoffs đã lưu. Comparison cũ không được backfill.
 
-## Cache, History và lỗi
+## Cache legacy, History và lỗi
 
-Cache SQLite qua abstraction `SearchCache`, key SHA-256 của normalized requirement
-và config ảnh hưởng pipeline. TTL mặc định 1800 giây. Chỉ session Live mới, chưa có
-kết quả, mới dùng cache; Demo vẫn chạy pipeline offline. Cache hit sao chép snapshot
-và metadata, không sửa shared Product/Offer; cảnh báo nêu rõ cache và thời gian nguồn.
-Key còn hợp lệ phải tham chiếu đúng snapshot của session nguồn COMPLETED. Rerun
-session thành công bỏ qua cache để refresh. Xem [Phase 4 notes](PHASE4_NOTES.md).
+`CachedSearchService`/`SearchCache` giữ cache snapshot cho legacy search path.
+`POST /api/search` hiện route unified cho cả giá trị `search_scope` còn được chấp
+nhận, nên không dùng cross-session legacy cache: mỗi lần tìm đều đọc catalog và
+research, rồi thử provider web nếu đã cấu hình. `refresh` được giữ để tương thích;
+trong unified path nguồn khả dụng vẫn được thử ở mỗi lần chạy. Legacy cache dùng
+SQLite, TTL mặc định 1800 giây, không sửa shared Product/Offer khi sao chép snapshot.
+Xem [Phase 4 notes](PHASE4_NOTES.md).
 
 Lỗi một query/source cho phép tiếp tục phần còn lại và lưu warnings. Khi tất cả
 query provider thất bại, search không xóa raw/recommendation/snapshot cũ; HTTP 503,
@@ -163,12 +167,15 @@ rate limiting hay theo dõi người dùng cá nhân.
 ## Runtime
 
 Local: Next 3000, FastAPI 8000, SQLite tạo bảng qua lifespan. CORS cho hai origin
-localhost/127.0.0.1:3000. Docker giữ các port này, có backend healthcheck, SQLite
-named volume và process không phải root. Frontend gọi backend qua URL public đã
-nhúng lúc build, không qua Docker hostname trong browser.
+localhost/127.0.0.1:3000. Docker Compose dùng PostgreSQL 17 với named volume riêng,
+backend kết nối qua `DATABASE_URL`, có healthcheck và chạy non-root; frontend gọi
+backend qua URL public đã nhúng lúc build, không qua Docker hostname trong browser.
 
-Browser E2E dùng server riêng 13000/18000, SQLite tạm, Demo và network guard.
-Docker hiện **NOT RUNTIME VERIFIED** trên máy thực hiện Phase 7.
+Browser E2E dùng server riêng 13000/18000, SQLite tạm, catalog kiểm thử tổng hợp
+và loopback-only network guard; không dùng Live provider hoặc database của người
+dùng. Docker Compose được chạy ngày 2026-10-29 với project/volume cô lập: API
+health trả 200 và frontend trả 200. Đây là local runtime evidence, không phải
+production deployment verification.
 
 Repository truy cập ORM hiện nằm ở routes/services; không refactor chỉ để khớp
 tên thư mục trong SPEC. Logging có ở một số provider/routes, chưa có đầy đủ

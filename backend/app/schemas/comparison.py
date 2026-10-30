@@ -1,7 +1,7 @@
 """Schemas for product comparison API."""
 
 from datetime import datetime
-from typing import Annotated, Any
+from typing import Annotated, Any, Literal
 
 from pydantic import (
     BaseModel,
@@ -9,6 +9,7 @@ from pydantic import (
     Field,
     field_validator,
 )
+from app.schemas.product_image import ProductImageEvidence
 
 
 ProductId = Annotated[
@@ -63,6 +64,8 @@ class ComparisonOfferItem(BaseModel):
 class ComparisonProductItem(BaseModel):
     """Product data used in comparison."""
 
+    model_config = ConfigDict(extra="allow")
+
     product_id: int
 
     name: str | None = None
@@ -74,6 +77,8 @@ class ComparisonProductItem(BaseModel):
     model: str | None = None
 
     image_url: str | None = None
+
+    image_evidence: ProductImageEvidence | None = None
 
     rating: float | None = None
 
@@ -115,6 +120,18 @@ class ComparisonResult(BaseModel):
         default_factory=list,
     )
 
+    product_comparison: list[dict[str, Any]] = Field(default_factory=list)
+
+    offer_comparison: list[dict[str, Any]] = Field(default_factory=list)
+
+    price_comparability: Literal["COMPARABLE", "NOT_COMPARABLE"] | None = None
+
+    warnings: list[str] = Field(default_factory=list)
+
+    data_semantics: str | None = None
+
+    model_config = ConfigDict(extra="allow")
+
 
 class ComparisonResponse(BaseModel):
     """Comparison session returned by API."""
@@ -129,6 +146,6 @@ class ComparisonResponse(BaseModel):
 
     product_ids: list[int]
 
-    result: dict[str, Any] | None
+    result: ComparisonResult | None
 
     created_at: datetime

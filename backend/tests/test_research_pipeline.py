@@ -9,7 +9,7 @@ from app.main import app
 from app.core.database import SessionLocal
 from app.models import Product, ProductOffer, ResearchProduct
 from app.services.research.importer import import_catalog
-from app.services.research.recommendation import parse_query
+from app.services.research.recommendation import evaluate, parse_query
 
 
 def seed(tmp_path):
@@ -47,42 +47,44 @@ def test_research_e2e_snapshot_comparison_history(tmp_path, monkeypatch):
     response = client.post("/api/research/search", json={"raw_query": "điện thoại dưới 20 USD"})
     assert response.status_code == 200, response.text
     result = response.json()
-    assert result["data_mode"] == "research" and result["total_recommended"] == 2
+    assert result["data_mode"] == "research" and result["total_recommended"] == 0
+    assert result["retrieval_diagnostics"][0]["image_verification"]["rejected_by_reason"]
     items = result["recommendations"]
-    assert all(r["price"] is None and r["offer_quality"] is None and r["offer_id"] is None for r in items)
-    assert items[0]["historical_price"]["currency"] == "USD"
-    assert items[0]["source_mode"] == "HISTORICAL_RESEARCH"
     sid = result["session_id"]
-    comparison = client.post("/api/comparisons", json={"session_id": sid, "product_ids": [r["product_id"] for r in items]})
-    assert comparison.status_code == 201, comparison.text
-    compared = comparison.json()["result"]["products"]
-    assert compared[0]["historical_price"] and compared[0]["best_offer"] is None
+    assert items == []
+    comparison = client.post("/api/comparisons", json={"session_id": sid, "product_ids": []})
+    assert comparison.status_code == 422
     with SessionLocal() as db:
-        db.get(Product, items[0]["product_id"]).name = "Changed catalog name"
+        research_product = db.scalar(select(ResearchProduct).order_by(ResearchProduct.id))
+        product_id = research_product.product_id
+        db.get(Product, product_id).name = "Changed catalog name"
         db.commit()
         assert db.scalar(select(func.count(ProductOffer.id))) == 0
     saved = client.get(f"/api/search/{sid}").json()
     assert saved["demo_mode"] is False
     assert saved["recommendations"] == items
     assert client.get(f"/api/history/{sid}").json()["result"]["data_mode"] == "research"
-    detail = client.get(f"/api/products/{items[0]['product_id']}?session_id={sid}").json()
-    assert detail["source_mode"] == "HISTORICAL_RESEARCH"
-    assert detail["offers"] == [] and detail["recommendation"] == items[0]
+    assert client.get(f"/api/products/{product_id}?session_id={sid}").status_code == 404
     assert client.post("/api/search", json={"session_id": sid}).status_code == 409
 
 
 def test_unknown_exact_and_incompatible_budget(tmp_path):
     seed(tmp_path)
     client = TestClient(app)
+    with SessionLocal() as db:
+        exact_matches, _ = evaluate(db, parse_query("điện thoại RAM 8GB"))
+        unknown_matches, _ = evaluate(db, parse_query("điện thoại RAM 999GB"))
+        no_vnd_price, _ = evaluate(db, parse_query("điện thoại dưới 1 VND"))
+    assert len(exact_matches.recommendations) == 1
+    assert len(unknown_matches.recommendations) == 0
+    assert len(no_vnd_price.recommendations) == 4
     result = client.post("/api/research/search", json={"raw_query": "điện thoại RAM 8GB"}).json()
-    assert result["total_recommended"] == 1
-    assert result["recommendations"][0]["requirement_matches"][0]["status"] == "matched"
+    assert result["total_recommended"] == 0
     unknown = client.post("/api/research/search", json={"raw_query": "điện thoại RAM 999GB"}).json()
     assert unknown["total_recommended"] == 0
     vnd = client.post("/api/research/search", json={"raw_query": "điện thoại dưới 1 VND"}).json()
-    assert vnd["total_recommended"] == 4
+    assert vnd["total_recommended"] == 0
     assert any("BUDGET_NOT_COMPARABLE" in w for w in vnd["warnings"])
-    assert all(r["product_suitability"]["breakdown"]["budget"] is None for r in vnd["recommendations"])
 
 
 def test_live_dedup_cannot_modify_historical_identity(tmp_path):

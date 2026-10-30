@@ -1,5 +1,6 @@
 import { test, expect, type Page } from "@playwright/test";
 import type { SearchPipelineResponse } from "../types/shopping";
+import { installQaImageFixtures } from "./image-fixtures";
 
 const API = "http://127.0.0.1:18000";
 const query = "Tai nghe 500 nghìn để học online, mic tốt, pin lâu";
@@ -13,24 +14,41 @@ test.beforeEach(async ({ page, request }) => {
     return url.hostname === "127.0.0.1" && ["13000", "18000"].includes(url.port)
       ? route.continue() : route.abort("blockedbyclient");
   });
+  await installQaImageFixtures(page);
 });
 
-async function demoResult(page: Page): Promise<SearchPipelineResponse> {
+async function unifiedResult(page: Page): Promise<SearchPipelineResponse> {
   const analysis = await page.request.post(`${API}/api/requirements/analyze`, { data: { raw_query: query } });
   expect(analysis.ok()).toBeTruthy();
   const { session_id } = await analysis.json();
   const response = await page.request.post(`${API}/api/search`, { data: { session_id } });
   expect(response.ok()).toBeTruthy();
-  expect((await response.request().postDataJSON()).search_scope ?? "auto").toBe("auto");
+  expect((await response.json()).session_id).toBe(session_id);
   return response.json();
 }
 
-test("Demo journey: home, analysis, search, results, filters, detail, compare, feedback, history", async ({ page }) => {
+test("results hide the global source scope and data warning panels", async ({ page }) => {
+  const data = await unifiedResult(page);
+  data.unified_sources = [
+    { source: "database_catalog", available: true, matched_products: 13 },
+    { source: "research_catalog", available: true, matched_products: 1 },
+    { source: "configured_web_search", available: false, error: "Chưa cấu hình Tavily hoặc SearXNG." },
+  ];
+  data.warnings = ["BUDGET_NOT_COMPARABLE: không lọc/chấm giá USD theo VND; không tự quy đổi FX."];
+  await page.route(`${API}/api/search/${data.session_id}`, (route) => route.fulfill({ json: data }));
+  await page.goto(`/results/${data.session_id}`);
+
+  await expect(page.getByRole("heading", { name: "Phạm vi tìm kiếm" })).toHaveCount(0);
+  await expect(page.getByText("Lưu ý về dữ liệu", { exact: true })).toHaveCount(0);
+  await expect(page.getByText("BUDGET_NOT_COMPARABLE", { exact: false })).toHaveCount(0);
+});
+
+test("Unified journey: home, analysis, search, results, filters, detail, compare, feedback, history", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("textbox").first().fill(query);
   const analysisResponse = page.waitForResponse((r) => r.url() === `${API}/api/requirements/analyze` && r.request().method() === "POST");
   const searchResponse = page.waitForResponse((r) => r.url() === `${API}/api/search` && r.request().method() === "POST");
-  await page.getByRole("button", { name: /Tìm bằng AI/ }).click();
+  await page.getByRole("button", { name: /Tìm và đề xuất/ }).click();
   const analysis = await analysisResponse;
   expect(analysis.ok()).toBeTruthy();
   expect(analysis.request().postDataJSON().raw_query).toBe(query);
@@ -45,19 +63,28 @@ test("Demo journey: home, analysis, search, results, filters, detail, compare, f
   expect(resultResponse.ok()).toBeTruthy();
   const data: SearchPipelineResponse = await resultResponse.json();
   expect(data.requirement?.category).toBe("tai nghe");
-  expect(data.data_mode).toBe("demo");
+  expect(data.data_mode).toBe("unified");
   expect(data.recommendations.length).toBe(3);
   const cards = page.getByRole("article");
   await expect(cards).toHaveCount(3);
   await expect(page.getByRole("region", { name: "Nhu cầu đã phân tích" })).toContainText("tai nghe");
-  await expect(page.getByText("Demo Mode — dữ liệu minh họa", { exact: true })).toBeVisible();
+  await expect(page.getByText("Đề xuất theo nhu cầu", { exact: true })).toBeVisible();
+  await expect(page.getByText(/AI Match|HISTORICAL_RESEARCH|Confidence phân tích|Backend chưa|OfferScore/)).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "Phạm vi tìm kiếm" })).toHaveCount(0);
+  await expect(page.getByText("Lưu ý về dữ liệu", { exact: true })).toHaveCount(0);
   const first = data.recommendations[0];
   await expect(cards.first().getByRole("heading", { name: first.name, exact: true })).toBeVisible();
   await expect(cards.first().getByLabel("Đối chiếu yêu cầu")).toContainText("✓ Đáp ứng");
   await cards.first().getByText("Điểm thành phần", { exact: true }).click();
   await expect(cards.first().getByRole("table")).toContainText("30%");
   await cards.first().getByText("Vì sao được đề xuất?", { exact: true }).click();
-  await expect(cards.first().getByText("Giải thích Demo", { exact: true })).toBeVisible();
+  const explanation = first.explanation;
+  const firstExplanation = typeof explanation === "string"
+    ? explanation
+    : explanation && typeof explanation === "object" && "summary" in explanation && typeof explanation.summary === "string"
+    ? explanation.summary
+    : null;
+  await expect(cards.first()).toContainText(firstExplanation || "Chưa có phần giải thích cho đề xuất này.");
   await cards.first().getByText("Nguồn và bằng chứng", { exact: true }).click();
   await expect(cards.first().getByLabel("Bằng chứng theo trường")).toContainText(`price: ${first.price}`);
 
@@ -71,7 +98,7 @@ test("Demo journey: home, analysis, search, results, filters, detail, compare, f
 
   await cards.first().getByRole("link", { name: "Xem chi tiết", exact: true }).click();
   await expect(page).toHaveURL(new RegExp(`/products/${first.product_id}\\?sessionId=${data.session_id}$`));
-  await expect(page.getByRole("region", { name: "Đề xuất của phiên tìm kiếm" })).toContainText("AI Match");
+  await expect(page.getByRole("region", { name: "Đề xuất của phiên tìm kiếm" })).toContainText("Mức độ phù hợp");
   await expect(page.getByRole("heading", { name: first.name, exact: true })).toBeVisible();
   await page.goto(resultPath);
   await expect(cards).toHaveCount(3);
@@ -82,7 +109,7 @@ test("Demo journey: home, analysis, search, results, filters, detail, compare, f
   expect((await comparisonResponse).ok()).toBeTruthy();
   await expect(page).toHaveURL(/\/compare\/\d+$/);
   await expect(page.getByRole("heading", { name: "So sánh cấu hình sản phẩm" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Offer, shop và độ mới" })).toBeVisible();
+  await expect(page.locator("main")).not.toContainText(/\b(FRESH|STALE|UNKNOWN)\b|Kiểm tra lần cuối/);
   await page.goto(resultPath);
   const feedbackResponse = page.waitForResponse((r) => r.url() === `${API}/api/feedback` && r.request().method() === "POST");
   await cards.first().getByRole("button", { name: "👍 Hữu ích" }).click();
@@ -92,6 +119,15 @@ test("Demo journey: home, analysis, search, results, filters, detail, compare, f
   await expect(cards.first().getByText("✓ Cảm ơn bạn đã phản hồi")).toBeVisible();
   await page.getByRole("link", { name: "Lịch sử", exact: true }).click();
   await expect(page).toHaveURL(/\/history$/);
+  const historyResponse = await page.request.get(`${API}/api/history?limit=50`);
+  expect(historyResponse.ok()).toBeTruthy();
+  const historyEntry = (await historyResponse.json()).items.find((item: { session_id: string }) => item.session_id === data.session_id);
+  expect(historyEntry).toBeTruthy();
+  const historyRow = page.getByRole("link", { name: `Xem lại: ${query}`, exact: true }).first().locator("xpath=ancestor::li");
+  const historyTime = historyRow.locator("time");
+  await expect(historyTime).toHaveAttribute("datetime", historyEntry.created_at);
+  const displayedYear = new Intl.DateTimeFormat("vi-VN", { year: "numeric" }).format(new Date(historyEntry.created_at));
+  await expect(historyTime).toContainText(displayedYear);
   await page.getByRole("link", { name: `Xem lại: ${query}`, exact: true }).first().click();
   await expect(page).toHaveURL(new RegExp(`${resultPath}$`));
   await expect(cards).toHaveCount(3);
@@ -100,7 +136,7 @@ test("Demo journey: home, analysis, search, results, filters, detail, compare, f
 });
 
 test("renders all backend match states and structured evidence without client inference", async ({ page }) => {
-  const data = await demoResult(page);
+  const data = await unifiedResult(page);
   data.recommendations[0].requirement_matches = [
     { name: "ram", requested_value: "16GB", product_value: "16GB", status: "matched", reason: "Đủ RAM theo backend" },
     { name: "storage", requested_value: "512GB", product_value: "256GB", status: "unmet", reason: "Thiếu dung lượng theo backend" },
@@ -126,8 +162,24 @@ test("renders all backend match states and structured evidence without client in
   await expect(evidence.locator("script")).toHaveCount(0);
 });
 
-test("old snapshot renders empty metadata and preserves failure warning with recommendations", async ({ page }) => {
-  const data = await demoResult(page);
+test("product explanation does not render the backend notes section", async ({ page }) => {
+  const data = await unifiedResult(page);
+  data.recommendations[0].explanation = {
+    summary: "Phù hợp với nhu cầu đã phân tích.",
+    cautions: ["BACKEND_CAUTION_FIXTURE"],
+    evidence_notes: ["BACKEND_EVIDENCE_FIXTURE"],
+  };
+  await page.route(`${API}/api/search/${data.session_id}`, (route) => route.fulfill({ json: data }));
+  await page.goto(`/results/${data.session_id}`);
+
+  const card = page.getByRole("article").first();
+  await card.getByText("Vì sao được đề xuất?", { exact: true }).click();
+  await expect(card.getByText("Lưu ý từ backend", { exact: true })).toHaveCount(0);
+  await expect(card.getByText(/BACKEND_(CAUTION|EVIDENCE)_FIXTURE/)).toHaveCount(0);
+});
+
+test("old snapshot hides the global failure warning and preserves recommendations", async ({ page }) => {
+  const data = await unifiedResult(page);
   for (const item of data.recommendations) {
     delete item.requirement_matches;
     if (item.evidence) delete item.evidence.fields;
@@ -138,33 +190,37 @@ test("old snapshot renders empty metadata and preserves failure warning with rec
   await page.goto(`/results/${data.session_id}`);
   const card = page.getByRole("article").first();
   await expect(page.getByRole("article")).toHaveCount(3);
-  await expect(page.getByRole("alert").filter({ hasText: data.warnings[0] })).toBeVisible();
-  await expect(card).toContainText("Backend chưa cung cấp đối chiếu từng yêu cầu");
+  await expect(page.getByText("Lưu ý về dữ liệu", { exact: true })).toHaveCount(0);
+  await expect(page.getByText(data.warnings[0], { exact: false })).toHaveCount(0);
+  await expect(card).toContainText("Chưa có dữ liệu để đối chiếu từng tiêu chí");
   await card.getByText("Nguồn và bằng chứng", { exact: true }).click();
-  await expect(card).toContainText("Chưa có evidence có cấu trúc");
+  await expect(card).toContainText("Chưa có thông tin đối chiếu chi tiết");
 });
 
-test("sales links require page proof and broken remote images use the local placeholder", async ({ page }) => {
-  const data = await demoResult(page);
-  const item = data.recommendations[0];
-  item.product_page_valid = true;
-  item.product_url = "https://retailer.example/products/sounddemo-h20";
-  item.evidence_url = "https://review.example/blog/sounddemo-h20";
-  item.image_url = "http://127.0.0.1:13000/broken-product.jpg";
-  await page.route("**/broken-product.jpg", (route) => route.fulfill({ status: 404, body: "missing" }));
+test("stale offer price and availability are labeled as last observed", async ({ page }) => {
+  const data = await unifiedResult(page);
+  data.recommendations[0].freshness_status = "STALE";
   await page.route(`${API}/api/search/${data.session_id}`, (route) => route.fulfill({ json: data }));
   await page.goto(`/results/${data.session_id}`);
+
   const card = page.getByRole("article").first();
-  const link = card.getByRole("link", { name: "Xem sản phẩm ↗", exact: true });
-  await expect(link).toHaveAttribute("href", item.product_url);
-  await expect(link).toHaveAttribute("target", "_blank");
-  await expect(link).toHaveAttribute("rel", "noopener noreferrer");
-  await expect(card.getByRole("link", { name: "Xem nguồn ↗", exact: true })).toHaveAttribute("href", item.evidence_url);
-  await expect(card.getByText("Chưa có ảnh sản phẩm", { exact: true })).toBeVisible();
-  for (const url of ["https://retailer.example/", "https://retailer.example/xe-may/", "https://retailer.example/search?q=x", "https://retailer.example/blog/model"]) {
-    item.product_url = url;
-    await page.reload();
-    await expect(card.getByRole("link", { name: "Xem sản phẩm ↗", exact: true })).toHaveCount(0);
-    await expect(card.getByRole("link", { name: "Xem nguồn ↗", exact: true })).toHaveAttribute("href", item.evidence_url);
-  }
+  await expect(card.getByRole("status").filter({ hasText: "Giá và tình trạng lần cuối ghi nhận" })).toBeVisible();
+  await expect(card.getByText("Giá và tình trạng lần cuối ghi nhận", { exact: true })).toBeVisible();
+});
+
+test("products with a failed verified image are removed without a substitute", async ({ page }) => {
+  const data = await unifiedResult(page);
+  const item = data.recommendations[0];
+  item.image_url = "https://qa-catalog.example/images/broken-product.jpg";
+  if (item.image_evidence) item.image_evidence.image_url = item.image_url;
+  let brokenImageRequested = false;
+  await page.route("**/broken-product.jpg", (route) => {
+    brokenImageRequested = true;
+    return route.fulfill({ status: 404, body: "missing" });
+  });
+  await page.route(`${API}/api/search/${data.session_id}`, (route) => route.fulfill({ json: data }));
+  await page.goto(`/results/${data.session_id}`);
+  await expect.poll(() => brokenImageRequested).toBe(true);
+  await expect(page.getByRole("article")).toHaveCount(data.recommendations.length - 1);
+  await expect(page.getByRole("article").filter({ hasText: item.name })).toHaveCount(0);
 });

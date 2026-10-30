@@ -13,9 +13,12 @@ from tests.fixtures.cellphones_image_pages import page, OPAQUE
 async def test_cellphones_bound_opaque_asset_recovered(monkeypatch, index, pattern):
     url, html = page(index, pattern)
     async def fetch(self, value): return value, html
-    async def loads(self, value): return value == OPAQUE
+    async def loads(self, value):
+        from datetime import datetime, timezone
+        return {'accepted': value == OPAQUE, 'checked_at': datetime.now(timezone.utc).isoformat(),
+                'content_type': 'image/jpeg', 'content_sha256': 'a' * 64}
     monkeypatch.setattr(module.ProductImageResolver, '_fetch_html', fetch)
-    monkeypatch.setattr(module.ProductImageResolver, '_image_loads', loads)
+    monkeypatch.setattr(module.ProductImageResolver, 'verify_image', loads)
     proof = await module.ProductImageResolver().inspect(url)
     assert proof['product_page_valid'] and proof['verification_level'] == 'VERIFIED_CONTENT'
     assert proof['image_url'] == OPAQUE
@@ -37,12 +40,12 @@ def test_bound_gallery_still_rejects_explicit_wrong_model(pattern):
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize('mime,signature,status', [
-    ('image/webp', b'RIFF' + b'\x00' * 4 + b'WEBP', 206),
+    ('image/webp', b'RIFF' + b'\x00' * 4 + b'WEBP', 200),
     ('IMAGE/WEBP; charset=binary', b'RIFF' + b'\x00' * 4 + b'WEBP', 200),
     ('image/avif', b'\x00\x00\x00\x20ftypmif1\x00\x00\x00\x00avif', 200),
     ('image/jpeg', b'\xff\xd8\xff', 200),
 ])
-async def test_range_get_avoids_head_and_closes_before_large_body(monkeypatch, mime, signature, status):
+async def test_full_bounded_get_hashes_raster_without_head_or_range(monkeypatch, mime, signature, status):
     original = httpx.AsyncClient
     events, methods, clients = [], [], []
     class Stream(httpx.AsyncByteStream):
@@ -55,15 +58,15 @@ async def test_range_get_avoids_head_and_closes_before_large_body(monkeypatch, m
     def handler(request):
         methods.append(request.method)
         if request.method == 'HEAD': return httpx.Response(403)
-        assert request.headers['range'] == 'bytes=0-4095'
-        return httpx.Response(status, headers={'content-type': mime, 'content-range': 'bytes 0-4095/6004096'}, stream=Stream())
+        assert 'range' not in request.headers
+        return httpx.Response(status, headers={'content-type': mime}, stream=Stream())
     def factory(**kwargs):
         client = original(transport=httpx.MockTransport(handler), **kwargs); clients.append(client); return client
     async def public(url): return True
     monkeypatch.setattr(module, '_safe_public_url', public)
     monkeypatch.setattr(module.httpx, 'AsyncClient', factory)
     assert await module.ProductImageResolver()._image_loads(OPAQUE)
-    assert methods == ['GET'] and events == ['prefix', 'closed']
+    assert methods == ['GET'] and events == ['prefix', 'large_tail', 'closed']
     assert all(client.is_closed for client in clients)
 
 
@@ -107,5 +110,5 @@ async def test_probe_records_http_failure_without_exception_body(monkeypatch):
         assert not await module.ProductImageResolver()._image_loads(OPAQUE)
     finally: current_trace.reset(token)
     record = trace.diagnostics['image_probes'][0]
-    assert record['reason'] == 'http_status' and record['attempts'][0]['status'] == 403
+    assert record['reason'] == 'http_403' and record['attempts'][0]['status'] == 403
     assert 'secret-bearing' not in str(trace.snapshot())

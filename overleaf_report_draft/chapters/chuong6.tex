@@ -1,0 +1,25 @@
+\chapter{HƯỚNG DẪN VẬN HÀNH VÀ SỬ DỤNG}
+
+\section{Môi trường phát triển}
+
+Để chạy cục bộ, cài các phiên bản Python và Node tương thích theo \texttt{README.md}, cài dependency từ các file quản lý của dự án và cấu hình biến môi trường mẫu. Khởi chạy backend FastAPI ở \texttt{127.0.0.1:8000} và frontend Next.js ở \texttt{localhost:3000}. Có thể kiểm tra backend tại \texttt{/api/health}, trạng thái ứng dụng tại \texttt{/api/system/status}, và tài liệu API tại \texttt{/docs}.
+
+Docker Compose khởi chạy các service được cấu hình trong compose file, trong đó database dùng PostgreSQL. Trước khi sử dụng dữ liệu cá nhân, cần xác nhận volume và database đang được trỏ tới; không dùng lệnh reset hoặc xóa volume để xử lý lỗi khởi động. Service SearXNG chỉ chạy khi kích hoạt profile tương ứng và endpoint backend được cấu hình.
+
+\section{Quy trình sử dụng}
+
+Người dùng mở trang chủ, nhập mô tả như loại sản phẩm, ngân sách và tiêu chí, sau đó bổ sung thông tin nếu UI yêu cầu. Khi kết quả được lưu, người dùng xem thông tin nguồn, bằng chứng và cảnh báo trước khi mở chi tiết hoặc so sánh. Trang lịch sử hiển thị các phiên đã lưu của instance. Giá và nguồn cần được kiểm tra lại tại liên kết nguồn trước quyết định mua hàng, vì snapshot phản ánh thời điểm quan sát chứ không bảo đảm giá hiện tại.
+
+\section{Cấu hình provider và giới hạn vận hành}
+
+Provider LLM hoặc tìm kiếm web là cấu hình tùy chọn, có thể cần credential và chi phí theo điều khoản nhà cung cấp. Kiểm thử mặc định không cần các khóa này. Không đưa khóa bí mật vào source code hoặc tài liệu được công khai. SearXNG tự triển khai giúp khám phá kết quả, nhưng không thay thế quyền truy cập nguồn sản phẩm hoặc bằng chứng giá.
+
+Crawler thương mại mặc định bị khóa. Chỉ quản trị viên có căn cứ quyền truy cập nguồn cụ thể mới được cấu hình registry và policy theo runbook. Không vượt CAPTCHA, đăng nhập, giới hạn tốc độ hoặc cơ chế chống bot.
+
+\section{Trạng thái triển khai}
+
+Các bằng chứng kiểm thử Compose cục bộ, nếu có, chỉ xác nhận môi trường local tương ứng. Trong phạm vi tài liệu này chưa có bằng chứng xác nhận website được triển khai công khai với domain, TLS, monitoring, backup, kiểm soát người dùng và cấu hình production. Vì vậy trạng thái public production được ghi là \textbf{chưa xác minh/chưa triển khai}, không được suy ra từ việc trang chạy được trên máy phát triển.
+
+\section{Vận hành và bảo trì}
+
+Trước khi nâng cấp nên sao lưu database theo quy trình vận hành, kiểm tra trạng thái container/service và xem log có kiểm soát thông tin nhạy cảm. Khi thay đổi API, schema, policy nguồn hoặc scoring phải cập nhật tài liệu và test tương ứng. Sau mỗi thay đổi nên chạy test mục tiêu, regression phù hợp, lint, type-check và build. Lệnh cụ thể phải lấy từ README và scripts hiện hành vì cấu hình môi trường có thể thay đổi theo thời điểm.

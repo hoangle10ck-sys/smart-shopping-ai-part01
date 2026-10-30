@@ -50,7 +50,7 @@ def test_analyze_then_clarify_laptop() -> None:
     first_response = client.post(
         "/api/requirements/analyze",
         json={
-            "raw_query": "Tìm laptop tốt"
+            "raw_query": "Tìm sản phẩm tốt"
         },
     )
 
@@ -75,7 +75,7 @@ def test_analyze_then_clarify_laptop() -> None:
         json={
             "session_id": session_id,
             "answer": (
-                "Khoảng 15 triệu "
+                "Laptop Khoảng 15 triệu "
                 "để học lập trình"
             ),
         },

@@ -118,9 +118,14 @@ async def test_broken_primary_tries_lazy_fallback_without_changing_offer(monkeyp
     html = sales_page(image='/broken.jpg') + f'<img alt="{NAME}" data-original="/phone-model-15-128gb.jpg">'
     before = inspect_page(URL, html)
     async def fetch(self, url): return url, html
-    async def loads(self, url): return not url.endswith('/broken.jpg')
+    async def loads(self, url):
+        from datetime import datetime, timezone
+        if url.endswith('/broken.jpg'):
+            return {'accepted': False, 'reason': 'http_404'}
+        return {'accepted': True, 'checked_at': datetime.now(timezone.utc).isoformat(),
+                'content_type': 'image/jpeg', 'content_sha256': 'a' * 64}
     monkeypatch.setattr(ProductImageResolver, '_fetch_html', fetch)
-    monkeypatch.setattr(ProductImageResolver, '_image_loads', loads)
+    monkeypatch.setattr(ProductImageResolver, 'verify_image', loads)
     proof = await ProductImageResolver().inspect(URL)
     assert proof['image_url'] == 'https://shop.example/phone-model-15-128gb.jpg'
     assert proof['image_source'] == 'html_product_image'

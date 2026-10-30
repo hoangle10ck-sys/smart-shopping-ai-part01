@@ -1,12 +1,15 @@
 import html
 import json
+from datetime import datetime, timezone
+from hashlib import sha256
 from fastapi.testclient import TestClient
 from app.main import app
 from app.core.config import get_settings
 from app.services.llm import requirement_analyzer
 from app.services.llm.client import MockLLMClient
-from app.services.search import search_service
 from app.services.search.base import SearchResult
+from app.services.search.multi_provider import MultiSearchProvider
+from app.services.search.unified.external_sources import LiveProductSource
 from app.services.extraction.product_image_resolver import ProductImageResolver
 
 
@@ -22,17 +25,25 @@ def test_variants_have_separate_prices_filters_and_historical_snapshots(monkeypa
             return [SearchResult(title='Acme Orbit 125',url=url,content='Xe máy Acme Orbit 125 đặt xe tại đại lý.')]
     async def fetch(self,address):
         product={'@type':'Product','name':'Acme Orbit 125','brand':'Acme','model':'Orbit 125','category':'xe máy',
+                 'image':'/acme-orbit-125.jpg',
                  'offers':{'@type':'AggregateOffer','lowPrice':1,'highPrice':99999999,'priceCurrency':'VND'}}
-        variants=[dict(attributes={'version':version},display_price=price,is_purchasable=True,
+        variants=[dict(attributes={'version':version},image={'url':f'/acme-orbit-125-{version.lower()}.jpg',
+                       'alt':f'Acme Orbit 125 {version}'},display_price=price,is_purchasable=True,
                        variation_is_active=True,is_in_stock=True) for version,price in prices.items()]
         variants[0]['attributes']['color']='red'
+        variants[0]['image']['alt']='Acme Orbit 125 Standard Red'
         variants.append({**variants[0],'attributes':{'version':'Standard','color':'black'}})
         markup=('<title>Acme Orbit 125</title><h1>Acme Orbit 125</h1><a>Đặt xe</a>'
             '<script type="application/ld+json">'+json.dumps(product)+'</script>'
             '<form class="variations_form cart" data-product_id="1" action="'+url+'" data-product_variations="'+html.escape(json.dumps(variants),quote=True)+'"></form>')
         return address,markup
-    monkeypatch.setattr(search_service,'get_search_provider',Provider)
+    monkeypatch.setattr(MultiSearchProvider,'__init__',lambda self, **kwargs:setattr(self,'providers',[Provider()]))
+    monkeypatch.setattr(LiveProductSource,'is_available',lambda self,db:True)
     monkeypatch.setattr(ProductImageResolver,'_fetch_html',fetch)
+    async def verified_image(self, image_url, *, allowed_hosts=None):
+        return {'accepted':True,'checked_at':datetime.now(timezone.utc).isoformat(),
+                'content_type':'image/jpeg','content_sha256':sha256(image_url.encode()).hexdigest()}
+    monkeypatch.setattr(ProductImageResolver,'verify_image',verified_image)
     with TestClient(app) as client:
         def run(query):
             analyzed=client.post('/api/requirements/analyze',json={'raw_query':query})
@@ -46,7 +57,7 @@ def test_variants_have_separate_prices_filters_and_historical_snapshots(monkeypa
         assert len(items)==3 and len({x['product_id'] for x in items})==3
         assert items[0]['price']==33500000
         assert {x['variant']['version']:x['price'] for x in items}==prices
-        assert all(x['product_url']==url and x['price_type']=='CONCRETE' and x['image_url'] is None for x in items)
+        assert all(x['product_url']==url and x['price_type']=='CONCRETE' and x['image_evidence']['status']=='VERIFIED' for x in items)
         _,hard=run('Xe máy tối đa 33 triệu đi học')
         assert [x['price'] for x in hard['recommendations']]==[31900000]
         assert sum(not d['accepted'] for d in hard['filter_decisions'])==2

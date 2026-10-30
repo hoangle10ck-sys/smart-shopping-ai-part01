@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlsplit
 
 from app.schemas.collector import CollectorFailure, FetchStatus, SourceFetchResult, SourceRegistration
 from app.services.collectors.browser_renderer import BrowserRenderer, BrowserUnavailable
@@ -83,6 +83,19 @@ class BrowserProductPageCollector:
             except ValueError:
                 observation.image_url = None
                 warnings.append("Rendered image outside the approved source host was omitted.")
+            if observation.image_url:
+                from app.services.extraction.product_image_resolver import ProductImageResolver
+                image_host = urlsplit(observation.image_url).hostname
+                probe = await ProductImageResolver(concurrency=1).verify_image(
+                    observation.image_url,
+                    allowed_hosts={image_host} if image_host else set(),
+                )
+                if probe.get("accepted"):
+                    observation.image_probe = probe
+                else:
+                    observation.image_url = None
+                    observation.image_probe = None
+                    warnings.append(f"IMAGE_UNAVAILABLE:{probe.get('reason', 'verification_failed')}")
 
         exact_offer = any(
             any(item.field == "sale_price" and item.verification_status == "VERIFIED" for item in offer.evidence)

@@ -1,10 +1,16 @@
-# Demo và kịch bản trình diễn
+# Mock fixtures lịch sử — chỉ dùng trong kiểm thử
 
-Chạy theo [README](../README.md), đặt `DEMO_MODE=true` trong `backend/.env`,
-khởi động backend từ `backend/` và frontend từ `frontend/`. Không cần API key.
-Mở `http://localhost:3000`; kiểm tra `/api/system/status` và nhãn Demo ở kết quả.
-Dữ liệu dưới đây là sản phẩm giả lập, không phải báo giá mua hàng. URL `.example`
-không phải website merchant thật để mở khi trình diễn.
+Trang Home hiện luôn dùng automatic unified search. Không dùng hướng dẫn hoặc
+bảng fixture trong tài liệu này để trình diễn như sản phẩm thật. `DEMO_MODE=true`
+không khiến endpoint `/api/search` đưa `MockSearchProvider` vào kết quả unified;
+fixture không có merchant/offer đang bán và URL `.example` không mở được như
+website sản phẩm thật.
+
+Test `backend/tests/integration/test_demo_scenarios.py` hiện xác nhận ba query
+không nhận fixture giả khi catalog và nguồn web đều trống. Các bảng sản phẩm
+bên dưới là ví dụ fixture lịch sử từ luồng cũ; test hiện tại không tạo hoặc trả
+những record đó. Với Home, chỉ báo sản phẩm khi có catalog evidence hoặc nguồn
+web được cấu hình, cho phép và xác minh.
 
 Số liệu lấy từ `backend/tests/integration/test_demo_scenarios.py`. Tái lập:
 
@@ -13,30 +19,27 @@ cd backend
 .\.venv\Scripts\python.exe -B -X utf8 -m pytest tests/integration/test_demo_scenarios.py -v -s
 ```
 
-Test chạy từng scenario trên schema SQLite tạm sạch. ID/timestamp thay đổi theo
-lần chạy. `total_filtered` là số **được giữ lại**, không phải số bị loại. Cả ba
-scenario hiện trả **3 candidates → 3 qua lọc → 3 recommendations**. TOP_K=5 không
-sinh thêm sản phẩm để đủ năm.
+Test chạy từng query trên schema SQLite tạm sạch. Search hợp nhất không có
+catalog/provider nên kết quả hiện là **0 recommendations**; đây là bằng chứng
+không bịa fixture, không phải bằng chứng nguồn Live hoạt động.
 
-## Quy trình 15 bước cho cả ba scenario
+## Assertions của luồng hiện tại
 
 | Bước | Thao tác / điều cần chỉ ra |
 |---|---|
-| 1. Analysis | Dán nguyên văn câu bên dưới vào Home, gửi yêu cầu; xem category và requirements. |
-| 2. Budget | Xác nhận budget_max đúng VND; budget_min của ba câu này là null. |
-| 3. Purpose | Xem purpose trong Requirement Summary; không tự thêm thông số kỹ thuật từ purpose. |
-| 4. Search | Gửi tìm kiếm; Python tạo query, MockSearchProvider trả dữ liệu. Xem `queries` trong response `/api/search` qua Network nếu cần. |
-| 5. Candidates | Kiểm tra `total_found=3`. |
-| 6. Hard filter | Kiểm tra `total_filtered=3`, category đúng, giá không vượt budget. |
-| 7. Recommendation | Tới `/results/[sessionId]`, có ba sản phẩm được xếp hạng. |
-| 8. AI Match | Xem score bên dưới và breakdown sáu thành phần với trọng số 25/30/20/10/5/10; Data Confidence là chỉ số riêng. |
-| 9. Matching | Mở chi tiết: ✓ Đáp ứng / ✕ Không đáp ứng / ? Chưa đủ dữ liệu cùng giá trị/lý do backend trả. |
-| 10. Evidence | Xem price/rating/review_count/specifications có nguồn, URL, thời điểm, reliability nếu có. Nguồn Demo là giả lập. |
-| 11. Explanation | Xem tóm tắt, why_fit, tradeoffs/cautions; generation_mode là demo. |
-| 12. Product detail | Mở `/products/[productId]`. Trang này đọc catalog hiện có; recommendation là snapshot. |
-| 13. Comparison | Chọn 2–3 sản phẩm, mở `/compare/[comparisonId]`; giá/score lấy cùng view của session. Scenario test kiểm tra hai; suite comparison kiểm tra cả ba. |
-| 14. Feedback | Gửi hữu ích/không phù hợp và lý do nếu cần. Feedback chỉ lưu, chưa huấn luyện mô hình. |
-| 15. History | Xem lại đúng session; giá/score/evidence snapshot được giữ. Trình diễn filter/sort/reset trước khi rời kết quả. |
+| Analysis | Test phân tích query và xác nhận category/requirement trên database tạm. |
+| Budget / Purpose | Test các giá trị yêu cầu; không tự thêm thông số kỹ thuật từ purpose. |
+| Search | Test pipeline mock/legacy để xác nhận query; đây không phải nguồn web và không chứng minh truy cập Live. |
+| Candidates / filter / recommendation | Search không có dữ liệu hợp lệ trả 0 recommendations; không tự tạo đủ TOP_K. |
+| Matching / Evidence | Kiểm tra schema/reasoning của pipeline; nguồn/URL trong fixtures là giả lập. |
+| Explanation / detail / comparison | Các assertion kiểm tra nội dung snapshot và semantics của test; không phải sản phẩm có trang bán thật. |
+| Feedback / history | Các test riêng kiểm tra persistence; không có dữ liệu này đại diện người dùng thật. |
+
+## Ví dụ fixture lịch sử (đã ngừng sinh bởi test hiện tại)
+
+Các bảng và điểm số còn lại bên dưới chỉ lưu dấu ví dụ tổng hợp của luồng cũ.
+Chúng không phải catalog đang chạy, không phải kết quả lần test hiện tại và
+không được dùng để chứng minh sản phẩm, offer hoặc giá thật.
 
 ## 1. Tai nghe học online
 
@@ -51,9 +54,10 @@ Category `tai nghe`; budget_max **500000**; purpose `học online`; confidence
 | 2 | LearnSound Pro | 499000 | 91.98 | microphone noise reduction: matched; battery 45 hours: matched |
 | 3 | StudyBeat M5 | 399000 | 90.78 | microphone dual mic: matched; battery 35 hours: matched |
 
-Kết quả 3/3/3. Microphone thỏa rubric Python hiện tại; đây không phải chất lượng
-âm thanh được đo độc lập. Browser E2E dùng luồng Demo thực cho tai nghe từ Home
-qua comparison, feedback và History.
+Kết quả 3/3/3 thuộc ví dụ fixture lịch sử. Microphone thỏa rubric Python; đây
+không phải chất lượng âm thanh được đo độc lập. Browser E2E hiện dùng catalog
+tổng hợp riêng trên database tạm để kiểm tra unified UX; nó không gọi
+`DemoProductSource` hoặc `MockSearchProvider`.
 
 ## 2. Laptop học lập trình
 
@@ -101,8 +105,9 @@ không được mô tả là ba hành trình browser đã chạy.
 - Filter/sort chỉ thay cách xem tập recommendation, không chấm lại điểm.
 - Search lỗi toàn bộ trả lỗi, giữ snapshot cũ; dùng regression tests để chứng minh,
   không ngắt API thật khi bảo vệ. Hai browser fixtures kiểm tra metadata/status/URL.
-- Nếu Live không hoạt động, bật Demo, restart backend và tạo session mới. Không
-  gắn nhãn lại snapshot Live cũ thành Demo.
+- Nếu nguồn web không khả dụng, kiểm tra provider/policy và xem trạng thái nguồn
+  trong kết quả. Không bật fixture để giả lập kết quả mua hàng hoặc gắn nhãn lại
+  snapshot cũ thành Demo/Live.
 - AI Match là điểm 0–100, không phải xác suất hoặc bảo đảm chất lượng mua hàng.
 
 Kết quả kiểm thử và giới hạn: [FINAL_AUDIT](FINAL_AUDIT.md).

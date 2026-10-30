@@ -70,7 +70,11 @@ def profile_request(name):
                 if hasattr(result, 'search_queries'):
                     trace.diagnostics['generated_queries'] = result.search_queries
                 if hasattr(result, 'retrieval_diagnostics'):
-                    result.retrieval_diagnostics.append({'performance': trace.snapshot()})
+                    diagnostics = result.retrieval_diagnostics
+                    if diagnostics and isinstance(diagnostics[-1], dict) and 'performance' in diagnostics[-1]:
+                        diagnostics[-1] = {'performance': trace.snapshot()}
+                    else:
+                        diagnostics.append({'performance': trace.snapshot()})
                 return result
             finally:
                 logger.info('shopping_performance %s', json.dumps(trace.snapshot(), ensure_ascii=False))

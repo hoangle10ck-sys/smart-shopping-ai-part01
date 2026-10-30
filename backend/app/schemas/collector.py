@@ -106,6 +106,8 @@ class ProductObservation(BaseModel):
     review_count: int | None = Field(default=None, ge=0)
     specifications: dict[str, str] = Field(default_factory=dict)
     image_url: str | None = None
+    image_source: str | None = None
+    image_probe: dict[str, Any] | None = None
     offers: list[OfferObservation] = Field(default_factory=list)
     evidence: list[FieldEvidence] = Field(default_factory=list)
 

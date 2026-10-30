@@ -66,3 +66,17 @@
 - [x] **Task H.3:** Run production build: `npm run build`.
 - [x] **Task H.4:** Run full Playwright E2E suite: `npm run test:e2e` (all 18 tests).
 - [x] **Task H.5:** Produce final `UI_QA_REPORT.md` documenting audited routes, major UI decisions, changed files, verification results, and acceptance confirmation.
+
+## Frontend security regression checkpoint — October 29, 2026
+- [x] Product image URL guard rejects localhost, local hostnames, IPv4 private/link-local/reserved ranges, and IPv6 literals before rendering an `<img>` request; public merchant/CDN hostnames remain supported.
+- [x] Reproduction: added internal image URL cases to `frontend/tests/product-links.test.mjs`; before the guard, all 6 initial cases failed. After the fix, the focused test file passed (28 tests) and the full frontend suite passed (64 tests).
+- [x] `npm run lint`, `tsc --noEmit`, and `npm run build` passed. Full Playwright E2E passed (20 tests); after adding the assertion that the browser does not request an internal image URL, the targeted shopping E2E passed (4 tests). Both use the temporary database and loopback-only network guard.
+- Scope: prevents browser requests to local/internal image destinations. DNS names resolving to private IPs cannot be classified by this browser-side guard; image provenance and the backend's server-side collector controls remain separate checks.
+
+## Shopper-facing UI checkpoint — October 30, 2026
+- [x] Results stop showing internal candidate/filter counts and processing milliseconds; the visible result count follows the active filters.
+- [x] Comparison no longer exposes a database variant ID as an SKU. Removed the freshness/timestamp block after confirming the current comparison API schema does not return those fields; price, merchant, availability, and source links continue to use the saved `best_offer` data.
+- [x] Replaced remaining customer-facing English/internal labels in the reviewed product and comparison views and kept source/data limitations truthful.
+- [x] Frontend suite: `npm test` — 72 tests passed. Quality checks: `npm run lint`, `npx tsc --noEmit`, `npm run build` — exit code 0. Playwright: `npm run test:e2e` — 23 passed at mobile, tablet, desktop, and wide viewports.
+- [x] Reviewed the five public routes at 375, 768, 1366, and 1920 px, including keyboard navigation, comparison table scrolling, loading/error/empty states, and the main shopping journeys. Full evidence and current scope are appended in `UI_QA_REPORT.md`.
+- [x] Docker frontend image rebuilt and only the `frontend` service recreated. Container logs reported Next.js ready; `curl.exe` to `http://127.0.0.1:3000/` returned HTTP 200. Backend and database remained running.

@@ -4,6 +4,7 @@ from fastapi.testclient import TestClient
 
 from app.main import app
 from app.services.research.recommendation import parse_query
+from app.services.research.recommendation import evaluate
 from tests.test_research_pipeline import seed
 
 
@@ -39,14 +40,21 @@ def test_negative_brand(negative):
 def test_api_preserves_price_range_and_ram_comparator(tmp_path):
     seed(tmp_path)
     client = TestClient(app)
+    from app.core.database import SessionLocal
+    with SessionLocal() as db:
+        ranged, _ = evaluate(db, parse_query("điện thoại từ 20 đến 50 USD"))
+        budget_ram, _ = evaluate(db, parse_query("điện thoại dưới 100 USD RAM tối thiểu 8GB"))
+        exact, _ = evaluate(db, parse_query("điện thoại RAM 8GB"))
+    assert len(ranged.recommendations) == 1
+    assert len(budget_ram.recommendations) == 2
+    assert len(exact.recommendations) == 1
     result = client.post("/api/research/search", json={"raw_query": "điện thoại từ 20 đến 50 USD"}).json()
-    assert len(result["recommendations"]) == 1
-    assert result["recommendations"][0]["historical_price"]["amount"] == "21.00"
+    assert result["recommendations"] == []
+    assert result["retrieval_diagnostics"][0]["image_verification"]["rejected_by_reason"]
     result = client.post("/api/research/search", json={"raw_query": "điện thoại dưới 100 USD RAM tối thiểu 8GB"}).json()
-    assert len(result["recommendations"]) == 2
-    assert all(r["requirement_matches"][0]["status"] == "matched" for r in result["recommendations"])
+    assert result["recommendations"] == []
     exact = client.post("/api/research/search", json={"raw_query": "điện thoại RAM 8GB"}).json()
-    assert len(exact["recommendations"]) == 1
+    assert exact["recommendations"] == []
 
 
 def test_purpose_is_retained_and_disclosed(tmp_path):
@@ -69,5 +77,5 @@ def test_negative_brand_filters_actual_catalog(tmp_path):
         db.commit()
         apple_id = products[0].id
     result = TestClient(app).post("/api/research/search", json={"raw_query": "điện thoại không mua Apple"}).json()
-    assert result["total_recommended"] == 3
+    assert result["total_recommended"] == 0
     assert apple_id not in [r["product_id"] for r in result["recommendations"]]

@@ -89,11 +89,13 @@ runbook for the bounded command and optional browser installation.
 
 ## Docker verification
 
-This machine has no Docker CLI/runtime. Dockerfiles, Compose wiring, environment
-names, build contexts, secret exclusions, loopback ports, SQLite volume and health
-check are reviewed statically. **NOT RUNTIME VERIFIED**: neither `docker compose
-build` nor `up` has passed here. Commands for a Docker-equipped machine are in
-README; do not replace this limitation with a runtime success claim.
+The earlier static-only review is historical. On October 29, 2026, Compose
+configuration and image builds passed, followed by an isolated local runtime
+check using a project-specific PostgreSQL volume: PostgreSQL and backend became
+healthy, `/api/system/status` returned `ok`, and the frontend returned HTTP 200.
+The isolated containers and volume were removed afterward. This verifies that
+local Compose path only; it is not a production deployment check. Re-run it on
+the current machine if the Docker configuration or images change.
 
 ## Frontend
 
@@ -128,18 +130,23 @@ See [Playwright browser channels](https://playwright.dev/docs/browsers) and
 
 The suite automatically starts:
 
-- FastAPI Demo at `http://127.0.0.1:18000`, using a fresh OS temporary SQLite
-  database, empty provider keys, and a guard against external socket connections.
-  The launcher verifies the database path before startup; application lifespan
-  creates its schema. The test origin is enabled only by this launcher.
+- FastAPI at `http://127.0.0.1:18000`, using a fresh OS temporary SQLite
+  database, empty provider credentials, disabled collectors, an empty source
+  registry, and a guard against external socket connections. The launcher
+  verifies the database path, initializes the disposable schema, imports
+  labeled research test records, and seeds three synthetic catalog offers. Home
+  search exercises the unified catalog path; it does not turn Demo
+  mock products into shopping offers. The test origin is enabled only here.
 - A production Next.js build at `http://127.0.0.1:13000`, compiled with the local
   test backend URL. Browser requests outside these two local origins are blocked.
 
-Both ports must be free: `reuseExistingServer=false` prevents silently using a
-developer server/database. Servers are owned and stopped by Playwright. Database
-cleanup occurs on normal backend shutdown; force termination on Windows can leave
-an isolated `smart-shopping-e2e-*` directory in the OS temp folder. Each invocation
-still creates a different database. No application database is touched.
+Both ports must be free. Global setup probes them before startup, refuses an
+existing listener, and checks that each child server remains alive while waiting
+for readiness; it never intentionally reuses a developer server/database.
+Servers are owned and stopped by Playwright. Database cleanup occurs on normal
+backend shutdown; force termination on Windows can leave an isolated
+`smart-shopping-e2e-*` directory in the OS temp folder. Each invocation still
+creates a different database. No application database is touched.
 
 Run without another Next build/dev process in this frontend directory. E2E builds
 replace the generated `.next` output, so run `npm run build` afterward before using
@@ -147,10 +154,11 @@ replace the generated `.next` output, so run `npm run build` afterward before us
 
 The suite uses one worker and no retries or skipped tests. Scenarios:
 
-1. Enter a request on Home; exercise real Demo analysis/search; navigate to the
+1. Enter a request on Home; exercise unified analysis/search against the
+   disposable synthetic catalog; navigate to the
    saved results; inspect recommendations, requirement summary, score breakdown,
    explanation and field evidence; filter/sort/reset; open product detail; compare
-   two Demo products; submit feedback; open History and reopen the same snapshot.
+   two synthetic test offers; submit feedback; open History and reopen the same snapshot.
 2. Render all three backend match statuses, values/reasons and structured source
    metadata through a local response fixture. Verify unsafe URLs are not links
    and source text is escaped.

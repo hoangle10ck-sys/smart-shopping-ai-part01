@@ -190,6 +190,7 @@ def extract_product(
         product_rating=_rating(rating.get("ratingValue")),
         review_count=int(rating["reviewCount"]) if str(rating.get("reviewCount", "")).isdigit() else None,
         image_url=(str(product.get("image")) if isinstance(product.get("image"), str) else None),
+        image_source="json_ld_product" if isinstance(product.get("image"), str) else None,
         offers=offers, evidence=[FieldEvidence(field="name", value=name, source_url=url,
             json_path="name" if products else None,
             evidence_type="JSON_LD" if products else "META", observed_at=now, verification_status="VERIFIED")])

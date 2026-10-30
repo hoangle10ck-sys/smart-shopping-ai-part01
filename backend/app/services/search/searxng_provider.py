@@ -10,6 +10,26 @@ from app.core.config import get_settings
 from app.services.search.base import SearchProvider, SearchProviderError, SearchResult
 
 
+def _valid_http_url(value: object) -> str | None:
+    """Accept only absolute HTTP(S) URLs without embedded credentials."""
+    if not isinstance(value, str) or not value:
+        return None
+    try:
+        parsed = urlparse(value)
+        # Accessing .port also validates malformed or out-of-range ports.
+        _ = parsed.port
+    except ValueError:
+        return None
+    if (
+        parsed.scheme not in {"http", "https"}
+        or not parsed.hostname
+        or parsed.username is not None
+        or parsed.password is not None
+    ):
+        return None
+    return value
+
+
 class SearXNGProvider(SearchProvider):
     """Use only the explicitly configured SearXNG endpoint (never public instances)."""
 
@@ -41,17 +61,28 @@ class SearXNGProvider(SearchProvider):
         except (httpx.HTTPError, ValueError) as exc:
             raise SearchProviderError("SearXNG network or response error.", kind="provider_error") from exc
 
+        if not isinstance(payload, dict) or not isinstance(payload.get("results"), list):
+            raise SearchProviderError(
+                "SearXNG returned a malformed response.",
+                kind="malformed_response",
+            )
+
         results: list[SearchResult] = []
-        for item in payload.get("results", [])[:max_results]:
+        for item in payload["results"]:
             if not isinstance(item, dict):
                 continue
             title, url = item.get("title"), item.get("url")
-            if isinstance(title, str) and isinstance(url, str) and url.startswith(("http://", "https://")):
-                results.append(SearchResult(
-                    title=title,
-                    url=url,
-                    content=str(item.get("content") or ""),
-                    score=item.get("score") if isinstance(item.get("score"), (int, float)) else None,
-                    image_url=item.get("img_src") if isinstance(item.get("img_src"), str) else None,
-                ))
+            safe_url = _valid_http_url(url)
+            if isinstance(title, str) and safe_url is not None:
+                results.append(
+                    SearchResult(
+                        title=title,
+                        url=safe_url,
+                        content=str(item.get("content") or ""),
+                        score=item.get("score") if isinstance(item.get("score"), (int, float)) else None,
+                        image_url=_valid_http_url(item.get("img_src")),
+                    )
+                )
+                if len(results) >= max_results:
+                    break
         return results

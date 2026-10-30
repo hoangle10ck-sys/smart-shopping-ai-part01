@@ -2,7 +2,9 @@
 
 from fastapi.testclient import TestClient
 
+from app.core.database import SessionLocal
 from app.main import app
+from tests.fixtures.unified_catalog import seed_headphones
 
 
 client = TestClient(app)
@@ -16,6 +18,9 @@ QUERY = (
 
 def _create_recommended_product() -> int:
     """Create search pipeline and return one product ID."""
+
+    with SessionLocal() as db:
+        seed_headphones(db, count=1)
 
     analyze_response = client.post(
         "/api/requirements/analyze",

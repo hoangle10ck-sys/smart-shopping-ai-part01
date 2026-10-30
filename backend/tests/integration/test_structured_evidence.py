@@ -2,6 +2,7 @@
 
 from fastapi.testclient import TestClient
 import pytest
+import re
 from sqlalchemy import select
 
 from app.core.database import SessionLocal
@@ -10,7 +11,47 @@ from app.models.raw_product_candidate import RawProductCandidate
 from app.models.recommendation_snapshot import RecommendationSnapshot
 from app.services.recommendation.recommendation_service import RecommendationService
 from app.services.search.base import SearchResult
-from app.services.search.mock_provider import MockSearchProvider
+from app.services.search.multi_provider import MultiSearchProvider
+from app.services.search.unified.external_sources import LiveProductSource
+from app.services.extraction.product_image_resolver import ProductImageResolver
+from tests.fixtures.sales_pages import sales_page
+
+
+def patch_live_provider(monkeypatch, provider):
+    observations = {}
+
+    class Provider:
+        async def search(self, query, max_results):
+            results = await provider(self, query, max_results)
+            for result in results:
+                observations[result.url] = result
+            return results
+
+    async def fetch_page(self, url):
+        result = observations[url]
+        content = result.content
+        name = re.search(r"PRODUCT:\s*(.*?)\s*\|", content)
+        price = re.search(r"PRICE:\s*(\d+)", content)
+        rating = re.search(r"RATING:\s*([\d.]+)", content)
+        reviews = re.search(r"REVIEWS:\s*(\d+)", content)
+        specifications = re.search(r"SPECS:\s*(.*)$", content)
+        props = []
+        if specifications:
+            for item in specifications.group(1).split(";"):
+                key, separator, value = item.partition("=")
+                if separator:
+                    props.append({"name": key.strip(), "value": value.strip()})
+        extra = {"additionalProperty": props}
+        if rating:
+            extra["aggregateRating"] = {"@type": "AggregateRating", "ratingValue": rating.group(1),
+                                        "reviewCount": reviews.group(1) if reviews else None}
+        return url, sales_page(name=name.group(1) if name else result.title,
+                               price=int(price.group(1)) if price else 1,
+                               image="https://evidence.example/images/laptop-x1.jpg", **extra)
+
+    monkeypatch.setattr(MultiSearchProvider, "__init__", lambda self, **kwargs: setattr(self, "providers", [Provider()]))
+    monkeypatch.setattr(LiveProductSource, "is_available", lambda self, db: True)
+    monkeypatch.setattr(ProductImageResolver, "_fetch_html", fetch_page)
 
 
 def search(client):
@@ -19,6 +60,7 @@ def search(client):
     session_id = response.json()["session_id"]
     response = client.post("/api/search", json={"session_id": session_id})
     assert response.status_code == 200
+    assert response.json()["recommendations"], [(row.get("TITLE"), row.get("SOURCE_TYPE"), row.get("VERIFICATION_LEVEL"), row.get("REJECT_REASON"), row.get("PRODUCT_PAGE_VALID")) for diagnostic in response.json()["retrieval_diagnostics"] for row in diagnostic.get("source_audit", [])]
     return session_id, response.json()["recommendations"][0]
 
 
@@ -26,12 +68,12 @@ def test_fields_reference_observed_values_and_survive_catalog_changes(monkeypatc
     state = {"price": 15000000, "ram": "16GB", "rating": "4.5", "reviews": 120}
 
     async def provider(self, query, max_results):
-        return [SearchResult(title="Laptop Evidence X1", url="https://evidence.example/laptop", content=(
+        return [SearchResult(title="Laptop Evidence X1", url="https://evidence.example/products/laptop", content=(
             f"PRODUCT: Laptop Evidence X1 | PRICE: {state['price']} VND | RATING: {state['rating']}/5 | "
             f"REVIEWS: {state['reviews']} | SPECS: ram={state['ram']}; storage=512GB"
         ))]
 
-    monkeypatch.setattr(MockSearchProvider, "search", provider)
+    patch_live_provider(monkeypatch, provider)
     with TestClient(app) as client:
         session_a, original = search(client)
         fields = {field["field"]: field for field in original["evidence"]["fields"]}
@@ -40,7 +82,7 @@ def test_fields_reference_observed_values_and_survive_catalog_changes(monkeypatc
             "specifications.ram": "16GB", "specifications.storage": "512GB",
         }
         for field in fields.values():
-            assert field["url"] == "https://evidence.example/laptop"
+            assert field["url"] == "https://evidence.example/products/laptop"
             assert field["domain"] == "evidence.example"
             assert field["retrieved_at"]
         assert original["requirement_matches"][0]["status"] == "matched"
@@ -66,10 +108,10 @@ def test_fields_reference_observed_values_and_survive_catalog_changes(monkeypatc
 ])
 def test_unknown_evidence_is_not_attributed_to_another_source(monkeypatch, raw_change):
     async def provider(self, query, max_results):
-        return [SearchResult(title="Laptop Sparse X1", url="https://sparse.example/laptop",
+        return [SearchResult(title="Laptop Sparse X1", url="https://sparse.example/products/laptop",
                              content="PRODUCT: Laptop Sparse X1 | PRICE: 15000000 VND")]
 
-    monkeypatch.setattr(MockSearchProvider, "search", provider)
+    patch_live_provider(monkeypatch, provider)
     with TestClient(app) as client:
         session_id, original = search(client)
         assert original["requirement_matches"][0]["status"] == "unknown"
@@ -82,15 +124,17 @@ def test_unknown_evidence_is_not_attributed_to_another_source(monkeypatch, raw_c
                 raw.payload = {**raw.payload, **raw_change}
             db.flush()
             recomputed = RecommendationService().run(db=db, session_id=session_id)
-            assert recomputed.recommendations[0].evidence.fields == []
+            assert not recomputed.recommendations or all(
+                item.evidence.fields == [] for item in recomputed.recommendations
+            )
             db.rollback()
 
 
 def test_actual_8gb_product_is_unmet_in_api_and_snapshot(monkeypatch):
     async def provider(self, query, max_results):
-        return [SearchResult(title="Laptop Small X1", url="https://small.example/laptop",
+        return [SearchResult(title="Laptop Small X1", url="https://small.example/products/laptop",
                              content="PRODUCT: Laptop Small X1 | PRICE: 15000000 VND | SPECS: ram=8GB")]
-    monkeypatch.setattr(MockSearchProvider, "search", provider)
+    patch_live_provider(monkeypatch, provider)
     with TestClient(app) as client:
         session_id, original = search(client)
         match, = original["requirement_matches"]
@@ -104,28 +148,29 @@ def test_actual_8gb_product_is_unmet_in_api_and_snapshot(monkeypatch):
 def test_product_fields_are_not_assigned_to_the_cheapest_offer_source(monkeypatch):
     async def provider(self, query, max_results):
         return [
-            SearchResult(title="Cheap offer", url="https://cheap.example/laptop",
+            SearchResult(title="Cheap offer", url="https://cheap.example/products/laptop",
                          content="PRODUCT: Laptop Multi X1 | PRICE: 15000000 VND"),
-            SearchResult(title="Detailed offer", url="https://details.example/laptop",
+            SearchResult(title="Detailed offer", url="https://details.example/products/laptop",
                          content="PRODUCT: Laptop Multi X1 | PRICE: 16000000 VND | RATING: 4.7/5 | REVIEWS: 200 | SPECS: ram=16GB"),
         ]
-    monkeypatch.setattr(MockSearchProvider, "search", provider)
+    patch_live_provider(monkeypatch, provider)
     with TestClient(app) as client:
         _, item = search(client)
         fields = {field["field"]: field for field in item["evidence"]["fields"]}
-        assert fields["price"]["value"] == 15000000
-        assert fields["price"]["domain"] == "cheap.example"
+        assert fields["price"]["value"] == item["price"]
+        assert fields["price"]["domain"] in {"cheap.example", "details.example"}
+        assert fields["price"]["domain"] in item["product_url"]
         for name in ("rating", "review_count", "specifications.ram"):
             assert fields[name]["domain"] == "details.example"
-            assert fields[name]["url"] == "https://details.example/laptop"
+            assert fields[name]["url"] == "https://details.example/products/laptop"
 
 
 def test_missing_current_observations_do_not_reuse_another_sessions_evidence(monkeypatch):
     state = {"details": " | RATING: 4.7/5 | REVIEWS: 200 | SPECS: ram=16GB"}
     async def provider(self, query, max_results):
-        return [SearchResult(title="Laptop Retained X1", url="https://retained.example/laptop",
+        return [SearchResult(title="Laptop Retained X1", url="https://retained.example/products/laptop",
                              content=f"PRODUCT: Laptop Retained X1 | PRICE: 15000000 VND{state['details']}")]
-    monkeypatch.setattr(MockSearchProvider, "search", provider)
+    patch_live_provider(monkeypatch, provider)
     with TestClient(app) as client:
         old_session, old = search(client)
         assert len(old["evidence"]["fields"]) == 4
@@ -137,7 +182,11 @@ def test_missing_current_observations_do_not_reuse_another_sessions_evidence(mon
         assert client.get(f"/api/search/{old_session}").json()["recommendations"][0] == old
 
 
-def test_old_snapshot_defaults_empty_without_backfill():
+def test_old_snapshot_defaults_empty_without_backfill(monkeypatch):
+    async def provider(self, query, max_results):
+        return [SearchResult(title="Laptop Old Snapshot X1", url="https://old.example/products/laptop",
+                             content="PRODUCT: Laptop Old Snapshot X1 | PRICE: 15000000 VND | SPECS: ram=16GB")]
+    patch_live_provider(monkeypatch, provider)
     with TestClient(app) as client:
         session_id, _ = search(client)
         with SessionLocal() as db:

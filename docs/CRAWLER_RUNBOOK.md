@@ -22,9 +22,8 @@ to evade a restriction.
 2. Review the merchant's `robots.txt` and identify the exact permitted host,
    storefront API or product-page route, rate limits, and data-use restrictions.
 3. Back up any existing SQLite database before deployment or schema upgrades.
-4. In `backend/.env`, set `DEMO_MODE=false` only when intentionally running the
-   existing Live search flow. Leave the source registry empty until the review
-   above is complete.
+4. `DEMO_MODE` does not grant collection permission or enable a collector.
+   Leave the source registry empty until the review above is complete.
 5. After approval, configure `COLLECTOR_SOURCE_REGISTRY_JSON` as a JSON array.
    The following is a **non-functional template**, not an approved merchant:
 
@@ -193,10 +192,13 @@ fed back into the same deterministic JSON-LD parser.
 
 ## Known limitations and recovery
 
-- DNS addresses are checked during preflight, but the current HTTPX transport
-  resolves the hostname again when opening the connection; DNS rebinding is not
-  pinned/fully prevented. Do not enable an untrusted source until transport-level
-  address pinning is implemented and tested.
+- Collector HTTP connections use the pinned HTTPX/httpcore transport: each TCP
+  connection resolves the allowlisted hostname, rejects the full answer set if
+  any address is non-public, and connects to a validated IP literal while
+  preserving the hostname for TLS SNI and certificate checks. Unit coverage is
+  in `backend/tests/unit/test_collector_network_policy.py`. This protects the
+  collector HTTP clients; it does not make an unreviewed source permissible or
+  replace network-level egress controls for optional browser rendering.
 - Crawl4AI/browser rendering is optional and fixture-tested but has not been
   exercised against a permitted Live JavaScript store. Do not use it to get
   around HTTP 401/403/429, CAPTCHA, or robots restrictions.

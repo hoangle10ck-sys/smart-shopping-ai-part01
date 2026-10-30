@@ -104,10 +104,19 @@ def test_gemini_sdk_has_one_attempt_and_real_transport_timeout(monkeypatch):
 
 
 @pytest.mark.asyncio
-@pytest.mark.parametrize('query,missing', [('Điện thoại 10 triệu','purpose'), ('Điện thoại camera tốt','budget'), ('10 triệu','category')])
+@pytest.mark.parametrize('query,missing', [('10 triệu','category')])
 async def test_actually_missing_input_still_clarifies(query, missing):
     assessment = await RequirementAnalyzer(MockLLMClient()).analyze(query)
     assert assessment.needs_clarification and missing in assessment.missing_fields
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize('query', ['Điện thoại 10 triệu', 'Điện thoại camera tốt'])
+async def test_missing_optional_fields_do_not_block_search(query):
+    assessment = await RequirementAnalyzer(MockLLMClient()).analyze(query)
+    assert not assessment.needs_clarification
+    assert assessment.clarification_question is None
+    assert assessment.missing_fields == []
 
 
 @pytest.mark.asyncio

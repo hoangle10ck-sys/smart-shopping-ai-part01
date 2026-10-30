@@ -34,10 +34,45 @@ export interface RecommendationEvidence {
   warnings?: string[];
 }
 
+export interface ProductImageEvidence {
+  status: "VERIFIED";
+  image_url: string;
+  source_type: string;
+  source_url: string;
+  identifier_type: string;
+  identifier_value: string;
+  verification_method: string;
+  checked_at: string;
+  content_type: string;
+  content_sha256: string;
+  license?: string | null;
+  license_url?: string | null;
+}
+
 export interface ResearchMetadata {
   source_mode?: "HISTORICAL_RESEARCH" | null;
   historical_price?: { amount: string; currency: string; reference_year: number; price_observed_at: null } | null;
-  research_provenance?: { dataset_id: string; revision: string; parent_asin: string; dataset_url: string; imported_at: string } | null;
+  research_provenance?: {
+    dataset_id: string;
+    dataset_name?: string;
+    revision: string;
+    external_product_id?: string;
+    identifier_label?: string;
+    parent_asin?: string;
+    dataset_url?: string;
+    license?: string;
+    license_url?: string;
+    barcode?: string;
+    content_license?: string;
+    content_license_url?: string;
+    database_license?: string;
+    image_license?: string;
+    image_license_url?: string;
+    source_product_url?: string;
+    attribution?: string;
+    retrieved_on?: string;
+    imported_at: string;
+  } | null;
 }
 
 export interface RecommendationItem extends ResearchMetadata {
@@ -66,6 +101,7 @@ export interface RecommendationItem extends ResearchMetadata {
   model?: string | null;
 
   image_url?: string | null;
+  image_evidence?: ProductImageEvidence | null;
 
   price?: number | null;
   currency: string;
@@ -164,7 +200,7 @@ export interface SearchPipelineResponse {
   demo_mode?: boolean;
   data_semantics?: "snapshot" | "legacy_recomputed" | "not_generated";
   warnings?: string[];
-
+  unified_sources?: UnifiedSourceStatus[];
   recommendations: RecommendationItem[];
 
   total_recommended: number;
@@ -183,6 +219,7 @@ export interface ProductOffer {
   product_page_valid?: boolean | null;
   source_observation_valid?: boolean | null;
   image_url?: string | null;
+  image_evidence?: ProductImageEvidence | null;
   image_source?: string | null;
   evidence_url?: string | null;
   id: number;
@@ -227,6 +264,7 @@ export interface ProductDetail extends ResearchMetadata {
   normalized_name?: string | null;
 
   image_url?: string | null;
+  image_evidence?: ProductImageEvidence | null;
 
   rating?: number | null;
 
@@ -282,6 +320,7 @@ export interface ComparisonProduct extends ResearchMetadata {
   model?: string | null;
 
   image_url?: string | null;
+  image_evidence?: ProductImageEvidence | null;
 
   rating?: number | null;
 

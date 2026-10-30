@@ -127,9 +127,9 @@ def test_carousel_wrong_product_and_range_price_rejected():
 async def test_resolver_rejects_broken_image_and_preserves_page(monkeypatch):
     from app.services.extraction.product_image_resolver import ProductImageResolver
     async def html(self, url): return url, sales_page(image='/photo.jpg')
-    async def broken(self, url): return False
+    async def broken(self, url): return {'accepted': False, 'reason': 'http_404'}
     monkeypatch.setattr(ProductImageResolver, '_fetch_html', html)
-    monkeypatch.setattr(ProductImageResolver, '_image_loads', broken)
+    monkeypatch.setattr(ProductImageResolver, 'verify_image', broken)
     proof = await ProductImageResolver().inspect('https://shop.vn/products/phone-15')
     assert proof['product_page_valid'] and proof['image_url'] is None
 
@@ -138,9 +138,12 @@ async def test_resolver_rejects_broken_image_and_preserves_page(monkeypatch):
 async def test_resolver_uses_verified_product_image(monkeypatch):
     from app.services.extraction.product_image_resolver import ProductImageResolver
     async def html(self, url): return url, sales_page(image='/photo.jpg')
-    async def loads(self, url): return True
+    async def loads(self, url):
+        from datetime import datetime, timezone
+        return {'accepted': True, 'checked_at': datetime.now(timezone.utc).isoformat(),
+                'content_type': 'image/jpeg', 'content_sha256': 'a' * 64}
     monkeypatch.setattr(ProductImageResolver, '_fetch_html', html)
-    monkeypatch.setattr(ProductImageResolver, '_image_loads', loads)
+    monkeypatch.setattr(ProductImageResolver, 'verify_image', loads)
     proof = await ProductImageResolver().inspect('https://shop.vn/products/phone-15')
     assert proof['image_url'] == 'https://shop.vn/photo.jpg'
     assert proof['image_source'] == 'json_ld_product'

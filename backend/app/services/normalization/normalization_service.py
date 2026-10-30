@@ -3,6 +3,7 @@
 from dataclasses import (
     dataclass,
 )
+from datetime import timezone
 
 from sqlalchemy import (
     select,
@@ -12,10 +13,7 @@ from sqlalchemy.orm import (
     Session,
 )
 
-from app.models.product_offer import (
-    ProductOffer,
-    utc_now as offer_utc_now,
-)
+from app.models.product_offer import ProductOffer
 
 from app.schemas.normalization import (
     NormalizedProductCandidate,
@@ -129,6 +127,15 @@ class NormalizationService:
             )
 
 
+        # Product identity/evidence can still be retained without a trustworthy
+        # observation time, but Offer/PriceObservation persistence must not invent one.
+        observed_at = normalized.observed_at
+        if observed_at is None or observed_at.utcoffset() is None:
+            db.flush()
+            return PersistenceResult(product.id, None, created_product, False)
+        normalized.observed_at = observed_at.astimezone(timezone.utc)
+
+
         # =====================================================
         # OFFER
         # =====================================================
@@ -143,7 +150,6 @@ class NormalizationService:
         if normalized.platform and normalized.platform != "unknown" and (
             normalized.external_sku_id or normalized.variant_attributes
         ):
-            from datetime import datetime, timezone
             from app.schemas.collector import OfferObservation, PriceRange, VariantIdentity
             from app.services.collectors.persistence import persist_offer_observation
             price_range = (PriceRange(minimum=normalized.price_min, maximum=normalized.price_max)
@@ -163,7 +169,7 @@ class NormalizationService:
                     shipping_fee=normalized.shipping_fee, voucher=normalized.voucher,
                     warranty=normalized.warranty,
                     availability=normalized.availability, product_url=normalized.product_url or candidate.evidence_url or "",
-                    observed_at=normalized.observed_at or datetime.now(timezone.utc)))
+            observed_at=normalized.observed_at))
             return PersistenceResult(product.id, result.offer.id, created_product, result.offer_created)
 
         (
@@ -366,6 +372,7 @@ class NormalizationService:
                 product_url=(
                     candidate.product_url
                 ),
+                last_checked_at=candidate.observed_at,
             )
         )
 
@@ -446,6 +453,7 @@ class NormalizationService:
             )
 
 
-        offer.last_checked_at = (
-            offer_utc_now()
-        )
+        # Normalizing catalog fields is not a new Offer check.
+        # Only a verified aware observation represents a known check instant.
+        if candidate.observed_at is not None and candidate.observed_at.utcoffset() is not None:
+            offer.last_checked_at = candidate.observed_at

@@ -40,6 +40,8 @@ async function request<T>(
       {
         ...options,
 
+        credentials: options?.credentials ?? "include",
+
         headers: {
           "Content-Type":
             "application/json",

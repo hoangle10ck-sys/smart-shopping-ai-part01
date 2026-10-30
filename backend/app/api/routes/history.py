@@ -6,11 +6,13 @@ from sqlalchemy.orm import Session
 
 from app.api.routes.search import get_search_result
 from app.core.database import get_db
+from app.api.guest_owner import get_guest_owner, require_owned_session
 from app.models.recommendation import Recommendation
 from app.models.recommendation_snapshot import RecommendationSnapshot
 from app.models.requirement import Requirement
 from app.models.search_session import SearchSession
 from app.schemas.history import HistoryDetailResponse, HistoryItem, HistoryListResponse
+from app.models.user import User
 
 
 router = APIRouter(prefix="/api/history", tags=["History"])
@@ -28,6 +30,7 @@ def list_history(
     limit: int = Query(default=50, ge=1, le=100),
     offset: int = Query(default=0, ge=0),
     db: Session = Depends(get_db),
+    owner: User = Depends(get_guest_owner),
 ) -> HistoryListResponse:
     counts = select(
         Recommendation.session_id, func.count(Recommendation.id).label("count"),
@@ -36,6 +39,7 @@ def list_history(
         select(SearchSession, RecommendationSnapshot, counts.c.count)
         .outerjoin(RecommendationSnapshot, RecommendationSnapshot.session_id == SearchSession.id)
         .outerjoin(counts, counts.c.session_id == SearchSession.id)
+        .where(SearchSession.user_id == owner.id)
         .order_by(SearchSession.created_at.desc(), SearchSession.id.desc())
         .limit(limit).offset(offset)
     ).all()
@@ -45,17 +49,20 @@ def list_history(
             count = len(snapshot.payload["result"]["recommendations"])
         items.append(history_item(session, count or 0))
     return HistoryListResponse(
-        items=items, total=db.scalar(select(func.count(SearchSession.id))) or 0,
+        items=items,
+        total=db.scalar(select(func.count(SearchSession.id)).where(SearchSession.user_id == owner.id)) or 0,
         limit=limit, offset=offset,
     )
 
 
 @router.get("/{session_id}", response_model=HistoryDetailResponse)
-def get_history(session_id: str, db: Session = Depends(get_db)) -> HistoryDetailResponse:
-    session = db.get(SearchSession, session_id)
-    if session is None:
-        raise HTTPException(status_code=404, detail="Không tìm thấy search session.")
+def get_history(
+    session_id: str,
+    db: Session = Depends(get_db),
+    owner: User = Depends(get_guest_owner),
+) -> HistoryDetailResponse:
+    session = require_owned_session(db, session_id, owner)
     has_requirement = db.scalar(select(Requirement.id).where(Requirement.session_id == session_id)) is not None
-    result = get_search_result(session_id=session_id, db=db) if has_requirement else None
+    result = get_search_result(session_id=session_id, db=db, owner=owner) if has_requirement else None
     item = history_item(session, result.total_recommended if result is not None else 0)
     return HistoryDetailResponse(**item.model_dump(), result=result)

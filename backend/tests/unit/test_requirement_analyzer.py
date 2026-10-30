@@ -8,6 +8,7 @@ from app.services.llm.client import (
 from app.services.llm.requirement_analyzer import (
     RequirementAnalyzer,
 )
+from app.services.llm.client import detect_category, normalize_text
 
 
 @pytest.mark.asyncio
@@ -38,7 +39,7 @@ async def test_complete_headphone_requirement() -> None:
 
 
 @pytest.mark.asyncio
-async def test_laptop_without_budget_requires_clarification() -> None:
+async def test_laptop_without_budget_can_start_search_without_clarification() -> None:
     analyzer = RequirementAnalyzer(
         client=MockLLMClient()
     )
@@ -52,11 +53,22 @@ async def test_laptop_without_budget_requires_clarification() -> None:
         == "laptop"
     )
 
-    assert result.needs_clarification is True
+    assert result.needs_clarification is False
 
-    assert "budget" in result.missing_fields
+    assert result.missing_fields == []
+    assert result.clarification_question is None
 
-    assert result.clarification_question == "Bạn dự kiến ngân sách khoảng bao nhiêu?"
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(("query", "category"), [
+    ("Máy tính", "máy tính"),
+    ("Laptop cho học tập", "laptop"),
+    ("Máy tính bảng", "máy tính bảng"),
+])
+async def test_computer_categories_do_not_require_clarification(query, category):
+    result = await RequirementAnalyzer(client=MockLLMClient()).analyze(query)
+    assert result.requirement.category == category
+    assert result.needs_clarification is False
 
 
 @pytest.mark.asyncio
@@ -108,3 +120,18 @@ async def test_local_budget_formats(budget, minimum, maximum):
     assert result.requirement.budget_min == minimum
     assert result.requirement.budget_max == maximum
     assert result.needs_clarification is False
+
+
+@pytest.mark.parametrize("query,category", [
+    ("giày chạy bộ", "giày"),
+    ("thực phẩm cho gia đình", "thực phẩm"),
+    ("đồ gia dụng nhà bếp", "đồ gia dụng"),
+    ("thú cưng", "thú cưng"),
+    ("đồ thể thao", "đồ thể thao"),
+    ("tủ lạnh", "tủ lạnh"),
+    ("television", "tivi"),
+    ("refrigerator", "tủ lạnh"),
+    ("fridge", "tủ lạnh"),
+])
+def test_local_requirement_fallback_recognizes_expanded_categories(query, category):
+    assert detect_category(normalize_text(query)) == category

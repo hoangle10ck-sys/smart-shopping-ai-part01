@@ -13,7 +13,7 @@ test("Home submits one automatic unified search without requiring source or mode
 
   await page.getByLabel("Bạn đang tìm sản phẩm gì?").fill("Tai nghe 500 nghìn để học online, mic tốt, pin lâu");
   const request = page.waitForRequest((req) => req.url() === `${API}/api/search` && req.method() === "POST");
-  await page.getByRole("button", { name: /Tìm bằng AI/ }).click();
+  await page.getByRole("button", { name: /Tìm và đề xuất/ }).click();
   const search = await request;
   expect(search.postDataJSON().search_scope).toBeUndefined();
   await page.waitForURL(/\/results\//);

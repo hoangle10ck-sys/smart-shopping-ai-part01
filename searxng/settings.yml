@@ -1,0 +1,18 @@
+# Minimal local override based on the official SearXNG settings template.
+# Keep upstream defaults and enable the JSON format consumed by our adapter.
+use_default_settings: true
+
+general:
+  debug: false
+  instance_name: "Smart Shopping AI local search"
+
+search:
+  formats:
+    - html
+    - json
+
+server:
+  # Overridden by the SEARXNG_SECRET environment variable in Compose.
+  secret_key: "ultrasecretkey"
+  limiter: false
+  public_instance: false

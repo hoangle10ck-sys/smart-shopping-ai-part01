@@ -16,6 +16,7 @@ from sqlalchemy.orm import Session
 
 from app.core.config import get_settings
 from app.core.database import get_db
+from app.api.guest_owner import get_guest_owner, require_owned_session
 from app.models.raw_product_candidate import (
     RawProductCandidate,
 )
@@ -29,6 +30,7 @@ from app.models.search_session import (
     SearchSessionStatus,
     utc_now,
 )
+from app.models.user import User
 from app.models.source import Source
 from app.schemas.recommendation import (
     SearchPipelineResponse,
@@ -193,6 +195,7 @@ def load_raw_search_result(
 async def execute_search(
     payload: SearchRequest,
     db: Session = Depends(get_db),
+    owner: User = Depends(get_guest_owner),
 ) -> SearchPipelineResponse:
     """Execute the complete deterministic search/ranking pipeline."""
 
@@ -200,24 +203,11 @@ async def execute_search(
         time.perf_counter()
     )
 
+    search_session = require_owned_session(db, payload.session_id, owner)
+
     prior_snapshot = db.get(RecommendationSnapshot, payload.session_id)
     if prior_snapshot and prior_snapshot.payload.get("result", {}).get("data_mode") == "research":
         raise HTTPException(status_code=409, detail="Research snapshot bất biến; hãy tạo truy vấn Research mới.")
-
-    search_session = db.get(
-        SearchSession,
-        payload.session_id,
-    )
-
-    if search_session is None:
-        raise HTTPException(
-            status_code=(
-                status.HTTP_404_NOT_FOUND
-            ),
-            detail=(
-                "Không tìm thấy search session."
-            ),
-        )
 
     query_models = list(
         db.scalars(
@@ -302,6 +292,24 @@ async def execute_search(
                 all_warnings.extend(outcome.warnings)
             save_search_warnings(db, payload.session_id, all_warnings)
 
+            retrieval_diagnostics = [
+                diagnostic
+                for outcome in outcomes
+                for diagnostic in outcome.retrieval_diagnostics
+            ]
+            trace = current_trace.get()
+            if trace is not None:
+                trace.diagnostics['session_id'] = payload.session_id
+                performance = deepcopy(trace.snapshot())
+                performance['timings']['total_search_ms'] = round(duration_ms, 3)
+                retrieval_diagnostics.append({'performance': performance})
+                snapshot = db.get(RecommendationSnapshot, payload.session_id)
+                if snapshot is not None:
+                    snapshot.payload = {
+                        **snapshot.payload,
+                        'retrieval_diagnostics': deepcopy(retrieval_diagnostics),
+                    }
+
             db.commit()
 
             return SearchPipelineResponse(
@@ -314,7 +322,7 @@ async def execute_search(
                 total_sources=len(outcomes),
                 total_products=len(unified_result.recommendations),
                 warnings=all_warnings,
-                retrieval_diagnostics=[],
+                retrieval_diagnostics=retrieval_diagnostics,
                 demo_mode=get_settings().demo_mode,
                 processing_time_ms=round(duration_ms, 2),
                 requirement=unified_result.requirement,
@@ -465,23 +473,13 @@ async def execute_search(
 def get_search_result(
     session_id: str,
     db: Session = Depends(get_db),
+    owner: User = Depends(get_guest_owner),
 ) -> SearchPipelineResponse:
     """Return persisted search and recommendation results."""
 
-    search_session = db.get(
-        SearchSession,
-        session_id,
-    )
+    search_session = require_owned_session(db, session_id, owner)
 
-    if search_session is None:
-        raise HTTPException(
-            status_code=(
-                status.HTTP_404_NOT_FOUND
-            ),
-            detail=(
-                "Không tìm thấy search session."
-            ),
-        )
+    snapshot = db.get(RecommendationSnapshot, session_id)
 
     raw_result = (
         load_raw_search_result(

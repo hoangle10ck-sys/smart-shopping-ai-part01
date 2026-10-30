@@ -1,0 +1,45 @@
+\chapter{KIỂM THỬ VÀ ĐÁNH GIÁ}
+
+\section{Chiến lược kiểm thử}
+
+Kiểm thử được tổ chức theo nhiều lớp: unit test cho parser, policy, chuẩn hóa, scoring và bằng chứng; integration/API test cho session, search, recommendation, history, comparison và lỗi provider; frontend test cho hiển thị dữ liệu; Playwright E2E cho hành trình từ nhập yêu cầu đến mở kết quả, chi tiết, so sánh, feedback và history. Kiểm thử tự động mặc định dùng database tạm và fixture, không gọi dịch vụ AI trả phí hoặc crawler thương mại Live.
+
+\section{Kết quả kiểm thử được ghi nhận}
+
+Bảng dưới đây tóm tắt lần kiểm thử được ghi nhận tại checkpoint 30/10/2026. Đây là kết quả của checkpoint đó, không phải lần chạy lại trong quá trình biên soạn tài liệu này.
+
+\begin{table}[htbp]
+\centering
+\caption{Kết quả kiểm thử tại checkpoint 30/10/2026.}
+\label{tab:test-results}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.30\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.15\textwidth}}
+\toprule
+Hạng mục & Kết quả được ghi nhận & Trạng thái \\
+\midrule
+Backend pytest toàn bộ & 1.118 tests passed; exit code 0 & PASS \\
+Frontend unit/component tests & 73 tests passed; exit code 0 & PASS \\
+Playwright E2E & 23 tests passed; exit code 0 & PASS \\
+ESLint & Hoàn tất; exit code 0 & PASS \\
+TypeScript type-check & Hoàn tất; exit code 0 & PASS \\
+Production build & Hoàn tất; exit code 0 & PASS \\
+Kiểm tra khoảng trắng diff & Hoàn tất; exit code 0 & PASS \\
+Kiểm tra giá/tồn kho thương mại Live & Không được các bộ test offline xác nhận & NOT VERIFIED \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+E2E dùng database SQLite dùng một lần, backend và frontend local, catalog kiểm thử tổng hợp và guard ngăn kết nối mạng ngoài. Vì vậy, các test chứng minh tương thích luồng UI/API trong môi trường cô lập, không chứng minh dữ liệu test là sản phẩm thương mại thực.
+
+\section{Kiểm toán điều kiện hiển thị ảnh}
+
+Tại lần kiểm tra database read-only được ghi nhận ngày 30/10/2026, catalog có 242 Product. Trong đó 191 bản ghi có URL ảnh để kiểm tra: 180 bản ghi đạt điều kiện ảnh tự động và 11 không đạt. Tổng thể, 62/242 Product không đủ điều kiện hiển thị: 51 không có URL ảnh; 10 thuộc các nhóm xung đột hash ảnh trùng giữa danh tính sản phẩm; và 1 có GTIN không hợp lệ. Các xung đột ảnh được ghi nhận ở các nhóm ID $[55,74,85,118]$, $[64,114]$, $[72,89]$ và $[113,145]$.
+
+Đây là kết quả kiểm tra kỹ thuật về URL, nội dung tải, provenance và tính duy nhất của ảnh. Báo cáo kiểm toán không quan sát bằng mắt toàn bộ 242 ảnh và không đánh giá chất lượng chụp. Do đó con số 180 có nghĩa là đạt cổng ảnh tự động theo bằng chứng sẵn có, không phải chứng nhận thủ công tuyệt đối rằng mọi ảnh đều mô tả chính xác sản phẩm.
+
+\section{Đánh giá chức năng}
+
+Kết quả kiểm thử xác nhận các luồng chính có thể kiểm tra tự động: phân tích nhu cầu, tìm kiếm hợp nhất, snapshot, lọc và sắp xếp, chi tiết sản phẩm, so sánh, phản hồi và lịch sử. Các tình huống thiếu nguồn, timeout, lỗi một phần, kết quả rỗng, dữ liệu thiếu evidence và ảnh lỗi có kiểm thử hồi quy tương ứng. Bộ test không đánh giá Precision@K hoặc NDCG vì chưa có tập nhãn mức độ liên quan độc lập.
+
+\section{Giới hạn và nguy cơ diễn giải}
+
+Kết quả đạt của test không đồng nghĩa với hệ thống đã triển khai production, tất cả nguồn web đang hoạt động, mọi danh mục sản phẩm đều được bao phủ hoặc giá hiện tại luôn có sẵn. Cấu hình khóa nguồn có thể dẫn đến ít kết quả hoặc kết quả rỗng. Dữ liệu nghiên cứu không được xem là giá hiện tại. URL SearXNG không phải bằng chứng offer. Mức phù hợp là thứ hạng theo heuristic và dữ liệu quan sát được, không phải xác suất thống kê rằng người dùng chắc chắn sẽ hài lòng.

@@ -5,8 +5,9 @@ from fastapi.testclient import TestClient
 from app.core.config import get_settings
 from app.main import app
 from app.services.extraction.product_image_resolver import ProductImageResolver
-from app.services.search import search_service
 from app.services.search.base import SearchResult
+from app.services.search.multi_provider import MultiSearchProvider
+from app.services.search.unified.external_sources import LiveProductSource
 from app.services.performance import TIMINGS
 from tests.fixtures.sales_pages import sales_page
 
@@ -42,8 +43,10 @@ def live(monkeypatch):
         if n == 72: extra['offers'] = {'@type':'Offer','price':9000000,'priceCurrency':'VND',
             'availability':'https://schema.org/OutOfStock', 'seller':{'name':'Test Merchant'}}
         if n == 74: extra['category'] = 'tai nghe'  # Contradictory main-page evidence.
-        return url, sales_page(name=name, price=None if n == 71 else 9000000, **extra)
-    monkeypatch.setattr(search_service, 'get_search_provider', Provider)
+        return url, sales_page(name=name, price=None if n == 71 else 9000000,
+            image=f"https://seller{n}.example/images/samsung-galaxy-a{n}-128gb.jpg", **extra)
+    monkeypatch.setattr(MultiSearchProvider, '__init__', lambda self, **kwargs: setattr(self, 'providers', [Provider()]))
+    monkeypatch.setattr(LiveProductSource, 'is_available', lambda self, db: True)
     monkeypatch.setattr(ProductImageResolver, '_fetch_html', page)
     return state
 
@@ -73,7 +76,7 @@ def test_live_actual_pipeline_returns_only_verified_supply_and_snapshot(live, su
         assert len(diagnostics['generated_queries']) == live['calls']
         for item in body['recommendations']:
             assert item['price'] == 9000000 and item['product_page_valid']
-            assert item['image_url'] is None
+            assert item['image_evidence']['status'] == 'VERIFIED'
             score = item['score']
             expected = sum(score[field + '_score'] * weight for field, weight in
                 [('budget',.25), ('requirement',.30), ('purpose',.20), ('rating',.10), ('review',.05), ('source',.10)])
@@ -81,12 +84,20 @@ def test_live_actual_pipeline_returns_only_verified_supply_and_snapshot(live, su
         saved = client.get('/api/search/' + body['session_id']).json()
         assert saved['recommendations'] == body['recommendations']
         calls = live['calls']
-        cached = search(client)
-        assert live['calls'] == calls
-        assert cached['recommendations'] == body['recommendations']
-        info = cached['retrieval_diagnostics'][-1]['performance']
-        assert info['diagnostics']['cache_hit'] and info['diagnostics']['final_recommendations'] == supply
-        assert info['timings']['search_provider_ms'] == info['timings']['product_verification_ms'] == 0
+        refreshed = client.post('/api/search', json={'session_id': body['session_id']})
+        assert refreshed.status_code == 200
+        assert live['calls'] > calls
+        assert {item['product_id'] for item in refreshed.json()['recommendations']} == {
+            item['product_id'] for item in body['recommendations']
+        }
+        assert {item['price'] for item in refreshed.json()['recommendations']} == {
+            item['price'] for item in body['recommendations']
+        }
+        info = refreshed.json()['retrieval_diagnostics'][-1]['performance']
+        assert not info['diagnostics']['cache_hit']
+        assert info['diagnostics']['final_recommendations'] == supply
+        assert info['timings']['search_provider_ms'] > 0
+        assert info['timings']['product_verification_ms'] > 0
 
 
 def test_rejections_remain_strict_and_are_counted(live):
@@ -95,26 +106,26 @@ def test_rejections_remain_strict_and_are_counted(live):
         body = search(client)
     assert body['total_recommended'] == 2
     stats = body['retrieval_diagnostics'][-1]['performance']['diagnostics']
-    assert stats['rejected_wrong_category'] == 2
+    assert stats['rejected_wrong_category'] == 1
     assert stats['rejected_missing_price'] == 1
     assert stats['rejected_out_of_stock'] == 1
-    assert stats['rejected_non_product_page'] == 1
+    assert stats['rejected_non_product_page'] == 0  # The article URL was never fetched.
+    assert all('/blog/' not in item['product_url'] for item in body['recommendations'])
 
 
-@pytest.mark.parametrize('field,value', [('live_search_target_products', 3), ('live_search_min_products', 2),
-    ('live_search_max_candidates', 24), ('live_search_initial_candidates', 12),
-    ('live_search_max_queries', 8), ('live_search_budget_seconds', 90)])
-def test_cache_scope_changes_trigger_new_retrieval(live, monkeypatch, field, value):
+def test_live_source_is_checked_after_catalog_has_results(live):
     with TestClient(app) as client:
-        search(client)
+        first = search(client)
         previous = live['calls']
-        monkeypatch.setattr(get_settings(), field, value)
-        body = search(client)
+        refreshed = client.post('/api/search', json={'session_id': first['session_id']})
+    assert refreshed.status_code == 200
     assert live['calls'] > previous
-    assert not body['retrieval_diagnostics'][-1]['performance']['diagnostics']['cache_hit']
+    assert refreshed.json()['unified_sources']
+    assert next(item for item in refreshed.json()['unified_sources']
+                if item['source'] == 'configured_web_search')['available']
 
 
-def test_all_budget_modes_keep_separate_cache_entries(live):
+def test_all_budget_modes_keep_their_semantics_in_unified_search(live):
     with TestClient(app) as client:
         for query, mode in [(QUERY, 'FLEXIBLE_TARGET'),
             ('Điện thoại tối đa 10 triệu, camera tốt, pin lâu', 'HARD_MAX'),
